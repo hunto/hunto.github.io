@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Recent &amp; Upcoming Talks | Academic</title>
-    <link>/academic/talk/</link>
-      <atom:link href="/academic/talk/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://hunto.github.io/academic/talk/</link>
+      <atom:link href="https://hunto.github.io/academic/talk/index.xml" rel="self" type="application/rss+xml" />
     <description>Recent &amp; Upcoming Talks</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
     <image>
       <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
       <title>Recent &amp; Upcoming Talks</title>
-      <link>/academic/talk/</link>
+      <link>https://hunto.github.io/academic/talk/</link>
     </image>
     
   </channel>
