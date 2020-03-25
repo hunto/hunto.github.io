@@ -64,4 +64,4 @@ user_groups:
 - Visitors
 ---
 
-Tao Huang is a bachelor candidate in School of Computer Science and Technology, Huazhong University of Science and Technology. Now He works as the Research Intern at [Sensetime](https://www.sensetime.com). His research interests lie within deep learning for Computer Vision, particularly in Neural Architecture Search, Channel Pruning and Face Recognition. 
+Tao Huang is a bachelor candidate in School of Computer Science and Technology, Huazhong University of Science and Technology. Now he works as the Research Intern at [Sensetime](https://www.sensetime.com). His research interests lie within deep learning for Computer Vision, particularly in Neural Architecture Search, Channel Pruning and Face Recognition. 
