@@ -25,6 +25,8 @@ interests:
 - Neural Architecture Search
 - Video Understanding
 - Face Recognition
+- Object Detection
+- Knowledge Distillation
 
 education:
   courses:
@@ -62,4 +64,4 @@ user_groups:
 - Visitors
 ---
 
-Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+Tao Huang is a bachelor candidate in School of Computer Science and Technology, Huazhong University of Science and Technology. Now He works as the Research Intern at [Sensetime](https://www.sensetime.com). His research interests lie within deep learning for Computer Vision, particularly in Neural Architecture Search, Channel Pruning and Face Recognition. 
