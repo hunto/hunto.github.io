@@ -13,4 +13,4 @@ subtitle = ""
   columns = "2"
 
 +++
-* [2020/3] One paper were accepted to CVPR 2020.
+* [2020/3] One paper was accepted to CVPR 2020.
