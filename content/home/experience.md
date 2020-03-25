@@ -76,7 +76,7 @@ date_format = "Jan 2006"
 [[experience]]
   title = "Leader of Embedded Control Group"
   company = "3D Printer Team, Huazhong University of Science and Techonology"
-  company_url = "https://dian.org.cn/"
+  company_url = ""
   location = "Wuhan, China"
   date_start = "2017-01-01"
   date_end = "2019-01-01"
