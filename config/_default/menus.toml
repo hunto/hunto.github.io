@@ -19,9 +19,19 @@
 #  weight = 30
 
 [[main]]
-  name = "Publications"
-  url = "#featured"
+  name = "Experience"
+  url = "#experience"
   weight = 40
+
+[[main]]
+  name = "News"
+  url = "#news"
+  weight = 20
+
+[[main]]
+  name = "Publications"
+  url = "#publications"
+  weight = 30
 
 #[[main]]
 #  name = "Contact"
