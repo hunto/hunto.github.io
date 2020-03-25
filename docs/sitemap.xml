@@ -3,39 +3,39 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/authors/admin/</loc>
+    <loc>/academic/authors/admin/</loc>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>/academic/</loc>
   </url>
   
   <url>
-    <loc>/authors/</loc>
+    <loc>/academic/authors/</loc>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>/academic/categories/</loc>
   </url>
   
   <url>
-    <loc>/post/</loc>
+    <loc>/academic/post/</loc>
   </url>
   
   <url>
-    <loc>/publication_types/</loc>
+    <loc>/academic/publication_types/</loc>
   </url>
   
   <url>
-    <loc>/publication/</loc>
+    <loc>/academic/publication/</loc>
   </url>
   
   <url>
-    <loc>/talk/</loc>
+    <loc>/academic/talk/</loc>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>/academic/tags/</loc>
   </url>
   
 </urlset>
