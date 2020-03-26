@@ -23,11 +23,6 @@
   </url>
   
   <url>
-    <loc>https://hunto.github.io/academic/</loc>
-    <lastmod>2020-06-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://hunto.github.io/academic/authors/</loc>
     <lastmod>2020-06-01T00:00:00+00:00</lastmod>
   </url>
@@ -59,6 +54,11 @@
   
   <url>
     <loc>https://hunto.github.io/academic/publication/</loc>
+    <lastmod>2020-06-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hunto.github.io/academic/</loc>
     <lastmod>2020-06-01T00:00:00+00:00</lastmod>
   </url>
   
