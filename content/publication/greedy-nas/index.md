@@ -12,6 +12,6 @@ links:
     # icon_pack: fab
     # icon: twitter
     name: Arxiv
-    url: 'https://arxiv.org'
+    url: 'https://arxiv.org/abs/2003.11236'
 ---
 
