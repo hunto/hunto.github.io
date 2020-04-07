@@ -2,69 +2,69 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Authors | Tao Huang</title>
-    <link>https://hunto.github.io/academic/authors/</link>
-      <atom:link href="https://hunto.github.io/academic/authors/index.xml" rel="self" type="application/rss+xml" />
+    <link>/authors/</link>
+      <atom:link href="/authors/index.xml" rel="self" type="application/rss+xml" />
     <description>Authors</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 01 Jun 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
       <title>Authors</title>
-      <link>https://hunto.github.io/academic/authors/</link>
+      <link>/authors/</link>
     </image>
     
     <item>
       <title>**Mingmin Yang**</title>
-      <link>https://hunto.github.io/academic/authors/mingmin-yang/</link>
+      <link>/authors/mingmin-yang/</link>
       <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>https://hunto.github.io/academic/authors/mingmin-yang/</guid>
+      <guid>/authors/mingmin-yang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>**Shan You**</title>
-      <link>https://hunto.github.io/academic/authors/shan-you/</link>
+      <link>/authors/shan-you/</link>
       <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>https://hunto.github.io/academic/authors/shan-you/</guid>
+      <guid>/authors/shan-you/</guid>
       <description></description>
     </item>
     
     <item>
       <title>**Tao Huang**</title>
-      <link>https://hunto.github.io/academic/authors/tao-huang/</link>
+      <link>/authors/tao-huang/</link>
       <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>https://hunto.github.io/academic/authors/tao-huang/</guid>
+      <guid>/authors/tao-huang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Changshui Zhang</title>
-      <link>https://hunto.github.io/academic/authors/changshui-zhang/</link>
+      <link>/authors/changshui-zhang/</link>
       <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>https://hunto.github.io/academic/authors/changshui-zhang/</guid>
+      <guid>/authors/changshui-zhang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Chen Qian</title>
-      <link>https://hunto.github.io/academic/authors/chen-qian/</link>
+      <link>/authors/chen-qian/</link>
       <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>https://hunto.github.io/academic/authors/chen-qian/</guid>
+      <guid>/authors/chen-qian/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Fei Wang</title>
-      <link>https://hunto.github.io/academic/authors/fei-wang/</link>
+      <link>/authors/fei-wang/</link>
       <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>https://hunto.github.io/academic/authors/fei-wang/</guid>
+      <guid>/authors/fei-wang/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>https://hunto.github.io/academic/authors/admin/</link>
+      <link>/authors/admin/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://hunto.github.io/academic/authors/admin/</guid>
+      <guid>/authors/admin/</guid>
       <description>&lt;p&gt;Tao Huang is a bachelor candidate in School of Computer Science and Technology, Huazhong University of Science and Technology. Now he works as the Research Intern at 
 &lt;a href=&#34;https://www.sensetime.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Sensetime&lt;/a&gt;. His research interests lie within deep learning for Computer Vision, particularly in Neural Architecture Search, Channel Pruning and Face Recognition.&lt;/p&gt;
 </description>

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>1 | Tao Huang</title>
-    <link>https://hunto.github.io/academic/publication_types/1/</link>
-      <atom:link href="https://hunto.github.io/academic/publication_types/1/index.xml" rel="self" type="application/rss+xml" />
+    <link>/publication_types/1/</link>
+      <atom:link href="/publication_types/1/index.xml" rel="self" type="application/rss+xml" />
     <description>1</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 01 Jun 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
       <title>1</title>
-      <link>https://hunto.github.io/academic/publication_types/1/</link>
+      <link>/publication_types/1/</link>
     </image>
     
     <item>
       <title>GreedyNAS: Towards Fast One-Shot NAS with Greedy Supernet</title>
-      <link>https://hunto.github.io/academic/publication/greedy-nas/</link>
+      <link>/publication/greedy-nas/</link>
       <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>https://hunto.github.io/academic/publication/greedy-nas/</guid>
+      <guid>/publication/greedy-nas/</guid>
       <description></description>
     </item>
     

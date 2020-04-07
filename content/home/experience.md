@@ -69,7 +69,7 @@ date_format = "Jan 2006"
   description = """
   This project comes from Beibei Group Company, [Beibei](https://www.beibei.com) is the bigest mother-baby E-commerce platform in China. The task is to find an optimal answer based on classification of customer questions.  
   Main contributions:
-  * Model research: LSTM, Test-CNN, word2vec, etc.
+  * Model research: LSTM, Text-CNN, word2vec, etc.
   * Our deployed intelligent customer service system has over 1 billion users, which outperforms original system in accuracy & degree of satisfication.
   """
 
