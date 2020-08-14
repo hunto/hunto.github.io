@@ -10,7 +10,7 @@ authors:
 superuser: true
 
 # Role/position
-role: Sensetime Research Intern
+role: Researcher
 
 # Organizations/Affiliations
 organizations:
@@ -32,7 +32,8 @@ education:
   courses:
   - course: BSc in School of Computer Science and Technology
     institution: Huazhong University of Science and Technology
-    year: 2016 ~ Present
+    year: 2016 ~ 2020
+    
 
 # Social/Academic Networking
 # For available icons, see: https://sourcethemes.com/academic/docs/page-builder/#icons
@@ -47,7 +48,7 @@ social:
   link: https://github.com/hunto
 - icon: envelope
   icon_pack: fas
-  link: mailto:huangtao@sensetime.com
+  link: mailto:hunto@foxmail.com
 # Link to a PDF of your resume/CV from the About widget.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
 # - icon: cv
@@ -55,7 +56,7 @@ social:
 #   link: files/cv.pdf
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
-email: "huangtao@sensetime.com"
+email: "hunto@foxmail.com"
 
 # Organizational groups that you belong to (for People widget)
 #   Set this to `[]` or comment out if you are not using People widget.
@@ -64,4 +65,4 @@ user_groups:
 - Visitors
 ---
 
-Tao Huang is a bachelor candidate in School of Computer Science and Technology, Huazhong University of Science and Technology. Now he works as the Research Intern at [Sensetime](https://www.sensetime.com). His research interests lie within deep learning for Computer Vision, particularly in Neural Architecture Search, Channel Pruning and Face Recognition. 
+Tao Huang completed his B.E. in [School of Computer Science and Technology](http://cs.hust.edu.cn), [Huazhong University of Science and Technology](https://www.hust.edu.cn) in 2020. Now he works as a researcher at [Sensetime](https://www.sensetime.com). His research interests lie within deep learning for Computer Vision, particularly in Neural Architecture Search, Channel Pruning and Face Recognition. 
