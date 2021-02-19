@@ -13,11 +13,11 @@ body {
 }
 */
 html {
-  background-color: #424242; 
+  background-color: #eeeeee; 
 }
 
 body { 
-  font-family: Verdana,Arial,sans-serif,'微软雅黑','宋体';
+  font-family: Georgia, serif;
   color: #000;
   background-color: #ffffff; 
   text-align:left; /* for IE */
@@ -146,7 +146,6 @@ h1, h2, h3 {
 }
 
 h1 {
-	color: #0c0c0c;
 	font-size: 165%;
 	padding-bottom: 0.3em;
 }
