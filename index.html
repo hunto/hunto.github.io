@@ -1,7 +1,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0, minimum-scale=0.2"> -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0, minimum-scale=0.2">
 
 
 <head>
@@ -17,37 +17,79 @@
     <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101296995);</script>
     <script async src="//static.getclicky.com/js"></script>    
 
+    <script>
+        // 判断是否为移动端运行环境 
+
+        // if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){ 
+
+        // if(window.location.href.indexOf("?mobile")<0){ 
+        try{ 
+            // if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)){ 
+            if (window.screen.width < 700) {
+            // 判断访问环境是 Android|webOS|iPhone|iPod|BlackBerry 则加载以下样式 
+                setActiveStyleSheet("jemdoc_mobile.css"); 
+            } 
+            else if(/iPad/i.test(navigator.userAgent)){ 
+            // 判断访问环境是 iPad 则加载以下样式 
+                setActiveStyleSheet("jemdoc.css"); 
+            } 
+            else{ 
+            // 判断访问环境是 其他移动设备 则加载以下样式 
+                setActiveStyleSheet("jemdoc.css"); 
+            } 
+        } 
+        catch(e){} 
+        // } 
+        // } 
+
+        // else{ 
+
+        // 如果以上都不是，则加载以下样式 
+
+        // setActiveStyleSheet("jemdoc.css"); 
+
+        // } 
+
+        // 判断完毕后加载样式 
+
+        function setActiveStyleSheet(filename){
+            document.write("<link href="+filename+" rel=stylesheet>");
+        }
+    </script>
+
     <link rel="shortcut icon" href="myIcon.ico">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta name="keywords" content="Tao Huang, SenseTime">
     <meta name="description" content="Tao Huang's home page">
-    <link rel="stylesheet" href="jemdoc.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="jemdoc.css" type="text/css" />
+    <link rel="stylesheet" media="screen and (max-width:700px)" href="jemdoc_mobile.css" type="text/css" />
+    <link rel="stylesheet" media="screen and (max-width:700px)" href="jemdoc.css" type="text/css" /> -->
     <title>Tao Huang</title>
 </head>
 
 <body>
-    <div id="layout-content" style="margin-top:25px">
+    <div id="layout-content" style="margin-top:0px">
         <table>
             <tbody>
                 <tr>
-                    <td width="700">
+                    <td width="80%">
                         <div id="toptitle">
                         <!--<h1>Tao Huang &nbsp; <img src="assets/name_chs.png" height="40px" style="margin-bottom:-10px"></h1>-->
                         <h1>Tao Huang</h1>
-				</div>
-				<h3>Researcher</h3>
-				<p>
-                    SenseTime Group Ltd</br>
-					Email: <a href="mailto:hunto@foxmail.com">hunto [at] foxmail.com</a>
-					or <a href="mailto:huangtao@senseauto.com">huangtao [at] senseauto.com</a>
-				</p>
-				<p>
-					<a href="https://github.com/hunto"><img src="assets/github.png" height="30px"></a>
-					<a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en"><img src="assets/google_scholar.png" height="30px"></a>
-				</p>
-                <b>Control the controllable, observe the observable, leave the rest alone.</b>
-			</td>
-			<td><img src="assets/taohuang.jpg" border="0" height="200"></br></td>
+				        </div>
+                        <h3>Researcher</h3>
+                        <p>
+                            SenseTime Group Ltd</br>
+                            Email: <a href="mailto:hunto@foxmail.com">hunto [at] foxmail.com</a>
+                            or <a href="mailto:huangtao@senseauto.com">huangtao [at] senseauto.com</a>
+                        </p>
+                        <p>
+                            <a href="https://github.com/hunto"><img src="assets/github.png" height="30px"></a>
+                            <a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en"><img src="assets/google_scholar.png" height="30px"></a>
+                        </p>
+                        <b>Control the controllable, observe the observable, leave the rest alone.</b>
+                    </td>
+			        <td width="20%"><img src="assets/taohuang.jpg" border="0" width="100%"></br></td>
 		<tr>
 	</tbody>
 </table>
@@ -80,7 +122,10 @@
 <h2>Education</h2>
 <ul>
     <li>
-        <div style="float:left; text-align:left"><a href="https://www.hust.edu.cn">Huazhong University of Science and Technology</a>, Wuhan, China</div> <div style="float:right; text-align:right">Sep. 2016 – Jun. 2020</div><br>
+        <div style="display: flex; justify-content: space-between;">
+            <div><a href="https://www.hust.edu.cn">Huazhong University of Science and Technology</a>, Wuhan, China</div>
+            <div style="margin-left: 2px;">Sep. 2016 – Jun. 2020</div>
+        </div>
         B.E. in Computer Science and Technology<br>
     </li>
 </ul>
@@ -147,12 +192,14 @@
 <ul>
 	<li>
         <a href="https://sensetime.com">SenseTime</a>, Beijing, China<br>
-        <div style="float:left; text-align:left">
-            Researcher</div> <div style="float:right; text-align:right">Jul. 2020 – Now
-            </div><br>
-        <div style="float:left; text-align:left">
-            Research Intern</div> <div style="float:right; text-align:right">Aug. 2019 – Jul. 2020
-            </div><br>
+        <div style="display: flex; justify-content: space-between; font-style: italic;">
+            <div>Researcher</div>
+            <div style="margin-left: 2px;">Jul. 2020 – Now</div>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-style: italic;">
+            <div>Research Intern</div>
+            <div style="margin-left: 2px;">Aug. 2019 – Jul. 2020</div>
+        </div>
         <ul>
             <li>
                 Research on neural architecture search(NAS) and channel pruning.
@@ -163,8 +210,11 @@
         </ul>
 	</li>
 	<li>
-		<div style="float:left; text-align:left"><a href="https://horizon.ai">Horizon Robotics</a>, Beijing, China</div> <div style="float:right; text-align:right">May 2019 – Aug. 2019</div><br>
-        Computer Vision Research Intern<br>
+        <a href="https://horizon.ai">Horizon Robotics</a>, Beijing, China
+        <div style="display: flex; justify-content: space-between; font-style: italic;">
+            <div>Computer Vision Research Intern</div>
+            <div style="margin-left: 2px;">May 2019 – Aug. 2019</div>
+        </div>
         <ul>
             <li>
                 Development on object detection framework: anchor-­free detection method, detection in traffic scene.
@@ -176,7 +226,10 @@
 	</li>
 	<li>
         <a href="http://dian.org.cn/">Dian Group</a>, Wuhan, Hubei province, China<br>
-        <div style="float:left; text-align:left">Team Leader of Real­time Face Detection & Alignment Project, AI Group</div> <div style="float:right; text-align:right">Nov. 2018 – May 2019</div><br>
+        <div style="display: flex; justify-content: space-between; font-style: italic;">
+            <div>Team Leader of Real­time Face Detection & Alignment Project, AI Group</div>
+            <div style="margin-left: 2px;">Nov. 2018 – May 2019</div>
+        </div>
         <ul>
             <li>
                 Develop Android APP to inference face detection, tracking, and 106-­point landmark models on mobile devices. 
@@ -188,7 +241,10 @@
                 Our proposed model archieves an inference speed of 5 ms / image on Huawei Mate20 Pro.
             </li>
         </ul>
-        <div style="float:left; text-align:left">Core Member of Beibei Intelligent Customer Service Project, AI Group</div> <div style="float:right; text-align:right">Feb. 2018 – Nov. 2018</div><br>
+        <div style="display: flex; justify-content: space-between; font-style: italic;">
+            <div>Core Member of Beibei Intelligent Customer Service Project, AI Group</div>
+            <div style="margin-left: 2px;">Feb. 2018 – Nov. 2018</div>
+        </div>
         <ul>
             <li>
                 This project comes from <a href="https://www.beibei.com/">Beibei Group Company</a>, Beibei is the bigest mother-­baby ecommerce platform in China. The task is to find optimal answers based on classifications of customer questions.
@@ -199,8 +255,11 @@
         </ul>
 	</li>
 	<li>
-		<div style="float:left; text-align:left">3D Printer Team, Wuhan, Hubei province, China</div> <div style="float:right; text-align:right">Jan. 2017 – Jan. 2019</div><br>
-		Group Learder of Embedded Control Group<br>
+        3D Printer Team, Wuhan, Hubei province, China
+        <div style="display: flex; justify-content: space-between; font-style: italic;">
+            <div>Group Learder of Embedded Control Group</div>
+            <div style="margin-left: 2px;">Jan. 2017 – Jan. 2019</div>
+        </div>
 		Topic: developing control algorithms for 3DP/FDM 3D printers<br>
 	</li>
 </ul>
@@ -219,42 +278,63 @@
     <li>
         <div style="display: flex; justify-content: space-between;">
             <div>Outstanding Graduate award, Huazhong University of Science and Technology</div>
-            <div>Jun. 2020</div>
+            <div style="margin-left: 2px;">Jun. 2020</div>
         </div>
     </li>
     <li>
-            <span style="float:left">Outstanding Graduate award, Huazhong University of Science and Technology</span><span style="float:right">Jun. 2020</span>
+        <div style="display: flex; justify-content: space-between;">
+            <div>Outstanding Graduate Thesis award, Huazhong University of Science and Technology</div>
+            <div style="margin-left: 2px;">Jun. 2020</div>
+        </div>
     </li>
     <li>
-		<div style="float:left; text-align:left">Outstanding Graduate Thesis award, Huazhong University of Science and Technology</div> <div style="float:right; text-align:right">Jun. 2020</div>
+        <div style="display: flex; justify-content: space-between;">
+            <div>First Class Prize, National College Student Connected Smarter System Innovation Competition, National</div>
+            <div style="margin-left: 2px;">2018</div>
+        </div>
     </li>
     <li>
-		<div style="float:left; text-align:left">First Class Prize, National College Student Connected Smarter System Innovation Competition, National</div> <div style="float:right; text-align:right">2018</div>
-	</li>
-    <li>
-		<div style="float:left; text-align:left">Third Class Prize, ‘Challenge Cup’ Competition, Provincial</div> <div style="float:right; text-align:right">2018</div>
-	</li>
-	<li>
-		<div style="float:left; text-align:left">First Class Prize, ‘Challenge Cup’ Competition, HUST</div> <div style="float:right; text-align:right">2018</div>
-	</li>
-    <li>
-        <div style="float:left; text-align:left">Second Class Prize, ‘Youfang Cup’ IoT Competition, HUST</div> <div style="float:right; text-align:right">2018</div>
+        <div style="display: flex; justify-content: space-between;">
+            <div>Third Class Prize, ‘Challenge Cup’ Competition, Provincial</div>
+            <div style="margin-left: 2px;">2018</div>
+        </div>
     </li>
     <li>
-        <div style="float:left; text-align:left">Third Class Prize, ‘Seed Cup’ Machine Learning Competition, HUST</div> <div style="float:right; text-align:right">2017</div>
+        <div style="display: flex; justify-content: space-between;">
+            <div>First Class Prize, ‘Challenge Cup’ Competition, HUST</div>
+            <div style="margin-left: 2px;">2018</div>
+        </div>
     </li>
     <li>
-        <div style="float:left; text-align:left">Technology Innovation Scholarship, HUST</div> <div style="float:right; text-align:right">2017</div>
+        <div style="display: flex; justify-content: space-between;">
+            <div>Second Class Prize, ‘Youfang Cup’ IoT Competition, HUST</div>
+            <div style="margin-left: 2px;">2018</div>
+        </div>
     </li>
     <li>
-        <div style="float:left; text-align:left">Third Class Prize, ‘Youfang Cup’ IoT Competition, HUST</div> <div style="float:right; text-align:right">2017</div>
+        <div style="display: flex; justify-content: space-between;">
+            <div>Third Class Prize, ‘Seed Cup’ Machine Learning Competition, HUST</div>
+            <div style="margin-left: 2px;">2017</div>
+        </div>
+    </li>
+    <li>
+        <div style="display: flex; justify-content: space-between;">
+            <div>Technology Innovation Scholarship, HUST</div>
+            <div style="margin-left: 2px;">2017</div>
+        </div>
+    </li>
+    <li>
+        <div style="display: flex; justify-content: space-between;">
+            <div>Third Class Prize, ‘Youfang Cup’ IoT Competition, HUST</div>
+            <div style="margin-left: 2px;">2017</div>
+        </div>
     </li>
 </ul>
 
 <div id="footer">
-	<div id="footer-text"></div>
+	<div id="footer-text" style="text-align: center;">© Tao Huang | Last updated: 02/19/2021</div>
 </div>
-	<center>© Tao Huang | Last updated: 02/19/2021</center>
+	<!-- <center>© Tao Huang | Last updated: 02/19/2021</center> -->
     <!--<center>© Tao Huang
     	<script type="text/javascript" language="javascript">
     	if (Date.parse(document.lastModified) != 0) document.write(" | Last updated: " + document.lastModified);</script>
