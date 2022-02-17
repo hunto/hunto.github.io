@@ -17,7 +17,7 @@ html {
 }
 
 body { 
-  font-family: Verdana,Arial,sans-serif,'微软雅黑','宋体';
+  font-family: Optima,Verdana,Arial,sans-serif,'微软雅黑','宋体';
   color: #000;
   background-color: #ffffff; 
   text-align:left; /* for IE */
@@ -30,7 +30,7 @@ body {
   padding-top: 0px;
   padding-bottom: 0px; */
   max-width: 960px; 
-  font-size: 70%;
+  font-size: 80%;
 }
 
 #layout-menu {
