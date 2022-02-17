@@ -21,16 +21,16 @@ body {
   color: #000;
   background-color: #ffffff; 
   text-align:left; /* for IE */
-  /* margin-top: 30px;  */
-  /* margin-bottom: 30px; */
+  margin-top: 0px; 
+  margin-bottom: 0px;
   margin-left: auto;
   margin-right: auto;
   /* padding-left: 50px;
   padding-right: 50px;
-  padding-top: 10px;
-  padding-bottom: 30px; */
+  padding-top: 0px;
+  padding-bottom: 0px; */
   max-width: 960px; 
-  font-size: 90%;
+  font-size: 70%;
 }
 
 #layout-menu {
@@ -76,7 +76,7 @@ pre, tt {
 }
 
 a, a > tt {
-	color: #224b8d;
+	color: #3150be;
 	text-decoration: none;
 }
 
@@ -137,7 +137,7 @@ strong {
 
 
 h1, h2, h3 {
-	color: #527bbd;
+	color: #c50e0e;
 	margin-top: 0.7em;
 	margin-bottom: 0.5em;
 	padding-bottom: 0.2em;
