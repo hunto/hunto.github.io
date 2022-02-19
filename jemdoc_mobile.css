@@ -1,4 +1,5 @@
-/* Default css file for jemdoc. */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap&text=0123456789');
 
 table#tlayout {
     border: none;
@@ -17,7 +18,7 @@ html {
 }
 
 body { 
-  font-family: Optima,Verdana,Arial,sans-serif,'微软雅黑','宋体';
+  font-family: 'Lato','Lora',Optima,Verdana,Arial,sans-serif,'微软雅黑','宋体';
   color: #000;
   background-color: #ffffff; 
   text-align:left; /* for IE */
@@ -25,10 +26,10 @@ body {
   margin-bottom: 0px;
   margin-left: auto;
   margin-right: auto;
-  /* padding-left: 50px;
-  padding-right: 50px;
-  padding-top: 0px;
-  padding-bottom: 0px; */
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 10px;
+  padding-bottom: 0px;
   max-width: 960px; 
   font-size: 80%;
 }
@@ -70,13 +71,20 @@ tt {
     background: #ffffdd;
 }
 
+pt {
+	/* color:chocolate; */
+	/* color:#c50e0e; */
+	color:#8d1111;
+	/* color:tomato; */
+}
+
 pre, tt {
 	font-size: 90%;
 	font-family: monaco, monospace;
 }
 
 a, a > tt {
-	color: #3150be;
+	color: #224b8d;
 	text-decoration: none;
 }
 
@@ -137,6 +145,7 @@ strong {
 
 
 h1, h2, h3 {
+	font-family: Optima;
 	color: #c50e0e;
 	margin-top: 0.7em;
 	margin-bottom: 0.5em;
@@ -228,7 +237,7 @@ p + ul, p + ol {
 }
 
 li {
-	margin-top:0.9em;
+	margin-top:0.8em;
 }
 
 ol {
