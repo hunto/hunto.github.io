@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap&text=0123456789');
+/* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap&text=0123456789'); */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 table#tlayout {
     border: none;
@@ -145,7 +146,7 @@ strong {
 
 
 h1, h2, h3 {
-	font-family: Optima;
+	font-family: 'Lato', Optima;
 	color: #c50e0e;
 	margin-top: 0.7em;
 	margin-bottom: 0.5em;
