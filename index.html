@@ -39,22 +39,13 @@
             } 
         } 
         catch(e){} 
-        // } 
-        // } 
-
-        // else{ 
-
-        // 如果以上都不是，则加载以下样式 
-
-        // setActiveStyleSheet("jemdoc.css"); 
-
-        // } 
 
         // 判断完毕后加载样式 
 
         function setActiveStyleSheet(filename){
             document.write("<link href="+filename+" rel=stylesheet>");
         }
+
     </script>
 
     <link rel="shortcut icon" href="myIcon.ico">
@@ -64,7 +55,7 @@
     <!-- <link rel="stylesheet" href="jemdoc.css" type="text/css" />
     <link rel="stylesheet" media="screen and (max-width:700px)" href="jemdoc_mobile.css" type="text/css" />
     <link rel="stylesheet" media="screen and (max-width:700px)" href="jemdoc.css" type="text/css" /> -->
-    <title>Tao Huang</title>
+    <title>Tao Huang - Homepage</title>
 </head>
 
 <body>
@@ -118,28 +109,33 @@
     <li>[2022/04] One paper was accepted to <i>Nature Partner Journals</i> Quantum Information (NPJ QI).</li>
     <li>[2022/03] Two papers were accepted to CVPR 2022.</li>
     <li>[2022/01] One paper was accepted to ICLR 2022.</li>
-    <li>
-        [2021/12] We released <a href="https://github.com/open-mmlab/mmrazor">MMRazor</a> - a model compression toolkit for model slimming and AutoML, which includes 3 mainstream technologies NAS, pruning, and KD. MMRazor can be easily applied to various projects (e.g., MMDet and MMCls) in OpenMMLab.
-    </li>
-    <li>
-        [2021/11] We released GreedyNASv2 at <a href="https://arxiv.org/abs/2111.12609">arXiv</a>.
-    </li>
-    <li>
-        [2021/03] One paper about NAS was accepted to CVPR 2021. The NAS benchmark in our paper was released at <a href="https://github.com/xiusu/NAS-Bench-Macro">github</a>.
-    </li>
-    <li>
-        [2021/01] One paper about channel number search (pruning) was accepted to ICLR 2021 as spotlight.
-    </li>
-    <!-- <li>
-        [2020/11] One paper about NAS was released at <a href="https://arxiv.org/abs/2011.09300">arXiv</a>. Our TopoNAS explicitly learns the topology for differentiable NAS (DARTS), and enjoys significant efficiency improvement on obtained architectures.
-    </li>
-    <li>
-        [2020/10] One paper about quantum architecture search (QAS) was released at <a href="https://arxiv.org/abs/2010.10217">arXiv</a>. Our QAS implicitly learns a rule that can well suppress the influence of quantum noise and the barren plateau.
-    </li> -->
-    <!-- <li>
-        [2020/02] One paper about NAS was accepted to CVPR 2020.
-    </li> -->
 </ul>
+[<button type="button" class="collapsible">More</button>]
+    <div class="content">
+        <ul>
+            <li>
+                [2021/12] We released <a href="https://github.com/open-mmlab/mmrazor">MMRazor</a> - a model compression toolkit for model slimming and AutoML, which includes 3 mainstream technologies NAS, pruning, and KD. MMRazor can be easily applied to various projects (e.g., MMDet and MMCls) in OpenMMLab.
+            </li>
+            <li>
+                [2021/11] We released GreedyNASv2 at <a href="https://arxiv.org/abs/2111.12609">arXiv</a>.
+            </li>
+            <li>
+                [2021/03] One paper about NAS was accepted to CVPR 2021. The NAS benchmark in our paper was released at <a href="https://github.com/xiusu/NAS-Bench-Macro">github</a>.
+            </li>
+            <li>
+                [2021/01] One paper about channel number search (pruning) was accepted to ICLR 2021 as spotlight.
+            </li>
+            <li>
+                [2020/11] One paper about NAS was released at <a href="https://arxiv.org/abs/2011.09300">arXiv</a>. Our TopoNAS explicitly learns the topology for differentiable NAS (DARTS), and enjoys significant efficiency improvement on obtained architectures.
+            </li>
+            <li>
+                [2020/10] One paper about quantum architecture search (QAS) was released at <a href="https://arxiv.org/abs/2010.10217">arXiv</a>. Our QAS implicitly learns a rule that can well suppress the influence of quantum noise and the barren plateau.
+            </li>
+            <li>
+                [2020/02] One paper about NAS was accepted to CVPR 2020.
+            </li>
+        </ul>
+    </div>
 
 <!-- <h2>Publications [<a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en">Google Scholar</a>]</h2> -->
 <h2>Publications</h2>
@@ -173,6 +169,7 @@
 			[<a href="https://arxiv.org/abs/2205.10536">ArXiv</a>]
 			[<a href="https://scholar.google.com/scholar?cluster=9782451594224614440&hl=en&as_sdt=0,5">Bib</a>]
             [<a href="https://github.com/hunto/DIST_KD">Code</a>]
+            [<a href="assets/dist/KD_sharing_Tao_20220715.pdf">Slides</a>]
 		</p>
     </li>
     <li>
@@ -302,6 +299,11 @@
     </li>
 </ul>
 
+<h2>Talks</h2>
+<ul>
+    <li>TMLR Young Scientist Seminar@HKBU: "Knowledge Distillation from A Stronger Teacher", Jul. 2022. [<a href="assets/dist/KD_sharing_Tao_20220715.pdf">Slides</a>]</li>
+</ul>
+
 <h2>Education</h2>
 <ul>
     <li>
@@ -425,7 +427,7 @@
 </ul>
 
 <div id="footer">
-	<div id="footer-text" style="text-align: center;">© Tao Huang | Last updated: May 31, 2022</div>
+	<div id="footer-text" style="text-align: center;">© Tao Huang | Last updated: July 18, 2022</div>
 </div>
 	<!-- <center>© Tao Huang | Last updated: 02/19/2021</center> -->
     <!--<center>© Tao Huang
@@ -435,5 +437,23 @@
 </div>
 
 </body>
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+            content.style.display = "none";
+            } else {
+            content.style.display = "block";
+            }
+        });
+    }
+</script>
+
 </html>
 
