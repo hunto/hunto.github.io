@@ -15,9 +15,9 @@ body {
 	margin: 0;
 }
 */
-html {
-  /* background-color: #424242;  */
-}
+/* html {
+  background-color: #424242; 
+} */
 
 body { 
   font-family: 'Lato','Lora',Optima,Verdana,Arial,sans-serif,'微软雅黑','宋体';
@@ -101,8 +101,6 @@ venue {
     -moz-box-shadow:inset 0px 0px 0px 0.25em #fff;
     box-shadow:inset 0px 0px 0px 0.25em #fff;
 	border: #000;
-	/* display: inline-block; */
-	/* vertical-align: middle; */
 }
 
 pre, tt {
@@ -154,7 +152,7 @@ div.menu-item {
 
 div#toptitle {
 	padding-bottom: 0.2em;
-	margin-bottom: 1.5em;
+	margin-bottom: 0.5em;
 	/*border-bottom: 3px double gray;*/
 }
 
@@ -251,6 +249,7 @@ ul, ol, dl {
 	margin-top: 0.2em;
 	padding-top: 0;
 	margin-bottom: 0.8em;
+	padding-left: 2em;
 }
 
 dt {

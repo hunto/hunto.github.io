@@ -29,6 +29,10 @@ div#toptitle {
 	/*border-bottom: 3px double gray;*/
 }
 
+ul {
+	padding-left: 1em;
+}
+
 .icon {
 	height: 20px
 }
