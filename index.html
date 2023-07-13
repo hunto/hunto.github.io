@@ -46,6 +46,53 @@
             document.write("<link href="+filename+" rel=stylesheet>");
         }
 
+        function checkFilter(type, li) {
+            if (type == "All") {
+                return true
+            }
+            else if (type == "First-authored") {
+                res = li.getAttribute("first_authored")
+                return res
+            }
+            else {
+                cate = li.getAttribute("category")
+                if (!cate) {
+                    return false
+                }
+                items = cate.split(',')
+                for (j = 0; j < items.length; j++) {
+                    console.log(items[j])
+                    if (type.toUpperCase() == items[j].toUpperCase()) {
+                        return true
+                    }
+                }
+                return false
+            }
+        }
+
+        function filterPub(type) {
+            ul = document.getElementById("publications")
+            li = ul.getElementsByTagName("li")
+            for (i = 0; i < li.length; i++) {
+                if (!checkFilter(type, li[i])) {
+                    li[i].style.display = "none";
+                }
+                else {
+                    li[i].style.display = ""
+                }
+            }
+            // change the button color
+            bts = document.getElementsByClassName("filter")
+            for (k = 0; k < bts.length; k++) {
+                if (bts[k].textContent == type) {
+                    bts[k].style.color = "#000"
+                }
+                else {
+                    bts[k].style.color = "#a0a0a0"
+                }
+            }
+        }
+
     </script>
 
     <link rel="shortcut icon" href="myIcon.ico">
@@ -142,11 +189,18 @@
 
 <!-- <h2>Publications [<a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en">Google Scholar</a>]</h2> -->
 <h2>Publications</h2>
-<g>*: equal contribution.</g><br>
-First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue>ICLR</venue>x 2
-<ul>
+*: equal contribution.<br>
+First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue>ICLR</venue>x 2 <br><br>
 
-    <li>
+<button class="filter" type="button" onclick="filterPub('All')" style="color: #000;">All</button>&nbsp;
+<button class="filter" type="button" onclick="filterPub('First-authored')">First-authored</button>&nbsp;
+<button class="filter" type="button" onclick="filterPub('KD')">KD</button>&nbsp;
+<button class="filter" type="button" onclick="filterPub('NAS')">NAS</button>&nbsp;
+<button class="filter" type="button" onclick="filterPub('Pruning')">Pruning</button>
+
+<ul id="publications">
+
+    <li first_authored=true category="KD">
 		<venue>ICLR</venue><pt>Masked Distillation with Receptive Tokens</pt><br>
 		<b>Tao Huang</b>*<g>, Yuan Zhang*, Shan You, Fei Wang, Chen Qian, Jian Cao, Chang Xu</g><br>
 		<em>International Conference on Learning Representations</em> (<b>ICLR</b>), 2023.</em>
@@ -156,7 +210,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
             <a href="https://github.com/hunto/MasKD" class="small">Code</a>
 		</p>
     </li>
-    <li>
+    <li first_authored=true category="KD">
 		<venue>NeurIPS</venue><pt>Knowledge Distillation from A Stronger Teacher</pt><br>
 		<b>Tao Huang</b><g>, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
         <em>Advances in Neural Information Processing Systems</em> (<b>NeurIPS</b>), 2022.
@@ -168,7 +222,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
             <a href="https://mp.weixin.qq.com/s/PwzyaZXCrl_W8NmiQgXm0g" class="small">解读</a>
 		</p>
     </li>
-    <li>
+    <li category="NAS">
 		<venue>NPJ QI</venue><pt></pt><pt>Quantum circuit architecture search for variational quantum algorithms</pt><br>
 		<g>Yuxuan Du,</g> <b>Tao Huang</b><g>, Shan You, Min-Hsiu Hsieh, Dacheng Tao</g><br>
 		<em>Nature Partner Journals Quantum Information</em> (<b>NPJ QI</b>), 2022.<br>
@@ -178,7 +232,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
 			<a href="https://github.com/yuxuan-du/Quantum_architecture_search" class="small">Code</a>
 		</p>
     </li>
-    <li>
+    <li first_authored=true category="NAS">
 		<venue>CVPR</venue><pt></pt><pt>GreedyNASv2: Greedier Search with a Greedy Path Filter</pt><br>
 		<b>Tao Huang</b><g>, Shan You, Fei Wang, Chen Qian, Changshui Zhang, Xiaogang Wang, Chang Xu</g><br>
 		<em>IEEE Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2022.<br>
@@ -187,7 +241,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
 			<a href="https://scholar.google.com/scholar?cluster=8646649449956447640&hl=en&as_sdt=0,5" class="small">Bib</a>
 		</p>
     </li>
-    <li>
+    <li first_authored=true>
         <venue>CVPR</venue><pt>DyRep: Bootstrapping Training with Dynamic Re-parameterization</pt><br>
         <b>Tao Huang</b><g>, Shan You, Bohan Zhang, Yuxuan Du, Fei Wang, Chen Qian, Chang Xu</g><br>
         <em>IEEE Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2022.<br>
@@ -197,7 +251,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
             <a href="https://github.com/hunto/DyRep" class="small">Code</a>
 		</p>
     </li>
-    <li>
+    <li first_authored=true>
         <venue>ICLR</venue><pt>Relational Surrogate Loss Learning</pt><br>
         <b>Tao Huang</b><g>, Zekang Li, Hua Lu, Yong Shan, Shusheng Yang, Yang Feng, Fei Wang, Shan You, Chang Xu</g><br>
         <em>International Conference on Learning Representations</em> (<b>ICLR</b>), 2022.<br>
@@ -210,7 +264,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
             <a href="assets/reloss/Slides_ICLR2022_ReLoss.pdf" class="small">Slides</a>
 		</p>
     </li>
-    <li>
+    <li category="pruning">
 		<venue>ICASSP</venue><pt>Data Agnostic Filter Gating for Efficient Deep Networks</pt><br>
         <g>Hongyan Xu, Xiu Su, Shan You,</g> <b>Tao Huang</b><g>, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu, Dadong Wang, Arcot Sowmya</g><br>
 		<em>IEEE International Conference on Acoustics, Speech and Signal Processing</em> (<b>ICASSP</b>), 2022.
@@ -219,7 +273,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
 			<a href="https://scholar.google.com/scholar?cluster=6802250960153223046&hl=en&as_sdt=0,5" class="small">Bib</a>
 		</p>
 	</li>
-    <li>
+    <li first_authored=true category="NAS">
         <venue>CVPR</venue><pt>Prioritized Architecture Sampling with Monto-Carlo Tree Search</pt><br>
         <g>Xiu Su*,</g> <b>Tao Huang</b>*<g>, Yanxi Li, Shan You, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu</g><br>
         <em>IEEE Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2021.<br>
@@ -230,7 +284,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
             <a href="https://github.com/xiusu/NAS-Bench-Macro" class="small">NAS-Bench-Macro</a>
 		</p>
     </li>
-    <li>
+    <li category="NAS,pruning">
         <venue>ICLR</venue><pt>Locally Free Weight Sharing for Network Width Search</pt><br>
         <g>Xiu Su, Shan You,</g> <b>Tao Huang</b><g>, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu</g><br>
         <em>International Conference on Learning Representations</em> (<b>ICLR, Spotlight</b>), 2021.<br>
@@ -240,7 +294,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
             <a href="https://openreview.net/forum?id=S0UdquAnr9k" class="small">OpenReview</a>
 		</p>
     </li>
-	<li>
+	<li first_authored=true category="NAS">
 		<venue>CVPR</venue><pt>GreedyNAS: Towards Fast One-Shot NAS with Greedy Supernet</pt><br>
         <g>Shan You*,</g> <b>Tao Huang</b>*<g>, Mingmin Yang*, Fei Wang, Chen Qian, Changshui Zhang</g><br>
 		<em>IEEE Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2020.</br>

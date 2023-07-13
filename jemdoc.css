@@ -426,6 +426,16 @@ table.imgtable, table.imgtable td {
     text-align: left;
 }
 
+.filter {
+	color: #a0a0a0;
+	background-color: #fff;
+	border: #000;
+	border-style: solid;
+	border-radius: 0;
+	border-width: 2px;
+	/* width: 5em; */
+}
+
 /* Style the button that is used to open and close the collapsible content */
 .collapsible {
 	background-color: #fff;
