@@ -5,42 +5,22 @@
 
 
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-09RRKD7CRD"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-09RRKD7CRD');
-    </script> -->
     <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101296995);</script>
     <script async src="//static.getclicky.com/js"></script>    
 
     <script>
-        // 判断是否为移动端运行环境 
-
-        // if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){ 
-
-        // if(window.location.href.indexOf("?mobile")<0){ 
-        try{ 
-            // if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)){ 
+        try{
             if (window.screen.width < 700) {
-            // 判断访问环境是 Android|webOS|iPhone|iPod|BlackBerry 则加载以下样式 
                 setActiveStyleSheet("jemdoc_mobile.css"); 
             } 
             else if(/iPad/i.test(navigator.userAgent)){ 
-            // 判断访问环境是 iPad 则加载以下样式 
                 setActiveStyleSheet("jemdoc.css"); 
             } 
-            else{ 
-            // 判断访问环境是 其他移动设备 则加载以下样式 
+            else{
                 setActiveStyleSheet("jemdoc.css"); 
             } 
         } 
         catch(e){} 
-
-        // 判断完毕后加载样式 
 
         function setActiveStyleSheet(filename){
             document.write("<link href="+filename+" rel=stylesheet>");
@@ -85,14 +65,47 @@
             bts = document.getElementsByClassName("filter")
             for (k = 0; k < bts.length; k++) {
                 if (bts[k].textContent == type) {
-                    bts[k].style.color = "#000"
+                    bts[k].style.setProperty("--color", "#000")
+                    bts[k].style.setProperty("--border", "#000")
+                    // bts[k].style.color = "#000"
                 }
                 else {
-                    bts[k].style.color = "#a0a0a0"
+                    bts[k].style.setProperty("--color", "#a0a0a0")
+                    bts[k].style.setProperty("--border", "#d3d3d3")
+                    // bts[k].style.color = "#a0a0a0"
                 }
             }
         }
 
+    </script>
+
+    <script>
+        // import data from './bibtex.json' assert { type: 'json' };
+        const data = {
+"huang2023masked": `@inproceedings{
+huang2023masked,
+title={Masked Distillation with Receptive Tokens},
+author={Tao Huang and Yuan Zhang and Shan You and Fei Wang and Chen Qian and Jian Cao and Chang Xu},
+booktitle={The Eleventh International Conference on Learning Representations },
+year={2023},
+url={https://openreview.net/forum?id=mWRngkvIki3}
+}`,
+"NEURIPS2022_da669dfd": `@inproceedings{NEURIPS2022_da669dfd,
+ author = {Huang, Tao and You, Shan and Wang, Fei and Qian, Chen and Xu, Chang},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {S. Koyejo and S. Mohamed and A. Agarwal and D. Belgrave and K. Cho and A. Oh},
+ pages = {33716--33727},
+ publisher = {Curran Associates, Inc.},
+ title = {Knowledge Distillation from A Stronger Teacher},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2022/file/da669dfd3c36c93905a17ddba01eef06-Paper-Conference.pdf},
+ volume = {35},
+ year = {2022}
+}`
+        }
+
+        function getBibTex(key) {
+            prompt("You can copy the text manually.", data[key]);
+        }
     </script>
 
     <link rel="shortcut icon" href="myIcon.ico">
@@ -137,10 +150,9 @@
 <h2>Biography</h2>
 <p>
     <div style="text-align:justify"> 
-        My name is Tao Huang. I am a 2nd-year PhD student at <a href="https://www.sydney.edu.au/">The University of Sydney</a>, advised by <a href="http://changxu.xyz">Prof. Chang Xu</a>. Before that, I was a Researcher at <a href="https://www.sensetime.com">SenseTime</a>, supervised by <a href="https://shanyou92.github.io/">Dr. Shan You</a>. In 2020, I received my Bachelor's degree in Computer Science at Huazhong University of Science and Technology.
+        My name is Tao Huang (黄涛). I am a 2nd-year PhD student at <a href="https://www.sydney.edu.au/">The University of Sydney</a>, advised by <a href="http://changxu.xyz">Prof. Chang Xu</a>. Before that, I was a Researcher at <a href="https://www.sensetime.com">SenseTime</a>, supervised by <a href="https://shanyou92.github.io/">Dr. Shan You</a>. In 2020, I received my Bachelor's degree in Computer Science at Huazhong University of Science and Technology.
     </div>
 </p>
-
 <p>My major research interests lie within model compression algorithms, such as
     <ul>
         <li style="margin-top: 0.2em">Efficient architectures: NAS, pruning, Rep, handcraft</li>
@@ -192,7 +204,7 @@
 *: equal contribution.<br>
 First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue>ICLR</venue>x 2 <br><br>
 
-<button class="filter" type="button" onclick="filterPub('All')" style="color: #000;">All</button>&nbsp;
+<button class="filter" type="button" onclick="filterPub('All')" style="--color: #000; --border: #000">All</button>&nbsp;
 <button class="filter" type="button" onclick="filterPub('First-authored')">First-authored</button>&nbsp;
 <button class="filter" type="button" onclick="filterPub('KD')">KD</button>&nbsp;
 <button class="filter" type="button" onclick="filterPub('NAS')">NAS</button>&nbsp;
@@ -205,9 +217,9 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
 		<b>Tao Huang</b>*<g>, Yuan Zhang*, Shan You, Fei Wang, Chen Qian, Jian Cao, Chang Xu</g><br>
 		<em>International Conference on Learning Representations</em> (<b>ICLR</b>), 2023.</em>
 		<p>
-			<a href="https://arxiv.org/abs/2205.14589" class="small">ArXiv</a>
-			<a href="https://openreview.net/forum?id=mWRngkvIki3" class="small">Bib</a>
-            <a href="https://github.com/hunto/MasKD" class="small">Code</a>
+			<a class="button-59" href="https://arxiv.org/abs/2205.14589">ArXiv</a>
+            <button class="button-59" onclick="getBibTex('huang2023masked')">Bib</button>
+            <a class="button-59" href="https://github.com/hunto/MasKD">Code</a>
 		</p>
     </li>
     <li first_authored=true category="KD">
@@ -215,11 +227,11 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
 		<b>Tao Huang</b><g>, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
         <em>Advances in Neural Information Processing Systems</em> (<b>NeurIPS</b>), 2022.
 		<p>
-			<a href="https://arxiv.org/abs/2205.10536" class="small">ArXiv</a>
-			<a href="https://scholar.google.com/scholar?cluster=9782451594224614440&hl=en&as_sdt=0,5" class="small">Bib</a>
-            <a href="https://github.com/hunto/DIST_KD" class="small">Code</a>
-            <a href="assets/dist/KD_sharing_Tao_20220715.pdf" class="small">Slides</a>
-            <a href="https://mp.weixin.qq.com/s/PwzyaZXCrl_W8NmiQgXm0g" class="small">解读</a>
+			<a href="https://arxiv.org/abs/2205.10536" class="button-59">ArXiv</a>
+			<button class="button-59" onclick="getBibTex('NEURIPS2022_da669dfd')">Bib</button>
+            <a href="https://github.com/hunto/DIST_KD" class="button-59">Code</a>
+            <a href="assets/dist/KD_sharing_Tao_20220715.pdf" class="button-59">Slides</a>
+            <a href="https://mp.weixin.qq.com/s/PwzyaZXCrl_W8NmiQgXm0g" class="button-59">解读</a>
 		</p>
     </li>
     <li category="NAS">
@@ -227,9 +239,9 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
 		<g>Yuxuan Du,</g> <b>Tao Huang</b><g>, Shan You, Min-Hsiu Hsieh, Dacheng Tao</g><br>
 		<em>Nature Partner Journals Quantum Information</em> (<b>NPJ QI</b>), 2022.<br>
 		<p>
-			<a href="https://arxiv.org/abs/2010.10217" class="small">ArXiv</a>
-			<a href="https://scholar.google.com/scholar?cluster=14041544508923660633&hl=en&as_sdt=0,5" class="small">Bib</a>
-			<a href="https://github.com/yuxuan-du/Quantum_architecture_search" class="small">Code</a>
+			<a href="https://arxiv.org/abs/2010.10217" class="button-59">ArXiv</a>
+			<a href="https://scholar.google.com/scholar?cluster=14041544508923660633&hl=en&as_sdt=0,5" class="button-59">Bib</a>
+			<a href="https://github.com/yuxuan-du/Quantum_architecture_search" class="button-59">Code</a>
 		</p>
     </li>
     <li first_authored=true category="NAS">
@@ -237,8 +249,8 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
 		<b>Tao Huang</b><g>, Shan You, Fei Wang, Chen Qian, Changshui Zhang, Xiaogang Wang, Chang Xu</g><br>
 		<em>IEEE Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2022.<br>
 		<p>
-			<a href="https://arxiv.org/abs/2111.12609" class="small">ArXiv</a>
-			<a href="https://scholar.google.com/scholar?cluster=8646649449956447640&hl=en&as_sdt=0,5" class="small">Bib</a>
+			<a href="https://arxiv.org/abs/2111.12609" class="button-59">ArXiv</a>
+			<a href="https://scholar.google.com/scholar?cluster=8646649449956447640&hl=en&as_sdt=0,5" class="button-59">Bib</a>
 		</p>
     </li>
     <li first_authored=true>
@@ -246,9 +258,9 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
         <b>Tao Huang</b><g>, Shan You, Bohan Zhang, Yuxuan Du, Fei Wang, Chen Qian, Chang Xu</g><br>
         <em>IEEE Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2022.<br>
         <p>
-            <a href="https://arxiv.org/abs/2203.12868" class="small">ArXiv</a>
-            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=9004725926464672087" class="small">Bib</a>
-            <a href="https://github.com/hunto/DyRep" class="small">Code</a>
+            <a href="https://arxiv.org/abs/2203.12868" class="button-59">ArXiv</a>
+            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=9004725926464672087" class="button-59">Bib</a>
+            <a href="https://github.com/hunto/DyRep" class="button-59">Code</a>
 		</p>
     </li>
     <li first_authored=true>
@@ -256,12 +268,11 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
         <b>Tao Huang</b><g>, Zekang Li, Hua Lu, Yong Shan, Shusheng Yang, Yang Feng, Fei Wang, Shan You, Chang Xu</g><br>
         <em>International Conference on Learning Representations</em> (<b>ICLR</b>), 2022.<br>
         <p>
-			<a href="https://arxiv.org/abs/2202.13197" class="small">ArXiv</a>
-            <a href="https://openreview.net/forum?id=dZPgfwaTaXv" class="small">Bib</a>
-            <a href="https://openreview.net/forum?id=dZPgfwaTaXv" class="small">OpenReview</a>
-            <a href="https://github.com/hunto/ReLoss" class="small">Code</a>
-            <a href="assets/reloss/Poster_ICLR2022_ReLoss.pdf" class="small">Poster</a>
-            <a href="assets/reloss/Slides_ICLR2022_ReLoss.pdf" class="small">Slides</a>
+			<a href="https://arxiv.org/abs/2202.13197" class="button-59">ArXiv</a>
+            <a href="https://openreview.net/forum?id=dZPgfwaTaXv" class="button-59">Bib</a>
+            <a href="https://github.com/hunto/ReLoss" class="button-59">Code</a>
+            <a href="assets/reloss/Poster_ICLR2022_ReLoss.pdf" class="button-59">Poster</a>
+            <a href="assets/reloss/Slides_ICLR2022_ReLoss.pdf" class="button-59">Slides</a>
 		</p>
     </li>
     <li category="pruning">
@@ -269,8 +280,8 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
         <g>Hongyan Xu, Xiu Su, Shan You,</g> <b>Tao Huang</b><g>, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu, Dadong Wang, Arcot Sowmya</g><br>
 		<em>IEEE International Conference on Acoustics, Speech and Signal Processing</em> (<b>ICASSP</b>), 2022.
 		<p>
-			<a href="https://arxiv.org/abs/2010.15041" class="small">ArXiv</a>
-			<a href="https://scholar.google.com/scholar?cluster=6802250960153223046&hl=en&as_sdt=0,5" class="small">Bib</a>
+			<a href="https://arxiv.org/abs/2010.15041" class="button-59">ArXiv</a>
+			<a href="https://scholar.google.com/scholar?cluster=6802250960153223046&hl=en&as_sdt=0,5" class="button-59">Bib</a>
 		</p>
 	</li>
     <li first_authored=true category="NAS">
@@ -278,10 +289,10 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
         <g>Xiu Su*,</g> <b>Tao Huang</b>*<g>, Yanxi Li, Shan You, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu</g><br>
         <em>IEEE Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2021.<br>
         <p>
-			<a href="https://arxiv.org/abs/2103.11922" class="small">ArXiv</a>
-            <a href="assets/mctnas/Poster_CVPR2021_MCT-NAS.pdf" class="small">Poster</a>
-            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=16897259555170724856" class="small">Bib</a>
-            <a href="https://github.com/xiusu/NAS-Bench-Macro" class="small">NAS-Bench-Macro</a>
+			<a href="https://arxiv.org/abs/2103.11922" class="button-59">ArXiv</a>
+            <a href="assets/mctnas/Poster_CVPR2021_MCT-NAS.pdf" class="button-59">Poster</a>
+            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=16897259555170724856" class="button-59">Bib</a>
+            <a href="https://github.com/xiusu/NAS-Bench-Macro" class="button-59">NAS-Bench-Macro</a>
 		</p>
     </li>
     <li category="NAS,pruning">
@@ -289,9 +300,9 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
         <g>Xiu Su, Shan You,</g> <b>Tao Huang</b><g>, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu</g><br>
         <em>International Conference on Learning Representations</em> (<b>ICLR, Spotlight</b>), 2021.<br>
         <p>
-			<a href="https://arxiv.org/abs/2102.05258" class="small">ArXiv</a>
-            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=13852905600525060682" class="small">Bib</a>
-            <a href="https://openreview.net/forum?id=S0UdquAnr9k" class="small">OpenReview</a>
+			<a href="https://arxiv.org/abs/2102.05258" class="button-59">ArXiv</a>
+            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=13852905600525060682" class="button-59">Bib</a>
+            <a href="https://openreview.net/forum?id=S0UdquAnr9k" class="button-59">OpenReview</a>
 		</p>
     </li>
 	<li first_authored=true category="NAS">
@@ -299,12 +310,12 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
         <g>Shan You*,</g> <b>Tao Huang</b>*<g>, Mingmin Yang*, Fei Wang, Chen Qian, Changshui Zhang</g><br>
 		<em>IEEE Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2020.</br>
 		<p>
-			<a href="https://arxiv.org/abs/2003.11236" class="small">ArXiv</a>
-            <a href="https://scholar.google.com/scholar?cluster=11467412928038806592&hl=en&as_sdt=0,5" class="small">Bib</a>
-            <a href="assets/greedynas/Poster_CVPR2020_GreedyNAS.pdf" class="small">Poster</a>
-            <a href="assets/greedynas/Video_CVPR2020_GreedyNAS.mp4" class="small">Video</a>
-            <a href="assets/greedynas/Slides_GreedyNAS_titan.pdf" class="small">Slides</a>
-            <a href="https://github.com/open-mmlab/mmrazor" class="small">Code</a>
+			<a href="https://arxiv.org/abs/2003.11236" class="button-59">ArXiv</a>
+            <a href="https://scholar.google.com/scholar?cluster=11467412928038806592&hl=en&as_sdt=0,5" class="button-59">Bib</a>
+            <a href="assets/greedynas/Poster_CVPR2020_GreedyNAS.pdf" class="button-59">Poster</a>
+            <a href="assets/greedynas/Video_CVPR2020_GreedyNAS.mp4" class="button-59">Video</a>
+            <a href="assets/greedynas/Slides_GreedyNAS_titan.pdf" class="button-59">Slides</a>
+            <a href="https://github.com/open-mmlab/mmrazor" class="button-59">Code</a>
 		</p>
 	</li>
 </ul>
@@ -316,8 +327,8 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
         <g>Zhixiang Yuan, Kaixin Zhang, </g><b>Tao Huang</b><br>
         <em>arXiv preprint arXiv:2306.16016 (2023).</em>
         <p>
-            <a href="https://arxiv.org/abs/2306.16016" class="small">ArXiv</a>
-            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=11695637510257123983" class="small">Bib</a>
+            <a href="https://arxiv.org/abs/2306.16016" class="button-59">ArXiv</a>
+            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=11695637510257123983" class="button-59">Bib</a>
         </p>
     </li>
     <li>
@@ -325,9 +336,9 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
         <b>Tao Huang</b><g>, Yuan Zhang, Mingkai Zheng, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
         <em>arXiv preprint arXiv:2305.15712 (2023).</em>
         <p>
-            <a href="https://arxiv.org/abs/2305.15712" class="small">ArXiv</a>
-            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=4615443208731882220" class="small">Bib</a>
-            <a href="https://github.com/hunto/DiffKD" class="small">Code</a>
+            <a href="https://arxiv.org/abs/2305.15712" class="button-59">ArXiv</a>
+            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=4615443208731882220" class="button-59">Bib</a>
+            <a href="https://github.com/hunto/DiffKD" class="button-59">Code</a>
         </p>
     </li>
     <li>
@@ -335,8 +346,8 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
         <g>Yuan Zhang, Weihua Chen, Yichen Lu,</g> <b>Tao Huang</b><g>, Xiuyu Sun, Jian Cao</g><br>
         <em>arXiv preprint arXiv:2305.02722 (2023).</em>
         <p>
-            <a href="https://arxiv.org/abs/2305.02722" class="small">ArXiv</a>
-            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=9322121606680381236" class="small">Bib</a>
+            <a href="https://arxiv.org/abs/2305.02722" class="button-59">ArXiv</a>
+            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=9322121606680381236" class="button-59">Bib</a>
         </p>
     </li>
     <li>
@@ -344,9 +355,9 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
         <b>Tao Huang</b><g>, Lang Huang, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
         <em>arXiv preprint arXiv:2207.05557 (2022).</em>
         <p>
-            <a href="https://arxiv.org/abs/2207.05557" class="small">ArXiv</a>
-            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=13876321258274905912" class="small">Bib</a>
-            <a href="https://github.com/hunto/LightViT" class="small">Code</a>
+            <a href="https://arxiv.org/abs/2207.05557" class="button-59">ArXiv</a>
+            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=13876321258274905912" class="button-59">Bib</a>
+            <a href="https://github.com/hunto/LightViT" class="button-59">Code</a>
         </p>
     </li>
     <li>
@@ -354,8 +365,8 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
 		<b>Tao Huang</b><g>, Shan You, Yibo Yang, Zhuozhuo Tu, Fei Wang, Chen Qian, Changshui Zhang</g><br>
 		<em>arXiv preprint arXiv:2011.09300 (2020).</em>
 		<p>
-			<a href="https://arxiv.org/abs/2011.09300" class="small">ArXiv</a>
-			<a href="https://scholar.google.com/scholar?cluster=239245335818813796&hl=en&as_sdt=0,5" class="small">Bib</a>
+			<a href="https://arxiv.org/abs/2011.09300" class="button-59">ArXiv</a>
+			<a href="https://scholar.google.com/scholar?cluster=239245335818813796&hl=en&as_sdt=0,5" class="button-59">Bib</a>
 		</p>
     </li>
 </ul>
