@@ -111,7 +111,8 @@ pre, tt {
 a, a > tt {
 	/* color: #224b8d; */
 	/* color: #0b41ca; */
-	color: #af2a42;
+	/* color: #af2a42; */
+	color: #527bbd;
 	text-decoration: none;
 }
 .small {
@@ -134,7 +135,8 @@ a, a > tt {
 }
 
 a:hover {
-	color:darkorange;
+	/* color:darkorange; */
+	color:blue;
 	background-color: transparent;
 	/* text-decoration: underline; */
 	/* border-bottom: 1px gray dotted; */
@@ -440,7 +442,7 @@ table.imgtable, table.imgtable td {
 	border: var(--border);
 	border-style: solid;
 	border-radius: 0;
-	border-width: 2px;
+	border-width: 1.5px;
 	transition: all .3s;
 	touch-action: manipulation;
 	/* width: 5em; */
@@ -466,14 +468,14 @@ table.imgtable, table.imgtable td {
 .collapsible {
 	background-color: #fff;
 	/* color: #224b8d; */
-	color: #af2a42;
+	color: #527bbd;
 	cursor: pointer;
 	padding: 0px;
 	/* width: 100%; */
-	border: none;
+	border: 0px;
 	text-align: left;
 	outline: none;
-	font-size: 80%;
+	/* font-size: 80%; */
 	text-decoration: underline;
   }
   
@@ -495,7 +497,7 @@ table.imgtable, table.imgtable td {
 }
 
 .tdw {
-	padding-left: 2em;
+	/* padding-left: 2em; */
 }
 
 
@@ -503,9 +505,10 @@ table.imgtable, table.imgtable td {
 .button-59 {
   align-items: center;
   background-color: #fff;
-  border: 2px solid #dfdfdf;
+  border: 1.5px solid #dfdfdf;
   box-sizing: border-box;
-  color: #af2a42;
+  /* color: #af2a42; */
+  color: #606060;
   cursor: pointer;
   display: inline-flex;
   fill: #000;
