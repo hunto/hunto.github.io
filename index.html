@@ -90,7 +90,7 @@ booktitle={The Eleventh International Conference on Learning Representations },
 year={2023},
 url={https://openreview.net/forum?id=mWRngkvIki3}
 }`,
-"NEURIPS2022_da669dfd": `@inproceedings{NEURIPS2022_da669dfd,
+"huang2023knowledge": `@inproceedings{huang2023knowledge,
  author = {Huang, Tao and You, Shan and Wang, Fei and Qian, Chen and Xu, Chang},
  booktitle = {Advances in Neural Information Processing Systems},
  editor = {S. Koyejo and S. Mohamed and A. Agarwal and D. Belgrave and K. Cho and A. Oh},
@@ -100,11 +100,37 @@ url={https://openreview.net/forum?id=mWRngkvIki3}
  url = {https://proceedings.neurips.cc/paper_files/paper/2022/file/da669dfd3c36c93905a17ddba01eef06-Paper-Conference.pdf},
  volume = {35},
  year = {2022}
+}`,
+"du2022quantum": `@article{du2022quantum,
+  title={Quantum circuit architecture search for variational quantum algorithms},
+  author={Du, Yuxuan and Huang, Tao and You, Shan and Hsieh, Min-Hsiu and Tao, Dacheng},
+  journal={npj Quantum Information},
+  volume={8},
+  number={1},
+  pages={62},
+  year={2022},
+  publisher={Nature Publishing Group UK London}
+}`,
+"huang2022greedynasv2": `@inproceedings{huang2022greedynasv2,
+  title={Greedynasv2: greedier search with a greedy path filter},
+  author={Huang, Tao and You, Shan and Wang, Fei and Qian, Chen and Zhang, Changshui and Wang, Xiaogang and Xu, Chang},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={11902--11911},
+  year={2022}
+}`,
+"huang2022dyrep": `@inproceedings{huang2022dyrep,
+  title={Dyrep: bootstrapping training with dynamic re-parameterization},
+  author={Huang, Tao and You, Shan and Zhang, Bohan and Du, Yuxuan and Wang, Fei and Qian, Chen and Xu, Chang},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={588--597},
+  year={2022}
 }`
         }
 
-        function getBibTex(key) {
-            prompt("You can copy the text manually.", data[key]);
+        const getBibTex = async (key) => {
+            await navigator.clipboard.writeText(data[key]);
+            alert("The following text was copied to your clipboard.\n===============\n"+data[key])
+            // prompt("You can copy the text manually.", data[key]);
         }
     </script>
 
@@ -125,7 +151,7 @@ url={https://openreview.net/forum?id=mWRngkvIki3}
                 <tr>
                     <td width="60%" class="tdw" border="0">
                         <div id="toptitle">
-                            <h1>Tao &nbsp;Huang</h1>
+                            <h1>Tao Huang</h1>
 				        </div>
                         <p>
                             Ph.D. Student<br>
@@ -165,15 +191,16 @@ url={https://openreview.net/forum?id=mWRngkvIki3}
 <!-- <p><font color="red">Pinned: </font></p> -->
 <h2>News</h2>
 <ul>
+    <li style="margin-top: 0.2em">[2023/09] One paper (<a href="https://arxiv.org/abs/2305.02722">DiffKD</a>) was accepted to NeurIPS 2023.</li>
     <li style="margin-top: 0.2em">[2023/07] One paper (<a href="https://arxiv.org/abs/2305.02722">AKD</a>) was accepted to ACM MM 2023.</li>
     <li style="margin-top: 0.2em">[2023/05] We released <a href="https://arxiv.org/abs/2305.15712">DiffKD</a> and <a href="https://arxiv.org/abs/2305.02722">AKD</a> at arXiv.</li>
     <li style="margin-top: 0.2em">[2023/01] One paper (<a href="https://arxiv.org/abs/2205.14589">MasKD</a>) was accepted to ICLR 2023.</li>
     <li style="margin-top: 0.2em">[2022/09] One paper (<a href="https://arxiv.org/abs/2205.10536">DIST</a>) was accepted to NeurIPS 2022.</li>
-    <li style="margin-top: 0.2em">[2022/07] We released <a href="https://arxiv.org/abs/2207.05557">LightViT</a> <a href="https://github.com/hunto/LightViT">[code]</a> at arXiv.</li>
 </ul>
 <button type="button" class="collapsible">More</button>
     <div class="content">
         <ul>
+            <li style="margin-top: 0.2em">[2022/07] We released <a href="https://arxiv.org/abs/2207.05557">LightViT</a> <a href="https://github.com/hunto/LightViT">[code]</a> at arXiv.</li>
             <li style="margin-top: 0.2em">[2022/05] We released <a href="https://arxiv.org/abs/2205.10536">DIST</a> <a href="https://github.com/hunto/DIST_KD">[code]</a> and <a href="https://arxiv.org/abs/2205.14589">MasKD</a> <a href="https://github.com/hunto/MasKD">[code]</a> at arXiv.</li>
             <li style="margin-top: 0.2em">[2022/04] One paper (<a href="https://arxiv.org/abs/2010.10217">QAS</a>) was accepted to <i>Nature Partner Journals</i> Quantum Information (NPJ QI).</li>
             <li style="margin-top: 0.2em">[2022/03] Two papers (<a href="https://arxiv.org/abs/2111.12609">GreedyNASv2</a> & <a href="https://arxiv.org/abs/2203.12868">DyRep</a>) were accepted to CVPR 2022.</li>
@@ -214,6 +241,17 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
 <button class="filter" type="button" onclick="filterPub('Pruning')">Pruning</button>
 
 <ul id="publications">
+    <li first_authored=true category="KD">
+        <venue>NeurIPS</venue><pt>Knowledge Diffusion for Distillation</pt><br>
+        <b>Tao Huang</b><g>, Yuan Zhang, Mingkai Zheng, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
+        <em>Advances in Neural Information Processing Systems</em> (<b>NeurIPS</b>), 2023.</em>
+        <p>
+            <a href="https://arxiv.org/abs/2305.15712" class="button-59">ArXiv</a>
+            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=4615443208731882220" class="button-59">Bib</a>
+            <a href="https://github.com/hunto/DiffKD">
+            <img alt="" src="https://img.shields.io/github/stars/hunto/DiffKD?style=social" style="vertical-align: bottom; height: 1.2rem;"></a>
+        </p>
+    </li>
     <li category="KD">
         <venue>ACM MM</venue><pt>Avatar Knowledge Distillation: Self-ensemble Teacher Paradigm with Uncertainty</pt><br>
         <g>Yuan Zhang, Weihua Chen, Yichen Lu,</g> <b>Tao Huang</b><g>, Xiuyu Sun, Jian Cao</g><br>
@@ -242,8 +280,9 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
         <em>Advances in Neural Information Processing Systems</em> (<b>NeurIPS</b>), 2022.
 		<p>
 			<a href="https://arxiv.org/abs/2205.10536" class="button-59">ArXiv</a>
-			<button class="button-59" onclick="getBibTex('NEURIPS2022_da669dfd')">Bib</button>
+			<button class="button-59" onclick="getBibTex('huang2023knowledge')">Bib</button>
             <a href="assets/dist/KD_sharing_Tao_20220715.pdf" class="button-59">Slides</a>
+            <a href="assets/dist/NeurIPS2022_DIST_poster.pdf" class="button-59">Poster</a>
             <a href="https://mp.weixin.qq.com/s/PwzyaZXCrl_W8NmiQgXm0g" class="button-59">解读</a>
             <a href="https://github.com/hunto/DIST_KD">
                 <img alt="" src="https://img.shields.io/github/stars/hunto/DIST_KD?style=social" style="vertical-align: bottom; height: 1.2rem;">
@@ -256,7 +295,8 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
 		<em>Nature Partner Journals Quantum Information</em> (<b>NPJ QI</b>), 2022.<br>
 		<p>
 			<a href="https://arxiv.org/abs/2010.10217" class="button-59">ArXiv</a>
-			<a href="https://scholar.google.com/scholar?cluster=14041544508923660633&hl=en&as_sdt=0,5" class="button-59">Bib</a>
+            <button class="button-59" onclick="getBibTex('du2022quantum')">Bib</button>
+			<!-- <a href="https://scholar.google.com/scholar?cluster=14041544508923660633&hl=en&as_sdt=0,5" class="button-59">Bib</a> -->
 			<a href="https://github.com/yuxuan-du/Quantum_architecture_search">
             <img alt="" src="https://img.shields.io/github/stars/yuxuan-du/Quantum_architecture_search?style=social" style="vertical-align: bottom; height: 1.2rem;">
             </a>
@@ -268,7 +308,9 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
 		<em>IEEE Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2022.<br>
 		<p>
 			<a href="https://arxiv.org/abs/2111.12609" class="button-59">ArXiv</a>
-			<a href="https://scholar.google.com/scholar?cluster=8646649449956447640&hl=en&as_sdt=0,5" class="button-59">Bib</a>
+			<!-- <a href="https://scholar.google.com/scholar?cluster=8646649449956447640&hl=en&as_sdt=0,5" class="button-59">Bib</a> -->
+            <button class="button-59" onclick="getBibTex('huang2022greedynasv2')">Bib</button>
+            <a href="assets/greedynasv2/CVPR2022_GreedyNASv2_Poster.pdf" class="button-59">Poster</a>
 		</p>
     </li>
     <li first_authored=true>
@@ -277,7 +319,9 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
         <em>IEEE Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2022.<br>
         <p>
             <a href="https://arxiv.org/abs/2203.12868" class="button-59">ArXiv</a>
-            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=9004725926464672087" class="button-59">Bib</a>
+            <!-- <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=9004725926464672087" class="button-59">Bib</a> -->
+            <button class="button-59" onclick="getBibTex('huang2022dyrep')">Bib</button>
+            <a href="assets/dyrep/CVPR2022_DyRep_Poster.pdf" class="button-59">Poster</a>
             <a href="https://github.com/hunto/DyRep"><img alt="" src="https://img.shields.io/github/stars/hunto/DyRep?style=social" style="vertical-align: bottom; height: 1.2rem;"></a>
 		</p>
     </li>
@@ -350,17 +394,6 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 1, <venue
         <p>
             <a href="https://arxiv.org/abs/2306.16016" class="button-59">ArXiv</a>
             <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=11695637510257123983" class="button-59">Bib</a>
-        </p>
-    </li>
-    <li category="KD">
-        <venue>arXiv</venue><pt>Knowledge Diffusion for Distillation</pt><br>
-        <b>Tao Huang</b><g>, Yuan Zhang, Mingkai Zheng, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
-        <em>arXiv preprint arXiv:2305.15712 (2023).</em>
-        <p>
-            <a href="https://arxiv.org/abs/2305.15712" class="button-59">ArXiv</a>
-            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=4615443208731882220" class="button-59">Bib</a>
-            <a href="https://github.com/hunto/DiffKD">
-            <img alt="" src="https://img.shields.io/github/stars/hunto/DiffKD?style=social" style="vertical-align: bottom; height: 1.2rem;"></a>
         </p>
     </li>
     <li>
