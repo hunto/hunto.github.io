@@ -1,7 +1,5 @@
 /* Default css file for jemdoc. */
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap&text=0123456789'); */
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap');
 
 table#tlayout {
     border: none;
@@ -15,12 +13,13 @@ body {
 	margin: 0;
 }
 */
-/* html {
+html {
   background-color: #424242; 
-} */
+  font-family: 'Open Sans';
+}
 
 body { 
-  font-family: 'Lato','Lora',Optima,Verdana,Arial,sans-serif,'微软雅黑','宋体';
+  font-family: 'Open Sans',sans-serif,'微软雅黑','宋体';
   color: #000;
   background-color: #ffffff; 
   text-align:left; /* for IE */
@@ -32,7 +31,7 @@ body {
   padding-right: 50px;
   padding-top: 30px;
   padding-bottom: 0px;
-  max-width: 65%; 
+  max-width: 60%; 
   font-size: 100%;
   line-height: 150%;
 }
@@ -77,42 +76,53 @@ tt {
 pt {
 	/* color:chocolate; */
 	/* color:#c50e0e; */
-	/* color:#8d1111; */
+	color:#8d1111;
 	/* color:tomato; */
-	font-weight: bold;
+	font-weight: 500;
 }
 
 venue {
 	/* background-color:royalblue; */
 	/* background-color:rgb(80, 80, 80); */
-	background-color:black;
+	/* background-color: #d1a7a7; */
+	/* background-color: #ca3737; */
+	background-color: #db5555;
 	color: #fff;
-	font-family: 'Lora';
+	font-family: 'Open Sans';
 	font-size: 80%;
+	font-weight: bold;
+	line-height: 150%;
 	/* padding-left: 1em;
 	padding-right: 1em; */
 	margin-right: 0.25em;
 	width: 5.5em;
 	display:inline-block;
 	text-align: center;
-	border-color: #000;
+	/* border-color: #ffffff; */
+	border-width: 0px;
 	border-style: solid;
-	-webkit-box-shadow:inset 0px 0px 0px 0.25em #fff;
+	/* border-radius:.25rem; */
+	-webkit-box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+	box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+	/* border-radius: 4px; */
+	/* -webkit-box-shadow:inset 0px 0px 0px 0.25em #fff;
     -moz-box-shadow:inset 0px 0px 0px 0.25em #fff;
-    box-shadow:inset 0px 0px 0px 0.25em #fff;
-	border: #000;
+    box-shadow:inset 0px 0px 0px 0.25em #fff; */
+	/* border: #ffffff; */
+	height: 20px;
+	vertical-align:text-top;
 }
 
 pre, tt {
 	font-size: 90%;
-	font-family: monaco, monospace;
+	font-family: 'Open Sans';
 }
 
 a, a > tt {
 	/* color: #224b8d; */
 	/* color: #0b41ca; */
 	/* color: #af2a42; */
-	color: #527bbd;
+	color: #D13644;
 	text-decoration: none;
 }
 .small {
@@ -123,11 +133,13 @@ a, a > tt {
 
 
 #layout-menu a.current:link, #layout-menu a.current:visited {
+	/* color: #022b6d; */
 	color: #022b6d;
 	border-bottom: 1px gray solid;
 }
 #layout-menu a:link, #layout-menu a:visited, #layout-menu a:hover {
-	color: #527bbd;
+	/* color: #D13644; */
+	color: #D13644;
 	text-decoration: none;
 }
 #layout-menu a:hover {
@@ -136,9 +148,9 @@ a, a > tt {
 
 a:hover {
 	/* color:darkorange; */
-	color:blue;
+	color: #a73535;
 	background-color: transparent;
-	/* text-decoration: underline; */
+	text-decoration: underline;
 	/* border-bottom: 1px gray dotted; */
 }
 
@@ -187,8 +199,8 @@ strong {
 
 
 h1, h2, h3 {
-	/* color: #527bbd; */
-	font-family: Optima;
+	/* color: #D13644; */
+	font-family: 'Open Sans';
   	/* color: #c50e0e; */
   	color: #000000;
 	margin-top: 0.7em;
@@ -197,7 +209,7 @@ h1, h2, h3 {
 	line-height: 1.0;
 	padding-top: 0.5em;
 	/* border-bottom: 1px solid #aaaaaa; */
-	text-decoration: underline;
+	/* text-decoration: underline; */
 }
 
 h1 {
@@ -208,9 +220,12 @@ h1 {
 }
 
 h2 {
-	padding-top: 0.8em;
+	padding-top: 1.8em;
+	border-bottom: 1px solid #b7b7b7; 
+	/* padding-top: 0.8em; */
 	font-size: 125%;
 }
+
 
 h2 + h3 {
     padding-top: 0.2em;
@@ -285,6 +300,12 @@ p + ul, p + ol {
 
 li {
 	margin-top:0.8em;
+}
+
+.paper {
+	border-left: 3px #D13644 solid;
+	padding-left: 8px;
+	margin-left: 0.5em;
 }
 
 ol {
@@ -436,6 +457,13 @@ table.imgtable, table.imgtable td {
 	--border: #d3d3d3;
 }
 
+.author {
+	margin-left: 0.5em; 
+	margin-bottom: 0.5em; 
+	font-size: 90%; 
+	line-height: 130%;
+}
+
 .filter {
 	color: var(--color);
 	background-color: #fff;
@@ -453,22 +481,23 @@ table.imgtable, table.imgtable td {
 }
   
   .filter:hover {
-	border-color: #06f;
-	color: #06f;
-	fill: #06f;
+	border-color: #D13644;
+	color: #D13644;
+	fill: #D13644;
   }
   
   .filter:active {
-	border-color: #06f;
-	color: #06f;
-	fill: #06f;
+	border-color: #D13644;
+	color: #D13644;
+	fill: #D13644;
   }
 
-/* Style the button that is used to open and close the collapsible content */
-.collapsible {
+  /* Style the button that is used to open and close the collapsible content */
+  .collapsible {
 	background-color: #fff;
+	font-family: 'Open Sans';
 	/* color: #224b8d; */
-	color: #527bbd;
+	color: #D13644;
 	cursor: pointer;
 	padding: 0px;
 	/* width: 100%; */
@@ -512,7 +541,7 @@ table.imgtable, table.imgtable td {
   cursor: pointer;
   display: inline-flex;
   fill: #000;
-  font-family: 'Lato','Lora',Optima;
+  font-family: 'Open Sans';
   font-size: 0.75rem;
   /* font-weight: 600; */
   height: 1.2rem;
@@ -536,15 +565,16 @@ table.imgtable, table.imgtable td {
 }
 
 .button-59:hover {
-  border-color: #06f;
-  color: #06f;
-  fill: #06f;
+	/* #D13644 */
+  border-color: #D13644;
+  color: #D13644;
+  fill: #D13644;
 }
 
 .button-59:active {
-  border-color: #06f;
-  color: #06f;
-  fill: #06f;
+  border-color: #D13644;
+  color: #D13644;
+  fill: #D13644;
 }
 
 @media (min-width: 768px) {
