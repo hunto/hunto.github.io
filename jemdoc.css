@@ -89,13 +89,13 @@ venue {
 	background-color: #db5555;
 	color: #fff;
 	font-family: 'Open Sans';
-	font-size: 80%;
+	font-size: 70%;
 	font-weight: bold;
-	line-height: 150%;
+	line-height: 170%;
 	/* padding-left: 1em;
 	padding-right: 1em; */
 	margin-right: 0.25em;
-	width: 5.5em;
+	width: 5em;
 	display:inline-block;
 	text-align: center;
 	/* border-color: #ffffff; */
@@ -109,8 +109,8 @@ venue {
     -moz-box-shadow:inset 0px 0px 0px 0.25em #fff;
     box-shadow:inset 0px 0px 0px 0.25em #fff; */
 	/* border: #ffffff; */
-	height: 20px;
-	vertical-align:text-top;
+	height: 1.7em;
+	vertical-align:text-bottom;
 }
 
 pre, tt {
@@ -306,6 +306,10 @@ li {
 	border-left: 3px #D13644 solid;
 	padding-left: 8px;
 	margin-left: 0.5em;
+}
+
+.photo {
+	width: 20%;
 }
 
 ol {
