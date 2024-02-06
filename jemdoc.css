@@ -1,6 +1,22 @@
 /* Default css file for jemdoc. */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap');
 
+/* :root {
+	--theme-color: #D13644;
+	--theme-color-light: #f8b0b6;
+	--venue-bg-color: #db5555;
+	--title-color: #8d1111;
+	--a-hover-color: #a73535;
+} */
+
+
+:root {
+	--theme-color: rgb(52, 98, 176);
+	--theme-color-light: rgb(182, 212, 248);;
+	--title-color: #000;
+	--a-hover-color: rgb(16, 15, 163);
+}
+
 table#tlayout {
     border: none;
     border-collapse: separate;
@@ -76,7 +92,7 @@ tt {
 pt {
 	/* color:chocolate; */
 	/* color:#c50e0e; */
-	color:#8d1111;
+	color: var(--title-color);
 	/* color:tomato; */
 	font-weight: 500;
 }
@@ -86,8 +102,9 @@ venue {
 	/* background-color:rgb(80, 80, 80); */
 	/* background-color: #d1a7a7; */
 	/* background-color: #ca3737; */
-	background-color: #db5555;
-	color: #fff;
+	/* background-color: var(--venue-bg-color); */
+	background-color: rgb(206, 225, 248);
+	color: rgb(52, 98, 176);
 	font-family: 'Open Sans';
 	font-size: 70%;
 	font-weight: bold;
@@ -100,10 +117,10 @@ venue {
 	text-align: center;
 	/* border-color: #ffffff; */
 	border-width: 0px;
-	border-style: solid;
-	/* border-radius:.25rem; */
-	-webkit-box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-	box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+	border-style: none;
+	border-radius: 0.5rem;
+	/* -webkit-box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+	box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); */
 	/* border-radius: 4px; */
 	/* -webkit-box-shadow:inset 0px 0px 0px 0.25em #fff;
     -moz-box-shadow:inset 0px 0px 0px 0.25em #fff;
@@ -122,7 +139,7 @@ a, a > tt {
 	/* color: #224b8d; */
 	/* color: #0b41ca; */
 	/* color: #af2a42; */
-	color: #D13644;
+	color: var(--theme-color);
 	text-decoration: none;
 }
 .small {
@@ -138,8 +155,8 @@ a, a > tt {
 	border-bottom: 1px gray solid;
 }
 #layout-menu a:link, #layout-menu a:visited, #layout-menu a:hover {
-	/* color: #D13644; */
-	color: #D13644;
+	/* color: var(--theme-color); */
+	color: var(--theme-color);
 	text-decoration: none;
 }
 #layout-menu a:hover {
@@ -148,7 +165,7 @@ a, a > tt {
 
 a:hover {
 	/* color:darkorange; */
-	color: #a73535;
+	color: var(--a-hover-color);
 	background-color: transparent;
 	text-decoration: underline;
 	/* border-bottom: 1px gray dotted; */
@@ -199,7 +216,7 @@ strong {
 
 
 h1, h2, h3 {
-	/* color: #D13644; */
+	/* color: var(--theme-color); */
 	font-family: 'Open Sans';
   	/* color: #c50e0e; */
   	color: #000000;
@@ -207,7 +224,7 @@ h1, h2, h3 {
 	margin-bottom: 0.5em;
 	padding-bottom: 0.2em;
 	line-height: 1.0;
-	padding-top: 0.5em;
+	/* padding-top: 0.5em; */
 	/* border-bottom: 1px solid #aaaaaa; */
 	/* text-decoration: underline; */
 }
@@ -303,7 +320,8 @@ li {
 }
 
 .paper {
-	border-left: 3px #D13644 solid;
+	/* border-left: 3px var(--theme-color) solid; */
+	border-left: 3px rgb(78, 126, 189) solid;
 	padding-left: 8px;
 	margin-left: 0.5em;
 }
@@ -473,10 +491,12 @@ table.imgtable, table.imgtable td {
 	background-color: #fff;
 	border: var(--border);
 	border-style: solid;
-	border-radius: 0;
+	border-radius: 0.5rem;
 	border-width: 1.5px;
 	transition: all .3s;
 	touch-action: manipulation;
+	font-size: 90%;
+	line-height: 120%;
 	/* width: 5em; */
 }
 
@@ -485,15 +505,15 @@ table.imgtable, table.imgtable td {
 }
   
   .filter:hover {
-	border-color: #D13644;
-	color: #D13644;
-	fill: #D13644;
+	border-color: var(--theme-color);
+	color: var(--theme-color);
+	fill: var(--theme-color);
   }
   
   .filter:active {
-	border-color: #D13644;
-	color: #D13644;
-	fill: #D13644;
+	border-color: var(--theme-color);
+	color: var(--theme-color);
+	fill: var(--theme-color);
   }
 
   /* Style the button that is used to open and close the collapsible content */
@@ -501,14 +521,14 @@ table.imgtable, table.imgtable td {
 	background-color: #fff;
 	font-family: 'Open Sans';
 	/* color: #224b8d; */
-	color: #D13644;
+	color: var(--theme-color);
 	cursor: pointer;
 	padding: 0px;
 	/* width: 100%; */
 	border: 0px;
 	text-align: left;
 	outline: none;
-	/* font-size: 80%; */
+	font-size: 100%;
 	text-decoration: underline;
   }
   
@@ -522,7 +542,10 @@ table.imgtable, table.imgtable td {
 	/* padding: 0 18px; */
 	display: none;
 	overflow: hidden;
-	background-color: #f3f3f3;
+	background-color: rgb(246, 248, 250); 
+	padding-right: 1em;
+	border-radius: 0.5rem;
+	/* #f3f3f3; */
   }
 
 .icon {
@@ -562,6 +585,7 @@ table.imgtable, table.imgtable td {
   -webkit-user-select: none;
   touch-action: manipulation;
   margin-right: 0.2em;
+  border-radius: 0.5rem;
 }
 
 .button-59:focus {
@@ -569,16 +593,16 @@ table.imgtable, table.imgtable td {
 }
 
 .button-59:hover {
-	/* #D13644 */
-  border-color: #D13644;
-  color: #D13644;
-  fill: #D13644;
+	/* var(--theme-color) */
+  border-color: var(--theme-color);
+  color: var(--theme-color);
+  fill: var(--theme-color);
 }
 
 .button-59:active {
-  border-color: #D13644;
-  color: #D13644;
-  fill: #D13644;
+  border-color: var(--theme-color);
+  color: var(--theme-color);
+  fill: var(--theme-color);
 }
 
 @media (min-width: 768px) {
@@ -587,4 +611,39 @@ table.imgtable, table.imgtable td {
 	padding-right: 5px;
     /* min-width: 170px; */
   }
+}
+
+.navbar-nav a:hover {
+    color: var(--theme-color-light) !important;
+	text-decoration: underline;
+}
+
+.navbar-nav a {
+    color: #dfdfdf !important;
+}
+
+.navbar-toggler {
+    color: rgba(255, 255, 255, .5);
+    border-color: rgba(255, 255, 255, .1)
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")
+}
+
+.my-navbar-style {
+	-webkit-box-shadow:inset 0px 0px 0px 0.1em #fff;
+	-moz-box-shadow:inset 0px 0px 0px 0.1em #fff;
+	box-shadow:inset 0px 0px 0px 0.4em #fff;
+	/* border-color: var(--theme-color);  */
+	/* border-bottom: 1em; */
+	/* border-color: #c0c0c0; */
+	/* border-style:solid;  */
+	/* border-top: 1em;  */
+	/* border-left: 1em;  */
+	/* border-right: 0;  */
+	/* border-color: #008800; */
+	font-size: 90%; 
+	line-height: 100%;
+	background-color: #222222;
 }

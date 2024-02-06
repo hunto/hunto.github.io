@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0, minimum-scale=0.2">
 
-
 <head>
+    <link rel="stylesheet" href="bootstrap.min.css">
     <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101296995);</script>
     <script async src="//static.getclicky.com/js"></script>    
 
@@ -145,6 +145,61 @@ url={https://openreview.net/forum?id=mWRngkvIki3}
 </head>
 
 <body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <nav class="navbar sticky-top navbar-expand-lg my-navbar-style"">
+        <a class="navbar-brand" href="#" style="font-size: 120%; font-weight: bold; color: white;">Tao Huang</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="#news">News</a>
+            <a class="nav-item nav-link" href="#nav_publications">Publications</a>
+            <a class="nav-item nav-link" href="#grants">Grants</a>
+            <a class="nav-item nav-link" href="#talks">Talks</a>
+            <a class="nav-item nav-link" href="#teaching">Teaching</a>
+            <a class="nav-item nav-link" href="#services">Services</a>
+            <!-- <a class="nav-item nav-link" href="#awards">Awards</a> -->
+            <a class="nav-item nav-link" href="#education">Education</a>
+          </div>
+        </div>
+    </nav>
+
+    <script>
+        // Wait for the DOM to load
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get all navigation links
+            const navLinks = document.querySelectorAll(".nav-link");
+            const navbarToggler = document.querySelector(".navbar-toggler");
+            const navbarCollapse = document.querySelector(".navbar-collapse");
+
+            // Add click event listener to each navigation link
+            navLinks.forEach(function (link) {
+            link.addEventListener("click", function () {
+                if (navbarCollapse.classList.contains("show")) {
+                navbarToggler.click(); // Simulate a click on the toggler to close the menu
+                }
+            });
+            });
+
+            // Add click event listener to the document
+            document.addEventListener("click", function (event) {
+            // Check if the clicked element is not part of the menu or the toggler
+            if (!navbarCollapse.contains(event.target) && !navbarToggler.contains(event.target)) {
+                navbarCollapse.classList.remove("show"); // Hide the menu
+            }
+            });
+
+            // Add mouseleave event listener to the menu
+            navbarCollapse.addEventListener("mouseleave", function () {
+            navbarCollapse.classList.remove("show"); // Hide the menu when the mouse leaves
+            });
+        });
+
+    </script>
+
     <div id="layout-content" style="margin-top:0px">
         <table>
             <tbody>
@@ -193,8 +248,10 @@ url={https://openreview.net/forum?id=mWRngkvIki3}
 </p>
 
 <!-- <p><font color="red">Pinned: </font></p> -->
+<div id="news" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>News</h2>
 <ul>
+    <li style="margin-top: 0.2em">[2024/02] We released <a href="assets/dist+/DIST+.pdf">DIST+</a>.</li>
     <li style="margin-top: 0.2em">[2023/09] One paper (<a href="https://arxiv.org/abs/2305.15712">DiffKD</a>) was accepted to NeurIPS 2023.</li>
     <li style="margin-top: 0.2em">[2023/07] One paper (<a href="https://arxiv.org/abs/2305.02722">AKD</a>) was accepted to ACM MM 2023.</li>
     <li style="margin-top: 0.2em">[2023/05] We released <a href="https://arxiv.org/abs/2305.15712">DiffKD</a> and <a href="https://arxiv.org/abs/2305.02722">AKD</a> at arXiv.</li>
@@ -233,7 +290,7 @@ url={https://openreview.net/forum?id=mWRngkvIki3}
         </ul>
     </div>
 
-<!-- <h2>Publications [<a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en">Google Scholar</a>]</h2> -->
+<div id="nav_publications" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>Publications</h2>
 First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue>ICLR</venue>x 2 &nbsp;&nbsp;&nbsp;&nbsp;*: co-first author. <br><br>
 
@@ -242,7 +299,6 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
 <button class="filter" type="button" onclick="filterPub('KD')">KD</button>&nbsp;
 <button class="filter" type="button" onclick="filterPub('NAS')">NAS</button>&nbsp;
 <button class="filter" type="button" onclick="filterPub('Pruning')">Pruning</button>
-
 <ul id="publications">
     <li class="paper" first_authored=true category="KD">
         <venue>NeurIPS</venue><pt>Knowledge Diffusion for Distillation</pt><br>
@@ -415,6 +471,15 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
 
 <h2>Manuscripts</h2>
 <ul>
+    <li class="paper" first_authored=true category="KD">
+		<pt>DIST+: Knowledge Distillation from A Stronger Teacher</pt><br>
+        <div class="author">
+            <u>Tao Huang</u><g>, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
+        </div>
+		<p>
+			<a href="assets/dist+/DIST+.pdf" class="button-59">PDF</a>
+		</p>
+    </li>
     <li class="paper">
         <venue>arXiv</venue><pt>FreeKD: Knowledge Distillation via Semantic Frequency Prompt</pt><br>
         <div class="author">
@@ -462,58 +527,34 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
     </li>
 </ul>
 
-<h2>Academic Services</h2>
-<b>Reviewer for Conferences:</b><br>
-<div class="paper">NeurIPS 2021-2023, ICLR 2023-2024, ICML 2022-2024, CVPR 2022-2024, ICCV 2023, AAAI 2023-2024, ACM MM 2021-2023.</div><br>
-
-<!-- <ul>
-    <li style="margin-top: 0.2em">
-        Neural Information Processing Systems (<b>NeurIPS</b>), 2021-2023.
-    </li>
-    <li style="margin-top: 0.2em">
-        International Conference on Learning Representations (<b>ICLR</b>), 2023-2024.
-    </li>
-    <li style="margin-top: 0.2em">
-        International Conference on Machine Learning (<b>ICML</b>), 2022-2023.
-    </li>
-    <li style="margin-top: 0.2em">
-        Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>), 2022-2024.
-    </li>
-    <li style="margin-top: 0.2em">
-        International Conference on Computer Vision (<b>ICCV</b>), 2023.
-    </li>
-    <li style="margin-top: 0.2em">
-        AAAI Conference on Artificial Intelligence (<b>AAAI</b>), 2023-2024.
-    </li>
-    <li style="margin-top: 0.2em">
-        ACM International Conference on Multimedia (<b>ACM MM</b>), 2021-2023.
-    </li>
-</ul> -->
-
-<b>Reviewer for Journals:</b><br>
-<div class="paper">TNNLS, TIP, IJCV</div>
-<!-- <ul>
-    <li style="margin-top: 0.2em">
-        IEEE Transactions on Neural Networks and Learning Systems (<b>TNNLS</b>)
-    </li>
-    <li style="margin-top: 0.2em">
-        IEEE Transactions on Image Processing (<b>TIP</b>)
-    </li>
-    <li style="margin-top: 0.2em">
-        International Journal of Computer Vision (<b>IJCV</b>)
-    </li>
-</ul> -->
-
+<div id="grants" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>Grants</h2>
 <ul>
     <li>2023-2024, Efficient Language-and-Vision Models, 1000 USD, Google Cloud Research Credits Award</li>
 </ul>
 
+<div id="talks" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>Talks</h2>
 <ul>
     <li>TMLR Young Scientist Seminar@HKBU: "Knowledge Distillation from A Stronger Teacher", Jul. 2022. [<a href="assets/dist/KD_sharing_Tao_20220715.pdf">Slides</a>]</li>
 </ul>
 
+<div id="teaching" style="margin-bottom: 2em; margin-top: -2em;"></div>
+<h2>Teaching</h2>
+<ul>
+    <li>2024-2025, Guest Lecturer for COMP5329 Deep Learning, The University of Sydney</li>
+    <li>2024-2025, Tutor for COMP5329 Deep Learning, The University of Sydney</li>
+</ul>
+
+<div id="services" style="margin-bottom: 2em; margin-top: -2em;"></div>
+<h2>Academic Services</h2>
+<b>Reviewer for Conferences:</b><br>
+<div class="paper">NeurIPS 2021-2023, ICLR 2023-2024, ICML 2022-2024, CVPR 2022-2024, ICCV 2023, ECCV 2024, AAAI 2023-2024, ACM MM 2021-2023.</div><br>
+
+<b>Reviewer for Journals:</b><br>
+<div class="paper">TNNLS, TIP, IJCV</div>
+
+<div id="education" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>Education</h2>
 <ul>
     <li>
@@ -533,7 +574,8 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
     </li>
 </ul>
 
-<h2>Selected Experience</h2>
+<div id="experiences" style="margin-bottom: 2em; margin-top: -2em;"></div>
+<h2>Selected Experiences</h2>
 <ul>
 	<li>
         <a href="https://sensetime.com">SenseTime</a>, Beijing, China<br>
@@ -622,7 +664,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </ul>
     </div>
 
-
+<div id="awards" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>Selected Awards</h2>
 <ul>
     <li>
@@ -658,7 +700,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
 </ul>
 
 <div id="footer">
-	<div id="footer-text" style="text-align: center;">© Tao Huang | Last updated: Nov 28, 2023</div>
+	<div id="footer-text" style="text-align: center;">© Tao Huang | Last updated: Feb 6, 2024</div>
 </div>
 	<!-- <center>© Tao Huang | Last updated: 02/19/2021</center> -->
     <!--<center>© Tao Huang
