@@ -632,8 +632,8 @@ table.imgtable, table.imgtable td {
 }
 
 .my-navbar-style {
-	-webkit-box-shadow:inset 0px 0px 0px 0.1em #fff;
-	-moz-box-shadow:inset 0px 0px 0px 0.1em #fff;
+	-webkit-box-shadow:inset 0px 0px 0px 0.4em #fff;
+	-moz-box-shadow:inset 0px 0px 0px 0.4em #fff;
 	box-shadow:inset 0px 0px 0px 0.4em #fff;
 	/* border-color: var(--theme-color);  */
 	/* border-bottom: 1em; */
