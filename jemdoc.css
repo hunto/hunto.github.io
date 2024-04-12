@@ -103,8 +103,8 @@ venue {
 	/* background-color: #d1a7a7; */
 	/* background-color: #ca3737; */
 	/* background-color: var(--venue-bg-color); */
-	background-color: rgb(206, 225, 248);
-	color: rgb(52, 98, 176);
+	background-color: rgb(224, 234, 247);
+	color: rgb(27, 82, 177);
 	font-family: 'Open Sans';
 	font-size: 70%;
 	font-weight: bold;
@@ -118,7 +118,41 @@ venue {
 	/* border-color: #ffffff; */
 	border-width: 0px;
 	border-style: none;
-	border-radius: 0.5rem;
+	border-radius: 0.2rem;
+	/* -webkit-box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+	box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); */
+	/* border-radius: 4px; */
+	/* -webkit-box-shadow:inset 0px 0px 0px 0.25em #fff;
+    -moz-box-shadow:inset 0px 0px 0px 0.25em #fff;
+    box-shadow:inset 0px 0px 0px 0.25em #fff; */
+	/* border: #ffffff; */
+	height: 1.7em;
+	vertical-align:text-bottom;
+}
+
+flag {
+	/* background-color:royalblue; */
+	/* background-color:rgb(80, 80, 80); */
+	/* background-color: #d1a7a7; */
+	/* background-color: #ca3737; */
+	/* background-color: var(--venue-bg-color); */
+	background-color: rgb(252, 230, 217);
+	color: rgb(176, 71, 52);
+	font-family: 'Open Sans';
+	font-size: 70%;
+	font-weight: bold;
+	line-height: 170%;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	/* margin-right: 0.25em; */
+	margin-left: 0.5em;
+	/* width: 5em; */
+	display:inline-block;
+	text-align: center;
+	/* border-color: #ffffff; */
+	border-width: 0px;
+	border-style: none;
+	border-radius: 0.2rem;
 	/* -webkit-box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 	box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); */
 	/* border-radius: 4px; */
