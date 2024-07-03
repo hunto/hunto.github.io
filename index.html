@@ -253,19 +253,22 @@ url={https://openreview.net/forum?id=mWRngkvIki3}
 <div id="news" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>News</h2>
 <ul>
+    <li style="margin-top: 0.2em">[2024/07] Two papers were accepted to ECCV 2024.</li>
+    <li style="margin-top: 0.2em">[2024/06] I co-organized TNNLS 2024 Tutorial "Efficient and Secure Foundation Models" and gave a talk.</li>
+    <li style="margin-top: 0.2em">[2024/06] One paper was accepted to journal Knowledge-Based Systems.</li>
     <li style="margin-top: 0.2em">[2024/03] Our <a href="">PU-MLC</a> was accepted to ICME 2024 as <b>oral</b>.</li>
     <li style="margin-top: 0.2em">[2024/03] We released <a href="https://arxiv.org/abs/2403.06517">ActGen</a> & <a href="https://arxiv.org/abs/2403.09338">LocalMamba</a> & <a href="https://arxiv.org/abs/2403.09977">EfficientVMamba</a> at arXiv.</li>
     <li style="margin-top: 0.2em">[2024/02] One paper (<a href="https://arxiv.org/abs/2311.12079">FreeKD</a>) was accepted to CVPR 2024.</li>
     <li style="margin-top: 0.2em">[2024/02] We released <a href="assets/dist+/DIST+.pdf">DIST+</a>.</li>
     <li style="margin-top: 0.2em">[2023/09] One paper (<a href="https://arxiv.org/abs/2305.15712">DiffKD</a>) was accepted to NeurIPS 2023.</li>
-    <li style="margin-top: 0.2em">[2023/07] One paper (<a href="https://arxiv.org/abs/2305.02722">AKD</a>) was accepted to ACM MM 2023.</li>
-    <li style="margin-top: 0.2em">[2023/05] We released <a href="https://arxiv.org/abs/2305.15712">DiffKD</a> and <a href="https://arxiv.org/abs/2305.02722">AKD</a> at arXiv.</li>
-    <li style="margin-top: 0.2em">[2023/01] One paper (<a href="https://arxiv.org/abs/2205.14589">MasKD</a>) was accepted to ICLR 2023.</li>
-    <li style="margin-top: 0.2em">[2022/09] One paper (<a href="https://arxiv.org/abs/2205.10536">DIST</a>) was accepted to NeurIPS 2022.</li>
 </ul>
 <button type="button" class="collapsible">More</button>
     <div class="content">
         <ul>
+            <li style="margin-top: 0.2em">[2023/07] One paper (<a href="https://arxiv.org/abs/2305.02722">AKD</a>) was accepted to ACM MM 2023.</li>
+            <li style="margin-top: 0.2em">[2023/05] We released <a href="https://arxiv.org/abs/2305.15712">DiffKD</a> and <a href="https://arxiv.org/abs/2305.02722">AKD</a> at arXiv.</li>
+            <li style="margin-top: 0.2em">[2023/01] One paper (<a href="https://arxiv.org/abs/2205.14589">MasKD</a>) was accepted to ICLR 2023.</li>
+            <li style="margin-top: 0.2em">[2022/09] One paper (<a href="https://arxiv.org/abs/2205.10536">DIST</a>) was accepted to NeurIPS 2022.</li>
             <li style="margin-top: 0.2em">[2022/07] We released <a href="https://arxiv.org/abs/2207.05557">LightViT</a> <a href="https://github.com/hunto/LightViT">[code]</a> at arXiv.</li>
             <li style="margin-top: 0.2em">[2022/05] We released <a href="https://arxiv.org/abs/2205.10536">DIST</a> <a href="https://github.com/hunto/DIST_KD">[code]</a> and <a href="https://arxiv.org/abs/2205.14589">MasKD</a> <a href="https://github.com/hunto/MasKD">[code]</a> at arXiv.</li>
             <li style="margin-top: 0.2em">[2022/04] One paper (<a href="https://arxiv.org/abs/2010.10217">QAS</a>) was accepted to <i>Nature Partner Journals</i> Quantum Information (NPJ QI).</li>
@@ -297,7 +300,7 @@ url={https://openreview.net/forum?id=mWRngkvIki3}
 
 <div id="nav_publications" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>Publications</h2>
-First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue>ICLR</venue>x 2 &nbsp;&nbsp;&nbsp;&nbsp;*: co-first author. <br><br>
+First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue>ICLR</venue>x 2, <venue>ECCV</venue>x 1 &nbsp;&nbsp;&nbsp;&nbsp;*: co-first author. <br><br>
 
 <button class="filter" type="button" onclick="filterPub('All')" style="--color: #000; --border: #000">All</button>&nbsp;
 <button class="filter" type="button" onclick="filterPub('First-authored')">First-authored</button>&nbsp;
@@ -305,6 +308,26 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
 <button class="filter" type="button" onclick="filterPub('NAS')">NAS</button>&nbsp;
 <button class="filter" type="button" onclick="filterPub('Pruning')">Pruning</button>
 <ul id="publications">
+    <li class="paper" first_authored=true category="training">
+        <venue>ECCV</venue><pt>Active Generation for Image Classification</pt><br>
+        <div class="author">
+            <u>Tao Huang</u><g>, Jiaqi Liu, Shan You, Chang Xu</g><br>
+            <em>European Conference on Computer Vision</em> (<b>ECCV</b>), 2024.
+        </div>
+        <p>
+            <a href="https://arxiv.org/abs/2403.06517" class="button-59">ArXiv</a>
+        </p>
+    </li>
+    <li class="paper" first_authored=false category="generation">
+        <venue>ECCV</venue><pt>Training-free Composite Scene Generation for Layout-to-Image Synthesis</pt><br>
+        <div class="author">
+            <g>Jiaqi Liu,</g> <u>Tao Huang</u><g>, Chang Xu</g><br>
+            <em>European Conference on Computer Vision</em> (<b>ECCV</b>), 2024.
+        </div>
+        <!-- <p>
+            <a href="" class="button-59">ArXiv</a>
+        </p> -->
+    </li>
     <li class="paper">
         <venue>KBS</venue><pt>Diverse and Tailored Image Generation for Zero-Shot Multi-Label Classification</pt><br>
         <div class="author">
@@ -548,16 +571,6 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
             </p>
         </li>
         <li class="paper">
-            <venue>arXiv</venue><pt>Active Generation for Image Classification</pt><br>
-            <div class="author">
-                <u>Tao Huang</u><g>, Jiaqi Liu, Shan You, Chang Xu</g><br>
-                <em>arXiv preprint arXiv:2403.06517 (2024).</em>
-            </div>
-            <p>
-                <a href="https://arxiv.org/abs/2403.06517" class="button-59">ArXiv</a>
-            </p>
-        </li>
-        <li class="paper">
             <venue>arXiv</venue><pt>Not All Steps are Equal: Efficient Generation with Progressive Diffusion Models</pt><br>
             <div class="author">
                 <g>Wenhao Li, Xiu Su, Shan You,</g> <u>Tao Huang</u><g>, Fei Wang, Chen Qian, Chang Xu</g><br>
@@ -604,28 +617,37 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
 <div id="grants" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>Grants</h2>
 <ul>
-    <li>2023-2024, Efficient Language-and-Vision Models, 1000 USD, Google Cloud Research Credits Award</li>
+    <li style="margin-top: 0.2em">2023-2024, Efficient Language-and-Vision Models, 1000 USD, Google Cloud Research Credits Award</li>
 </ul>
 
 <div id="talks" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>Talks</h2>
 <ul>
-    <li>TNNLS 2024 Tutorial: "Efficient and Secure Foundation Models", Jun. 2024.</li>
-    <li>TMLR Young Scientist Seminar@HKBU: "Knowledge Distillation from A Stronger Teacher", Jul. 2022. [<a href="assets/dist/KD_sharing_Tao_20220715.pdf">Slides</a>]</li>
-    <li>SenseTime Titan Open Course: "Automated Machine Learning", May 2020. [<a href="https://b23.tv/MdQEF5P">Recording</a>]</li>
+    <li style="margin-top: 0.2em">TNNLS 2024 Tutorial: "Efficient and Secure Foundation Models", Jun. 2024.</li>
+    <li style="margin-top: 0.2em">TMLR Young Scientist Seminar@HKBU: "Knowledge Distillation from A Stronger Teacher", Jul. 2022. [<a href="assets/dist/KD_sharing_Tao_20220715.pdf">Slides</a>]</li>
+    <li style="margin-top: 0.2em">SenseTime Titan Open Course: "Automated Machine Learning", May 2020. [<a href="https://b23.tv/MdQEF5P">Recording</a>]</li>
 </ul>
 
 <div id="teaching" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>Teaching</h2>
 <ul>
-    <li>2024-2025, Guest Lecturer for COMP5329 Deep Learning, The University of Sydney</li>
-    <li>2024-2025, Tutor for COMP5329 Deep Learning, The University of Sydney</li>
+    <li style="margin-top: 0.2em">2024-2025, Guest Lecturer for COMP5329 Deep Learning, The University of Sydney</li>
+    <li style="margin-top: 0.2em">2024-2025, Tutor for COMP5329 Deep Learning, The University of Sydney</li>
 </ul>
 
 <div id="services" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>Academic Services</h2>
+<b>Conference Events:</b><br>
+<div class="paper">
+<ul>
+    <li style="margin-top: 0.2em">2024, Co-organizor, "ESGMFM '24: The 1st Workshop on Efficiency, Security, and Generalization of Multimedia Foundation Models", ACM MM 2024 Workshop</li>
+    <li style="margin-top: 0.2em">2024, Co-organizor, "Efficient and Secure Foundation Models", IJCNN 2024 Tutorial</li>
+</ul>
+</div>
+
+
 <b>Reviewer for Conferences:</b><br>
-<div class="paper">NeurIPS 2021-2023, ICLR 2023-2024, ICML 2022-2024, CVPR 2022-2024, ICCV 2023, ECCV 2024, AAAI 2023-2024, ACM MM 2021-2023.</div><br>
+<div class="paper">NeurIPS 2021-2024, ICLR 2023-2024, ICML 2022-2024, CVPR 2022-2024, ICCV 2023, ECCV 2024, AAAI 2023-2024, ACM MM 2021-2023.</div><br>
 
 <b>Reviewer for Journals:</b><br>
 <div class="paper">TNNLS, TIP, IJCV</div>
