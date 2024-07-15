@@ -77,6 +77,60 @@
             }
         }
 
+
+        // Function to format the star count
+        function formatStarCount(count) {
+            if (count >= 1000) {
+                return (count / 1000).toFixed(1) + 'k';
+            }
+            return count.toString();
+        }
+
+        // Function to update the button text
+        async function updateButtonText(button) {
+            // Get the href attribute
+            const href = button.getAttribute('href');
+            // Check if the href contains 'github.com'
+            if (!href.includes('github.com')) {
+                return;
+            }
+
+            // Extract the repository owner and name from the URL
+            const parts = href.split('/');
+            const owner = parts[3];
+            const repo = parts[4];
+            // Define the GitHub API URL with the owner and repo
+            const apiUrl = `https://api.github.com/repos/${owner}/${repo}`;
+
+            try {
+                // Fetch the repository data from the GitHub API
+                const response = await fetch(apiUrl);
+                // Check if the response status is 404
+                if (response.status === 404) {
+                    return;
+                }
+                // Parse the JSON response
+                const data = await response.json();
+                // Get the star count from the data
+                const starCount = data.stargazers_count;
+                // Format the star count
+                const formattedStarCount = formatStarCount(starCount);
+                // Update the button text with the formatted star count
+                button.textContent += ` [☆${formattedStarCount}]`;
+            } catch (error) {
+                console.error('Error fetching repository data:', error);
+            }
+        }
+
+
+        // Call the function to update the button text after the page is loaded
+        window.onload = () => {
+            // Get all buttons with the class 'button-59'
+            const buttons = document.querySelectorAll('.button-59');
+            // Update each button text if it has a data-repo-name attribute
+            buttons.forEach(button => updateButtonText(button));
+        };
+
     </script>
 
     <script>
@@ -309,20 +363,21 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
 <button class="filter" type="button" onclick="filterPub('Pruning')">Pruning</button>
 <button class="filter" type="button" onclick="filterPub('Efficient Training')">Efficient Training</button>
 <ul id="publications">
+    <h3 style="margin-top: 1em;">2024</h3>
     <li class="paper" first_authored=true category="Efficient Training">
         <venue>ECCV</venue><pt>Active Generation for Image Classification</pt><br>
         <div class="author">
-            <u>Tao Huang</u><g>, Jiaqi Liu, Shan You, Chang Xu</g><br>
+            <b><u>Tao Huang</u></b><g>, Jiaqi Liu, Shan You, Chang Xu</g><br>
             <em>European Conference on Computer Vision</em> (<b>ECCV</b>), 2024.
         </div>
         <p>
             <a href="https://arxiv.org/abs/2403.06517" class="button-59">ArXiv</a>
         </p>
     </li>
-    <li class="paper" first_authored=false category="generation">
+    <li class="paper" category="generation">
         <venue>ECCV</venue><pt>Training-free Composite Scene Generation for Layout-to-Image Synthesis</pt><br>
         <div class="author">
-            <g>Jiaqi Liu,</g> <u>Tao Huang</u><g>, Chang Xu</g><br>
+            <g>Jiaqi Liu,</g> <b><u>Tao Huang</u></b><g>, Chang Xu</g><br>
             <em>European Conference on Computer Vision</em> (<b>ECCV</b>), 2024.
         </div>
         <!-- <p>
@@ -332,34 +387,32 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
     <li class="paper" category="Efficient Training">
         <venue>KBS</venue><pt>Diverse and Tailored Image Generation for Zero-Shot Multi-Label Classification</pt><br>
         <div class="author">
-            <g>Kaixin Zhang, Zhixiang Yuan, </g><u>Tao Huang</u><br>
+            <g>Kaixin Zhang, Zhixiang Yuan, </g><b><u>Tao Huang</u></b><br>
             <em>Knowledge-Based Systems</em> (<b>KBS</b>), Volume 299, 5 September 2024, 112077.
         </div>
         <p>
             <a href="https://arxiv.org/abs/2404.03144" class="button-59">ArXiv</a>
             <a href="https://www.sciencedirect.com/science/article/abs/pii/S0950705124007111" class="button-59">KBS</a>
             <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=15960105280307206704" class="button-59">Bib</a>
-            <a href="https://github.com/TAKELAMAG/Diff-ZS-MLC">
-                <img alt="" src="https://github.com/TAKELAMAG/Diff-ZS-MLC?style=social" style="vertical-align: bottom; height: 1.2rem;"></a>
+            <a href="https://github.com/TAKELAMAG/Diff-ZS-MLC" class="button-59">Code</a>
         </p>
     </li>
     <li class="paper" category="Efficient Training">
         <venue>ICME</venue><pt>Positive Label Is All You Need for Multi-Label Classification</pt><flag>&#128681; Oral</flag><br>
         <div class="author">
-            <g>Zhixiang Yuan, Kaixin Zhang, </g><u>Tao Huang</u><br>
+            <g>Zhixiang Yuan, Kaixin Zhang, </g><b><u>Tao Huang</u></b><br>
             <em>IEEE International Conference on Multimedia and Expo</em> (<b>ICME</b>), 2024.
         </div>
         <p>
             <a href="https://arxiv.org/abs/2306.16016" class="button-59">ArXiv</a>
             <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=11695637510257123983" class="button-59">Bib</a>
-            <a href="https://github.com/TAKELAMAG/PU-MLC">
-                <img alt="" src="https://img.shields.io/github/stars/TAKELAMAG/PU-MLC?style=social" style="vertical-align: bottom; height: 1.2rem;"></a>
+            <a href="https://github.com/TAKELAMAG/PU-MLC" class="button-59">Code</a>
         </p>
     </li>
     <li class="paper" category="KD">
         <venue>CVPR</venue><pt>FreeKD: Knowledge Distillation via Semantic Frequency Prompt</pt><br>
         <div class="author">
-            <g>Yuan Zhang,</g> <u>Tao Huang</u><g>, Jiaming Liu, Tao Jiang, Kuan Cheng, Shanghang Zhang</g><br>
+            <g>Yuan Zhang,</g> <b><u>Tao Huang</u></b><g>, Jiaming Liu, Tao Jiang, Kuan Cheng, Shanghang Zhang</g><br>
             <em>IEEE Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2024.
         </div>
         <p>
@@ -367,50 +420,49 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
             <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=11695637510257123983" class="button-59">Bib</a>
         </p>
     </li>
+    <h3>2023</h3>
     <li class="paper" first_authored=true category="KD">
         <venue>NeurIPS</venue><pt>Knowledge Diffusion for Distillation</pt><br>
         <div class="author">
-            <u>Tao Huang</u><g>, Yuan Zhang, Mingkai Zheng, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
+            <b><u>Tao Huang</u></b><g>, Yuan Zhang, Mingkai Zheng, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
             <em>Advances in Neural Information Processing Systems</em> (<b>NeurIPS</b>), 2023.
         </div>
         <p>
             <a href="https://arxiv.org/abs/2305.15712" class="button-59">ArXiv</a>
             <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=4615443208731882220" class="button-59">Bib</a>
             <a href="assets/diffkd/poster_neurips23_diffkd.pdf" class="button-59">Poster</a>
-            <a href="https://github.com/hunto/DiffKD">
-            <img alt="" src="https://img.shields.io/github/stars/hunto/DiffKD?style=social" style="vertical-align: bottom; height: 1.2rem;"></a>
+            <a href="https://github.com/hunto/DiffKD" class="button-59">Code</a>
         </p>
     </li>
     <li class="paper" category="KD">
         <venue>ACM MM</venue><pt>Avatar Knowledge Distillation: Self-ensemble Teacher Paradigm with Uncertainty</pt><br>
         <div class="author">
-            <g>Yuan Zhang, Weihua Chen, Yichen Lu,</g> <u>Tao Huang</u><g>, Xiuyu Sun, Jian Cao</g><br>
+            <g>Yuan Zhang, Weihua Chen, Yichen Lu,</g> <b><u>Tao Huang</u></b><g>, Xiuyu Sun, Jian Cao</g><br>
             <em>Proceedings of the 31th ACM International Conference on Multimedia</em> (<b>ACM MM</b>), 2023.
         </div>
         <p>
             <a href="https://arxiv.org/abs/2305.02722" class="button-59">ArXiv</a>
             <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=9322121606680381236" class="button-59">Bib</a>
-            <a href="https://github.com/Gumpest/AvatarKD">
-            <img alt="" src="https://img.shields.io/github/stars/Gumpest/AvatarKD?style=social" style="vertical-align: bottom; height: 1.2rem;"></a>
+            <a href="https://github.com/Gumpest/AvatarKD" class="button-59">Code</a>
         </p>
     </li>
     <li class="paper" first_authored=true category="KD">
 		<venue>ICLR</venue><pt>Masked Distillation with Receptive Tokens</pt><br>
         <div class="author">
-            <u>Tao Huang</u>*<g>, Yuan Zhang*, Shan You, Fei Wang, Chen Qian, Jian Cao, Chang Xu</g><br>
+            <b><u>Tao Huang</u></b>*<g>, Yuan Zhang*, Shan You, Fei Wang, Chen Qian, Jian Cao, Chang Xu</g><br>
             <em>International Conference on Learning Representations</em> (<b>ICLR</b>), 2023.</em>
         </div>
 		<p>
 			<a class="button-59" href="https://arxiv.org/abs/2205.14589">ArXiv</a>
             <button class="button-59" onclick="getBibTex('huang2023masked')">Bib</button>
-            <a href="https://github.com/hunto/MasKD">
-            <img alt="" src="https://img.shields.io/github/stars/hunto/MasKD?style=social" style="vertical-align: bottom; height: 1.2rem;"></a>
+            <a href="https://github.com/hunto/MasKD" class="button-59">Code</a>
 		</p>
     </li>
+    <h3>2022</h3>
     <li class="paper" first_authored=true category="KD">
 		<venue>NeurIPS</venue><pt>Knowledge Distillation from A Stronger Teacher</pt><br>
         <div class="author">
-            <u>Tao Huang</u><g>, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
+            <b><u>Tao Huang</u></b><g>, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
             <em>Advances in Neural Information Processing Systems</em> (<b>NeurIPS</b>), 2022.
         </div>
 		<p>
@@ -419,30 +471,27 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
             <a href="assets/dist/KD_sharing_Tao_20220715.pdf" class="button-59">Slides</a>
             <a href="assets/dist/NeurIPS2022_DIST_poster.pdf" class="button-59">Poster</a>
             <a href="https://mp.weixin.qq.com/s/PwzyaZXCrl_W8NmiQgXm0g" class="button-59">解读</a>
-            <a href="https://github.com/hunto/DIST_KD">
-                <img alt="" src="https://img.shields.io/github/stars/hunto/DIST_KD?style=social" style="vertical-align: bottom; height: 1.2rem;">
+            <a href="https://github.com/hunto/DIST_KD" class="button-59">Code</a>
             </a>
 		</p>
     </li>
     <li class="paper" category="NAS">
 		<venue>NPJ QI</venue><pt></pt><pt>Quantum circuit architecture search for variational quantum algorithms</pt><br>
         <div class="author">
-            <g>Yuxuan Du,</g> <u>Tao Huang</u></b><g>, Shan You, Min-Hsiu Hsieh, Dacheng Tao</g><br>
+            <g>Yuxuan Du,</g> <b><u>Tao Huang</u></b></b><g>, Shan You, Min-Hsiu Hsieh, Dacheng Tao</g><br>
 		    <em>Nature Partner Journals Quantum Information</em> (<b>NPJ QI</b>), 2022.<br>
         </div>
 		<p>
 			<a href="https://arxiv.org/abs/2010.10217" class="button-59">ArXiv</a>
             <button class="button-59" onclick="getBibTex('du2022quantum')">Bib</button>
 			<!-- <a href="https://scholar.google.com/scholar?cluster=14041544508923660633&hl=en&as_sdt=0,5" class="button-59">Bib</a> -->
-			<a href="https://github.com/yuxuan-du/Quantum_architecture_search">
-            <img alt="" src="https://img.shields.io/github/stars/yuxuan-du/Quantum_architecture_search?style=social" style="vertical-align: bottom; height: 1.2rem;">
-            </a>
+			<a href="https://github.com/yuxuan-du/Quantum_architecture_search" class="button-59">Code</a>
         </p>
     </li>
     <li class="paper" first_authored=true category="NAS">
 		<venue>CVPR</venue><pt></pt><pt>GreedyNASv2: Greedier Search with a Greedy Path Filter</pt><br>
         <div class="author">
-            <u>Tao Huang</u><g>, Shan You, Fei Wang, Chen Qian, Changshui Zhang, Xiaogang Wang, Chang Xu</g><br>
+            <b><u>Tao Huang</u></b><g>, Shan You, Fei Wang, Chen Qian, Changshui Zhang, Xiaogang Wang, Chang Xu</g><br>
             <em>IEEE Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2022.<br>
         </div>
 		<p>
@@ -455,7 +504,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
     <li class="paper" first_authored=true category="Efficient Training">
         <venue>CVPR</venue><pt>DyRep: Bootstrapping Training with Dynamic Re-parameterization</pt><br>
         <div class="author">
-            <u>Tao Huang</u><g>, Shan You, Bohan Zhang, Yuxuan Du, Fei Wang, Chen Qian, Chang Xu</g><br>
+            <b><u>Tao Huang</u></b><g>, Shan You, Bohan Zhang, Yuxuan Du, Fei Wang, Chen Qian, Chang Xu</g><br>
             <em>IEEE Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2022.<br>
         </div>
         <p>
@@ -463,13 +512,13 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
             <!-- <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=9004725926464672087" class="button-59">Bib</a> -->
             <button class="button-59" onclick="getBibTex('huang2022dyrep')">Bib</button>
             <a href="assets/dyrep/CVPR2022_DyRep_Poster.pdf" class="button-59">Poster</a>
-            <a href="https://github.com/hunto/DyRep"><img alt="" src="https://img.shields.io/github/stars/hunto/DyRep?style=social" style="vertical-align: bottom; height: 1.2rem;"></a>
-		</p>
+            <a href="https://github.com/hunto/DyRep" class="button-59">Code</a>
+        </p>
     </li>
     <li class="paper" first_authored=true>
         <venue>ICLR</venue><pt>Relational Surrogate Loss Learning</pt><br>
         <div class="author">
-            <u>Tao Huang</u><g>, Zekang Li, Hua Lu, Yong Shan, Shusheng Yang, Yang Feng, Fei Wang, Shan You, Chang Xu</g><br>
+            <b><u>Tao Huang</u></b><g>, Zekang Li, Hua Lu, Yong Shan, Shusheng Yang, Yang Feng, Fei Wang, Shan You, Chang Xu</g><br>
             <em>International Conference on Learning Representations</em> (<b>ICLR</b>), 2022.<br>
         </div>
         <p>
@@ -477,14 +526,13 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
             <a href="https://openreview.net/forum?id=dZPgfwaTaXv" class="button-59">Bib</a>
             <a href="assets/reloss/Poster_ICLR2022_ReLoss.pdf" class="button-59">Poster</a>
             <a href="assets/reloss/Slides_ICLR2022_ReLoss.pdf" class="button-59">Slides</a>
-            <a href="https://github.com/hunto/ReLoss"><img alt="" src="https://img.shields.io/github/stars/hunto/ReLoss?style=social" style="vertical-align: bottom; height: 1.2rem;"></a>
-            
+            <a href="https://github.com/hunto/ReLoss" class="button-59">Code</a>  
 		</p>
     </li>
     <li class="paper" category="pruning">
 		<venue>ICASSP</venue><pt>Data Agnostic Filter Gating for Efficient Deep Networks</pt><br>
         <div class="author">
-            <g>Hongyan Xu, Xiu Su, Shan You,</g> <u>Tao Huang</u><g>, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu, Dadong Wang, Arcot Sowmya</g><br>
+            <g>Hongyan Xu, Xiu Su, Shan You,</g> <b><u>Tao Huang</u></b><g>, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu, Dadong Wang, Arcot Sowmya</g><br>
             <em>IEEE International Conference on Acoustics, Speech and Signal Processing</em> (<b>ICASSP</b>), 2022.
         </div>
 		<p>
@@ -492,10 +540,11 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
 			<a href="https://scholar.google.com/scholar?cluster=6802250960153223046&hl=en&as_sdt=0,5" class="button-59">Bib</a>
 		</p>
 	</li>
+    <h3>2021</h3>
     <li class="paper" first_authored=true category="NAS">
         <venue>CVPR</venue><pt>Prioritized Architecture Sampling with Monto-Carlo Tree Search</pt><br>
         <div class="author">
-            <g>Xiu Su*,</g> <u>Tao Huang</u>*<g>, Yanxi Li, Shan You, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu</g><br>
+            <g>Xiu Su*,</g> <b><u>Tao Huang</u></b>*<g>, Yanxi Li, Shan You, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu</g><br>
             <em>IEEE Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2021.<br>
         </div>
         <p>
@@ -503,13 +552,12 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
             <a href="assets/mctnas/Poster_CVPR2021_MCT-NAS.pdf" class="button-59">Poster</a>
             <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=16897259555170724856" class="button-59">Bib</a>
             <a href="https://github.com/xiusu/NAS-Bench-Macro" class="button-59">NAS-Bench-Macro</a>
-            <img alt="" src="https://img.shields.io/github/stars/xiusu/NAS-Bench-Macro?style=social" style="vertical-align: bottom; height: 1.2rem;">
 		</p>
     </li>
     <li class="paper" category="NAS,pruning">
         <venue>ICLR</venue><pt>Locally Free Weight Sharing for Network Width Search</pt><flag>&#128681; Spotlight</flag><br>
         <div class="author">
-            <g>Xiu Su, Shan You,</g> <u>Tao Huang</u><g>, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu</g><br>
+            <g>Xiu Su, Shan You,</g> <b><u>Tao Huang</u></b><g>, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu</g><br>
             <em>International Conference on Learning Representations</em> (<b>ICLR</b>), 2021.<br>
         </div>
         <p>
@@ -521,7 +569,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
 	<li class="paper" first_authored=true category="NAS">
 		<venue>CVPR</venue><pt>GreedyNAS: Towards Fast One-Shot NAS with Greedy Supernet</pt><br>
         <div class="author">
-            <g>Shan You*,</g> <u>Tao Huang</u>*<g>, Mingmin Yang*, Fei Wang, Chen Qian, Changshui Zhang</g><br>
+            <g>Shan You*,</g> <b><u>Tao Huang</u></b>*<g>, Mingmin Yang*, Fei Wang, Chen Qian, Changshui Zhang</g><br>
             <em>IEEE Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2020.</br>
         </div>
 		<p>
@@ -530,8 +578,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
             <a href="assets/greedynas/Poster_CVPR2020_GreedyNAS.pdf" class="button-59">Poster</a>
             <a href="assets/greedynas/Video_CVPR2020_GreedyNAS.mp4" class="button-59">Video</a>
             <a href="assets/greedynas/Slides_GreedyNAS_titan.pdf" class="button-59">Slides</a>
-            <a href="https://github.com/open-mmlab/mmrazor">
-            <img alt="" src="https://img.shields.io/github/stars/open-mmlab/mmrazor?style=social" style="vertical-align: bottom; height: 1.2rem;"></a>
+            <a href="https://github.com/open-mmlab/mmrazor" class="button-59">Code</a>
 		</p>
 	</li>
 </ul>
@@ -541,40 +588,40 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         <li class="paper">
             <venue>arXiv</venue><pt>Unveiling the Tapestry of Consistency in Large Vision-Language Models</pt><br>
             <div class="author">
-                <g>Yuan Zhang, Fei Xiao, </g><u>Tao Huang</u><g>, Chun-Kai Fan, Hongyuan Dong, Jiawen Li, Jiacong Wang, Kuan Cheng, Shanghang Zhang, Haoyuan Guo</g><br>
+                <g>Yuan Zhang, Fei Xiao, </g><b><u>Tao Huang</u></b><g>, Chun-Kai Fan, Hongyuan Dong, Jiawen Li, Jiacong Wang, Kuan Cheng, Shanghang Zhang, Haoyuan Guo</g><br>
                 <em>arXiv preprint arXiv:2405.14156 (2024).</em>
             </div>
             <p>
                 <a href="https://arxiv.org/abs/2405.14156" class="button-59">ArXiv</a>
-                <a href="https://github.com/foundation-multimodal-models/ConBench"><img alt="" src="https://img.shields.io/github/stars/foundation-multimodal-models/ConBench?style=social" style="vertical-align: bottom; height: 1.2rem;"></a>
+                <a href="https://github.com/foundation-multimodal-models/ConBench" class="button-59">Code</a>
             </p>
         </li>
         <li class="paper">
             <venue>arXiv</venue><pt>EfficientVMamba: Atrous Selective Scan for Light Weight Visual Mamba</pt><br>
             <div class="author">
-                <g>Xiaohuan Pei*, </g><u>Tao Huang*</u><g>, Chang Xu</g><br>
+                <g>Xiaohuan Pei*, </g><b><u>Tao Huang</u></b>*<g>, Chang Xu</g><br>
                 <em>arXiv preprint arXiv:2403.09977 (2024).</em>
             </div>
             <p>
                 <a href="https://arxiv.org/abs/2403.09977" class="button-59">ArXiv</a>
-                <a href="https://github.com/TerryPei/EfficientVMamba"><img alt="" src="https://img.shields.io/github/stars/TerryPei/EfficientVMamba?style=social" style="vertical-align: bottom; height: 1.2rem;"></a>
+                <a href="https://github.com/TerryPei/EfficientVMamba" class="button-59">Code</a>
             </p>
         </li>
         <li class="paper">
             <venue>arXiv</venue><pt>LocalMamba: Visual State Space Model with Windowed Selective Scan</pt><br>
             <div class="author">
-                <u>Tao Huang</u><g>, Xiaohuan Pei, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
+                <b><u>Tao Huang</u></b><g>, Xiaohuan Pei, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
                 <em>arXiv preprint arXiv:2403.09338 (2024).</em>
             </div>
             <p>
                 <a href="https://arxiv.org/abs/2403.09338" class="button-59">ArXiv</a>
-                <a href="https://github.com/hunto/LocalMamba"><img alt="" src="https://img.shields.io/github/stars/hunto/LocalMamba?style=social" style="vertical-align: bottom; height: 1.2rem;"></a>
+                <a href="https://github.com/hunto/LocalMamba" class="button-59">Code</a>
             </p>
         </li>
         <li class="paper">
             <venue>arXiv</venue><pt>Not All Steps are Equal: Efficient Generation with Progressive Diffusion Models</pt><br>
             <div class="author">
-                <g>Wenhao Li, Xiu Su, Shan You,</g> <u>Tao Huang</u><g>, Fei Wang, Chen Qian, Chang Xu</g><br>
+                <g>Wenhao Li, Xiu Su, Shan You,</g> <b><u>Tao Huang</u></b><g>, Fei Wang, Chen Qian, Chang Xu</g><br>
                 <em>arXiv preprint arXiv:2312.13307 (2023).</em>
             </div>
             <p>
@@ -584,7 +631,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         <li class="paper" first_authored=true category="KD">
             <pt>DIST+: Knowledge Distillation from A Stronger Teacher</pt><br>
             <div class="author">
-                <u>Tao Huang</u><g>, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
+                <b><u>Tao Huang</u></b><g>, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
             </div>
             <p>
                 <a href="assets/dist+/DIST+.pdf" class="button-59">PDF</a>
@@ -593,20 +640,19 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         <li class="paper">
             <venue>arXiv</venue><pt>LightViT: Towards Light-Weight Convolution-Free Vision Transformers</pt><br>
             <div class="author">
-                <u>Tao Huang</u><g>, Lang Huang, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
+                <b><u>Tao Huang</u></b><g>, Lang Huang, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
                 <em>arXiv preprint arXiv:2207.05557 (2022).</em>
             </div>
             <p>
                 <a href="https://arxiv.org/abs/2207.05557" class="button-59">ArXiv</a>
                 <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=13876321258274905912" class="button-59">Bib</a>
-                <a href="https://github.com/hunto/LightViT">
-                <img alt="" src="https://img.shields.io/github/stars/hunto/LightViT?style=social" style="vertical-align: bottom; height: 1.2rem;"></a>
+                <a href="https://github.com/hunto/LightViT" class="button-59">Code</a>
             </p>
         </li>
         <li class="paper">
             <venue>arXiv</venue><pt>Explicitly Learning Topology for Differentiable Neural Architecture Search</pt><br>
             <div class="author">
-                <u>Tao Huang</u><g>, Shan You, Yibo Yang, Zhuozhuo Tu, Fei Wang, Chen Qian, Changshui Zhang</g><br>
+                <b><u>Tao Huang</u></b><g>, Shan You, Yibo Yang, Zhuozhuo Tu, Fei Wang, Chen Qian, Changshui Zhang</g><br>
                 <em>arXiv preprint arXiv:2011.09300 (2020).</em>
             </div>
             <p>
