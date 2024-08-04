@@ -50,6 +50,31 @@
             }
         }
 
+        function updateVisibility() {
+            const publications = document.getElementById('publications');
+            const h3Elements = publications.getElementsByTagName('h3');
+
+            for (let i = 0; i < h3Elements.length; i++) {
+                const h3 = h3Elements[i];
+                let li = h3.nextElementSibling;
+                let allInvisible = true;
+
+                while (li && li.tagName.toLowerCase() === 'li') {
+                    if (li.style.display !== 'none') {
+                        allInvisible = false;
+                        break;
+                    }
+                    li = li.nextElementSibling;
+                }
+
+                if (allInvisible) {
+                    h3.style.display = 'none';
+                } else {
+                    h3.style.display = '';
+                }
+            }
+        }
+
         function filterPub(type) {
             ul = document.getElementById("publications")
             li = ul.getElementsByTagName("li")
@@ -75,6 +100,7 @@
                     // bts[k].style.color = "#a0a0a0"
                 }
             }
+            updateVisibility()
         }
 
 
@@ -272,7 +298,7 @@ url={https://openreview.net/forum?id=mWRngkvIki3}
                         <p>
                             <a href="https://github.com/hunto"><img src="assets/github.png" class="icon"></a>&nbsp;&nbsp;
                             <a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en"><img src="assets/google_scholar.svg" class="icon"></a>&nbsp;&nbsp;
-                            <a href="https://www.linkedin.com/in/tao-huang-a93910292"><img src="assets/linkedin.svg" class="icon"></a>
+                            <!-- <a href="https://www.linkedin.com/in/tao-huang-a93910292"><img src="assets/linkedin.svg" class="icon"></a> -->
                         </p>
                         <!-- <b>Control the controllable, observe the observable, leave the rest alone.</b> -->
                     </td>
@@ -811,7 +837,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </ul>
     </div>
 
-<div id="awards" style="margin-bottom: 2em; margin-top: -2em;"></div>
+<!-- <div id="awards" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>Selected Awards</h2>
 <ul>
     <li style="margin-top: 0.2em">
@@ -826,7 +852,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
             <div style="margin-left: 2px;">Jun. 2020</div>
         </div>
     </li>
-    <!-- <li>
+    <li>
         <div style="display: flex; justify-content: space-between;">
             <div>First Class Prize, National College Student Connected Smarter System Innovation Competition, National</div>
             <div style="margin-left: 2px;">2018</div>
@@ -843,8 +869,8 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
             <div>First Class Prize, "Challenge Cup" Competition, HUST</div>
             <div style="margin-left: 2px;">2018</div>
         </div>
-    </li> -->
-</ul>
+    </li>
+</ul> -->
 
 <div id="footer">
 	<div id="footer-text" style="text-align: center;">© Tao Huang | Last updated: July 29, 2024</div>
