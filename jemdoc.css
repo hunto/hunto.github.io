@@ -12,6 +12,7 @@
 
 
 :root {
+	--venue-bg-color: rgb(225, 233, 242);
 	--theme-color: rgb(52, 98, 176);
 	--theme-color-light: rgb(182, 212, 248);;
 	--title-color: #000;
@@ -31,7 +32,7 @@ body {
 }
 */
 html {
-  background-color: #424242; 
+  background-color: #c7c7c7; 
   font-family: 'Nunito';
 }
 
@@ -103,8 +104,8 @@ venue {
 	/* background-color:rgb(80, 80, 80); */
 	/* background-color: #d1a7a7; */
 	/* background-color: #ca3737; */
-	/* background-color: var(--venue-bg-color); */
-	background-color: rgb(217, 229, 244);
+	background-color: var(--venue-bg-color);
+	/* background-color: rgb(217, 229, 244); */
 	color: rgb(16, 68, 158);
 	font-family: 'Nunito';
 	font-size: 70%;
@@ -119,7 +120,7 @@ venue {
 	/* border-color: #ffffff; */
 	border-width: 0px;
 	border-style: none;
-	border-radius: 0.2rem;
+	border-radius: 0.1rem;
 	/* -webkit-box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 	box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); */
 	/* border-radius: 4px; */
@@ -597,10 +598,11 @@ table.imgtable, table.imgtable td {
 .button-59 {
   align-items: center;
   background-color: #fff;
-  border: 1px solid var(--theme-color-light);
+  /* border: 1px solid var(--theme-color-light); */
+  border: 1px solid #dadada;
   box-sizing: border-box;
-  /* color: #af2a42; */
-  color: var(--theme-color);
+  color: #000000;
+  /* color: var(--theme-color); */
   cursor: pointer;
   display: inline-flex;
   fill: #000;
@@ -684,4 +686,35 @@ table.imgtable, table.imgtable td {
 	font-size: 90%; 
 	line-height: 100%;
 	background-color: #222222;
+}
+
+.container {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap; /* 允许换行 */
+}
+.left-section, .right-section {
+	/* padding: 20px; */
+	box-sizing: border-box; /* 包括padding在内计算宽度 */
+}
+.right-section {
+	margin-top: 30px;
+	width: 25%;
+	order: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center; /* 垂直居中对齐文字和图片 */
+	border: 1px solid #b9b9b9; /* 添加实线边框 */
+	background-color: rgb(246, 248, 250); 
+}
+.left-section {
+	width: 70%;
+	order: 1;
+}
+.profile-pic {
+	margin-top: 20px;
+	max-width: 75%;
+	height: auto;
+	border-radius: 50%; /* 将图片设置为圆形 */
+	margin-bottom: 10px;
 }
