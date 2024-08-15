@@ -12,7 +12,8 @@
 
 
 :root {
-	--venue-bg-color: rgb(225, 233, 242);
+	/* --venue-bg-color: rgb(225, 233, 242); */
+	--venue-bg-color: rgb(108, 149, 181);
 	--theme-color: rgb(52, 98, 176);
 	--theme-color-light: rgb(182, 212, 248);;
 	--title-color: #000;
@@ -106,8 +107,9 @@ venue {
 	/* background-color: #ca3737; */
 	background-color: var(--venue-bg-color);
 	/* background-color: rgb(217, 229, 244); */
-	color: rgb(16, 68, 158);
-	font-family: 'Nunito';
+	/* color: rgb(16, 68, 158); */
+	color: #ffffff;
+	/* font-family: 'Nunito'; */
 	font-size: 70%;
 	font-weight: bold;
 	line-height: 170%;
@@ -130,6 +132,8 @@ venue {
 	/* border: #ffffff; */
 	height: 1.7em;
 	vertical-align:text-bottom;
+	margin-bottom: 0.1em;
+	/* letter-spacing: 0.1cap; */
 }
 
 flag {
@@ -698,7 +702,7 @@ table.imgtable, table.imgtable td {
 	box-sizing: border-box; /* 包括padding在内计算宽度 */
 }
 .right-section {
-	margin-top: 30px;
+	margin-top: 50px;
 	width: 25%;
 	order: 2;
 	display: flex;
@@ -713,7 +717,7 @@ table.imgtable, table.imgtable td {
 }
 .profile-pic {
 	margin-top: 20px;
-	max-width: 75%;
+	max-width: 65%;
 	height: auto;
 	border-radius: 50%; /* 将图片设置为圆形 */
 	margin-bottom: 10px;
