@@ -50,7 +50,7 @@ body {
   padding-right: 50px;
   padding-top: 30px;
   padding-bottom: 0px;
-  max-width: 60%; 
+  max-width: 1080px; 
   font-size: 100%;
   line-height: 150%;
 }
@@ -69,7 +69,8 @@ body {
 	box-sizing: border-box; /* 包括padding在内计算宽度 */
 }
 .right-section {
-	margin-top: 50px;
+	margin-top: 20px;
+	padding-bottom: 10px;
 	width: 25%;
 	order: 2;
 	display: flex;
