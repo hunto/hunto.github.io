@@ -159,61 +159,6 @@
 
     </script>
 
-    <script>
-        // import data from './bibtex.json' assert { type: 'json' };
-        const data = {
-"huang2023masked": `@inproceedings{
-huang2023masked,
-title={Masked Distillation with Receptive Tokens},
-author={Tao Huang and Yuan Zhang and Shan You and Fei Wang and Chen Qian and Jian Cao and Chang Xu},
-booktitle={The Eleventh International Conference on Learning Representations },
-year={2023},
-url={https://openreview.net/forum?id=mWRngkvIki3}
-}`,
-"huang2023knowledge": `@inproceedings{huang2023knowledge,
- author = {Huang, Tao and You, Shan and Wang, Fei and Qian, Chen and Xu, Chang},
- booktitle = {Advances in Neural Information Processing Systems},
- editor = {S. Koyejo and S. Mohamed and A. Agarwal and D. Belgrave and K. Cho and A. Oh},
- pages = {33716--33727},
- publisher = {Curran Associates, Inc.},
- title = {Knowledge Distillation from A Stronger Teacher},
- url = {https://proceedings.neurips.cc/paper_files/paper/2022/file/da669dfd3c36c93905a17ddba01eef06-Paper-Conference.pdf},
- volume = {35},
- year = {2022}
-}`,
-"du2022quantum": `@article{du2022quantum,
-  title={Quantum circuit architecture search for variational quantum algorithms},
-  author={Du, Yuxuan and Huang, Tao and You, Shan and Hsieh, Min-Hsiu and Tao, Dacheng},
-  journal={npj Quantum Information},
-  volume={8},
-  number={1},
-  pages={62},
-  year={2022},
-  publisher={Nature Publishing Group UK London}
-}`,
-"huang2022greedynasv2": `@inproceedings{huang2022greedynasv2,
-  title={Greedynasv2: greedier search with a greedy path filter},
-  author={Huang, Tao and You, Shan and Wang, Fei and Qian, Chen and Zhang, Changshui and Wang, Xiaogang and Xu, Chang},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={11902--11911},
-  year={2022}
-}`,
-"huang2022dyrep": `@inproceedings{huang2022dyrep,
-  title={Dyrep: bootstrapping training with dynamic re-parameterization},
-  author={Huang, Tao and You, Shan and Zhang, Bohan and Du, Yuxuan and Wang, Fei and Qian, Chen and Xu, Chang},
-  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
-  pages={588--597},
-  year={2022}
-}`
-        }
-
-        const getBibTex = async (key) => {
-            await navigator.clipboard.writeText(data[key]);
-            alert("The following text was copied to your clipboard.\n===============\n"+data[key])
-            // prompt("You can copy the text manually.", data[key]);
-        }
-    </script>
-
     <link rel="shortcut icon" href="myIcon.ico">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta name="keywords" content="Tao Huang, SenseTime">
@@ -391,7 +336,21 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </div>
         <p>
             <a href="https://arxiv.org/abs/2405.14156" class="button-59">ArXiv</a>
+            <button class="button-59 bib-link">Bib</button>
             <a href="https://github.com/foundation-multimodal-models/ConBench" class="button-59">Code</a>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @inproceedings{zhang2024unveiling,
+                        author = {Zhang, Yuan and Xiao, Fei and Huang, Tao and Fan, Chun-Kai and Dong, Hongyuan and Li, Jiawen and Wang, Jiacong and Cheng, Kuan and Zhang, Shanghang and Guo, Haoyuan},
+                        booktitle = {Advances in Neural Information Processing Systems},
+                        title = {Unveiling the Tapestry of Consistency in Large Vision-Language Models},
+                        year = {2024}
+                    }
+                </pre>
+                </blockquote>
+            </div>
         </p>
     </li>
     <li class="paper" first_authored=true category="">
@@ -402,7 +361,21 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </div>
         <p>
             <a href="https://arxiv.org/abs/2403.09338" class="button-59">ArXiv</a>
+            <button class="button-59 bib-link">Bib</button>
             <a href="https://github.com/hunto/LocalMamba" class="button-59">Code</a>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @article{huang2024localmamba,
+                        title={Localmamba: Visual state space model with windowed selective scan},
+                        author={Huang, Tao and Pei, Xiaohuan and You, Shan and Wang, Fei and Qian, Chen and Xu, Chang},
+                        journal={arXiv preprint arXiv:2403.09338},
+                        year={2024}
+                    }
+                </pre>
+                </blockquote>
+            </div>
         </p>
     </li>
     <li class="paper" first_authored=true category="Efficient Training">
@@ -413,7 +386,22 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </div>
         <p>
             <a href="https://arxiv.org/abs/2403.06517" class="button-59">ArXiv</a>
+            <button class="button-59 bib-link">Bib</button>
             <a href="https://github.com/hunto/ActGen" class="button-59">Code</a>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @inproceedings{huang2024active,
+                        title={Active Generation for Image Classification},
+                        author={Huang, Tao and Liu, Jiaqi and You, Shan and Xu, Chang},
+                        booktitle={European Conference on Computer Vision},
+                        year={2024},
+                        organization={Springer}
+                    }
+                </pre>
+                </blockquote>
+            </div>
         </p>
     </li>
     <li class="paper" category="generation,Efficient Training">
@@ -424,7 +412,22 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </div>
         <p>
             <a href="https://arxiv.org/abs/2407.13609" class="button-59">ArXiv</a>
+            <button class="button-59 bib-link">Bib</button>
             <a href="https://github.com/Papple-F/csg" class="button-59">Code</a>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @inproceedings{liu2024training,
+                        title={Training-free Composite Scene Generation for Layout-to-Image Synthesis},
+                        author={Liu, Jiaqi and Huang, Tao and Xu, Chang},
+                        booktitle={European Conference on Computer Vision},
+                        year={2024},
+                        organization={Springer}
+                    }
+                </pre>
+                </blockquote>
+            </div>
         </p>
     </li>
     <li class="paper" category="Efficient Training">
@@ -435,9 +438,28 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </div>
         <p>
             <a href="https://arxiv.org/abs/2404.03144" class="button-59">ArXiv</a>
+            <button class="button-59 bib-link">Bib</button>
             <a href="https://www.sciencedirect.com/science/article/abs/pii/S0950705124007111" class="button-59">KBS</a>
-            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=15960105280307206704" class="button-59">Bib</a>
             <a href="https://github.com/TAKELAMAG/Diff-ZS-MLC" class="button-59">Code</a>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @article{ZHANG2024112077,
+                        title = {Diverse and tailored image generation for zero-shot multi-label classification},
+                        journal = {Knowledge-Based Systems},
+                        volume = {299},
+                        pages = {112077},
+                        year = {2024},
+                        issn = {0950-7051},
+                        doi = {https://doi.org/10.1016/j.knosys.2024.112077},
+                        url = {https://www.sciencedirect.com/science/article/pii/S0950705124007111},
+                        author = {Kaixin Zhang and Zhixiang Yuan and Tao Huang},
+                        keywords = {Zero-shot multi-label learning, Deep generative model, Diffusion model, Synthetic data},
+                    }
+                </pre>
+                </blockquote>
+            </div>
         </p>
     </li>
     <li class="paper" category="Efficient Training">
@@ -448,8 +470,23 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </div>
         <p>
             <a href="https://arxiv.org/abs/2306.16016" class="button-59">ArXiv</a>
-            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=11695637510257123983" class="button-59">Bib</a>
+            <button class="button-59 bib-link">Bib</button>
             <a href="https://github.com/TAKELAMAG/PU-MLC" class="button-59">Code</a>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @inproceedings{yuan2024positive,
+                        title={Positive label is all you need for multi-label classification},
+                        author={Yuan, Zhixiang and Zhang, Kaixin and Huang, Tao},
+                        booktitle={2024 IEEE International Conference on Multimedia and Expo (ICME)},
+                        pages={1--6},
+                        year={2024},
+                        organization={IEEE}
+                    }
+                </pre>
+                </blockquote>
+            </div>
         </p>
     </li>
     <li class="paper" category="KD">
@@ -460,7 +497,22 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </div>
         <p>
             <a href="https://arxiv.org/abs/2311.12079" class="button-59">ArXiv</a>
-            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=11695637510257123983" class="button-59">Bib</a>
+            <button class="button-59 bib-link">Bib</button>
+            <a href="https://github.com/Gumpest/FreeKD" class="button-59">Code</a>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @inproceedings{zhang2024freekd,
+                        title={FreeKD: Knowledge Distillation via Semantic Frequency Prompt},
+                        author={Zhang, Yuan and Huang, Tao and Liu, Jiaming and Jiang, Tao and Cheng, Kuan and Zhang, Shanghang},
+                        booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+                        pages={15931--15940},
+                        year={2024}
+                    }
+                </pre>
+                </blockquote>
+            </div>
         </p>
     </li>
     <h3>2023</h3>
@@ -472,9 +524,27 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </div>
         <p>
             <a href="https://arxiv.org/abs/2305.15712" class="button-59">ArXiv</a>
-            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=4615443208731882220" class="button-59">Bib</a>
+            <button class="button-59 bib-link">Bib</button>
             <a href="assets/diffkd/poster_neurips23_diffkd.pdf" class="button-59">Poster</a>
             <a href="https://github.com/hunto/DiffKD" class="button-59">Code</a>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @inproceedings{huang2023knowledge,
+                        author = {Huang, Tao and Zhang, Yuan and Zheng, Mingkai and You, Shan and Wang, Fei and Qian, Chen and Xu, Chang},
+                        booktitle = {Advances in Neural Information Processing Systems},
+                        editor = {A. Oh and T. Naumann and A. Globerson and K. Saenko and M. Hardt and S. Levine},
+                        pages = {65299--65316},
+                        publisher = {Curran Associates, Inc.},
+                        title = {Knowledge Diffusion for Distillation},
+                        url = {https://proceedings.neurips.cc/paper_files/paper/2023/file/cdddf13f06182063c4dbde8cbd5a5c21-Paper-Conference.pdf},
+                        volume = {36},
+                        year = {2023}
+                    }                       
+                </pre>
+                </blockquote>
+            </div>
         </p>
     </li>
     <li class="paper" category="KD">
@@ -485,8 +555,22 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </div>
         <p>
             <a href="https://arxiv.org/abs/2305.02722" class="button-59">ArXiv</a>
-            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=9322121606680381236" class="button-59">Bib</a>
+            <button class="button-59 bib-link">Bib</button>
             <a href="https://github.com/Gumpest/AvatarKD" class="button-59">Code</a>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @inproceedings{zhang2023avatar,
+                        title={Avatar knowledge distillation: self-ensemble teacher paradigm with uncertainty},
+                        author={Zhang, Yuan and Chen, Weihua and Lu, Yichen and Huang, Tao and Sun, Xiuyu and Cao, Jian},
+                        booktitle={Proceedings of the 31st ACM International Conference on Multimedia},
+                        pages={5272--5280},
+                        year={2023}
+                    }
+                </pre>
+                </blockquote>
+            </div>
         </p>
     </li>
     <li class="paper" first_authored=true category="KD">
@@ -497,8 +581,23 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </div>
 		<p>
 			<a class="button-59" href="https://arxiv.org/abs/2205.14589">ArXiv</a>
-            <button class="button-59" onclick="getBibTex('huang2023masked')">Bib</button>
+            <button class="button-59 bib-link">Bib</button>
             <a href="https://github.com/hunto/MasKD" class="button-59">Code</a>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @inproceedings{
+                        huang2023masked,
+                        title={Masked Distillation with Receptive Tokens},
+                        author={Tao Huang and Yuan Zhang and Shan You and Fei Wang and Chen Qian and Jian Cao and Chang Xu},
+                        booktitle={The Eleventh International Conference on Learning Representations },
+                        year={2023},
+                        url={https://openreview.net/forum?id=mWRngkvIki3}
+                    }
+                </pre>
+                </blockquote>
+            </div>
 		</p>
     </li>
     <h3>2022</h3>
@@ -510,12 +609,29 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </div>
 		<p>
 			<a href="https://arxiv.org/abs/2205.10536" class="button-59">ArXiv</a>
-			<button class="button-59" onclick="getBibTex('huang2023knowledge')">Bib</button>
+            <button class="button-59 bib-link">Bib</button>
             <a href="assets/dist/KD_sharing_Tao_20220715.pdf" class="button-59">Slides</a>
             <a href="assets/dist/NeurIPS2022_DIST_poster.pdf" class="button-59">Poster</a>
             <a href="https://mp.weixin.qq.com/s/PwzyaZXCrl_W8NmiQgXm0g" class="button-59">解读</a>
             <a href="https://github.com/hunto/DIST_KD" class="button-59">Code</a>
-            </a>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @inproceedings{huang2022knowledge,
+                        author = {Huang, Tao and You, Shan and Wang, Fei and Qian, Chen and Xu, Chang},
+                        booktitle = {Advances in Neural Information Processing Systems},
+                        editor = {S. Koyejo and S. Mohamed and A. Agarwal and D. Belgrave and K. Cho and A. Oh},
+                        pages = {33716--33727},
+                        publisher = {Curran Associates, Inc.},
+                        title = {Knowledge Distillation from A Stronger Teacher},
+                        url = {https://proceedings.neurips.cc/paper_files/paper/2022/file/da669dfd3c36c93905a17ddba01eef06-Paper-Conference.pdf},
+                        volume = {35},
+                        year = {2022}
+                    }
+                </pre>
+                </blockquote>
+            </div>
 		</p>
     </li>
     <li class="paper" category="NAS">
@@ -526,9 +642,31 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </div>
 		<p>
 			<a href="https://arxiv.org/abs/2010.10217" class="button-59">ArXiv</a>
-            <button class="button-59" onclick="getBibTex('du2022quantum')">Bib</button>
-			<!-- <a href="https://scholar.google.com/scholar?cluster=14041544508923660633&hl=en&as_sdt=0,5" class="button-59">Bib</a> -->
+            <button class="button-59 bib-link">Bib</button>
+			<a href="https://www.nature.com/articles/s41534-022-00570-y" class="button-59">Nature</a>
 			<a href="https://github.com/yuxuan-du/Quantum_architecture_search" class="button-59">Code</a>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                @article{du2022quantum,
+                    author = {Du, Yuxuan and Huang, Tao and You, Shan and Hsieh, Min-Hsiu and Tao, Dacheng},
+                    date = {2022/05/23},
+                    doi = {10.1038/s41534-022-00570-y},
+                    id = {Du2022},
+                    isbn = {2056-6387},
+                    journal = {npj Quantum Information},
+                    number = {1},
+                    pages = {62},
+                    title = {Quantum circuit architecture search for variational quantum algorithms},
+                    url = {https://doi.org/10.1038/s41534-022-00570-y},
+                    volume = {8},
+                    year = {2022},
+                    bdsk-url-1 = {https://doi.org/10.1038/s41534-022-00570-y}
+                }
+                </pre>
+                </blockquote>
+            </div>
         </p>
     </li>
     <li class="paper" first_authored=true category="NAS">
@@ -540,8 +678,23 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
 		<p>
 			<a href="https://arxiv.org/abs/2111.12609" class="button-59">ArXiv</a>
 			<!-- <a href="https://scholar.google.com/scholar?cluster=8646649449956447640&hl=en&as_sdt=0,5" class="button-59">Bib</a> -->
-            <button class="button-59" onclick="getBibTex('huang2022greedynasv2')">Bib</button>
+            <button class="button-59 bib-link">Bib</button>
+            <!-- <button class="button-59" onclick="getBibTex('huang2022greedynasv2')">Bib</button> -->
             <a href="assets/greedynasv2/CVPR2022_GreedyNASv2_Poster.pdf" class="button-59">Poster</a>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @inproceedings{huang2022greedynasv2,
+                        title={Greedynasv2: greedier search with a greedy path filter},
+                        author={Huang, Tao and You, Shan and Wang, Fei and Qian, Chen and Zhang, Changshui and Wang, Xiaogang and Xu, Chang},
+                        booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+                        pages={11902--11911},
+                        year={2022}
+                    }
+                </pre>
+                </blockquote>
+            </div>
 		</p>
     </li>
     <li class="paper" first_authored=true category="Efficient Training">
@@ -553,9 +706,23 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         <p>
             <a href="https://arxiv.org/abs/2203.12868" class="button-59">ArXiv</a>
             <!-- <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=9004725926464672087" class="button-59">Bib</a> -->
-            <button class="button-59" onclick="getBibTex('huang2022dyrep')">Bib</button>
+            <button class="button-59 bib-link">Bib</button>
             <a href="assets/dyrep/CVPR2022_DyRep_Poster.pdf" class="button-59">Poster</a>
             <a href="https://github.com/hunto/DyRep" class="button-59">Code</a>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @inproceedings{huang2022dyrep,
+                        title={Dyrep: bootstrapping training with dynamic re-parameterization},
+                        author={Huang, Tao and You, Shan and Zhang, Bohan and Du, Yuxuan and Wang, Fei and Qian, Chen and Xu, Chang},
+                        booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+                        pages={588--597},
+                        year={2022}
+                    }
+                </pre>
+                </blockquote>
+            </div>
         </p>
     </li>
     <li class="paper" first_authored=true>
@@ -566,10 +733,25 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </div>
         <p>
 			<a href="https://arxiv.org/abs/2202.13197" class="button-59">ArXiv</a>
-            <a href="https://openreview.net/forum?id=dZPgfwaTaXv" class="button-59">Bib</a>
+            <button class="button-59 bib-link">Bib</button>
             <a href="assets/reloss/Poster_ICLR2022_ReLoss.pdf" class="button-59">Poster</a>
             <a href="assets/reloss/Slides_ICLR2022_ReLoss.pdf" class="button-59">Slides</a>
             <a href="https://github.com/hunto/ReLoss" class="button-59">Code</a>  
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @inproceedings{
+                        huang2022relational,
+                        title={Relational Surrogate Loss Learning},
+                        author={Tao Huang and Zekang Li and Hua Lu and Yong Shan and Shusheng Yang and Yang Feng and Fei Wang and Shan You and Chang Xu},
+                        booktitle={International Conference on Learning Representations},
+                        year={2022},
+                        url={https://openreview.net/forum?id=dZPgfwaTaXv}
+                    }
+                </pre>
+                </blockquote>
+            </div>
 		</p>
     </li>
     <li class="paper" category="pruning">
@@ -580,7 +762,22 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </div>
 		<p>
 			<a href="https://arxiv.org/abs/2010.15041" class="button-59">ArXiv</a>
-			<a href="https://scholar.google.com/scholar?cluster=6802250960153223046&hl=en&as_sdt=0,5" class="button-59">Bib</a>
+			<button class="button-59 bib-link">Bib</button>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @inproceedings{xu2022data,
+                        title={Data agnostic filter gating for efficient deep networks},
+                        author={Xu, Hongyan and Su, Xiu and You, Shan and Huang, Tao and Wang, Fei and Qian, Chen and Zhang, Changshui and Xu, Chang and Wang, Dadong and Sowmya, Arcot},
+                        booktitle={ICASSP 2022-2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+                        pages={3503--3507},
+                        year={2022},
+                        organization={IEEE}
+                    }
+                </pre>
+                </blockquote>
+            </div>
 		</p>
 	</li>
     <h3>2021</h3>
@@ -592,9 +789,23 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </div>
         <p>
 			<a href="https://arxiv.org/abs/2103.11922" class="button-59">ArXiv</a>
+            <button class="button-59 bib-link">Bib</button>
             <a href="assets/mctnas/Poster_CVPR2021_MCT-NAS.pdf" class="button-59">Poster</a>
-            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=16897259555170724856" class="button-59">Bib</a>
             <a href="https://github.com/xiusu/NAS-Bench-Macro" class="button-59">NAS-Bench-Macro</a>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @inproceedings{su2021prioritized,
+                        title={Prioritized architecture sampling with monto-carlo tree search},
+                        author={Su, Xiu and Huang, Tao and Li, Yanxi and You, Shan and Wang, Fei and Qian, Chen and Zhang, Changshui and Xu, Chang},
+                        booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+                        pages={10968--10977},
+                        year={2021}
+                    }
+                </pre>
+                </blockquote>
+            </div>
 		</p>
     </li>
     <li class="paper" category="NAS,pruning">
@@ -605,8 +816,23 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </div>
         <p>
 			<a href="https://arxiv.org/abs/2102.05258" class="button-59">ArXiv</a>
-            <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=13852905600525060682" class="button-59">Bib</a>
+            <button class="button-59 bib-link">Bib</button>
             <a href="https://openreview.net/forum?id=S0UdquAnr9k" class="button-59">OpenReview</a>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @inproceedings{
+                        su2021locally,
+                        title={Locally Free Weight Sharing for Network Width Search},
+                        author={Xiu Su and Shan You and Tao Huang and Fei Wang and Chen Qian and Changshui Zhang and Chang Xu},
+                        booktitle={International Conference on Learning Representations},
+                        year={2021},
+                        url={https://openreview.net/forum?id=S0UdquAnr9k}
+                    }
+                </pre>
+                </blockquote>
+            </div>
 		</p>
     </li>
     <h3>2020</h3>
@@ -618,11 +844,25 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
         </div>
 		<p>
 			<a href="https://arxiv.org/abs/2003.11236" class="button-59">ArXiv</a>
-            <a href="https://scholar.google.com/scholar?cluster=11467412928038806592&hl=en&as_sdt=0,5" class="button-59">Bib</a>
+            <button class="button-59 bib-link">Bib</button>
             <a href="assets/greedynas/Poster_CVPR2020_GreedyNAS.pdf" class="button-59">Poster</a>
             <a href="assets/greedynas/Video_CVPR2020_GreedyNAS.mp4" class="button-59">Video</a>
             <a href="assets/greedynas/Slides_GreedyNAS_titan.pdf" class="button-59">Slides</a>
             <a href="https://github.com/open-mmlab/mmrazor" class="button-59">Code</a>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    @inproceedings{you2020greedynas,
+                        title={Greedynas: Towards fast one-shot nas with greedy supernet},
+                        author={You, Shan and Huang, Tao and Yang, Mingmin and Wang, Fei and Qian, Chen and Zhang, Changshui},
+                        booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+                        pages={1999--2008},
+                        year={2020}
+                    }
+                </pre>
+                </blockquote>
+            </div>
 		</p>
 	</li>
 </ul>
@@ -913,6 +1153,57 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
             }
         });
     }
+
+    function copy(dest, source) {
+        if(dest.source == source) {
+            dest.innerHTML = "";
+            dest.source = null;
+        }
+        else {
+            preElement = source.querySelector('blockquote pre')
+            let innerHTML = preElement.textContent;
+            // Remove leading/trailing whitespace and split into lines
+            let lines = innerHTML.split('\n');
+
+            // Find the minimum number of leading spaces
+            let minIndent = Math.min(...lines.filter(line => line.trim() !== '').map(line => line.match(/^ */)[0].length));
+
+            // Remove the minimum indent from each line
+            let unindentedStr = lines.map(line => line.slice(minIndent)).join('\n');
+            preElement.textContent = unindentedStr.trim()
+            dest.innerHTML = source.innerHTML;
+            dest.source = source;
+
+            // Create a range and select the content of the <pre> element
+            const range = document.createRange();
+            range.selectNodeContents(dest);
+
+            // Remove any existing selection and add the new range to it
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+        dest.blur();
+    }
+
+    document.querySelectorAll('.bib-link').forEach(link => {
+        link.addEventListener('click', function() {
+            // Find the closest parent <li> for scoping
+            const parentLi = this.closest('li');
+
+            // Find the elements within the same <li> scope
+            const src = parentLi.querySelector('.bib-content');
+            const dst = parentLi.querySelector('.bib-div');
+
+            // const bibContent = parentLi.querySelector('.bib-content').innerHTML;
+            // const bibDiv = parentLi.querySelector('.bib-div');
+
+            // Copy content from bib-content to bib-div
+            // bibDiv.innerHTML = bibContent;
+            
+            copy(dst, src);
+        });
+    });
 </script>
 
 </html>

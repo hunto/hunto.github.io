@@ -207,6 +207,12 @@ flag {
 	vertical-align:text-bottom;
 }
 
+.bib-div {
+	background-color: rgb(246, 248, 250);
+	font-size: 80%;
+	line-height: 120%;
+}
+
 pre, tt {
 	font-size: 90%;
 	font-family: 'Nunito';
