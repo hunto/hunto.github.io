@@ -30,7 +30,7 @@
             if (type == "All") {
                 return true
             }
-            else if (type == "First-authored") {
+            else if (type == "First-author") {
                 res = li.getAttribute("first_authored")
                 return res
             }
@@ -182,12 +182,12 @@
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="#news">News</a>
             <a class="nav-item nav-link" href="#nav_publications">Publications</a>
-            <a class="nav-item nav-link" href="#grants">Grants</a>
             <a class="nav-item nav-link" href="#talks">Talks</a>
             <a class="nav-item nav-link" href="#teaching">Teaching</a>
             <a class="nav-item nav-link" href="#services">Services</a>
             <!-- <a class="nav-item nav-link" href="#awards">Awards</a> -->
             <a class="nav-item nav-link" href="#education">Education</a>
+            <a class="nav-item nav-link" href="#grants">Grants</a>
           </div>
         </div>
     </nav>
@@ -279,11 +279,11 @@
     <li style="margin-top: 0.2em">[2024/03] We released <a href="https://arxiv.org/abs/2403.06517">ActGen</a> & <a href="https://arxiv.org/abs/2403.09338">LocalMamba</a> & <a href="https://arxiv.org/abs/2403.09977">EfficientVMamba</a> at arXiv.</li>
     <li style="margin-top: 0.2em">[2024/02] One paper (<a href="https://arxiv.org/abs/2311.12079">FreeKD</a>) was accepted to CVPR 2024.</li>
     <li style="margin-top: 0.2em">[2024/02] We released <a href="assets/dist+/DIST+.pdf">DIST+</a>.</li>
-    <li style="margin-top: 0.2em">[2023/09] One paper (<a href="https://arxiv.org/abs/2305.15712">DiffKD</a>) was accepted to NeurIPS 2023.</li>
 </ul>
 <button type="button" class="collapsible">More</button>
     <div class="content">
         <ul>
+            <li style="margin-top: 0.2em">[2023/09] One paper (<a href="https://arxiv.org/abs/2305.15712">DiffKD</a>) was accepted to NeurIPS 2023.</li>
             <li style="margin-top: 0.2em">[2023/07] One paper (<a href="https://arxiv.org/abs/2305.02722">AKD</a>) was accepted to ACM MM 2023.</li>
             <li style="margin-top: 0.2em">[2023/05] We released <a href="https://arxiv.org/abs/2305.15712">DiffKD</a> and <a href="https://arxiv.org/abs/2305.02722">AKD</a> at arXiv.</li>
             <li style="margin-top: 0.2em">[2023/01] One paper (<a href="https://arxiv.org/abs/2205.14589">MasKD</a>) was accepted to ICLR 2023.</li>
@@ -319,10 +319,10 @@
 
 <div id="nav_publications" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>Publications &nbsp;&nbsp; <a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en">[Google Scholar]</a></h2>
-First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue>ICLR</venue>x 2, <venue>ECCV</venue>x 1, <venue>AAAI</venue>x 1 &nbsp;&nbsp;&nbsp;&nbsp;*: co-first author. <br><br>
+*: co-first author. <br><br>
 
 <button class="filter" type="button" onclick="filterPub('All')" style="--color: #000; --border: #000">All</button>&nbsp;
-<button class="filter" type="button" onclick="filterPub('First-authored')">First-authored</button>&nbsp;
+<button class="filter" type="button" onclick="filterPub('First-author')">First-author</button>&nbsp;
 <button class="filter" type="button" onclick="filterPub('KD')">KD</button>&nbsp;
 <button class="filter" type="button" onclick="filterPub('NAS')">NAS</button>&nbsp;
 <button class="filter" type="button" onclick="filterPub('Pruning')">Pruning</button>
@@ -394,7 +394,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
     <li class="paper" first_authored=true category="Efficient Training">
         <venue>ECCV</venue><pt>Active Generation for Image Classification</pt><br>
         <div class="author">
-            <b><u>Tao Huang</u></b><g>, Jiaqi Liu, Shan You, Chang Xu</g><br>
+            <b><u>Tao Huang</u></b><g>*, Jiaqi Liu*, Shan You, Chang Xu</g><br>
             <em>European Conference on Computer Vision</em> (<b>ECCV</b>), 2024.
         </div>
         <p>
@@ -950,12 +950,6 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
     </ul>  
 </div>  
 
-<div id="grants" style="margin-bottom: 2em; margin-top: -2em;"></div>
-<h2>Grants</h2>
-<ul>
-    <li style="margin-top: 0.2em">2023-2024, Efficient Language-and-Vision Models, 1000 USD, Google Cloud Research Credits Award</li>
-</ul>
-
 <div id="talks" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>Talks</h2>
 <ul>
@@ -1024,7 +1018,7 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
             <div>Research Intern</div>
             <div style="margin-left: 2px;">Aug. 2019 – Jul. 2020</div>
         </div>
-        <ul>
+        <!-- <ul>
             <li style="margin-top: 0.2em">
                 Research on model compression algorithms (NAS, KD, pruning, etc.).
             </li>
@@ -1034,68 +1028,62 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
             <li style="margin-top: 0.2em">
                 Applied NAS to face verification task on large­scale industrial datasets, which significantly improves the performance.
             </li>
-        </ul>
+        </ul> -->
 	</li>
+    <li>
+        <a href="https://www.minimaxi.com/">MiniMax</a>, Beijing, China
+        <div style="display: flex; justify-content: space-between; font-style: italic;">
+            <div>Large Model Algorithm Intern</div>
+            <div style="margin-left: 2px;">Apr. 2024 – Oct. 2024</div>
+        </div>
+    </li>
 	<li>
         <a href="https://horizon.ai">Horizon Robotics</a>, Beijing, China
         <div style="display: flex; justify-content: space-between; font-style: italic;">
             <div>Computer Vision Research Intern</div>
             <div style="margin-left: 2px;">May 2019 – Aug. 2019</div>
         </div>
-        <ul>
+        <!-- <ul>
             <li style="margin-top: 0.2em">
                 Development on object detection framework: anchor-­free detection method, detection in traffic scene.
             </li>
             <li style="margin-top: 0.2em">
                 Research on knowledge distillation methods for face alignment, object detection.
             </li>
-        </ul>
+        </ul> -->
 	</li>
+    <li>
+        <a href="http://dian.org.cn/">Dian Group@HUST</a>, Wuhan, Hubei province, China<br>
+        <div style="display: flex; justify-content: space-between; font-style: italic;">
+            <div>Team Leader of Real­time Face Detection & Alignment Project, AI Group</div>
+            <div style="margin-left: 2px;">Nov. 2018 – May 2019</div>
+        </div>
+        <!-- <ul>
+            <li style="margin-top: 0.2em">
+                Develop Android APP to inference face detection, tracking, and 106-­point landmark models on mobile devices. 
+            </li>
+            <li style="margin-top: 0.2em">
+                Research on model acceleration (e.g., knowledge distillation, model pruning) and facial landmark (e.g., multi­task learning, loss function, augmentation).
+            </li>
+            <li style="margin-top: 0.2em">
+                Our proposed model archieves an inference speed of 5 ms / image on Huawei Mate20 Pro.
+            </li>
+        </ul> -->
+        <div style="display: flex; justify-content: space-between; font-style: italic;">
+            <div>Core Member of Beibei Intelligent Customer Service Project, AI Group</div>
+            <div style="margin-left: 2px;">Feb. 2018 – Nov. 2018</div>
+        </div>
+        <!-- <ul>
+            <li style="margin-top: 0.2em">
+                This project comes from <a href="https://www.beibei.com/">Beibei Group Company</a>, Beibei is the bigest mother-­baby ecommerce platform in China. The task is to find optimal answers based on classifications of customer questions.
+            </li>
+            <li style="margin-top: 0.2em">
+                Research and development on text classification and data augmentation, etc.
+            </li>
+        </ul> -->
+    </li>
 	
 </ul>
-<button type="button" class="collapsible">More</button>
-    <div class="content">
-        <ul>
-            <li>
-                <a href="http://dian.org.cn/">Dian Group</a>, Wuhan, Hubei province, China<br>
-                <div style="display: flex; justify-content: space-between; font-style: italic;">
-                    <div>Team Leader of Real­time Face Detection & Alignment Project, AI Group</div>
-                    <div style="margin-left: 2px;">Nov. 2018 – May 2019</div>
-                </div>
-                <ul>
-                    <li style="margin-top: 0.2em">
-                        Develop Android APP to inference face detection, tracking, and 106-­point landmark models on mobile devices. 
-                    </li>
-                    <li style="margin-top: 0.2em">
-                        Research on model acceleration (e.g., knowledge distillation, model pruning) and facial landmark (e.g., multi­task learning, loss function, augmentation).
-                    </li>
-                    <li style="margin-top: 0.2em">
-                        Our proposed model archieves an inference speed of 5 ms / image on Huawei Mate20 Pro.
-                    </li>
-                </ul>
-                <div style="display: flex; justify-content: space-between; font-style: italic;">
-                    <div>Core Member of Beibei Intelligent Customer Service Project, AI Group</div>
-                    <div style="margin-left: 2px;">Feb. 2018 – Nov. 2018</div>
-                </div>
-                <ul>
-                    <li style="margin-top: 0.2em">
-                        This project comes from <a href="https://www.beibei.com/">Beibei Group Company</a>, Beibei is the bigest mother-­baby ecommerce platform in China. The task is to find optimal answers based on classifications of customer questions.
-                    </li>
-                    <li style="margin-top: 0.2em">
-                        Research and development on text classification and data augmentation, etc.
-                    </li>
-                </ul>
-            </li>
-            <li>
-                3D Printer Team, Wuhan, Hubei province, China
-                <div style="display: flex; justify-content: space-between; font-style: italic;">
-                    <div>Group Learder of Embedded Control Group</div>
-                    <div style="margin-left: 2px;">Oct. 2016 – Jan. 2019</div>
-                </div>
-                Topic: developing control algorithms for 3DP/FDM 3D printers<br>
-            </li>
-        </ul>
-    </div>
 
 <div id="awards" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>Selected Awards</h2>
@@ -1138,11 +1126,17 @@ First-authored papers: <venue>CVPR</venue>x 4, <venue>NeurIPS</venue>x 2, <venue
     </li> -->
 </ul>
 
+<div id="grants" style="margin-bottom: 2em; margin-top: -2em;"></div>
+<h2>Grants</h2>
+<ul>
+    <li style="margin-top: 0.2em">2023-2024, Efficient Language-and-Vision Models, 1000 USD, Google Cloud Research Credits Award</li>
+</ul>
+
 <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=080808&w=300&t=tt&d=tV7pcGj1jajVaYBjRVqpINW8wuIfJK-wrARhj0jr8NQ&co=ffffff&cmo=3acc3a&cmn=ff5353&ct=808080'></script>
 
 
 <div id="footer">
-	<div id="footer-text" style="text-align: center;">© Tao Huang | Last updated: Sep 26, 2024</div>
+	<div id="footer-text" style="text-align: center;">© Tao Huang | Last updated: Jan 10, 2025</div>
 </div>
 	<!-- <center>© Tao Huang | Last updated: 02/19/2021</center> -->
     <!--<center>© Tao Huang
