@@ -186,7 +186,7 @@
             <a class="nav-item nav-link" href="#services">Services</a>
             <!-- <a class="nav-item nav-link" href="#awards">Awards</a> -->
             <a class="nav-item nav-link" href="#education">Education</a>
-            <a class="nav-item nav-link" href="#grants">Grants</a>
+            <!-- <a class="nav-item nav-link" href="#grants">Grants</a> -->
           </div>
         </div>
     </nav>
@@ -236,10 +236,11 @@
         <br>
         <p>My major research interests lie within <b>efficient machine learning</b> algorithms and their applications in <b>computer vision</b> tasks:
             <ul>
-                <li style="margin-top: 0.2em">Efficient architectures: NAS, handcrafts, pruning, Rep</li>
-                <li style="margin-top: 0.2em">Knowledge distillation (KD)</li>
-                <li style="margin-top: 0.2em">Efficient training</li>
-                <li style="margin-top: 0.2em">Efficient large models</li>
+                <li style="margin-top: 0.2em"><b>Efficient architectures</b>: NAS, handcrafts, pruning, Rep ...</li>
+                <li style="margin-top: 0.2em"><b>Efficient training</b>: training acceleration, KD, PEFT ...</li>
+                <li style="margin-top: 0.2em"><b>Efficient data</b>: SSL, zero/low-shot learning, generated training contents ...</li>
+                <li style="margin-top: 0.2em"><b>Efficient inference</b>: cache optimization, quantization, dynamic networks ...</li>
+                <li style="margin-top: 0.2em"><b>Efficient large models</b>: LLMs, VLMs, Generative Models ...</li>
             </ul>
         </p>
     </div>
@@ -261,13 +262,14 @@
 </div>
 
 <p>
-    <b style="color: #D13644;">&#128681; We are recruiting RA, Master, and PhD students, drop me an email if interested.</b>
+    <b style="color: #D13644;">&#128681; I am recruiting RA, Master, and PhD students, drop me an email if interested.</b>
 </p>
 
 <!-- <p><font color="red">Pinned: </font></p> -->
 <div id="news" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>News</h2>
 <ul>
+    <li style="margin-top: 0.2em">[2025/01] One paper was accepted to ICLR 2025.</li>
     <li style="margin-top: 0.2em">[2025/01] We released MiniMax-01 [<a href="https://arxiv.org/abs/2501.08313">tech report</a>] [<a href="https://github.com/MiniMax-AI/MiniMax-01">Github</a>] [<a href="https://huggingface.co/MiniMaxAI">Hugging Face</a>].</li>
     <li style="margin-top: 0.2em">[2024/12] One paper was accepted to AAAI 2025.</li>
     <li style="margin-top: 0.2em">[2024/09] One paper was accepted to NeurIPS 2024.</li>
@@ -327,8 +329,28 @@
 <button class="filter" type="button" onclick="filterPub('NAS')">NAS</button>&nbsp;
 <button class="filter" type="button" onclick="filterPub('Pruning')">Pruning</button>
 <button class="filter" type="button" onclick="filterPub('Efficient Training')">Efficient Training</button>
+<button class="filter" type="button" onclick="filterPub('Efficient Data')">Efficient Data</button>
 <ul id="publications">
     <h3 style="margin-top: 1em;">2025</h3>
+    <li class="paper" first_authored=true category="Efficient Data">
+		<venue>ICLR</venue><pt>Learning Mask Invariant Mutual Information for Masked Image Modeling</pt><br>
+        <div class="author">
+            <b><u>Tao Huang</u></b><g>*, Yanxiang Ma*, Shan You, Chang Xu</g><br>
+            <em>International Conference on Learning Representations</em> (<b>ICLR</b>), 2025.</em>
+        </div>
+		<p>
+			<a class="button-59" href="">ArXiv</a>
+            <button class="button-59 bib-link">Bib</button>
+            <div class="bib-div"></div>
+            <div class="bib-content" style="display:none">
+                <blockquote>
+                <pre>
+                    
+                </pre>
+                </blockquote>
+            </div>
+		</p>
+    </li>
     <li class="paper" category="">
         <venue>Report</venue><pt>MiniMax-01: Scaling Foundation Models with Lightning Attention</pt><br>
         <div class="author">
@@ -402,7 +424,7 @@
             </div>
         </p>
     </li>
-    <li class="paper" first_authored=true category="Efficient Training">
+    <li class="paper" first_authored=true category="Efficient Data,Efficient Training">
         <venue>ECCV</venue><pt>Active Generation for Image Classification</pt><br>
         <div class="author">
             <b><u>Tao Huang</u></b><g>*, Jiaqi Liu*, Shan You, Chang Xu</g><br>
@@ -454,7 +476,7 @@
             </div>
         </p>
     </li>
-    <li class="paper" category="Efficient Training">
+    <li class="paper" category="Efficient Data">
         <venue>KBS</venue><pt>Diverse and Tailored Image Generation for Zero-Shot Multi-Label Classification</pt><br>
         <div class="author">
             <g>Kaixin Zhang, Zhixiang Yuan, </g><b><u>Tao Huang</u></b><br>
@@ -486,7 +508,7 @@
             </div>
         </p>
     </li>
-    <li class="paper" category="Efficient Training">
+    <li class="paper" category="Efficient Data">
         <venue>ICME</venue><pt>Positive Label Is All You Need for Multi-Label Classification</pt><flag>&#128681; Oral</flag><br>
         <div class="author">
             <g>Zhixiang Yuan, Kaixin Zhang, </g><b><u>Tao Huang</u></b><br>
@@ -749,7 +771,7 @@
             </div>
         </p>
     </li>
-    <li class="paper" first_authored=true>
+    <li class="paper" first_authored=true, category="Efficient Training">
         <venue>ICLR</venue><pt>Relational Surrogate Loss Learning</pt><br>
         <div class="author">
             <b><u>Tao Huang</u></b><g>, Zekang Li, Hua Lu, Yong Shan, Shusheng Yang, Yang Feng, Fei Wang, Shan You, Chang Xu</g><br>
@@ -1138,11 +1160,11 @@
     </li> -->
 </ul>
 
-<div id="grants" style="margin-bottom: 2em; margin-top: -2em;"></div>
+<!-- <div id="grants" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>Grants</h2>
 <ul>
     <li style="margin-top: 0.2em">2023-2024, Efficient Language-and-Vision Models, 1000 USD, Google Cloud Research Credits Award</li>
-</ul>
+</ul> -->
 
 <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=080808&w=300&t=tt&d=tV7pcGj1jajVaYBjRVqpINW8wuIfJK-wrARhj0jr8NQ&co=ffffff&cmo=3acc3a&cmn=ff5353&ct=808080'></script>
 
