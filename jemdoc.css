@@ -55,6 +55,23 @@ body {
   line-height: 150%;
 }
 
+/* Popover container */
+.popover {
+	display: none;
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.85);
+	color: white;
+	padding: 10px;
+	border-radius: 5px;
+	font-size: 14px;
+	max-width: 300px;
+	word-wrap: break-word;
+	white-space: normal;
+	z-index: 1000;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+	transition: opacity 0.2s ease-in-out;
+}
+
 .container {
 	display: flex;
 	/* justify-content: space-between; */
@@ -69,7 +86,7 @@ body {
 	box-sizing: border-box; /* 包括padding在内计算宽度 */
 }
 .right-section {
-	margin-top: 20px;
+	margin-top: 60px;
 	padding-bottom: 10px;
 	width: 25%;
 	order: 2;
