@@ -714,14 +714,24 @@ table.imgtable, table.imgtable td {
   background-color: rgb(242, 242, 242);
   color: rgb(49, 49, 49);
   border: 0px solid #616161;
+  box-sizing: border-box;
+  cursor: pointer;
   display: inline-flex;
+  fill: #000;
+  font-family: var(--base-font);
   font-size: 0.7rem;
   font-weight: var(--bold-font-weight);
   height: 1.2rem;
+  justify-content: center;
   /* letter-spacing: -.8px; */
   line-height: 1.3;
-  /* min-width: 50px; */
+  min-width: 4em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
   transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
   margin-right: 0.4em;
   border-radius: 0.5rem;
 }
