@@ -1,6 +1,7 @@
 /* Default css file for jemdoc. */
 /* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,100,300,400,500;1,100,300,400,500&display=swap');
 
 /* :root {
 	--theme-color: #D13644;
@@ -13,11 +14,18 @@
 
 :root {
 	/* --venue-bg-color: rgb(225, 233, 242); */
-	--venue-bg-color: rgb(108, 149, 181);
+	--venue-bg-color: rgb(201, 230, 252);
+	--venue-text-color: rgb(38, 86, 201);
 	--theme-color: rgb(52, 98, 176);
 	--theme-color-light: rgb(182, 212, 248);;
 	--title-color: #000;
 	--a-hover-color: rgb(16, 15, 163);
+	--base-font: "Nunito", "system-ui", "Source Sans 3";
+	--filter-text-color: rgb(38, 86, 201);
+	--filter-bg-color: rgb(255, 255, 255);
+	--filter-hover-bg-color: rgb(226, 232, 247);
+	--filter-act-bg-color: rgb(38, 86, 201);
+	--filter-act-text-color: rgb(255, 255, 255);
 }
 
 table#tlayout {
@@ -34,11 +42,12 @@ body {
 */
 html {
   background-color: #c7c7c7; 
-  font-family: 'Nunito';
+  font-family: var(--base-font);
 }
 
 body { 
-  font-family: 'Nunito',sans-serif,'微软雅黑','宋体';
+  font-family: var(--base-font),sans-serif,'微软雅黑','宋体';
+  font-weight: 300;
   color: #000;
   background-color: #ffffff; 
   text-align:left; /* for IE */
@@ -151,7 +160,11 @@ pt {
 	/* color:#c50e0e; */
 	color: var(--title-color);
 	/* color:tomato; */
-	font-weight: 500;
+	font-weight: 400;
+}
+
+b {
+	font-weight: 400
 }
 
 venue {
@@ -162,10 +175,10 @@ venue {
 	background-color: var(--venue-bg-color);
 	/* background-color: rgb(217, 229, 244); */
 	/* color: rgb(16, 68, 158); */
-	color: #ffffff;
-	/* font-family: 'Nunito'; */
+	color: var(--venue-text-color);
+	/* font-family: var(--base-font); */
 	font-size: 70%;
-	font-weight: bold;
+	font-weight: 600;
 	line-height: 170%;
 	/* padding-left: 1em;
 	padding-right: 1em; */
@@ -198,9 +211,9 @@ flag {
 	/* background-color: var(--venue-bg-color); */
 	background-color: rgb(252, 230, 217);
 	color: rgb(176, 71, 52);
-	font-family: 'Nunito';
+	font-family: var(--base-font);
 	font-size: 70%;
-	font-weight: bold;
+	font-weight: 400;
 	line-height: 170%;
 	padding-left: 0.5em;
 	padding-right: 0.5em;
@@ -232,7 +245,7 @@ flag {
 
 pre, tt {
 	font-size: 90%;
-	font-family: 'Nunito';
+	font-family: var(--base-font);
 }
 
 a, a > tt {
@@ -276,7 +289,7 @@ div.menu-category {
 	margin-top: 0.8em;
 	padding-top: 0.2em;
 	padding-bottom: 0.1em;
-	font-weight: bold;
+	font-weight: 400;
 }
 
 div.menu-item {
@@ -311,13 +324,14 @@ g {
 }
 
 strong {
-	font-weight: bold;
+	font-weight: 400;
 }
 
 
 h1, h2, h3 {
 	/* color: var(--theme-color); */
-	font-family: 'Nunito';
+	font-family: var(--base-font);
+	font-weight: 400;
   	/* color: #c50e0e; */
   	color: #000000;
 	margin-top: 0.7em;
@@ -459,7 +473,7 @@ div.codeblock, div.infoblock {
 }
 
 div.blocktitle {
-	font-weight: bold;
+	font-weight: 400;
 	color: #cd7b62;
 	margin-top: 1.2em;
 	margin-bottom: 0.1em;
@@ -561,7 +575,7 @@ table + table {
 }
 
 tr.heading {
-    font-weight: bold;
+    font-weight: 400;
     border-bottom: 2px solid black;
 }
 
@@ -587,40 +601,50 @@ table.imgtable, table.imgtable td {
 }
 
 .filter {
-	color: var(--color);
-	background-color: #fff;
-	border: var(--border);
+	color: var(--filter-text-color);
+	background-color: var(--filter-bg-color);
+	border: var(--filter-act-bg-color);
 	border-style: solid;
-	border-radius: 0.2rem;
-	border-width: 1.5px;
+	border-radius: 1rem;
+	border-width: 1px;
 	transition: all .3s;
 	touch-action: manipulation;
 	font-size: 80%;
-	line-height: 120%;
+	line-height: 130%;
+	padding-left: 1em;
+	padding-right: 1em;
 	/* width: 5em; */
 }
 
 .filter:focus {
-	color: #171e29;
+	color: var(--filter-act-bg-color);
 }
   
   .filter:hover {
-	border-color: var(--theme-color);
-	color: white;
-	background-color: var(--theme-color);
+	border-color: var(--filter-act-bg-color);
+	color: var(--filter-text-color);
+	background-color: var(--filter-hover-bg-color);
 	fill: var(--theme-color);
   }
   
   .filter:active {
-	border-color: var(--theme-color);
-	color: var(--theme-color);
-	fill: var(--theme-color);
+	border-color: var(--filter-act-bg-color);
+	color: var(--filter-act-text-color);
+	background-color: var(--filter-act-bg-color);
+	fill: var(--filter-act-bg-color);
+  }
+
+  .filter.active {
+	border-color: var(--filter-act-bg-color);
+	color: var(--filter-act-text-color);
+	background-color: var(--filter-act-bg-color);
+	fill: var(--filter-act-bg-color);
   }
 
   /* Style the button that is used to open and close the collapsible content */
   .collapsible {
 	background-color: #fff;
-	font-family: 'Nunito';
+	font-family: var(--base-font);
 	/* color: #224b8d; */
 	color: var(--theme-color);
 	cursor: pointer;
@@ -670,7 +694,7 @@ table.imgtable, table.imgtable td {
   cursor: pointer;
   display: inline-flex;
   fill: #000;
-  font-family: 'Nunito';
+  font-family: var(--base-font);
   font-size: 0.7rem;
   /* font-weight: 600; */
   height: 1.1rem;

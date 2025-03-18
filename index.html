@@ -90,13 +90,25 @@
             bts = document.getElementsByClassName("filter")
             for (k = 0; k < bts.length; k++) {
                 if (bts[k].textContent == type) {
-                    bts[k].style.setProperty("--color", "#000")
-                    bts[k].style.setProperty("--border", "#000")
+                    // bts[k].classList.toggle('active');
+                    if (!bts[k].classList.contains('active')) {
+                        // Toggle the 'active' class to make it active
+                        bts[k].classList.add('active');
+                    }
+                    // bts[k].style.setProperty("--color", "#000")
+                    // bts[k].style.setProperty("--background-color", "#000")
+                    // bts[k].style.setProperty("--border", "#000")
                     // bts[k].style.color = "#000"
                 }
                 else {
-                    bts[k].style.setProperty("--color", "#a0a0a0")
-                    bts[k].style.setProperty("--border", "#d3d3d3")
+                    if (bts[k].classList.contains('active')) {
+                        // Toggle the 'active' class to make it active
+                        bts[k].classList.remove('active');
+                    }
+                    // bts[k].classList.toggle('active');
+
+                    // bts[k].style.setProperty("--color", "#a0a0a0")
+                    // bts[k].style.setProperty("--border", "#d3d3d3")
                     // bts[k].style.color = "#a0a0a0"
                 }
             }
@@ -227,12 +239,11 @@
 <div class="container" style="align-items: start; align-self: start; align-content: start;">
     <div class="left-section">
         <h2 style="margin-top: 0em;">Biography</h2>
-            <div style="text-align:justify" class="paper"> 
+            <div style="text-align:justify"> 
                 My name is Tao Huang (黄涛). I received my Ph.D. degree in Computer Science at <a href="https://www.sydney.edu.au/">The University of Sydney</a>, advised by <a href="http://changxu.xyz">Prof. Chang Xu</a>. 
-                Before that, I spent two years as a Researcher at <a href="https://www.sensetime.com">SenseTime</a>. 
+                Before that, I obtained the Bachelor's degree at <a href="https://www.hust.edu.cn">Huazhong University of Science and Technology</a>, and then spent two years as a Researcher at <a href="https://www.sensetime.com">SenseTime</a>. 
             </div>
         </p>
-        <br>
         <p>My major research interests lie within <b>efficient machine learning</b> algorithms and their applications in <b>computer vision</b> tasks:
             <ul>
                 <li style="margin-top: 0.2em"><b>Efficient architectures</b>: NAS, handcrafts, pruning, Rep ...</li>
@@ -261,8 +272,8 @@
 </div>
 
 <p>
-    <b style="color: #D13644;">&#128681; I will be joining Shanghai Jiao Tong University as a tenure-track assistant professor.</b></br>
-    <b style="color: #D13644;">&#128681; I am recruiting RA, Master, and PhD students, drop me an email if interested.</b>
+    <span style="color: #d53c2e;">&#128681; I will be joining Shanghai Jiao Tong University as a tenure-track assistant professor.</span></br>
+    <span style="color: #d53c2e;">&#128681; I am recruiting RA, Master, and PhD students, drop me an email if interested.</span>
 </p>
 
 <!-- <p><font color="red">Pinned: </font></p> -->
@@ -281,12 +292,11 @@
     <li style="margin-top: 0.2em">[2024/06] One paper was accepted to journal Knowledge-Based Systems.</li>
     <li style="margin-top: 0.2em">[2024/03] Our <a href="">PU-MLC</a> was accepted to ICME 2024 as <b>oral</b>.</li>
     <li style="margin-top: 0.2em">[2024/03] We released <a href="https://arxiv.org/abs/2403.06517">ActGen</a> & <a href="https://arxiv.org/abs/2403.09338">LocalMamba</a> & <a href="https://arxiv.org/abs/2403.09977">EfficientVMamba</a> at arXiv.</li>
-    <li style="margin-top: 0.2em">[2024/02] One paper (<a href="https://arxiv.org/abs/2311.12079">FreeKD</a>) was accepted to CVPR 2024.</li>
-    <li style="margin-top: 0.2em">[2024/02] We released <a href="assets/dist+/DIST+.pdf">DIST+</a>.</li>
 </ul>
 <button type="button" class="collapsible">More</button>
     <div class="content">
         <ul>
+            <li style="margin-top: 0.2em">[2024/02] One paper (<a href="https://arxiv.org/abs/2311.12079">FreeKD</a>) was accepted to CVPR 2024.</li>
             <li style="margin-top: 0.2em">[2023/09] One paper (<a href="https://arxiv.org/abs/2305.15712">DiffKD</a>) was accepted to NeurIPS 2023.</li>
             <li style="margin-top: 0.2em">[2023/07] One paper (<a href="https://arxiv.org/abs/2305.02722">AKD</a>) was accepted to ACM MM 2023.</li>
             <li style="margin-top: 0.2em">[2023/05] We released <a href="https://arxiv.org/abs/2305.15712">DiffKD</a> and <a href="https://arxiv.org/abs/2305.02722">AKD</a> at arXiv.</li>
@@ -323,15 +333,15 @@
 
 <div id="nav_publications" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>Publications &nbsp;&nbsp; <a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en">[Google Scholar]</a></h2>
-*: co-first author. <br>
 
-<button class="filter" type="button" onclick="filterPub('All')" style="--color: #000; --border: #000">All</button>&nbsp;
-<button class="filter" type="button" onclick="filterPub('First-author')">First-author</button>&nbsp;
-<button class="filter" type="button" onclick="filterPub('KD')">KD</button>&nbsp;
-<button class="filter" type="button" onclick="filterPub('NAS')">NAS</button>&nbsp;
+<button class="filter" type="button" onclick="filterPub('All')">All</button>
+<button class="filter" type="button" onclick="filterPub('First-author')">First-author</button>
+<button class="filter" type="button" onclick="filterPub('KD')">KD</button>
+<button class="filter" type="button" onclick="filterPub('NAS')">NAS</button>
 <button class="filter" type="button" onclick="filterPub('Pruning')">Pruning</button>
 <button class="filter" type="button" onclick="filterPub('Efficient Training')">Efficient Training</button>
-<button class="filter" type="button" onclick="filterPub('Efficient Data')">Efficient Data</button>
+<button class="filter" type="button" onclick="filterPub('Efficient Data')">Efficient Data</button>&nbsp;
+*: co-first author. <br>
 <ul id="publications">
     <h3 style="margin-top: 1em;">2025</h3>
     <li class="paper" first_authored=true category="KD">
@@ -962,78 +972,6 @@
 	</li>
 </ul>
 
-<h2>Manuscripts</h2>
-<button type="button" class="collapsible">More</button>
-<div class="content">
-    <ul>
-        <li class="paper">
-            <venue>arXiv</venue><pt>VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation</pt><br>
-            <div class="author">
-                <g>Siyu Xu, Yunke Wang, Chenghao Xia, Dihao Zhu, </g><b><u>Tao Huang</u></b><g>, Chang Xu</g><br>
-                <em>arXiv preprint arXiv:2502.02175 (2025).</em>
-            </div>
-            <p>
-                <a href="https://arxiv.org/abs/2502.02175" class="button-59">ArXiv</a>
-                <a href="https://vla-cache.github.io/">Project</a>
-            </p>
-        </li>
-        <li class="paper">
-            <venue>arXiv</venue><pt>Cross-Self KV Cache Pruning for Efficient Vision-Language Inference</pt><br>
-            <div class="author">
-                <g>Xiaohuan Pei, </g><b><u>Tao Huang</u></b><g>, Chang Xu</g><br>
-                <em>arXiv preprint arXiv:2412.04652 (2024).</em>
-            </div>
-            <p>
-                <a href="https://arxiv.org/abs/2412.04652" class="button-59">ArXiv</a>
-                <a href="https://github.com/TerryPei/CSP" class="button-59">Code</a>
-            </p>
-        </li>
-        <li class="paper">
-            <venue>arXiv</venue><pt>SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference</pt><br>
-            <div class="author">
-                <g>Yuan Zhang*, ChunKai Fan*, Junpeng Ma*, Wenzhao Zheng, </g><b><u>Tao Huang</u></b><g>, Kuan Cheng, Denis Gudovskiy, Tomoyuki Okuno, Yohei Nakata, Kurt Keutzer, Shanghang Zhang</g><br>
-                <em>arXiv preprint arXiv:2410.04417 (2024).</em>
-            </div>
-            <p>
-                <a href="https://arxiv.org/pdf/2410.04417" class="button-59">ArXiv</a>
-                <a href="https://github.com/Gumpest/SparseVLMs" class="button-59">Code</a>
-            </p>
-        </li>
-        <li class="paper">
-            <venue>arXiv</venue><pt>Not All Steps are Equal: Efficient Generation with Progressive Diffusion Models</pt><br>
-            <div class="author">
-                <g>Wenhao Li, Xiu Su, Shan You,</g> <b><u>Tao Huang</u></b><g>, Fei Wang, Chen Qian, Chang Xu</g><br>
-                <em>arXiv preprint arXiv:2312.13307 (2023).</em>
-            </div>
-            <p>
-                <a href="https://arxiv.org/abs/2312.13307v2" class="button-59">ArXiv</a>
-            </p>
-        </li>
-        <li class="paper">
-            <venue>arXiv</venue><pt>LightViT: Towards Light-Weight Convolution-Free Vision Transformers</pt><br>
-            <div class="author">
-                <b><u>Tao Huang</u></b><g>, Lang Huang, Shan You, Fei Wang, Chen Qian, Chang Xu</g><br>
-                <em>arXiv preprint arXiv:2207.05557 (2022).</em>
-            </div>
-            <p>
-                <a href="https://arxiv.org/abs/2207.05557" class="button-59">ArXiv</a>
-                <a href="https://scholar.google.com/scholar?oi=bibs&hl=en&cluster=13876321258274905912" class="button-59">Bib</a>
-                <a href="https://github.com/hunto/LightViT" class="button-59">Code</a>
-            </p>
-        </li>
-        <li class="paper">
-            <venue>arXiv</venue><pt>Explicitly Learning Topology for Differentiable Neural Architecture Search</pt><br>
-            <div class="author">
-                <b><u>Tao Huang</u></b><g>, Shan You, Yibo Yang, Zhuozhuo Tu, Fei Wang, Chen Qian, Changshui Zhang</g><br>
-                <em>arXiv preprint arXiv:2011.09300 (2020).</em>
-            </div>
-            <p>
-                <a href="https://arxiv.org/abs/2011.09300" class="button-59">ArXiv</a>
-            </p>
-        </li>
-    </ul>  
-</div>  
-
 <div id="talks" style="margin-bottom: 2em; margin-top: -2em;"></div>
 <h2>Talks</h2>
 <ul>
@@ -1347,6 +1285,8 @@
             }, 200);
         });
     });
+
+    filterPub("All")
 
 </script>
 
