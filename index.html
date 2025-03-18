@@ -90,26 +90,14 @@
             bts = document.getElementsByClassName("filter")
             for (k = 0; k < bts.length; k++) {
                 if (bts[k].textContent == type) {
-                    // bts[k].classList.toggle('active');
                     if (!bts[k].classList.contains('active')) {
-                        // Toggle the 'active' class to make it active
                         bts[k].classList.add('active');
                     }
-                    // bts[k].style.setProperty("--color", "#000")
-                    // bts[k].style.setProperty("--background-color", "#000")
-                    // bts[k].style.setProperty("--border", "#000")
-                    // bts[k].style.color = "#000"
                 }
                 else {
                     if (bts[k].classList.contains('active')) {
-                        // Toggle the 'active' class to make it active
                         bts[k].classList.remove('active');
                     }
-                    // bts[k].classList.toggle('active');
-
-                    // bts[k].style.setProperty("--color", "#a0a0a0")
-                    // bts[k].style.setProperty("--border", "#d3d3d3")
-                    // bts[k].style.color = "#a0a0a0"
                 }
             }
             updateVisibility()
@@ -293,7 +281,7 @@
     <li style="margin-top: 0.2em">[2024/03] Our <a href="">PU-MLC</a> was accepted to ICME 2024 as <b>oral</b>.</li>
     <li style="margin-top: 0.2em">[2024/03] We released <a href="https://arxiv.org/abs/2403.06517">ActGen</a> & <a href="https://arxiv.org/abs/2403.09338">LocalMamba</a> & <a href="https://arxiv.org/abs/2403.09977">EfficientVMamba</a> at arXiv.</li>
 </ul>
-<button type="button" class="collapsible">More</button>
+<button type="button" class="collapsible">More &#11015;</button>
     <div class="content">
         <ul>
             <li style="margin-top: 0.2em">[2024/02] One paper (<a href="https://arxiv.org/abs/2311.12079">FreeKD</a>) was accepted to CVPR 2024.</li>
@@ -332,7 +320,7 @@
     </div>
 
 <div id="nav_publications" style="margin-bottom: 2em; margin-top: -2em;"></div>
-<h2>Publications &nbsp;&nbsp; <a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en">[Google Scholar]</a></h2>
+<h2>Publications <span style="margin-left: 1em; font-size: medium;"><a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en">[Google Scholar]</a></span></h2>
 
 <button class="filter" type="button" onclick="filterPub('All')">All</button>
 <button class="filter" type="button" onclick="filterPub('First-author')">First-author</button>
@@ -978,7 +966,7 @@
     <li style="margin-top: 0.2em">Peking University: "Efficient Large Models", Jul. 2024.</li>
     <li style="margin-top: 0.2em">TNNLS 2024 Tutorial: "Efficient and Secure Foundation Models", Jun. 2024.</li>
     <li style="margin-top: 0.2em">TMLR Young Scientist Seminar@HKBU: "Knowledge Distillation from A Stronger Teacher", Jul. 2022. [<a href="assets/dist/KD_sharing_Tao_20220715.pdf">Slides</a>]</li>
-    <li style="margin-top: 0.2em">SenseTime Titan Open Course: "Automated Machine Learning", May 2020. [<a href="https://b23.tv/MdQEF5P">Recording</a>]</li>
+    <li style="margin-top: 0.2em">SenseTime Titan Open Course: "Automated Machine Learning", May 2020.</li>
 </ul>
 
 <div id="teaching" style="margin-bottom: 2em; margin-top: -2em;"></div>
@@ -1005,7 +993,7 @@
 <div class="paper">IJCV, TNNLS, TIP, TMLR, etc.</div>
 
 <div id="education" style="margin-bottom: 2em; margin-top: -2em;"></div>
-<h2>Education</h2>
+<h2>Educations</h2>
 <ul>
     <li>
         <div style="display: flex; justify-content: space-between;">
