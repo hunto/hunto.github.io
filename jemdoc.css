@@ -728,6 +728,7 @@ venue {
 	transition: all .3s;
 	margin-right: 0.4em;
 	border-radius: 0.5rem;
+	margin-top: 0.3em;
   }
 
 .bib-link {
@@ -759,6 +760,7 @@ venue {
   touch-action: manipulation;
   margin-right: 0.4em;
   border-radius: 0.5rem;
+  margin-top: 0.3em;
 }
 
 
