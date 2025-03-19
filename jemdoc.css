@@ -169,7 +169,7 @@ b {
 	font-weight: var(--bold-font-weight)
 }
 
-venue {
+venue2 {
 	/* background-color:royalblue; */
 	/* background-color:rgb(80, 80, 80); */
 	/* background-color: #d1a7a7; */
@@ -439,8 +439,10 @@ li {
 .paper {
 	/* border-left: 3px var(--theme-color) solid; */
 	border-left: 2px var(--paper-left-border-color) solid;
-	padding-left: 0.5em;
-	margin-left: 0.2em;
+	padding-left: 0.8em;
+	margin-left: 0em;
+	padding-top: 0.1em;
+	padding-bottom: 0.1em;
 }
 
 .photo {
@@ -705,6 +707,29 @@ table.imgtable, table.imgtable td {
 
 /* CSS */
 
+venue {
+	align-items: center;
+	background-color: rgb(196, 155, 51);
+	color: #fff;
+	border: 0px solid #616161;
+	box-sizing: border-box;
+	display: inline-flex;
+	fill: #000;
+	font-family: var(--base-font);
+	font-size: 0.75rem;
+	font-weight: var(--bold-font-weight);
+	height: 1.2rem;
+	justify-content: center;
+	/* letter-spacing: -.8px; */
+	line-height: 1.3;
+	min-width: 6em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	transition: all .3s;
+	margin-right: 0.4em;
+	border-radius: 0.5rem;
+  }
+
 .bib-link {
 	font-weight: 300;
 }
@@ -719,13 +744,13 @@ table.imgtable, table.imgtable td {
   display: inline-flex;
   fill: #000;
   font-family: var(--base-font);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: var(--bold-font-weight);
   height: 1.2rem;
   justify-content: center;
   /* letter-spacing: -.8px; */
   line-height: 1.3;
-  min-width: 4em;
+  min-width: 4.5em;
   padding-left: 0.5em;
   padding-right: 0.5em;
   transition: all .3s;
