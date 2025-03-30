@@ -85,3 +85,9 @@ ul {
 	width: 40%;
 }
 
+.my-navbar-style {
+	margin-left: -1em;
+	margin-right: -1em;
+	top: 0em;
+	margin-top: -1em;
+}
