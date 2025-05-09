@@ -9,7 +9,7 @@ body {
   padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 0px;
-  max-width: 960px; 
+  max-width: 100%; 
   font-size: 80%;
 }
 .container {
@@ -90,4 +90,5 @@ ul {
 	margin-right: -1em;
 	top: 0em;
 	margin-top: -1em;
+	width: 100vw;
 }

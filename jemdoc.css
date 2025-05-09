@@ -27,7 +27,7 @@
 	--filter-act-bg-color: rgb(38, 86, 201);
 	--filter-act-text-color: rgb(255, 255, 255);
 	--paper-left-border-color: #000;
-	--bold-font-weight: 500;
+	--bold-font-weight: 700;
 }
 
 table#tlayout {
@@ -49,7 +49,7 @@ html {
 
 body { 
   font-family: var(--base-font),sans-serif,'微软雅黑','宋体';
-  font-weight: 300;
+  font-weight: 400;
   color: #000;
   background-color: #ffffff; 
   text-align:left; /* for IE */
