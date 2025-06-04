@@ -92,3 +92,7 @@ ul {
 	margin-top: -1em;
 	width: 100vw;
 }
+
+.ult {
+	columns: 1;
+}

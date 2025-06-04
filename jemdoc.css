@@ -828,3 +828,7 @@ venue {
 	margin-right: -2em;
 	top: 0.5em;
 }
+
+.ult {
+	columns: 2;
+}
