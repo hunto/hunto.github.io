@@ -1,5 +1,15 @@
 @import url("jemdoc.css");
 
+.topinfo {
+	margin-top: 0rem; 
+	margin-left: -0.2rem; 
+	margin-bottom: 0.2rem;
+}
+
+.topinfo-text {
+	margin-left: 0.4rem;
+}
+
 body { 
   margin-top: 0px; 
   margin-bottom: 0px;

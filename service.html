@@ -1,0 +1,203 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0, minimum-scale=0.2">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0"> -->
+
+<head>
+    <link rel="stylesheet" href="bootstrap.min.css">
+
+    <script>
+        try{
+            if (window.screen.width < 700) {
+                setActiveStyleSheet("jemdoc_mobile.css"); 
+            } 
+            else if(/iPad/i.test(navigator.userAgent)){ 
+                setActiveStyleSheet("jemdoc.css"); 
+            } 
+            else{
+                setActiveStyleSheet("jemdoc.css"); 
+            } 
+        } 
+        catch(e){} 
+
+        function setActiveStyleSheet(filename){
+            document.write("<link href="+filename+" rel=stylesheet>");
+        }
+
+    </script>
+
+    <link rel="shortcut icon" href="myIcon.ico">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="keywords" content="Tao Huang">
+    <meta name="description" content="Tao Huang's Homepage">
+    <!-- <link rel="stylesheet" href="jemdoc.css" type="text/css" />
+    <link rel="stylesheet" media="screen and (max-width:700px)" href="jemdoc_mobile.css" type="text/css" />
+    <link rel="stylesheet" media="screen and (max-width:700px)" href="jemdoc.css" type="text/css" /> -->
+    <title>Tao Huang - Homepage</title>
+</head>
+
+<div class="topinfo-text">
+    <h1>TAO HUANG</h1>
+    <hr class="topinfo" width="200" size="2" color="#eee" align="left">
+    <p style="margin-bottom: 30px;">
+        <!-- <span style="color: rgb(208, 64, 58);"><b>The only way to do great work is to love what you do.</b></span> -->
+        <span style="color: rgb(208, 64, 58);"><b>THE ONLY WAY TO DO GREAT WORK IS TO LOVE WHAT YOU DO.</b></span>
+    </p>
+</div>
+<body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <nav class="navbar sticky-top navbar-expand-lg my-navbar-style" style="margin-left: -12px; margin-right: -12px;">
+        <a class="navbar-brand" href="index.html" style="font-size: 120%; font-weight: bold; color: white;">Tao Huang</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="research.html">RESEARCH</a>
+            <a class="nav-item nav-link" href="publication.html">PUBLICATIONS</a>
+            <a class="nav-item nav-link" href="team.html">TEAM</a>
+            <a class="nav-item nav-link" href="teaching.html">TEACHING</a>
+            <a class="nav-item nav-link" href="service.html"><span style="color: rgb(246, 146, 145); font-weight: bold;">SERVICES</span></a>
+            <!-- <a class="nav-item nav-link" href="#awards">Awards</a> -->
+            <!-- <a class="nav-item nav-link" href="#grants">Grants</a> -->
+          </div>
+        </div>
+    </nav>
+
+    <script>
+        // Wait for the DOM to load
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get all navigation links
+            const navLinks = document.querySelectorAll(".nav-link");
+            const navbarToggler = document.querySelector(".navbar-toggler");
+            const navbarCollapse = document.querySelector(".navbar-collapse");
+
+            // Add click event listener to each navigation link
+            navLinks.forEach(function (link) {
+            link.addEventListener("click", function () {
+                if (navbarCollapse.classList.contains("show")) {
+                navbarToggler.click(); // Simulate a click on the toggler to close the menu
+                }
+            });
+            });
+
+            // Add click event listener to the document
+            document.addEventListener("click", function (event) {
+            // Check if the clicked element is not part of the menu or the toggler
+            if (!navbarCollapse.contains(event.target) && !navbarToggler.contains(event.target)) {
+                navbarCollapse.classList.remove("show"); // Hide the menu
+            }
+            });
+
+            // Add mouseleave event listener to the menu
+            navbarCollapse.addEventListener("mouseleave", function () {
+            navbarCollapse.classList.remove("show"); // Hide the menu when the mouse leaves
+            });
+        });
+
+    </script>
+
+
+<div id="services" style="margin-bottom: 2em; margin-top: -2em;"></div>
+<h2>Services</h2>
+<h3>Conference Events</h3>
+<ul>
+    <li style="margin-top: 0.2em">2025.08, Chair, <a href="https://mp.weixin.qq.com/s/NYc2zJeq2iWjHNANvg8qiA">"Efficient Training and Inference of Large Models"</a>, CSIG Young Scientists Conference 2025</li>
+    <li style="margin-top: 0.2em">2024, Co-organizor, "ESGMFM '24: The 1st Workshop on Efficiency, Security, and Generalization of Multimedia Foundation Models", ACM MM 2024 Workshop</li>
+    <li style="margin-top: 0.2em">2024, Co-organizor, "Efficient and Secure Foundation Models", IJCNN 2024 Tutorial</li>
+</ul>
+
+<h3>Area Chair of Conferences</h3>
+<ul>
+    <li style="margin-top: 0.2em">NeurIPS, ICLR.</li>
+</ul>
+
+<h3>Reviewer of Conferences</h3>
+<ul>
+    <li style="margin-top: 0.2em">NeurIPS, ICLR, ICML, CVPR, ICCV, ECCV, AAAI, ACM MM, etc.</li>
+</ul>
+<!-- <div class="paper"></div><br> -->
+<!-- <div class="paper">NeurIPS 2021-2024, ICLR 2023-2025, ICML 2022-2024, CVPR 2022-2024, ICCV 2023, ECCV 2024, AAAI 2023-2025, ACM MM 2021-2023.</div><br> -->
+
+<h3>Reviewer of Journals</h3>
+<ul>
+    <li style="margin-top: 0.2em">TPAMI, IJCV, TNNLS, TIP, TMLR, etc.</li>
+</ul>
+
+<div id="talks" style="margin-bottom: 2em; margin-top: -2em;"></div>
+<h2>Talks</h2>
+<ul>
+    <li style="margin-top: 0.2em">Peking University: "Efficient Large Models", Jul. 2024.</li>
+    <li style="margin-top: 0.2em">TNNLS 2024 Tutorial: "Efficient and Secure Foundation Models", Jun. 2024.</li>
+    <li style="margin-top: 0.2em">TMLR Young Scientist Seminar@HKBU: "Knowledge Distillation from A Stronger Teacher", Jul. 2022.</li>
+    <li style="margin-top: 0.2em">SenseTime Titan Open Course: "Automated Machine Learning", May 2020.</li>
+</ul>
+
+<p>
+    <br>
+</p>
+
+
+<!-- Popover Element -->
+<div id="popover" class="popover"></div>
+
+</body>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const popover = document.getElementById("popover");
+        let hideTimeout;
+
+        document.querySelectorAll(".hover-text").forEach(item => {
+            item.addEventListener("mouseenter", function(event) {
+                clearTimeout(hideTimeout); // Prevent popover from disappearing immediately
+                popover.textContent = this.getAttribute("data-text");
+                popover.style.display = "block";
+                popover.style.opacity = "1";
+
+                // Calculate position
+                let x = event.pageX;
+                let y = event.pageY + 10; // Move slightly below text to avoid overlap
+
+                // Prevent popover from going off-screen (right side)
+                const popoverWidth = popover.offsetWidth;
+                if (x + popoverWidth > window.innerWidth) {
+                    x = window.innerWidth - popoverWidth - 10; // Adjust to fit
+                }
+
+                popover.style.left = x + "px";
+                popover.style.top = y + "px";
+            });
+
+            item.addEventListener("mouseleave", function() {
+                hideTimeout = setTimeout(() => {
+                    popover.style.opacity = "0";
+                    setTimeout(() => {
+                        popover.style.display = "none";
+                    }, 200); // Delay hiding to prevent flickering
+                }, 300);
+            });
+        });
+
+        popover.addEventListener("mouseenter", function () {
+            clearTimeout(hideTimeout); // Keep popover open when hovered
+        });
+
+        popover.addEventListener("mouseleave", function () {
+            popover.style.opacity = "0";
+            setTimeout(() => {
+                popover.style.display = "none";
+            }, 200);
+        });
+    });
+
+    
+
+</script>
+
+</html>
+
