@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CS3317: Artificial Intelligence — SJTU</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --fg:#111827;
+      --muted:#6b7280;
+      --line:#e5e7eb;
+      --accent:#2563eb;
+      --accent2:#0ea5e9;
+      --card:#f9fafb;
+      --code:#0b1020;
+      --warn:#b91c1c;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--fg);
+      background:var(--bg);
+      line-height:1.55;
+    }
+    header{
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(90deg, rgba(37,99,235,.08), rgba(14,165,233,.06));
+    }
+    .container{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 18px;
+    }
+    h1{margin:6px 0 8px; font-size:28px}
+    h2{margin:26px 0 10px; font-size:20px}
+    h3{margin:18px 0 8px; font-size:16px}
+    p{margin:8px 0}
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .sub{
+      color:var(--muted);
+      margin-top:0;
+      font-size:14px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:14px;
+      margin-top:12px;
+    }
+    @media (max-width: 820px){
+      .grid{grid-template-columns:1fr}
+    }
+    .card{
+      border:1px solid var(--line);
+      background:var(--card);
+      border-radius:12px;
+      padding:14px 14px;
+    }
+    .kv{
+      display:grid;
+      grid-template-columns: 130px 1fr;
+      gap:6px 10px;
+      font-size:14px;
+    }
+    .kv div:nth-child(odd){color:var(--muted)}
+    .pill{
+      display:inline-block;
+      padding:2px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-size:12px;
+      color:var(--muted);
+      margin-right:6px;
+      margin-top:6px;
+    }
+    .notice{
+      border-left:4px solid var(--accent2);
+      background:#ffffff;
+      padding:10px 12px;
+      border-radius:10px;
+      margin:10px 0;
+      border:1px solid var(--line);
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:14px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#fff;
+    }
+    thead th{
+      text-align:left;
+      background:#f3f4f6;
+      color:#111827;
+      border-bottom:1px solid var(--line);
+      padding:10px 10px;
+      font-weight:600;
+      white-space:nowrap;
+    }
+    tbody td{
+      border-bottom:1px solid var(--line);
+      padding:10px 10px;
+      vertical-align:top;
+    }
+    tbody tr:hover{background:#fafafa}
+    .muted{color:var(--muted)}
+    .small{font-size:12px}
+    .tag{
+      display:inline-block;
+      padding:2px 8px;
+      border-radius:8px;
+      font-size:12px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--muted);
+      white-space:nowrap;
+    }
+    .tag.due{border-color:rgba(185,28,28,.35); color:var(--warn)}
+    .links a{margin-right:10px}
+    footer{
+      margin-top:30px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:12px;
+    }
+    code{
+      background:#eef2ff;
+      padding:1px 6px;
+      border-radius:6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <h1>CS3317: Artificial Intelligence</h1>
+    <p class="sub">School of Computer Science, Shanghai Jiao Tong University · Monday 12:55–15:40</p>
+    <div>
+      <span class="pill">Search</span>
+      <span class="pill">Machine Learning</span>
+      <span class="pill">Deep Learning</span>
+      <span class="pill">Generative AI</span>
+      <span class="pill">Reinforcement Learning</span>
+      <span class="pill">Embodied & Frontier AI</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="grid">
+    <div class="card">
+      <h2 style="margin-top:0;">Course Information</h2>
+      <div class="kv">
+        <div>Instructor</div><div>Dr. Tao Huang</div>
+        <div>Email</div><div><a href="mailto:t.huang@sjtu.edu.cn">t.huang@sjtu.edu.cn</a></div>
+        <div>Office Hours</div><div>Monday 16:00-19:00</div>
+        <div>Class Time</div><div>Monday 12:55–15:40</div>
+        <div>Location</div><div>东上院 205</div>
+        <div>Language</div><div>English</div>
+      </div>
+
+      <h3>Course Goals</h3>
+      <ul style="margin:8px 0 0 0px;">
+        <li>Understand what is AI and core AI principles.</li>
+        <li>Master foundational ML and deep learning methods.</li>
+        <li>Gain insight into modern AI paradigms: large models, generative models, RL, …</li>
+        <li>Develop the ability to analyze, design, and evaluate AI systems.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-top:0;">Quick Links</h2>
+      <div class="links">
+        <!-- <p><a href="#">Slides Folder</a></p> -->
+        <!-- <p><a href="#">Assignments</a></p> -->
+        <!-- <p><a href="#">Coursework Submission</a></p> -->
+        <p><a href="https://oc.sjtu.edu.cn/courses/89538">Canvas</a></p>
+        <p><a href="https://oc.sjtu.edu.cn/courses/89538/discussion_topics">Discussion Forum</a></p>
+        <!-- <p><a href="#">Project Template</a></p> -->
+      </div>
+
+      <h3>Textbooks / References</h3>
+      <ul style="margin:8px 0 0 0px;">
+        <li><span class="tag">R&N</span> Russell & Norvig, <i>Artificial Intelligence: A Modern Approach</i></li>
+        <li><span class="tag">DL</span> Goodfellow et al., <i>Deep Learning</i></li>
+        <li><span class="tag">Papers</span> Weekly reading links will be posted in schedule</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Announcements</h2>
+    <div class="notice">
+      <b>Welcome!</b> This page will be updated weekly with slides, readings, and assignments.
+      <div class="muted small">Last updated: <span id="lastUpdated"></span></div>
+    </div>
+    <!-- Add more announcements as needed -->
+    <!-- <div class="notice"><b>HW1 released</b> — due Sep 20, 23:59.</div> -->
+  </section>
+
+  <section>
+    <h2>Assessment & Coursework</h2>
+    <div class="card">
+      <div class="kv">
+        <div>Homework</div><div>40%</div>
+        <div>Project</div><div>40%</div>
+        <div>Presentation</div><div>10%</div>
+        <div>Participation</div><div>10%</div>
+      </div>
+      <p class="muted small" style="margin-top:10px;">
+        Submission rules: TBA.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Schedule (16 Weeks)</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:70px;">Week</th>
+          <th style="width:140px;">Date</th>
+          <th>Topics</th>
+          <th style="width:160px;">Slides</th>
+          <th style="width:190px;">Extra Materials</th>
+          <th style="width:150px;">Coursework</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Week 1 -->
+        <tr>
+          <td>1</td>
+          <td>YYYY-MM-DD</td>
+          <td>
+            <b>Introduction to AI</b><br/>
+            L1 What is AI?<br/>
+            L2 Intelligent Agents<br/>
+            L3 AI System Architecture
+          </td>
+          <td>
+            <a href="#">L1</a> · <a href="#">L2</a> · <a href="#">L3</a>
+          </td>
+          <td class="muted">
+            <a href="#">Reading</a> · <a href="#">Video</a>
+          </td>
+          <td>
+            <span class="tag">—</span>
+          </td>
+        </tr>
+
+        <!-- Week 2 -->
+        <tr>
+          <td>2</td>
+          <td>YYYY-MM-DD</td>
+          <td>
+            <b>Search Algorithms</b><br/>
+            L4 Problem Formulation<br/>
+            L5 Uninformed Search<br/>
+            L6 Heuristic Search (A*)
+          </td>
+          <td><a href="#">W2 Slides</a></td>
+          <td class="muted"><a href="#">Notes</a></td>
+          <td><span class="tag">HW0 (optional)</span></td>
+        </tr>
+
+        <!-- Week 3 -->
+        <tr>
+          <td>3</td>
+          <td>YYYY-MM-DD</td>
+          <td>
+            <b>Search Algorithms</b><br/>
+            L7 Local Search<br/>
+            L8 Adversarial Search (Minimax)<br/>
+            L9 CSP Basics
+          </td>
+          <td><a href="#">W3 Slides</a></td>
+          <td class="muted"><a href="#">Practice</a></td>
+          <td><span class="tag due">HW1 due</span></td>
+        </tr>
+
+        <!-- Week 4 -->
+        <tr>
+          <td>4</td>
+          <td>YYYY-MM-DD</td>
+          <td>
+            <b>Machine Learning Foundations</b><br/>
+            L10 ML Basics & Generalization<br/>
+            L11 Linear Models<br/>
+            L12 Optimization (GD/SGD)
+          </td>
+          <td><a href="#">W4 Slides</a></td>
+          <td class="muted"><a href="#">Reading</a></td>
+          <td><span class="tag">HW2 released</span></td>
+        </tr>
+
+        <!-- Week 5 -->
+        <tr>
+          <td>5</td>
+          <td>YYYY-MM-DD</td>
+          <td>
+            <b>Machine Learning Foundations</b><br/>
+            L13 SVM & Kernels<br/>
+            L14 Trees & Ensembles<br/>
+            L15 Evaluation & Tuning
+          </td>
+          <td><a href="#">W5 Slides</a></td>
+          <td class="muted"><a href="#">Notebook</a></td>
+          <td><span class="tag due">HW2 due</span></td>
+        </tr>
+
+        <!-- Week 6 -->
+        <tr>
+          <td>6</td>
+          <td>YYYY-MM-DD</td>
+          <td>
+            <b>Deep Learning</b><br/>
+            L16 MLP & Representation<br/>
+            L17 Backprop<br/>
+            L18 Training Tricks
+          </td>
+          <td><a href="#">W6 Slides</a></td>
+          <td class="muted"><a href="#">Code</a></td>
+          <td><span class="tag">HW3 released</span></td>
+        </tr>
+
+        <!-- Week 7 -->
+        <tr>
+          <td>7</td>
+          <td>YYYY-MM-DD</td>
+          <td>
+            <b>Deep Learning</b><br/>
+            L19 CNN Basics<br/>
+            L20 ResNet & Modern CNNs<br/>
+            L21 Self-Supervised Learning
+          </td>
+          <td><a href="#">W7 Slides</a></td>
+          <td class="muted"><a href="#">Paper</a></td>
+          <td><span class="tag due">HW3 due</span></td>
+        </tr>
+
+        <!-- Week 8 -->
+        <tr>
+          <td>8</td>
+          <td>YYYY-MM-DD</td>
+          <td>
+            <b>Deep Learning</b><br/>
+            L22 RNN/LSTM<br/>
+            L23 Attention<br/>
+            L24 Transformers
+          </td>
+          <td><a href="#">W8 Slides</a></td>
+          <td class="muted"><a href="#">Colab</a></td>
+          <td><span class="tag">Quiz (optional)</span></td>
+        </tr>
+
+        <!-- Week 9 -->
+        <tr>
+          <td>9</td>
+          <td>YYYY-MM-DD</td>
+          <td>
+            <b>Generative AI</b><br/>
+            L25 Generative Modeling Overview<br/>
+            L26 VAE<br/>
+            L27 GAN
+          </td>
+          <td><a href="#">W9 Slides</a></td>
+          <td class="muted"><a href="#">Reading</a></td>
+          <td><span class="tag">HW4 released</span></td>
+        </tr>
+
+        <!-- Week 10 -->
+        <tr>
+          <td>10</td>
+          <td>YYYY-MM-DD</td>
+          <td>
+            <b>Generative AI</b><br/>
+            L28 Diffusion Models<br/>
+            L29 LLM Basics & Alignment<br/>
+            L30 Multimodal Models
+          </td>
+          <td><a href="#">W10 Slides</a></td>
+          <td class="muted"><a href="#">Demo</a></td>
+          <td><span class="tag due">HW4 due</span></td>
+        </tr>
+
+        <!-- Week 11 -->
+        <tr>
+          <td>11</td>
+          <td>YYYY-MM-DD</td>
+          <td>
+            <b>Reinforcement Learning</b><br/>
+            L31 MDP & Bellman<br/>
+            L32 DP: Value/Policy Iteration<br/>
+            L33 Q-learning
+          </td>
+          <td><a href="#">W11 Slides</a></td>
+          <td class="muted"><a href="#">Exercises</a></td>
+          <td><span class="tag">Project proposal</span></td>
+        </tr>
+
+        <!-- Week 12 -->
+        <tr>
+          <td>12</td>
+          <td>YYYY-MM-DD</td>
+          <td>
+            <b>Reinforcement Learning</b><br/>
+            L34 DQN<br/>
+            L35 Policy Gradient / Actor-Critic<br/>
+            L36 Model-Based RL
+          </td>
+          <td><a href="#">W12 Slides</a></td>
+          <td class="muted"><a href="#">Notebook</a></td>
+          <td><span class="tag due">HW5 due</span></td>
+        </tr>
+
+        <!-- Week 13 -->
+        <tr>
+          <td>13</td>
+          <td>YYYY-MM-DD</td>
+          <td>
+            <b>Embodied & Frontier AI</b><br/>
+            L37 LLM Agents & Tool Use<br/>
+            L38 Memory & Long-Horizon Reasoning<br/>
+            L39 Multi-Agent Systems
+          </td>
+          <td><a href="#">W13 Slides</a></td>
+          <td class="muted"><a href="#">Reading</a></td>
+          <td><span class="tag">Project checkpoint</span></td>
+        </tr>
+
+        <!-- Week 14 -->
+        <tr>
+          <td>14</td>
+          <td>YYYY-MM-DD</td>
+          <td>
+            <b>Embodied & Frontier AI</b><br/>
+            L40 VLA / Embodied Policies<br/>
+            L41 Sim-to-Real<br/>
+            L42 Robotics Foundation Models
+          </td>
+          <td><a href="#">W14 Slides</a></td>
+          <td class="muted"><a href="#">Video</a></td>
+          <td><span class="tag">—</span></td>
+        </tr>
+
+        <!-- Week 15 -->
+        <tr>
+          <td>15</td>
+          <td>YYYY-MM-DD</td>
+          <td>
+            <b>Embodied & Frontier AI</b><br/>
+            L43 Efficient AI Systems<br/>
+            L44 World Models<br/>
+            L45 Safety & Ethics
+          </td>
+          <td><a href="#">W15 Slides</a></td>
+          <td class="muted"><a href="#">Reading</a></td>
+          <td><span class="tag due">Final report due</span></td>
+        </tr>
+
+        <!-- Week 16 -->
+        <tr>
+          <td>16</td>
+          <td>YYYY-MM-DD</td>
+          <td>
+            <b>Final Presentations</b><br/>
+            L46–L48 Project presentations & course wrap-up
+          </td>
+          <td><a href="#">Presentation Guide</a></td>
+          <td class="muted"><a href="#">Rubric</a></td>
+          <td><span class="tag due">Slides due</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="muted small" style="margin-top:10px;">
+      Note: replace <code>YYYY-MM-DD</code> with actual Mondays; add slide links after uploading.
+    </p>
+  </section>
+
+  <section>
+    <h2>Policies</h2>
+    <div class="card">
+      <ul style="margin:8px 0 0 18px;">
+        <li><b>Collaboration:</b> Discuss ideas, but submit your own write-up/code unless explicitly allowed.</li>
+        <li><b>Late policy:</b> (e.g., 10% per day, max 3 days) or “no late submissions”.</li>
+        <li><b>Academic integrity:</b> Cite external resources; no plagiarism.</li>
+        <li><b>AI tools:</b> Specify if using ChatGPT/copilot is allowed and what must be disclosed.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <div>© <span id="year"></span> SJTU — Artificial Intelligence. Template by instructor.</div>
+  </footer>
+</main>
+
+<script>
+  // Auto-fill year and last updated
+  document.getElementById("year").textContent = new Date().getFullYear();
+  document.getElementById("lastUpdated").textContent = document.lastModified;
+</script>
+
+</body>
+</html>
