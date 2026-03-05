@@ -56,7 +56,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link" href="research.html"><span style="color: rgb(246, 146, 145); font-weight: bold;">RESEARCH</span></a>
+            <a class="nav-item nav-link" href="research.html">RESEARCH</a>
             <a class="nav-item nav-link" href="publication.html">PUBLICATIONS</a>
             <a class="nav-item nav-link" href="team.html">TEAM</a>
             <a class="nav-item nav-link" href="teaching.html">TEACHING</a>
@@ -70,8 +70,17 @@
     <script>
         // Wait for the DOM to load
         document.addEventListener("DOMContentLoaded", function () {
+            // Highlight current page in navigation
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(function(link) {
+                const href = link.getAttribute('href');
+                if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+                    link.classList.add('active');
+                }
+            });
+
             // Get all navigation links
-            const navLinks = document.querySelectorAll(".nav-link");
             const navbarToggler = document.querySelector(".navbar-toggler");
             const navbarCollapse = document.querySelector(".navbar-collapse");
 
@@ -102,37 +111,69 @@
 
 <div id="nav_research" style="margin-bottom: 0em; margin-top: 2em;"></div>
 <h2>Overall Research Framework</h2>
-<p>
-<b>以多模态智能为核心，以视觉生成建模世界，以具身智能交互现实</b><br>
 </p>
-
-<p>
-<b>Multimodal Intelligence</b> at the Core,<br>
-<b>Visual Generation</b> for Modeling the World,<br>
-<b>Embodied Intelligence</b> for Interacting with Reality
-<img src="assets/research_overview.png" style="width:70%; height:auto;" alt="Overview of Our Research">
-</p>
-<p>Research highlights: </p>
+<div class="research-card research-card--half">
+    <p style="margin-top:0;">
+        <b>以多模态智能为核心，以视觉生成建模世界，以具身智能交互现实</b><br>
+        <b>Multimodal Intelligence</b> at the Core, <b>Visual Generation</b> for Modeling the World, <b>Embodied Intelligence</b> for Interacting with Reality
+    </p>
+    <img src="assets/research_overview.png" loading="lazy" alt="Overview of Our Research Framework">
+</div>
+<h2>Research Highlights</h2>
 <h2>1 Efficient Foundation Architectures</h2>
-<h3><a href="https://github.com/kairos-agi/kairos-sensenova">Kairos-3.0</a> (World Model)</h3>
-<ul>
-    <li><b>A Pure Temporally-Linear DiT Architecture</b></li>
-    We replace standard quadratic temporal attention with a hybrid design composed of linear- and local-attention mechanisms. This enables efficient modeling of long video sequences while maintaining strong temporal coherence and causal reasoning ability.<br>
-    <img src="assets/kairos/architecture_kairos.png" style="width:70%; height:auto;" alt="Architecture of Kairos">
-</ul>
-<h3><a href="https://huggingface.co/MiniMaxAI/MiniMax-Text-01">MiniMax-01</a> (LLM)</h3>
-<ul>
-    <li><b>Innovative Linear Attention Architecture</b></li>
-    For the first time on a large scale, we have implemented a mixture of linear and softmax attention architecture. This model has 456B parameters and a MoE structure with 45.9B parameters activated per inference.<br>
-    <img src="assets/minimax01/arch.png" style="width:30%; height:auto;" alt="Architecture of MiniMax-01">
-</ul>
+<div class="research-grid">
+    <article class="research-card">
+        <h3><a href="https://github.com/kairos-agi/kairos-sensenova">Kairos-3.0</a> <span class="cate-chip">World Model</span></h3>
+        <p><b>A Pure Temporally-Linear DiT Architecture</b><br>
+        We replace standard quadratic temporal attention with a hybrid design composed of linear- and local-attention mechanisms. This enables efficient modeling of long video sequences while maintaining strong temporal coherence and causal reasoning ability.</p>
+        <img src="assets/kairos/architecture_kairos.png" loading="lazy" alt="Architecture of Kairos">
+    </article>
 
-<h3>Mamba for Vision</h3>
+    <article class="research-card">
+        <h3><a href="https://huggingface.co/MiniMaxAI/MiniMax-Text-01">MiniMax-01</a> <span class="cate-chip">LLM</span></h3>
+        <p><b>Innovative Linear Attention Architecture</b><br>
+        For the first time on a large scale, we have implemented a mixture of linear and softmax attention architecture. This model has 456B parameters and a MoE structure with 45.9B parameters activated per inference.</p>
+        <img src="assets/minimax01/arch.png" loading="lazy" alt="Architecture of MiniMax-01">
+    </article>
+
+    <article class="research-card">
+        <h3>Mamba for Vision <span class="cate-chip">Vision SSM</span></h3>
+        <p>Highlights coming soon.</p>
+    </article>
+</div>
 
 <h2>2 Knowledge Distillation</h2>
-<h3>DIST</h3>
+<div class="research-grid">
+    <article class="research-card">
+        <h3>DIST <span class="cate-chip">Knowledge Distillation</span></h3>
+        <p>Series of practical and effective KD methods. Highlights and visual summaries coming soon.</p>
+    </article>
+    <article class="research-card">
+        <h3>More KD Highlights <span class="cate-chip">Coming</span></h3>
+        <p>Additional techniques and benchmarks are being organized.</p>
+    </article>
+</div>
 
 <h2>3 Embodied AI</h2>
+<div class="research-grid">
+    <article class="research-card">
+        <h3>Embodied World Models <span class="cate-chip">Embodied</span></h3>
+        <p>Learning world models for interaction and long-horizon planning. Highlights coming soon.</p>
+    </article>
+    <article class="research-card">
+        <h3>VLA & Policy Learning <span class="cate-chip">VLA</span></h3>
+        <p>Vision-Language-Action agents and efficient policy learning for real-world tasks.</p>
+    </article>
+</div>
+
+<!-- Lightbox for research images -->
+<div id="lightbox" class="lightbox-backdrop" aria-hidden="true">
+    <div class="lightbox-content" role="dialog" aria-label="Expanded image">
+        <button class="lightbox-close" aria-label="Close">×</button>
+        <img id="lightbox-img" src="" alt="Expanded research image">
+    </div>
+  
+</div>
 
 <p>
     <br>
@@ -191,7 +232,32 @@
                 popover.style.display = "none";
             }, 200);
         });
-    });
+                /* Image lightbox: research-card images */
+                (function(){
+                    const imgs = document.querySelectorAll('.research-card img');
+                    const lb = document.getElementById('lightbox');
+                    const lbImg = document.getElementById('lightbox-img');
+                    const btnClose = lb.querySelector('.lightbox-close');
+                    function open(src, alt){
+                        lbImg.src = src;
+                        lbImg.alt = alt || 'Expanded research image';
+                        lb.classList.add('open');
+                        lb.style.display = 'flex';
+                        document.body.style.overflow = 'hidden';
+                    }
+                    function close(){
+                        lb.classList.remove('open');
+                        setTimeout(()=>{ lb.style.display = 'none'; }, 200);
+                        document.body.style.overflow = '';
+                    }
+                    imgs.forEach(img => {
+                        img.addEventListener('click', ()=> open(img.src, img.alt));
+                    });
+                    btnClose.addEventListener('click', close);
+                    lb.addEventListener('click', (e)=>{ if(e.target === lb) close(); });
+                    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') close(); });
+                })();
+        });
 
     
 

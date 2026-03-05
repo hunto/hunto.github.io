@@ -58,7 +58,7 @@
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="research.html">RESEARCH</a>
             <a class="nav-item nav-link" href="publication.html">PUBLICATIONS</a>
-            <a class="nav-item nav-link" href="team.html"><span style="color: rgb(246, 146, 145); font-weight: bold;">TEAM</span></a>
+            <a class="nav-item nav-link" href="team.html">TEAM</a>
             <a class="nav-item nav-link" href="teaching.html">TEACHING</a>
             <a class="nav-item nav-link" href="service.html">SERVICES</a>
             <!-- <a class="nav-item nav-link" href="#awards">Awards</a> -->
@@ -70,8 +70,17 @@
     <script>
         // Wait for the DOM to load
         document.addEventListener("DOMContentLoaded", function () {
+            // Highlight current page in navigation
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(function(link) {
+                const href = link.getAttribute('href');
+                if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+                    link.classList.add('active');
+                }
+            });
+
             // Get all navigation links
-            const navLinks = document.querySelectorAll(".nav-link");
             const navbarToggler = document.querySelector(".navbar-toggler");
             const navbarCollapse = document.querySelector(".navbar-collapse");
 
@@ -114,35 +123,62 @@ Successful applicants typically have first-author publications in top-tier venue
 <h2>Team</h2>
 I am grateful for the privilege of collaborating with a group of talented and dedicated students. Working alongside you has been both an honor and a delightful experience.
 <h3>PhD Students</h3>
-<ul class="ult">
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Xiaoou Li</span></a> (2026.9)</li>
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Zhongbo Wu</span></a> (2026.9)</li>
-</ul>
+<div class="team-grid">
+    <article class="team-card">
+        <div class="team-header">
+            <div class="team-avatar">XL</div>
+            <div class="team-title">
+                <h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Xiaoou Li</span></a></h4>
+                <div class="team-meta">
+                    <span class="role-chip">PhD 2026.9</span>
+                </div>
+            </div>
+        </div>
+    </article>
+    <article class="team-card">
+        <div class="team-header">
+            <div class="team-avatar">ZW</div>
+            <div class="team-title">
+                <h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Zhongbo Wu</span></a></h4>
+                <div class="team-meta">
+                    <span class="role-chip">PhD 2026.9</span>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
 <h3>Master Students</h3>
-<ul class="ult">
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Yihan Su</span></a> (2026.9)</li>
-</ul>
+<div class="team-grid">
+    <article class="team-card">
+        <div class="team-header">
+            <div class="team-avatar">YS</div>
+            <div class="team-title">
+                <h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Yihan Su</span></a></h4>
+                <div class="team-meta">
+                    <span class="role-chip">Master 2026.9</span>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
 <h3>Research Interns</h3>
-<ul class="ult">
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Lingyi Long</span></a> (Undergraduate at SJTU) - Efficient World Model</li>
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Junxi Jia</span></a> (Undergraduate at SJTU) - World Model Data</li>
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Zihao Gao</span></a> (Undergraduate at SJTU) - Long Video Generation</li>
-    <!-- <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Yanzheng Wang</span></a> (Undergraduate at SJTU) - World Model</li> -->
-    <!-- <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Zhen Zou</span></a> (Undergraduate at SJTU) - 3D VLA</li> -->
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Jiaqi Liu</span></a> (PhD student at USYD) - Robotics and Visual Generation</li>
-    <li style="margin-top: 0.2em"><a href="https://www.terrypei.com/"><span class="hover-text" data-text="">Xiaohuan Pei</span></a> (PhD student at USYD) - VLM, VLA</li>
-    <li style="margin-top: 0.2em"><a href="https://www.taolinwei.com/"><span class="hover-text" data-text="">Linwei Tao</span></a> (PhD student at USYD) - LLM Uncertainty</li>
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Ruiqing Yang</span></a> (Master student at UESTC) - Efficient Visual Generation, World Model</li>
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Xiaodi Huang</span></a> (Undergraduate at TongjiU) - VLA</li>
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Ligong Bi</span></a> (Undergraduate at GUET) - Visual Generation</li>
-    <li style="margin-top: 0.2em"><a href="https://jackhuang0701.github.io/"><span class="hover-text" data-text="">Jiakai Huang</span></a> (Undergraduate at SCNU) - VLA</li>
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Jie Li</span></a> (Undergraduate at USTB) - Video Generation, Anomaly Detection</li>
-    <!-- <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Yuxuan Jiang</span></a> (Undergraduate at HUST) - VLA</li> -->
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Chenyu Hui</span></a> (Undergraduate at XJTU) - Video Editing</li>
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Bingzhou Li</span></a> (Undergraduate at TongjiU) - Efficient VLM</li>
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Wance Zu</span></a> (Undergraduate at HITWH) - World Action Model</li>
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Fengnian Zhang</span></a> (PhD Student at CAS) - Efficient VLA</li>
-</ul>
+<div class="team-grid">
+    <article class="team-card"><div class="team-header"><div class="team-avatar">LL</div><div class="team-title"><h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Lingyi Long</span></a></h4><div class="team-meta"><span class="role-chip">Intern</span><span class="role-chip">UG @ SJTU</span></div></div></div><div class="team-tags"><span class="cate-chip">Efficient World Model</span></div></article>
+    <article class="team-card"><div class="team-header"><div class="team-avatar">JJ</div><div class="team-title"><h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Junxi Jia</span></a></h4><div class="team-meta"><span class="role-chip">Intern</span><span class="role-chip">UG @ SJTU</span></div></div></div><div class="team-tags"><span class="cate-chip">World Model Data</span></div></article>
+    <article class="team-card"><div class="team-header"><div class="team-avatar">ZG</div><div class="team-title"><h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Zihao Gao</span></a></h4><div class="team-meta"><span class="role-chip">Intern</span><span class="role-chip">UG @ SJTU</span></div></div></div><div class="team-tags"><span class="cate-chip">Long Video Generation</span></div></article>
+    <article class="team-card"><div class="team-header"><div class="team-avatar">JL</div><div class="team-title"><h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Jiaqi Liu</span></a></h4><div class="team-meta"><span class="role-chip">Intern</span><span class="role-chip">PhD @ USYD</span></div></div></div><div class="team-tags"><span class="cate-chip">Robotics</span><span class="cate-chip">Visual Generation</span></div></article>
+    <article class="team-card"><div class="team-header"><div class="team-avatar">XP</div><div class="team-title"><h4><a href="https://www.terrypei.com/"><span class="hover-text" data-text="">Xiaohuan Pei</span></a></h4><div class="team-meta"><span class="role-chip">Intern</span><span class="role-chip">PhD @ USYD</span></div></div></div><div class="team-tags"><span class="cate-chip">VLM</span><span class="cate-chip">VLA</span></div></article>
+    <article class="team-card"><div class="team-header"><div class="team-avatar">LT</div><div class="team-title"><h4><a href="https://www.taolinwei.com/"><span class="hover-text" data-text="">Linwei Tao</span></a></h4><div class="team-meta"><span class="role-chip">Intern</span><span class="role-chip">PhD @ USYD</span></div></div></div><div class="team-tags"><span class="cate-chip">LLM Uncertainty</span></div></article>
+    <article class="team-card"><div class="team-header"><div class="team-avatar">RY</div><div class="team-title"><h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Ruiqing Yang</span></a></h4><div class="team-meta"><span class="role-chip">Intern</span><span class="role-chip">Master @ UESTC</span></div></div></div><div class="team-tags"><span class="cate-chip">Efficient Visual Generation</span><span class="cate-chip">World Model</span></div></article>
+    <article class="team-card"><div class="team-header"><div class="team-avatar">XH</div><div class="team-title"><h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Xiaodi Huang</span></a></h4><div class="team-meta"><span class="role-chip">Intern</span><span class="role-chip">UG @ TongjiU</span></div></div></div><div class="team-tags"><span class="cate-chip">VLA</span></div></article>
+    <article class="team-card"><div class="team-header"><div class="team-avatar">LB</div><div class="team-title"><h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Ligong Bi</span></a></h4><div class="team-meta"><span class="role-chip">Intern</span><span class="role-chip">UG @ GUET</span></div></div></div><div class="team-tags"><span class="cate-chip">Visual Generation</span></div></article>
+    <article class="team-card"><div class="team-header"><div class="team-avatar">JH</div><div class="team-title"><h4><a href="https://jackhuang0701.github.io/"><span class="hover-text" data-text="">Jiakai Huang</span></a></h4><div class="team-meta"><span class="role-chip">Intern</span><span class="role-chip">UG @ SCNU</span></div></div></div><div class="team-tags"><span class="cate-chip">VLA</span></div></article>
+    <article class="team-card"><div class="team-header"><div class="team-avatar">JL</div><div class="team-title"><h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Jie Li</span></a></h4><div class="team-meta"><span class="role-chip">Intern</span><span class="role-chip">UG @ USTB</span></div></div></div><div class="team-tags"><span class="cate-chip">Video Generation</span><span class="cate-chip">Anomaly Detection</span></div></article>
+    <article class="team-card"><div class="team-header"><div class="team-avatar">CH</div><div class="team-title"><h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Chenyu Hui</span></a></h4><div class="team-meta"><span class="role-chip">Intern</span><span class="role-chip">UG @ XJTU</span></div></div></div><div class="team-tags"><span class="cate-chip">Video Editing</span></div></article>
+    <article class="team-card"><div class="team-header"><div class="team-avatar">BL</div><div class="team-title"><h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Bingzhou Li</span></a></h4><div class="team-meta"><span class="role-chip">Intern</span><span class="role-chip">UG @ TongjiU</span></div></div></div><div class="team-tags"><span class="cate-chip">Efficient VLM</span></div></article>
+    <article class="team-card"><div class="team-header"><div class="team-avatar">WZ</div><div class="team-title"><h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Wance Zu</span></a></h4><div class="team-meta"><span class="role-chip">Intern</span><span class="role-chip">UG @ HITWH</span></div></div></div><div class="team-tags"><span class="cate-chip">World Action Model</span></div></article>
+    <article class="team-card"><div class="team-header"><div class="team-avatar">FZ</div><div class="team-title"><h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Fengnian Zhang</span></a></h4><div class="team-meta"><span class="role-chip">Intern</span><span class="role-chip">PhD @ CAS</span></div></div></div><div class="team-tags"><span class="cate-chip">Efficient VLA</span></div></article>
+</div>
 
 <p>
     <br>

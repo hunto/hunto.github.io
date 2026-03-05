@@ -60,7 +60,7 @@
             <a class="nav-item nav-link" href="publication.html">PUBLICATIONS</a>
             <a class="nav-item nav-link" href="team.html">TEAM</a>
             <a class="nav-item nav-link" href="teaching.html">TEACHING</a>
-            <a class="nav-item nav-link" href="service.html"><span style="color: rgb(246, 146, 145); font-weight: bold;">SERVICES</span></a>
+            <a class="nav-item nav-link" href="service.html">SERVICES</a>
             <!-- <a class="nav-item nav-link" href="#awards">Awards</a> -->
             <!-- <a class="nav-item nav-link" href="#grants">Grants</a> -->
           </div>
@@ -70,8 +70,17 @@
     <script>
         // Wait for the DOM to load
         document.addEventListener("DOMContentLoaded", function () {
+            // Highlight current page in navigation
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(function(link) {
+                const href = link.getAttribute('href');
+                if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+                    link.classList.add('active');
+                }
+            });
+
             // Get all navigation links
-            const navLinks = document.querySelectorAll(".nav-link");
             const navbarToggler = document.querySelector(".navbar-toggler");
             const navbarCollapse = document.querySelector(".navbar-collapse");
 

@@ -189,7 +189,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="research.html">RESEARCH</a>
-            <a class="nav-item nav-link" href="publication.html"><span style="color: rgb(246, 146, 145); font-weight: bold;">PUBLICATIONS</span></a>
+            <a class="nav-item nav-link" href="publication.html">PUBLICATIONS</a>
             <a class="nav-item nav-link" href="team.html">TEAM</a>
             <a class="nav-item nav-link" href="teaching.html">TEACHING</a>
             <a class="nav-item nav-link" href="service.html">SERVICES</a>
@@ -202,8 +202,17 @@
     <script>
         // Wait for the DOM to load
         document.addEventListener("DOMContentLoaded", function () {
+            // Highlight current page in navigation
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(function(link) {
+                const href = link.getAttribute('href');
+                if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+                    link.classList.add('active');
+                }
+            });
+
             // Get all navigation links
-            const navLinks = document.querySelectorAll(".nav-link");
             const navbarToggler = document.querySelector(".navbar-toggler");
             const navbarCollapse = document.querySelector(".navbar-collapse");
 
@@ -236,6 +245,77 @@
 <div id="nav_publications" style="margin-bottom: 0em; margin-top: 2em;"></div>
 For the latest full publication list, please refer to my <a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en">Google Scholar</a>.
 <h2 style="margin-top: 0; padding-top: 1rem;">Publications</h2>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Toggle Bib content by class
+        document.querySelectorAll('.bib-link').forEach(function(btn){
+            btn.addEventListener('click', function(e){
+                e.preventDefault();
+                var li = btn.closest('li.paper');
+                if(!li) return;
+                var bib = li.querySelector('.bib-content');
+                if(!bib) return;
+
+                // normalize BibTeX indentation once before showing
+                if (!bib.dataset.normalized) {
+                    var pre = bib.querySelector('blockquote pre') || bib.querySelector('pre');
+                    if (pre) {
+                        var raw = pre.textContent || '';
+                        var lines = raw.replace(/\r\n?/g, '\n').split('\n');
+                        var nonEmpty = lines.filter(function(l){ return l.trim().length > 0; });
+                        if (nonEmpty.length > 0) {
+                            // compute minimum leading spaces across non-empty lines
+                            var minIndent = Math.min.apply(null, nonEmpty.map(function(l){
+                                var m = l.match(/^ */); return m ? m[0].length : 0;
+                            }));
+                            if (minIndent > 0) {
+                                var re = new RegExp('^ {' + minIndent + '}');
+                                lines = lines.map(function(l){ return l.replace(re, ''); });
+                            }
+                            pre.textContent = lines.join('\n').trim();
+                        }
+                        bib.dataset.normalized = '1';
+                    }
+                }
+
+                bib.classList.toggle('is-open');
+            });
+        });
+
+        // Render category chips at the right end of meta row (same line with venue/buttons)
+        document.querySelectorAll('#publications li.paper').forEach(function(li){
+            var cat = li.getAttribute('category');
+            if(!cat) return;
+            var parts = cat.split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+            if(!parts.length) return;
+
+            var meta = li.querySelector('p');
+            if(!meta) return;
+
+            // Prefer a wrap inside meta; if old wrap exists under li, move it into meta
+            var wrap = meta.querySelector('.cate-wrap');
+            if(!wrap){
+                var old = li.querySelector(':scope > .cate-wrap');
+                if(old){
+                    wrap = old;
+                    meta.appendChild(old);
+                } else {
+                    wrap = document.createElement('div');
+                    wrap.className = 'cate-wrap';
+                    meta.appendChild(wrap);
+                }
+            }
+            // clear previous chips
+            wrap.innerHTML = '';
+            parts.forEach(function(name){
+                var chip = document.createElement('span');
+                chip.className = 'cate-chip';
+                chip.textContent = name;
+                wrap.appendChild(chip);
+            });
+        });
+    });
+</script>
 
 <button class="filter" type="button" onclick="filterPub('All')">All</button>
 <button class="filter" type="button" onclick="filterPub('First-author')">First-author</button>
@@ -249,7 +329,7 @@ For the latest full publication list, please refer to my <a href="https://schola
 <ul id="publications">
     <!-- <h3 style="margin-top: 1em;">2025</h3> -->
     <li class="paper" category="Embodied">
-        <pt><a href="https://arxiv.org/abs/2505.18605">Rethinking Causal Mask Attention for Vision-Language Inference</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2505.18605">Rethinking Causal Mask Attention for Vision-Language Inference</a></pt>
         <div class="author">
             Xiaohuan Pei, <b><u>Tao Huang</u></b>, Yanxiang Ma, Chang Xu<br>
             <em>International Conference on Learning Representations</em> (<b>ICLR</b>), 2026.</em>
@@ -258,7 +338,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <venue>ICLR 2026</venue>
             <button class="button-59 bib-link">Bib</button>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     
@@ -268,7 +348,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
     <li class="paper" category="Embodied">
-        <pt><a href="https://arxiv.org/abs/2510.14952">From Language to Locomotion: Retargeting-free Humanoid Control via Motion Latent Guidance</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2510.14952">From Language to Locomotion: Retargeting-free Humanoid Control via Motion Latent Guidance</a></pt>
         <div class="author">
             Zhe Li, Cheng Chi, Yangyang Wei, Boan Zhu, Yibo Peng, <b><u>Tao Huang</u></b>, Pengwei Wang, Zhongyuan Wang, Shanghang Zhang, Chang Xu<br>
             <em>International Conference on Learning Representations</em> (<b>ICLR</b>), 2026.</em>
@@ -278,7 +358,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <button class="button-59 bib-link">Bib</button>
             <a href="https://gentlefress.github.io/roboghost-proj" class="button-59">Project</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     
@@ -288,7 +368,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
     <li class="paper" category="KD">
-        <pt><a href="https://arxiv.org/abs/2511.19887">Distilling Cross-Modal Knowledge via Feature Disentanglement</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2511.19887">Distilling Cross-Modal Knowledge via Feature Disentanglement</a></pt>
         <div class="author">
             Junhong Liu, Yuan Zhang, <b><u>Tao Huang</u></b>, Wenchao Xu, Renyu Yang<br>
             <em>In Proceedings of the AAAI Conference on Artificial Intelligence</em> (<b>AAAI</b>), 2026
@@ -298,7 +378,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <button class="button-59 bib-link">Bib</button>
             <a href="https://github.com/Johumliu/FD-CMKD" class="button-59">Code</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
 
@@ -308,7 +388,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
     <li class="paper" category="pruning,Embodied">
-        <pt><a href="https://arxiv.org/abs/2502.02175">VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2502.02175">VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation</a></pt>
         <div class="author">
             Siyu Xu, Yunke Wang, Chenghao Xia, Dihao Zhu, <b><u>Tao Huang</u></b>, Chang Xu<br>
             <em>Advances in Neural Information Processing Systems</em> (<b>NeurIPS</b>), 2025
@@ -320,7 +400,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
     <li class="paper" category="pruning">
-        <pt><a href="https://arxiv.org/pdf/2410.04417">SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference</a></pt><br>
+        <pt><a href="https://arxiv.org/pdf/2410.04417">SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference</a></pt>
         <div class="author">
             Yuan Zhang*, ChunKai Fan*, Junpeng Ma*, Wenzhao Zheng, <b><u>Tao Huang</u></b>, Kuan Cheng, Denis Gudovskiy, Tomoyuki Okuno, Yohei Nakata, Kurt Keutzer, Shanghang Zhang<br>
             <em>International Conference on Machine Learning</em> (<b>ICML</b>), 2025
@@ -331,7 +411,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
     <li class="paper" first_authored=true category="KD">
-        <pt><a href="https://ieeexplore.ieee.org/abstract/document/10938241">DIST+: Knowledge Distillation from A Stronger Adaptive Teacher</a></pt><br>
+        <pt><a href="https://ieeexplore.ieee.org/abstract/document/10938241">DIST+: Knowledge Distillation from A Stronger Adaptive Teacher</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>, Shan You, Fei Wang, Chen Qian, Chang Xu<br>
             <em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em> (<b>TPAMI</b>), 2025
@@ -341,7 +421,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <button class="button-59 bib-link">Bib</button>
             <a href="assets/dist+/DIST+.pdf" class="button-59">PDF</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @article{huang2025dist,
@@ -360,7 +440,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
     <li class="paper" category="KD">
-        <pt><a href="https://arxiv.org/abs/2501.01709">MoVE-KD: Knowledge Distillation for VLMs with Mixture of Visual Encoders</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2501.01709">MoVE-KD: Knowledge Distillation for VLMs with Mixture of Visual Encoders</a></pt>
         <div class="author">
             Jiajun Cao, Yuan Zhang, <b><u>Tao Huang</u></b>, Ming Lu, Qizhe Zhang, Ruichuan An, Ningning Ma, Shanghang Zhang<br>
             <em>IEEE/CVF Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2025.
@@ -373,7 +453,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <li class="paper" first_authored=true category="Efficient Data">
-		<pt><a href="https://arxiv.org/abs/2502.19718">Learning Mask Invariant Mutual Information for Masked Image Modeling</a></pt><br>
+		<pt><a href="https://arxiv.org/abs/2502.19718">Learning Mask Invariant Mutual Information for Masked Image Modeling</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>*, Yanxiang Ma*, Shan You, Chang Xu<br>
             <em>International Conference on Learning Representations</em> (<b>ICLR</b>), 2025.</em>
@@ -382,7 +462,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <venue>ICLR 2025</venue>
             <button class="button-59 bib-link">Bib</button>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{
@@ -400,7 +480,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <li class="paper" category="">
-        <pt><a href="https://arxiv.org/abs/2501.08313">MiniMax-01: Scaling Foundation Models with Lightning Attention</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2501.08313">MiniMax-01: Scaling Foundation Models with Lightning Attention</a></pt>
         <div class="author">
             <em>Technical Report</em>, 2025
         </div>
@@ -410,7 +490,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <a href="https://github.com/MiniMax-AI/MiniMax-01" class="button-59">Code</a>
             <a href="https://huggingface.co/MiniMaxAI" class="button-59">Hugging Face</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @misc{minimax2025minimax01scalingfoundationmodels,
@@ -429,7 +509,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <li class="paper" first_authored=true, category="">
-        <pt><a href="https://arxiv.org/abs/2403.09977">EfficientVMamba: Atrous Selective Scan for Light Weight Visual Mamba</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2403.09977">EfficientVMamba: Atrous Selective Scan for Light Weight Visual Mamba</a></pt>
         <div class="author">
             Xiaohuan Pei*, <b><u>Tao Huang</u></b>*, Chang Xu<br>
             <em>In Proceedings of the AAAI Conference on Artificial Intelligence</em> (<b>AAAI</b>), 2025
@@ -439,7 +519,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <button class="button-59 bib-link">Bib</button>
             <a href="https://github.com/TerryPei/EfficientVMamba" class="button-59">Code</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{pei2025efficientvmamba,
@@ -459,7 +539,7 @@ For the latest full publication list, please refer to my <a href="https://schola
 
     <!-- <h3 style="margin-top: 1em;">2024</h3> -->
     <li class="paper">
-        <pt><a href="https://arxiv.org/abs/2405.14156">Unveiling the Tapestry of Consistency in Large Vision-Language Models</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2405.14156">Unveiling the Tapestry of Consistency in Large Vision-Language Models</a></pt>
         <div class="author">
             Yuan Zhang, Fei Xiao, <b><u>Tao Huang</u></b>, Chun-Kai Fan, Hongyuan Dong, Jiawen Li, Jiacong Wang, Kuan Cheng, Shanghang Zhang, Haoyuan Guo<br>
             <em>Advances in Neural Information Processing Systems</em> (<b>NeurIPS</b>), 2024.
@@ -469,7 +549,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <button class="button-59 bib-link">Bib</button>
             <a href="https://github.com/foundation-multimodal-models/ConBench" class="button-59">Code</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{zhang2024unveiling,
@@ -485,7 +565,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <li class="paper" first_authored=true category="">
-        <pt><a href="https://arxiv.org/abs/2403.09338">LocalMamba: Visual State Space Model with Windowed Selective Scan</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2403.09338">LocalMamba: Visual State Space Model with Windowed Selective Scan</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>, Xiaohuan Pei, Shan You, Fei Wang, Chen Qian, Chang Xu<br>
             <em>Efficient Deep Learning for Foundation Models, European Conference on Computer Vision</em> (<b>ECCV</b>) Workshop, 2024.
@@ -495,7 +575,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <button class="button-59 bib-link">Bib</button>
             <a href="https://github.com/hunto/LocalMamba" class="button-59">Code</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @article{huang2024localmamba,
@@ -511,7 +591,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <li class="paper" first_authored=true category="Efficient Data,Efficient Training">
-        <pt><a href="https://arxiv.org/abs/2403.06517">Active Generation for Image Classification</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2403.06517">Active Generation for Image Classification</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>*, Jiaqi Liu*, Shan You, Chang Xu<br>
             <em>European Conference on Computer Vision</em> (<b>ECCV</b>), 2024.
@@ -521,7 +601,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <button class="button-59 bib-link">Bib</button>
             <a href="https://github.com/hunto/ActGen" class="button-59">Code</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{huang2024active,
@@ -538,7 +618,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <li class="paper" category="generation,Efficient Training">
-        <pt><a href="https://arxiv.org/abs/2407.13609">Training-free Composite Scene Generation for Layout-to-Image Synthesis</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2407.13609">Training-free Composite Scene Generation for Layout-to-Image Synthesis</a></pt>
         <div class="author">
             Jiaqi Liu, <b><u>Tao Huang</u></b>, Chang Xu<br>
             <em>European Conference on Computer Vision</em> (<b>ECCV</b>), 2024.
@@ -548,7 +628,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <button class="button-59 bib-link">Bib</button>
             <a href="https://github.com/Papple-F/csg" class="button-59">Code</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{liu2024training,
@@ -565,7 +645,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <li class="paper" category="Efficient Data">
-        <pt><a href="https://arxiv.org/abs/2404.03144">Diverse and Tailored Image Generation for Zero-Shot Multi-Label Classification</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2404.03144">Diverse and Tailored Image Generation for Zero-Shot Multi-Label Classification</a></pt>
         <div class="author">
             Kaixin Zhang, Zhixiang Yuan, <b><u>Tao Huang</u></b><br>
             <em>Knowledge-Based Systems</em> (<b>KBS</b>), Volume 299, 5 September 2024, 112077.
@@ -576,7 +656,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <a href="https://www.sciencedirect.com/science/article/abs/pii/S0950705124007111" class="button-59">KBS</a>
             <a href="https://github.com/TAKELAMAG/Diff-ZS-MLC" class="button-59">Code</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @article{ZHANG2024112077,
@@ -598,7 +678,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <li class="paper" category="Efficient Data">
-        <pt><a href="https://arxiv.org/abs/2306.16016">Positive Label Is All You Need for Multi-Label Classification</a></pt><flag>&#128681; Oral</flag><br>
+        <pt><a href="https://arxiv.org/abs/2306.16016">Positive Label Is All You Need for Multi-Label Classification</a></pt><flag>&#128681; Oral</flag>
         <div class="author">
             Zhixiang Yuan, Kaixin Zhang, <b><u>Tao Huang</u></b><br>
             <em>IEEE International Conference on Multimedia and Expo</em> (<b>ICME</b>), 2024.
@@ -608,7 +688,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <button class="button-59 bib-link">Bib</button>
             <a href="https://github.com/TAKELAMAG/PU-MLC" class="button-59">Code</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{yuan2024positive,
@@ -626,7 +706,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <li class="paper" category="KD">
-        <pt><a href="https://arxiv.org/abs/2311.12079">FreeKD: Knowledge Distillation via Semantic Frequency Prompt</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2311.12079">FreeKD: Knowledge Distillation via Semantic Frequency Prompt</a></pt>
         <div class="author">
             Yuan Zhang, <b><u>Tao Huang</u></b>, Jiaming Liu, Tao Jiang, Kuan Cheng, Shanghang Zhang<br>
             <em>IEEE/CVF Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2024.
@@ -636,7 +716,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <button class="button-59 bib-link">Bib</button>
             <a href="https://github.com/Gumpest/FreeKD" class="button-59">Code</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{zhang2024freekd,
@@ -654,7 +734,7 @@ For the latest full publication list, please refer to my <a href="https://schola
 
     <!-- <h3>2023</h3> -->
     <li class="paper" first_authored=true category="KD">
-        <pt><a href="https://arxiv.org/abs/2305.15712">Knowledge Diffusion for Distillation</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2305.15712">Knowledge Diffusion for Distillation</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>, Yuan Zhang, Mingkai Zheng, Shan You, Fei Wang, Chen Qian, Chang Xu<br>
             <em>Advances in Neural Information Processing Systems</em> (<b>NeurIPS</b>), 2023.
@@ -665,7 +745,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <a href="assets/diffkd/poster_neurips23_diffkd.pdf" class="button-59">Poster</a>
             <a href="https://github.com/hunto/DiffKD" class="button-59">Code</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{huang2023knowledge,
@@ -686,7 +766,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <li class="paper" category="KD">
-        <pt><a href="https://arxiv.org/abs/2305.02722">Avatar Knowledge Distillation: Self-ensemble Teacher Paradigm with Uncertainty</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2305.02722">Avatar Knowledge Distillation: Self-ensemble Teacher Paradigm with Uncertainty</a></pt>
         <div class="author">
             Yuan Zhang, Weihua Chen, Yichen Lu, <b><u>Tao Huang</u></b>, Xiuyu Sun, Jian Cao<br>
             <em>Proceedings of the 31th ACM International Conference on Multimedia</em> (<b>ACM MM</b>), 2023.
@@ -696,7 +776,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <button class="button-59 bib-link">Bib</button>
             <a href="https://github.com/Gumpest/AvatarKD" class="button-59">Code</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{zhang2023avatar,
@@ -713,7 +793,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <li class="paper" first_authored=true category="KD">
-		<pt><a href="https://arxiv.org/abs/2205.14589">Masked Distillation with Receptive Tokens</a></pt><br>
+		<pt><a href="https://arxiv.org/abs/2205.14589">Masked Distillation with Receptive Tokens</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>*, Yuan Zhang*, Shan You, Fei Wang, Chen Qian, Jian Cao, Chang Xu<br>
             <em>International Conference on Learning Representations</em> (<b>ICLR</b>), 2023.</em>
@@ -723,7 +803,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <button class="button-59 bib-link">Bib</button>
             <a href="https://github.com/hunto/MasKD" class="button-59">Code</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{
@@ -742,7 +822,7 @@ For the latest full publication list, please refer to my <a href="https://schola
 
     <!-- <h3>2022</h3> -->
     <li class="paper" first_authored=true category="KD">
-		<pt><a href="https://arxiv.org/abs/2205.10536">Knowledge Distillation from A Stronger Teacher</a></pt><br>
+		<pt><a href="https://arxiv.org/abs/2205.10536">Knowledge Distillation from A Stronger Teacher</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>, Shan You, Fei Wang, Chen Qian, Chang Xu<br>
             <em>Advances in Neural Information Processing Systems</em> (<b>NeurIPS</b>), 2022.
@@ -755,7 +835,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <a href="https://mp.weixin.qq.com/s/PwzyaZXCrl_W8NmiQgXm0g" class="button-59">解读</a>
             <a href="https://github.com/hunto/DIST_KD" class="button-59">Code</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{huang2022knowledge,
@@ -776,7 +856,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <li class="paper" category="NAS">
-		<pt><a href="https://arxiv.org/abs/2010.10217">Quantum circuit architecture search for variational quantum algorithms</a></pt><br>
+		<pt><a href="https://arxiv.org/abs/2010.10217">Quantum circuit architecture search for variational quantum algorithms</a></pt>
         <div class="author">
             Yuxuan Du, <b><u>Tao Huang</u></b>, Shan You, Min-Hsiu Hsieh, Dacheng Tao<br>
 		    <em>Nature Partner Journals Quantum Information</em> (<b>NPJ QI</b>), 2022.<br>
@@ -787,7 +867,7 @@ For the latest full publication list, please refer to my <a href="https://schola
 			<a href="https://www.nature.com/articles/s41534-022-00570-y" class="button-59">Nature</a>
 			<a href="https://github.com/yuxuan-du/Quantum_architecture_search" class="button-59">Code</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                 @article{du2022quantum,
@@ -812,7 +892,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <li class="paper" first_authored=true category="NAS">
-		<pt><a href="https://arxiv.org/abs/2111.12609">GreedyNASv2: Greedier Search with a Greedy Path Filter</a></pt><br>
+		<pt><a href="https://arxiv.org/abs/2111.12609">GreedyNASv2: Greedier Search with a Greedy Path Filter</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>, Shan You, Fei Wang, Chen Qian, Changshui Zhang, Xiaogang Wang, Chang Xu<br>
             <em>IEEE/CVF Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2022.<br>
@@ -822,7 +902,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <button class="button-59 bib-link">Bib</button>
             <a href="assets/greedynasv2/CVPR2022_GreedyNASv2_Poster.pdf" class="button-59">Poster</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{huang2022greedynasv2,
@@ -839,7 +919,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <li class="paper" first_authored=true category="Efficient Training">
-        <pt><a href="https://arxiv.org/abs/2203.12868">DyRep: Bootstrapping Training with Dynamic Re-parameterization</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2203.12868">DyRep: Bootstrapping Training with Dynamic Re-parameterization</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>, Shan You, Bohan Zhang, Yuxuan Du, Fei Wang, Chen Qian, Chang Xu<br>
             <em>IEEE/CVF Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2022.<br>
@@ -850,7 +930,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <a href="assets/dyrep/CVPR2022_DyRep_Poster.pdf" class="button-59">Poster</a>
             <a href="https://github.com/hunto/DyRep" class="button-59">Code</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{huang2022dyrep,
@@ -867,7 +947,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <li class="paper" first_authored=true, category="Efficient Training">
-        <pt><a href="https://arxiv.org/abs/2202.13197">Relational Surrogate Loss Learning</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2202.13197">Relational Surrogate Loss Learning</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>, Zekang Li, Hua Lu, Yong Shan, Shusheng Yang, Yang Feng, Fei Wang, Shan You, Chang Xu<br>
             <em>International Conference on Learning Representations</em> (<b>ICLR</b>), 2022.<br>
@@ -879,7 +959,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <a href="assets/reloss/Slides_ICLR2022_ReLoss.pdf" class="button-59">Slides</a>
             <a href="https://github.com/hunto/ReLoss" class="button-59">Code</a>  
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{
@@ -897,7 +977,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <li class="paper" category="pruning">
-		<pt><a href="https://arxiv.org/abs/2010.15041">Data Agnostic Filter Gating for Efficient Deep Networks</a></pt><br>
+		<pt><a href="https://arxiv.org/abs/2010.15041">Data Agnostic Filter Gating for Efficient Deep Networks</a></pt>
         <div class="author">
             Hongyan Xu, Xiu Su, Shan You, <b><u>Tao Huang</u></b>, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu, Dadong Wang, Arcot Sowmya<br>
             <em>IEEE International Conference on Acoustics, Speech and Signal Processing</em> (<b>ICASSP</b>), 2022.
@@ -906,7 +986,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <venue>ICASSP 2022</venue>
 			<button class="button-59 bib-link">Bib</button>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{xu2022data,
@@ -925,7 +1005,7 @@ For the latest full publication list, please refer to my <a href="https://schola
 
     <!-- <h3>2021</h3> -->
     <li class="paper" first_authored=true category="NAS">
-        <pt><a href="https://arxiv.org/abs/2103.11922">Prioritized Architecture Sampling with Monto-Carlo Tree Search</a></pt><br>
+        <pt><a href="https://arxiv.org/abs/2103.11922">Prioritized Architecture Sampling with Monto-Carlo Tree Search</a></pt>
         <div class="author">
             Xiu Su*, <b><u>Tao Huang</u></b>*, Yanxi Li, Shan You, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu<br>
             <em>IEEE/CVF Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2021.<br>
@@ -936,7 +1016,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <a href="assets/mctnas/Poster_CVPR2021_MCT-NAS.pdf" class="button-59">Poster</a>
             <a href="https://github.com/xiusu/NAS-Bench-Macro" class="button-59">NAS-Bench-Macro</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{su2021prioritized,
@@ -953,7 +1033,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <li class="paper" category="NAS,pruning">
-        <pt><a href="https://arxiv.org/abs/2102.05258">Locally Free Weight Sharing for Network Width Search</a></pt><flag>&#128681; Spotlight</flag><br>
+        <pt><a href="https://arxiv.org/abs/2102.05258">Locally Free Weight Sharing for Network Width Search</a></pt><flag>&#128681; Spotlight</flag>
         <div class="author">
             Xiu Su, Shan You, <b><u>Tao Huang</u></b>, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu<br>
             <em>International Conference on Learning Representations</em> (<b>ICLR</b>), 2021.<br>
@@ -963,7 +1043,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <button class="button-59 bib-link">Bib</button>
             <a href="https://openreview.net/forum?id=S0UdquAnr9k" class="button-59">OpenReview</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{
@@ -982,7 +1062,7 @@ For the latest full publication list, please refer to my <a href="https://schola
 
     <!-- <h3>2020</h3> -->
 	<li class="paper" first_authored=true category="NAS">
-		<pt><a href="https://arxiv.org/abs/2003.11236">GreedyNAS: Towards Fast One-Shot NAS with Greedy Supernet</a></pt><br>
+		<pt><a href="https://arxiv.org/abs/2003.11236">GreedyNAS: Towards Fast One-Shot NAS with Greedy Supernet</a></pt>
         <div class="author">
             Shan You*, <b><u>Tao Huang</u></b>*, Mingmin Yang*, Fei Wang, Chen Qian, Changshui Zhang<br>
             <em>IEEE/CVF Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2020.</br>
@@ -995,7 +1075,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <a href="assets/greedynas/Slides_GreedyNAS_titan.pdf" class="button-59">Slides</a>
             <a href="https://github.com/open-mmlab/mmrazor" class="button-59">Code</a>
             <div class="bib-div"></div>
-            <div class="bib-content" style="display:none">
+            <div class="bib-content">
                 <blockquote>
                 <pre>
                     @inproceedings{you2020greedynas,
@@ -1038,56 +1118,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         });
     }
 
-    function copy(dest, source) {
-        if(dest.source == source) {
-            dest.innerHTML = "";
-            dest.source = null;
-        }
-        else {
-            preElement = source.querySelector('blockquote pre')
-            let innerHTML = preElement.textContent;
-            // Remove leading/trailing whitespace and split into lines
-            let lines = innerHTML.split('\n');
-
-            // Find the minimum number of leading spaces
-            let minIndent = Math.min(...lines.filter(line => line.trim() !== '').map(line => line.match(/^ */)[0].length));
-
-            // Remove the minimum indent from each line
-            let unindentedStr = lines.map(line => line.slice(minIndent)).join('\n');
-            preElement.textContent = unindentedStr.trim()
-            dest.innerHTML = source.innerHTML;
-            dest.source = source;
-
-            // Create a range and select the content of the <pre> element
-            const range = document.createRange();
-            range.selectNodeContents(dest);
-
-            // Remove any existing selection and add the new range to it
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-        }
-        dest.blur();
-    }
-
-    document.querySelectorAll('.bib-link').forEach(link => {
-        link.addEventListener('click', function() {
-            // Find the closest parent <li> for scoping
-            const parentLi = this.closest('li');
-
-            // Find the elements within the same <li> scope
-            const src = parentLi.querySelector('.bib-content');
-            const dst = parentLi.querySelector('.bib-div');
-
-            // const bibContent = parentLi.querySelector('.bib-content').innerHTML;
-            // const bibDiv = parentLi.querySelector('.bib-div');
-
-            // Copy content from bib-content to bib-div
-            // bibDiv.innerHTML = bibContent;
-            
-            copy(dst, src);
-        });
-    });
+    // removed legacy Bib copying; unified toggle is handled above
 
     document.addEventListener("DOMContentLoaded", function() {
         const popover = document.getElementById("popover");

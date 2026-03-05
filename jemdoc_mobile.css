@@ -21,6 +21,7 @@ body {
   padding-bottom: 0px;
   max-width: 100%; 
   font-size: 80%;
+	line-height: 1.6;
 }
 .container {
 	flex-direction: column; /* 垂直排列 */
@@ -84,7 +85,25 @@ div#toptitle {
 }
 
 ul {
-	padding-left: 1em;
+	padding-left: 1.2em;
+}
+.container p,
+p {
+	margin-bottom: 0.9em;
+}
+
+li {
+	margin-top: 0.55em;
+}
+
+h2 {
+	padding-top: 1.2em;
+	margin-bottom: 0.9em;
+}
+
+h3 {
+	margin-top: 1.0em;
+	margin-bottom: 0.5em;
 }
 
 .icon {
@@ -107,6 +126,69 @@ ul {
 	width: 100vw;
 }
 
+.nav-link.active {
+    background-color: rgba(208, 64, 58, 0.3) !important;
+    color: rgb(246, 146, 145) !important;
+    font-weight: 600;
+    border-radius: 6px;
+}
+
 .ult {
 	columns: 1;
 }
+
+/* Publications - mobile compact overrides */
+#publications {
+	padding-left: 0;
+}
+
+#publications li.paper {
+	padding: 10px;              /* 正常内边距，chips 同行右侧 */
+	margin: 8px 0;              /* 卡片间距 */
+	border-left-width: 0;
+	border-radius: 10px;
+	border: 1px solid #ececec;  /* 细边框 */
+	background: #ffffff;        /* 卡片背景 */
+	box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+	transition: box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+#publications li.paper:hover {
+	background-color: rgba(208, 64, 58, 0.02);
+	border-color: rgba(208, 64, 58, 0.25);
+	box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+#publications li.paper pt a {
+	display: inline;     /* 与 flag 同行 */
+	font-size: 1.08em;   /* 比作者略大 */
+	margin-bottom: 0;    /* 去掉块级间距 */
+	margin-right: 6px;   /* 与 flag 间距 */
+}
+
+#publications li.paper .author {
+	font-size: 0.9em;
+	line-height: 1.45;
+	margin-bottom: 4px;
+}
+
+#publications li.paper venue {
+	padding: 0 8px;
+	margin-right: 6px;
+}
+
+#publications li.paper .button-59 {
+	margin-left: 2px;   /* 更小间距 */
+	margin-top: 0.2em;
+}
+
+/* 移动端 chips 容器 */
+.cate-wrap {
+	margin-left: auto;  /* 行尾 */
+	display: flex;
+	flex-wrap: wrap;
+	gap: 3px;
+}
+
+/* 移除移动端徽标 */
+#publications li.paper[first_authored]::before { content: none; }
