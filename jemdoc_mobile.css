@@ -37,12 +37,16 @@ body {
 .right-section {
 	display: flex;
 	flex-direction: row;
-	align-items: center; /* 垂直居中对齐文字和图片 */
+	align-items: center;
 	order: 1;
 	background-color: white;
-	border: 0;
+	border: none;
 	margin-top: 2em;
 	padding-bottom: 0;
+	border-radius: 12px;
+	box-shadow: 0 2px 12px 2px rgba(0, 0, 0, 0.06);
+	padding: 15px;
+	margin: 15px 0;
 }
 .right-section div {
 	flex: 1; /* 让文字信息占一半宽度 */
@@ -51,7 +55,7 @@ body {
 .left-section {
 	order: 2;
 	margin-right: 0;
-}
+	}
 
 .profile-pic {
 	width: 25%; /* 图片宽度为50% */
