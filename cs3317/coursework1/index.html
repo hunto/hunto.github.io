@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coursework 1: Route Planning with Search Algorithms</title>
+  <style>
+    :root{
+      --bg:#ffffff; --text:#111827; --muted:#475569; --card:#ffffff;
+      --border:#e5e7eb; --accent:#2563eb; --accent2:#0ea5e9;
+      --codebg:#0b1220; --codefg:#e5e7eb;
+    }
+    body{margin:0; background:var(--bg); color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;}
+    .container{max-width: 980px; margin: 0 auto; padding: 28px 16px 46px;}
+    header{margin-bottom: 18px;}
+    h1{font-size: 26px; margin: 0 0 6px;}
+    .subtitle{color:var(--muted); line-height:1.5;}
+    .grid{display:grid; grid-template-columns: 1fr; gap: 12px;}
+    /* Single-column layout: one card per row */
+    .card{background:var(--card); border:1px solid var(--border); border-radius: 14px;
+      padding: 14px 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.04);} 
+    h2{font-size: 16px; margin: 0 0 10px;}
+    h3{font-size: 14px; margin: 12px 0 8px;}
+    p{margin: 0 0 10px; color:var(--text); line-height:1.65;}
+    ul, ol{margin: 0; padding-left: 18px; color:var(--text); line-height:1.65;}
+    li{margin: 4px 0;}
+    code, pre{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    code{background:#f1f5f9; padding: 1px 6px; border-radius: 8px;}
+    pre{background:var(--codebg); color:var(--codefg); padding: 12px 14px; border-radius: 12px; overflow:auto;}
+    pre code{background:transparent; padding:0; border-radius:0;}
+    .tag{display:inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12px;
+      border:1px solid var(--border); color:var(--muted); margin-right: 6px;}
+    .highlight{border-left: 4px solid var(--accent); background: #f8fbff;}
+    table{width:100%; border-collapse: collapse; font-size: 14px;}
+    th, td{border:1px solid var(--border); padding: 8px 10px; text-align:left; vertical-align: top;}
+    th{background:#f8fafc;}
+    .checklist{padding-left:0;}
+    .checklist li{list-style: none; padding-left: 0;}
+    .checklist input{margin-right: 8px;}
+    a{color:var(--accent); text-decoration: none;}
+    a:hover{text-decoration: underline;}
+    /* span2 kept for compatibility (single-column makes it no-op) */
+    .span2{grid-column: auto;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Coursework 1: Route Planning with Search Algorithms</h1>
+      <div class="subtitle">
+        <span class="tag"><a href="https://taohuang.info/cs3317">CS3317: Artificial Intelligence</a></span>
+        <span class="tag"><a href="https://oc.sjtu.edu.cn/courses/89538/assignments/396536">canvas</a></span>
+        <span class="tag">Search Algorithms</span>
+        <span class="tag">Shanghai Jiao Tong University</span>
+        <div style="margin-top:10px;">
+          Implement <b>DFS</b>, <b>UCS</b>, and <b>A*</b> (with <b>BFS provided as an example</b>) for route planning on a weighted city graph.
+          Run a fixed test suite and compare <b>optimality</b> and <b>efficiency</b> across algorithms.
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Overview</h2>
+        <p>
+          Each city is a node; each road is an <b>undirected weighted edge</b> (km). City coordinates are used to compute the heuristic for <b>A*</b>.
+        </p>
+        <ul>
+          <li>Algorithms: BFS (example), DFS, UCS, A*</li>
+          <li>Metrics: path, total cost (km), expanded nodes, runtime (ms)</li>
+          <li>Outputs: console summary + standalone HTML (SVG) visualization</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Learning Objectives</h2>
+        <ul>
+          <li>Formulate route planning as a graph search problem</li>
+          <li>Implement DFS/UCS/A* correctly and reproducibly</li>
+          <li>Use a coordinate-based heuristic and explain why it helps</li>
+          <li>Observe differences in optimality (hops vs distance) and efficiency (expansions/runtime)</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Downloads & Canvas Submission</h2>
+        <p>
+          Download the materials below (these files are included in the coursework package).
+        </p>
+        <ul>
+          <li><a href="assets/Coursework1_Route_Planning.pdf" download>Coursework handout (PDF)</a></li>
+          <li><a href="assets/coursework1_package.zip" download>Starter package</a><br/>
+            <ul>
+              <li><code>route_planning.py</code> — code template (you implement DFS/UCS/A*)</li>
+              <li><code>run_all_tests.py</code> — runs all algorithms on required test queries and writes <code>test_results/</code></li>
+              <li><code>cities.txt, roads.txt</code> — dataset</li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          <b>Submitting on Canvas:</b> . In short, you submit
+          <code>route_planning.py</code> and the entire <code>test_results/</code> directory, package them together into one <code>zip</code> file to submit.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Dataset</h2>
+        <p><b>cities.txt</b> format:</p>
+        <pre><code>CityName latitude longitude
+Beijing 39.9042 116.4074
+Shanghai 31.2304 121.4737
+XiAn 34.3416 108.9398</code></pre>
+
+        <p><b>roads.txt</b> format (undirected):</p>
+        <pre><code>CityA CityB distance_km
+Beijing Tianjin 120
+Nanjing Shanghai 300
+Hohhot Shanghai 1500</code></pre>
+
+        <p>
+          <b>Design note:</b> the dataset includes distractor branches and an expensive shortcut so BFS/DFS/UCS/A* show clearer differences.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Tasks (What you implement)</h2>
+        <h3>Starter code</h3>
+        <ul>
+          <li><code>route_planning.py</code>: BFS is already implemented as an example; you implement DFS/UCS/A*</li>
+          <li><code>run_all_tests.py</code>: runs all algorithms on required queries and writes <code>test_results/</code></li>
+        </ul>
+
+        <h3>Implement these functions</h3>
+        <ul>
+          <li><code>dfs(graph, start, goal)</code></li>
+          <li><code>ucs(graph, start, goal)</code></li>
+          <li><code>astar(graph, coords, start, goal)</code></li>
+        </ul>
+      </section>
+
+      <section class="card highlight">
+        <h2>Visualization Output (Generated Automatically)</h2>
+        <p>
+          After each run, the program generates a <b>standalone HTML</b> visualization showing:
+        </p>
+        <ul>
+          <li>all cities and roads (gray)</li>
+          <li>explored edges (blue) and expanded nodes</li>
+          <li>final path (orange)</li>
+          <li>start (green) and goal (red)</li>
+        </ul>
+        <p>Open the HTML file directly in a browser (Windows/macOS/Linux).</p>
+      </section>
+
+      <section class="card">
+        <h2>Running Instructions</h2>
+        <p>Run a single query:</p>
+        <pre><code>python route_planning.py --algorithm astar --start Beijing --goal Shenzhen</code></pre>
+        <p>Specify output file:</p>
+        <pre><code>python route_planning.py --algorithm bfs --start Beijing --goal Shanghai --output outputs/route_result.html</code></pre>
+        <p>Run all required tests:</p>
+        <pre><code>python run_all_tests.py --outdir test_results</code></pre>
+      </section>
+
+      <section class="card span2">
+        <h2>What you should see if everything is correct (expected patterns)</h2>
+        <ul>
+          <li><b>BFS:</b> often fewer hops; may have <b>higher total cost</b> than UCS/A*</li>
+          <li><b>DFS:</b> not optimal; can expand many nodes depending on branch order</li>
+          <li><b>UCS:</b> distance-optimal; may expand more nodes than A*</li>
+          <li><b>A*:</b> distance-optimal; usually expands fewer nodes than UCS due to heuristic guidance</li>
+        </ul>
+        <p>
+          Check <code>test_results/summary.csv</code> (runtime_ms / expanded_nodes / total_cost) and compare.
+        </p>
+      </section>
+
+      <section class="card span2 highlight">
+        <h2>Think about the differences (and conclusions)</h2>
+        <h3>Guiding questions</h3>
+        <ol>
+          <li><b>Optimality:</b> which algorithms guarantee minimum total distance?</li>
+          <li><b>Efficiency:</b> which expands fewer nodes? which runs faster?</li>
+          <li><b>Heuristic impact:</b> why should A* expand fewer nodes than UCS?</li>
+          <li><b>Trade-off:</b> when does BFS look “good” (few hops) but is still a bad route (high cost)?</li>
+        </ol>
+
+        <h3>Conclusions you should observe in this coursework</h3>
+        <ul>
+          <li><b>BFS</b> is not distance-optimal on weighted graphs (optimizes hops).</li>
+          <li><b>DFS</b> is not optimal and can be inefficient depending on branch order.</li>
+          <li><b>UCS</b> is distance-optimal but can explore broadly.</li>
+          <li><b>A*</b> is distance-optimal and typically explores fewer nodes than UCS.</li>
+        </ul>
+      </section>
+
+      <section class="card highlight">
+        <h2>Automated Tests (Submit the Output Directory)</h2>
+        <p>
+          The batch runner writes a directory containing per-case <code>result.json</code> and <code>visualization.html</code>, plus summary files. Test cases:
+        </p>
+        <ul>
+          <li>Beijing → Shanghai</li>
+          <li>Beijing → Shenzhen</li>
+          <li>Shanghai → Chengdu</li>
+          <li>Guangzhou → XiAn</li>
+          <li>Chengdu → Hangzhou</li>
+        </ul>
+        <pre><code>python run_all_tests.py</code></pre>
+        <p><b>You must submit the entire</b> <code>test_results/</code> <b>directory</b>.</p>
+      </section>
+
+      <section class="card">
+        <h2>Submission Checklist</h2>
+        <ul class="checklist">
+          <li><input type="checkbox" disabled> Implemented <code>route_planning.py</code> (DFS/UCS/A* completed; BFS unchanged)</li>
+          <li><input type="checkbox" disabled> Entire <code>test_results/</code> directory generated by <code>run_all_tests.py</code></li>
+        </ul>
+        <p><b>No report is required.</b></p>
+      </section>
+
+      <section class="card">
+        <h2>Grading Rubric (100 points)</h2>
+        <table>
+          <thead>
+            <tr><th>Component</th><th style="width:120px; text-align:right;">Points</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>DFS implementation</td><td style="text-align:right;">20</td></tr>
+            <tr><td>UCS implementation</td><td style="text-align:right;">30</td></tr>
+            <tr><td>A* implementation</td><td style="text-align:right;">35</td></tr>
+            <tr><td>Running tests + correct outputs directory structure</td><td style="text-align:right;">10</td></tr>
+            <tr><td>Code clarity (readable, well-structured)</td><td style="text-align:right;">5</td></tr>
+            <tr><td><b>Total</b></td><td style="text-align:right;"><b>100</b></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h2>Academic Integrity & Notes</h2>
+        <ul>
+          <li>Discussing high-level ideas is allowed, but your code must be your own.</li>
+          <li>Do not share code or copy implementations from others.</li>
+          <li>Cross-platform requirement: your code must run on Windows/macOS/Linux.</li>
+        </ul>
+      </section>
+    </div>
+
+    <footer style="margin-top:18px; color:var(--muted); font-size: 13px; line-height:1.6;">
+      <b>Note:</b> Open the generated visualizations in any browser; they are fully self-contained.
+    </footer>
+  </div>
+</body>
+</html>
