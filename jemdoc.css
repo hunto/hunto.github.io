@@ -1382,15 +1382,6 @@ blockquote {
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-/* ClusterMaps visitor map container */
-.visitor-map {
-	margin-top: 2em;
-	padding: 1em;
-	border-radius: 8px;
-	background: rgb(249, 249, 251);
-	text-align: center;
-}
-
 /* Sticky filter bar for publications */
 .filter-bar {
 	position: sticky;
