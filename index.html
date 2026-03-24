@@ -1,10 +1,7 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0, minimum-scale=0.2">
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0"> -->
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0, minimum-scale=0.2">
     <link rel="stylesheet" href="bootstrap.min.css">
     <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101296995);</script>
     <script async src="//static.getclicky.com/js"></script>    
@@ -170,16 +167,14 @@
     <link rel="stylesheet" media="screen and (max-width:700px)" href="jemdoc.css" type="text/css" /> -->
     <title>Tao Huang - Homepage</title>
 </head>
-
+<body>
 <div class="topinfo-text">
     <h1>TAO HUANG</h1>
     <hr class="topinfo" width="200" size="2" color="#eee" align="left">
     <p style="margin-bottom: 30px;">
-        <!-- <span style="color: rgb(208, 64, 58);"><b>The only way to do great work is to love what you do.</b></span> -->
         <span style="color: rgb(208, 64, 58);"><b>THE ONLY WAY TO DO GREAT WORK IS TO LOVE WHAT YOU DO.</b></span>
     </p>
 </div>
-<body>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -200,48 +195,6 @@
           </div>
         </div>
     </nav>
-
-    <script>
-        // Wait for the DOM to load
-        document.addEventListener("DOMContentLoaded", function () {
-            // Highlight current page in navigation
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(function(link) {
-                const href = link.getAttribute('href');
-                if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-                    link.classList.add('active');
-                }
-            });
-
-            // Get all navigation links
-            const navbarToggler = document.querySelector(".navbar-toggler");
-            const navbarCollapse = document.querySelector(".navbar-collapse");
-
-            // Add click event listener to each navigation link
-            navLinks.forEach(function (link) {
-            link.addEventListener("click", function () {
-                if (navbarCollapse.classList.contains("show")) {
-                navbarToggler.click(); // Simulate a click on the toggler to close the menu
-                }
-            });
-            });
-
-            // Add click event listener to the document
-            document.addEventListener("click", function (event) {
-            // Check if the clicked element is not part of the menu or the toggler
-            if (!navbarCollapse.contains(event.target) && !navbarToggler.contains(event.target)) {
-                navbarCollapse.classList.remove("show"); // Hide the menu
-            }
-            });
-
-            // Add mouseleave event listener to the menu
-            navbarCollapse.addEventListener("mouseleave", function () {
-            navbarCollapse.classList.remove("show"); // Hide the menu when the mouse leaves
-            });
-        });
-
-    </script>
 
 <div class="container" style="align-items: start; align-self: start; align-content: start;">
     <div class="left-section">
@@ -266,7 +219,7 @@
 
     <div class="right-section">
         <!-- <h2>Tao Huang</h2> -->
-        <img src="assets/taohuang.png" class="profile-pic">
+        <img src="assets/taohuang.png" class="profile-pic" alt="Photo of Tao Huang">
         <p style="font-size: small;">
             <strong style="font-size: medium;">Tao Huang</strong><br>
             Assistant Professor, PhD Advisor<br>
@@ -290,7 +243,7 @@
 </div>
 
 <!-- <p><font color="red">Pinned: </font></p> -->
-<div id="news" style="margin-bottom: 2em; margin-top: -2em;"></div>
+<div id="news" class="anchor-offset"></div>
 <div class="news-card">
 <h2>News</h2>
 <ul>
@@ -360,7 +313,7 @@
 </div>
 
 
-<!-- <div id="team" style="margin-bottom: 2em; margin-top: -2em;"></div>
+<!-- <div id="team" class="anchor-offset"></div>
 <h2>Team</h2>
 I am grateful for the privilege of collaborating with a group of talented and dedicated students. Working alongside you has been both an honor and a delightful experience.
 <ul class="ult">
@@ -379,7 +332,7 @@ I am grateful for the privilege of collaborating with a group of talented and de
 
 <!-- <div class="paper"></div> -->
 
-<div id="education" style="margin-bottom: 2em; margin-top: -2em;"></div>
+<div id="education" class="anchor-offset"></div>
 <h2>Educations</h2>
 <ul>
     <li>
@@ -399,7 +352,7 @@ I am grateful for the privilege of collaborating with a group of talented and de
     </li>
 </ul>
 
-<div id="experiences" style="margin-bottom: 2em; margin-top: -2em;"></div>
+<div id="experiences" class="anchor-offset"></div>
 <h2>Selected Experiences</h2>
 <ul>
 	<li>
@@ -483,7 +436,7 @@ I am grateful for the privilege of collaborating with a group of talented and de
 	
 </ul>
 
-<div id="awards" style="margin-bottom: 2em; margin-top: -2em;"></div>
+<div id="awards" class="anchor-offset"></div>
 <h2>Selected Awards</h2>
 <ul>
     <li style="margin-top: 0.2em">
@@ -542,13 +495,15 @@ I am grateful for the privilege of collaborating with a group of talented and de
     </li> -->
 </ul>
 
-<!-- <div id="grants" style="margin-bottom: 2em; margin-top: -2em;"></div>
+<!-- <div id="grants" class="anchor-offset"></div>
 <h2>Grants</h2>
 <ul>
     <li style="margin-top: 0.2em">2023-2024, Efficient Language-and-Vision Models, 1000 USD, Google Cloud Research Credits Award</li>
 </ul> -->
 
+<div class="visitor-map">
 <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=080808&w=300&t=tt&d=tV7pcGj1jajVaYBjRVqpINW8wuIfJK-wrARhj0jr8NQ&co=ffffff&cmo=3acc3a&cmn=ff5353&ct=808080'></script>
+</div>
 
 
 <div id="footer">
@@ -561,6 +516,7 @@ I am grateful for the privilege of collaborating with a group of talented and de
     </center>-->
 
 <!-- Popover Element -->
+<button class="back-to-top" aria-label="Back to top">&uarr;</button>
 <div id="popover" class="popover"></div>
 
 </body>
@@ -659,56 +615,9 @@ I am grateful for the privilege of collaborating with a group of talented and de
         });
     });
 
-    document.addEventListener("DOMContentLoaded", function() {
-        const popover = document.getElementById("popover");
-        let hideTimeout;
-
-        document.querySelectorAll(".hover-text").forEach(item => {
-            item.addEventListener("mouseenter", function(event) {
-                clearTimeout(hideTimeout); // Prevent popover from disappearing immediately
-                popover.textContent = this.getAttribute("data-text");
-                popover.style.display = "block";
-                popover.style.opacity = "1";
-
-                // Calculate position
-                let x = event.pageX;
-                let y = event.pageY + 10; // Move slightly below text to avoid overlap
-
-                // Prevent popover from going off-screen (right side)
-                const popoverWidth = popover.offsetWidth;
-                if (x + popoverWidth > window.innerWidth) {
-                    x = window.innerWidth - popoverWidth - 10; // Adjust to fit
-                }
-
-                popover.style.left = x + "px";
-                popover.style.top = y + "px";
-            });
-
-            item.addEventListener("mouseleave", function() {
-                hideTimeout = setTimeout(() => {
-                    popover.style.opacity = "0";
-                    setTimeout(() => {
-                        popover.style.display = "none";
-                    }, 200); // Delay hiding to prevent flickering
-                }, 300);
-            });
-        });
-
-        popover.addEventListener("mouseenter", function () {
-            clearTimeout(hideTimeout); // Keep popover open when hovered
-        });
-
-        popover.addEventListener("mouseleave", function () {
-            popover.style.opacity = "0";
-            setTimeout(() => {
-                popover.style.display = "none";
-            }, 200);
-        });
-    });
-
-    
 
 </script>
 
+<script src="common.js"></script>
 </html>
 
