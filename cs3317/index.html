@@ -122,6 +122,17 @@
       white-space:nowrap;
     }
     .tag.due{border-color:rgba(185,28,28,.35); color:var(--warn)}
+    .module-row td{
+      background:linear-gradient(90deg, rgba(37,99,235,.07), rgba(14,165,233,.04));
+      border-bottom:1px solid var(--line);
+      border-top:2px solid rgba(37,99,235,.2);
+      padding:7px 10px;
+      font-weight:600;
+      font-size:13px;
+      color:var(--accent);
+      letter-spacing:.01em;
+    }
+    tbody tr.module-row:hover{background:linear-gradient(90deg,rgba(37,99,235,.07),rgba(14,165,233,.04))}
     .links a{margin-right:10px}
     footer{
       margin-top:30px;
@@ -223,7 +234,13 @@
     <div class="card">
       <ul>
         <li><b>Coursework 1:</b> <a href="coursework1/index.html">Route Planning with Search Algorithms</a> (<a href="https://oc.sjtu.edu.cn/courses/89538/assignments/396536">canvas</a>)
-            Due: 2026-03-16, 23:59 CST</li>
+            Due: <s>2026-03-16, 23:59 CST</s></li>
+        <li><b>Coursework 2:</b> <a href="coursework2/index.html">Classification: Logistic Regression</a> (<a href="https://oc.sjtu.edu.cn/courses/89538/assignments/400989">canvas</a>)
+            Due: 2026-04-13, 23:59 CST</li>
+        <li><b>Coursework 2:</b> <a href="coursework3/index.html">Classification: MLP</a> (<a href="https://oc.sjtu.edu.cn/courses/89538/assignments/400999">canvas</a>)
+            Due: 2026-04-27, 23:59 CST</li>
+        <li><b>Coursework 2:</b> <a href="coursework4/index.html">Classification: Logistic Regression</a> (<a href="https://oc.sjtu.edu.cn/courses/89538/assignments/401000">canvas</a>)
+            Due: 2026-05-11, 23:59 CST</li>
       </ul>
     </div>
   </section>
@@ -243,6 +260,10 @@
         </tr>
       </thead>
       <tbody>
+        <!-- Module 1 -->
+        <tr class="module-row">
+          <td colspan="6">Module 1: Introduction</td>
+        </tr>
         <!-- Week 1 -->
         <tr>
           <td>1</td>
@@ -262,6 +283,10 @@
           <td>
             <span class="tag">—</span>
           </td>
+        </tr>
+        <!-- Module 2 -->
+        <tr class="module-row">
+          <td colspan="6">Module 2: Search</td>
         </tr>
         <!-- Week 2 -->
         <tr>
@@ -309,6 +334,10 @@
             <span class="tag">—</span>
           </td>
         </tr>
+        <!-- Module 3 -->
+        <tr class="module-row">
+          <td colspan="6">Module 3: Machine Learning</td>
+        </tr>
         <!-- Week 4 -->
         <tr>
           <td>4</td>
@@ -323,6 +352,164 @@
             <a href="assets/L8_ML_paradigm.pdf">L8</a> •
             <a href="assets/L9_linear_models.pdf">L9</a> •
             <a href="assets/L10_optimization.pdf">L10</a>
+          </td>
+          <td>
+            <span class="tag">—</span>
+          </td>
+          <td>
+            <span class="tag">—</span>
+          </td>
+        </tr>
+        <!-- Week 5 -->
+        <tr>
+          <td>5</td>
+          <td>2026-03-30</td>
+          <td>
+            <b>Classical ML</b><br/>
+            1. Support Vector Machines<br/>
+            2. Decision Trees & Ensemble Methods<br/>
+            3. Model Evaluation<br/>
+          </td>
+          <td>
+            <a href="assets/L8_ML_paradigm.pdf">L11</a> •
+            <a href="assets/L9_linear_models.pdf">L12</a> •
+            <a href="assets/L10_optimization.pdf">L13</a>
+          </td>
+          <td>
+            <span class="tag">—</span>
+          </td>
+          <td>
+            <span class="tag due">Coursework 2</span> <br/>
+            <a href="coursework2/index.html">Logistic Regression</a> (<a href="https://oc.sjtu.edu.cn/courses/89538/assignments/400989">canvas</a>)<br/>
+            Due: 2026-04-13, 23:59 CST
+          </td>
+        </tr>
+        <!-- Module 4 -->
+        <tr class="module-row">
+          <td colspan="6">Module 4: Deep Learning</td>
+        </tr>
+        <!-- Week 6 -->
+        <tr>
+          <td>6</td>
+          <td>2026-04-13</td>
+          <td>
+            <b>Neural Networks</b><br/>
+            1. Perceptron & MLP<br/>
+            2. Backpropagation<br/>
+            3. Training Deep Networks<br/>
+          </td>
+          <td>
+            <a href="">L14</a> •
+            <a href="">L15</a> •
+            <a href="">L16</a>
+          </td>
+          <td>
+            <span class="tag">—</span>
+          </td>
+          <td>
+            <span class="tag due">Coursework 3</span> <br/>
+            <a href="coursework3/index.html">MLP</a> (<a href="https://oc.sjtu.edu.cn/courses/89538/assignments/400999">canvas</a>)<br/>
+            Due: 2026-04-27, 23:59 CST
+          </td>
+        </tr>
+        <!-- Week 7 -->
+        <tr>
+          <td>7</td>
+          <td>2026-04-20</td>
+          <td>
+            <b>CNNs & Vision</b><br/>
+            1. Convolutional Neural Networks<br/>
+            2. Modern CNN Architectures<br/>
+            3. Self-Supervised Learning<br/>
+          </td>
+          <td>
+            
+          </td>
+          <td>
+            <span class="tag">—</span>
+          </td>
+          <td>
+            <span class="tag due">Coursework 4</span> <br/>
+            <a href="coursework4/index.html">CNN</a> (<a href="https://oc.sjtu.edu.cn/courses/89538/assignments/401000">canvas</a>)<br/>
+            Due: 2026-05-11, 23:59 CST
+          </td>
+        </tr>
+        <!-- Week 8 -->
+        <tr>
+          <td>8</td>
+          <td>2026-04-27</td>
+          <td>
+            <b>Sequence Models & Transformers</b><br/>
+            1. RNN & LSTM<br/>
+            2. Attention Mechanism<br/>
+            3. Transformer Architecture<br/>
+          </td>
+          <td>
+          </td>
+          <td>
+            <span class="tag">—</span>
+          </td>
+          <td>
+            <span class="tag">—</span>
+          </td>
+        </tr>
+        <!-- Module 3 -->
+        <tr class="module-row">
+          <td colspan="6">Module 5: Generative AI</td>
+        </tr>
+        <!-- Week 9 -->
+        <tr>
+          <td>9</td>
+          <td>2026-05-09</td>
+          <td>
+            <b>Generative Models</b><br/>
+            1. Probabilistic Generative Modeling<br/>
+            2. Variational Autoencoders<br/>
+            3. Generative Adversarial Networks<br/>
+          </td>
+          <td>
+          </td>
+          <td>
+            <span class="tag">—</span>
+          </td>
+          <td>
+            <span class="tag">—</span>
+          </td>
+        </tr>
+        <!-- Week 10 -->
+        <tr>
+          <td>10</td>
+          <td>2026-05-11</td>
+          <td>
+            <b>Diffusion & Multimodal Generation</b><br/>
+            1. Diffusion Models<br/>
+            2. Large Language Models<br/>
+            3. Vision-Language Models<br/>
+          </td>
+          <td>
+          </td>
+          <td>
+            <span class="tag">—</span>
+          </td>
+          <td>
+            <span class="tag">—</span>
+          </td>
+        </tr>
+        <!-- Module 6 -->
+        <tr class="module-row">
+          <td colspan="6">Module 6: Reinforcement Learning</td>
+        </tr>
+        <!-- Week 11 -->
+        <tr>
+          <td>11</td>
+          <td>2026-05-18</td>
+          <td>
+            <b>RL Foundations</b><br/>
+            1. Markov Decision Processes<br/>
+            2. Dynamic Programming<br/>
+            3. Temporal Difference Learning<br/>
+          </td>
+          <td>
           </td>
           <td>
             <span class="tag">—</span>

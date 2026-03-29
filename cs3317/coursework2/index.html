@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coursework 2: Logistic Regression &amp; Loss Functions</title>
+  <style>
+    :root{
+      --bg:#ffffff; --text:#111827; --muted:#475569; --card:#ffffff;
+      --border:#e5e7eb; --accent:#2563eb; --accent2:#0ea5e9;
+      --codebg:#0b1220; --codefg:#e5e7eb;
+    }
+    body{margin:0; background:var(--bg); color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;}
+    .container{max-width: 980px; margin: 0 auto; padding: 28px 16px 46px;}
+    header{margin-bottom: 18px;}
+    h1{font-size: 26px; margin: 0 0 6px;}
+    .subtitle{color:var(--muted); line-height:1.5;}
+    .grid{display:grid; grid-template-columns: 1fr; gap: 12px;}
+    .card{background:var(--card); border:1px solid var(--border); border-radius: 14px;
+      padding: 14px 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.04);}
+    h2{font-size: 16px; margin: 0 0 10px;}
+    h3{font-size: 14px; margin: 12px 0 8px;}
+    p{margin: 0 0 10px; color:var(--text); line-height:1.65;}
+    ul, ol{margin: 0; padding-left: 18px; color:var(--text); line-height:1.65;}
+    li{margin: 4px 0;}
+    code, pre{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    code{background:#f1f5f9; padding: 1px 6px; border-radius: 8px;}
+    pre{background:var(--codebg); color:var(--codefg); padding: 12px 14px; border-radius: 12px; overflow:auto;}
+    pre code{background:transparent; padding:0; border-radius:0;}
+    .tag{display:inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12px;
+      border:1px solid var(--border); color:var(--muted); margin-right: 6px;}
+    .highlight{border-left: 4px solid var(--accent); background: #f8fbff;}
+    table{width:100%; border-collapse: collapse; font-size: 14px;}
+    th, td{border:1px solid var(--border); padding: 8px 10px; text-align:left; vertical-align: top;}
+    th{background:#f8fafc;}
+    .checklist{padding-left:0;}
+    .checklist li{list-style: none; padding-left: 0;}
+    .checklist input{margin-right: 8px;}
+    a{color:var(--accent); text-decoration: none;}
+    a:hover{text-decoration: underline;}
+    .span2{grid-column: auto;}
+    .math{font-style: italic; font-family: Georgia, "Times New Roman", serif;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Coursework 2: Logistic Regression &amp; Loss Functions</h1>
+      <div class="subtitle">
+        <span class="tag"><a href="https://taohuang.info/cs3317">CS3317: Artificial Intelligence</a></span>
+        <span class="tag"><a href="https://oc.sjtu.edu.cn/courses/89538/assignments/400989">Canvas</a></span>
+        <span class="tag">Logistic Regression</span>
+        <span class="tag">NumPy</span>
+        <span class="tag">FashionMNIST</span>
+        <div style="margin-top:10px;">
+          Implement a <b>multi-class logistic regression</b> classifier from scratch with NumPy.
+          Explore <b>four different loss functions</b> and compare their convergence speed and final accuracy on FashionMNIST.
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <section class="card">
+        <h2>Overview</h2>
+        <p>
+          You will build every component of a logistic regression pipeline by hand — softmax, loss functions, gradient computation, and parameter updates — using NumPy only (no PyTorch).
+        </p>
+        <ul>
+          <li><b>Dataset:</b> FashionMNIST — 60K train / 10K test, 28×28 grayscale images of 10 clothing categories, flattened to 784-dim vectors</li>
+          <li><b>Model:</b> <span class="math">p = softmax(XW + b)</span> — a single linear layer + softmax</li>
+          <li><b>Loss functions:</b> cross-entropy, hinge, exponential, squared</li>
+          <li><b>Outputs:</b> loss/accuracy curves, confusion matrix, weight visualizations, comparison plot</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Learning Objectives</h2>
+        <ul>
+          <li>Derive and implement softmax and its gradient through the cross-entropy and squared losses</li>
+          <li>Understand why different loss functions produce different gradient magnitudes and convergence rates</li>
+          <li>Implement mini-batch stochastic gradient descent from scratch</li>
+          <li>Evaluate a classifier with accuracy, confusion matrix, and per-class metrics</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Downloads &amp; Canvas Submission</h2>
+        <ul>
+          <li><a href="assets/Coursework2_Logistic_Regression.pdf" download>Coursework handout (PDF)</a></li>
+          <li><a href="assets/coursework2-4_package.zip" download>Starter package</a>
+            <ul>
+              <li><code>cw2_logistic_regression/losses.py</code> — implement softmax &amp; 4 loss functions</li>
+              <li><code>cw2_logistic_regression/model.py</code> — implement forward &amp; predict</li>
+              <li><code>cw2_logistic_regression/optimizer.py</code> — implement gradient descent</li>
+              <li><code>run.py</code>, <code>trainer.py</code>, <code>config.py</code> — provided, do not modify</li>
+              <li><code>common/</code> — shared data loading, metrics, visualization</li>
+              <li><code>tests/test_cw2.py</code> — numerical gradient checks</li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          <b>Submitting on Canvas:</b> zip <code>cw2_logistic_regression/</code> (with <code>outputs/</code> included) together with your <code>report.pdf</code>.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Tasks (What You Implement)</h2>
+        <table>
+          <thead>
+            <tr><th>File</th><th>What to implement</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>losses.py</code></td>
+              <td>
+                <code>softmax(logits)</code><br/>
+                <code>cross_entropy_loss(logits, labels, num_classes)</code><br/>
+                <code>hinge_loss(logits, labels, num_classes)</code><br/>
+                <code>exponential_loss(logits, labels, num_classes)</code><br/>
+                <code>squared_loss(logits, labels, num_classes)</code>
+              </td>
+            </tr>
+            <tr>
+              <td><code>model.py</code></td>
+              <td>
+                <code>LogisticRegression.forward(X)</code><br/>
+                <code>LogisticRegression.predict(X)</code>
+              </td>
+            </tr>
+            <tr>
+              <td><code>optimizer.py</code></td>
+              <td>
+                <code>GradientDescent.__init__(...)</code><br/>
+                <code>GradientDescent.step(model, grad_logits, X)</code>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top:10px;"><b>Do not modify</b> <code>run.py</code>, <code>config.py</code>, or <code>trainer.py</code>.</p>
+      </section>
+
+      <section class="card">
+        <h2>Setup</h2>
+        <pre><code>cd code
+pip install -r requirements.txt
+python setup_data.py        # downloads FashionMNIST as .npy files
+cd cw2_logistic_regression</code></pre>
+      </section>
+
+      <section class="card">
+        <h2>Running Instructions</h2>
+        <p>Quick mode for debugging (10K samples, 10 epochs):</p>
+        <pre><code>python run.py --quick</code></pre>
+        <p>Train with a specific loss function:</p>
+        <pre><code>python run.py --loss_type cross_entropy
+python run.py --loss_type hinge
+python run.py --loss_type exponential
+python run.py --loss_type squared</code></pre>
+        <p>Compare all four loss functions (generates the comparison plot for your report):</p>
+        <pre><code>python run.py --compare_all</code></pre>
+        <p>Verify your implementation with numerical gradient checks:</p>
+        <pre><code>cd code
+python -m tests.test_cw2</code></pre>
+      </section>
+
+      <section class="card highlight">
+        <h2>What to Observe</h2>
+        <p>After running <code>--compare_all</code>, inspect <code>outputs/loss_comparison.png</code>. You should see:</p>
+        <ul>
+          <li><b>Cross-entropy</b> reaches high training accuracy fastest (largest gradient magnitude at initialization)</li>
+          <li><b>Squared loss</b> converges slower in early epochs — this is the <em>plateau effect</em> caused by the softmax Jacobian scaling the gradient by ≈<span class="math">p<sub>j</sub></span></li>
+          <li><b>Hinge</b> converges at a similar rate to cross-entropy, reaching comparable final accuracy</li>
+          <li><b>Exponential</b> is the slowest to converge and most numerically sensitive</li>
+          <li>Despite different speeds, cross-entropy and squared reach similar <em>final</em> accuracy — they converge to the same linear model capacity ceiling (~84%)</li>
+        </ul>
+      </section>
+
+      <section class="card span2 highlight">
+        <h2>Think About the Differences</h2>
+        <h3>Guiding questions for your report</h3>
+        <ol>
+          <li><b>Gradient magnitude:</b> why does the softmax Jacobian make the squared-loss gradient ≈10× smaller than cross-entropy at initialization?</li>
+          <li><b>Plateau effect:</b> as training progresses and <span class="math">p<sub>y</sub> → 1</span>, how does the squared loss gradient behave? How is cross-entropy different?</li>
+          <li><b>Convergence ceiling:</b> all well-implemented losses eventually converge to similar final accuracy on FashionMNIST — why?</li>
+          <li><b>Hinge vs cross-entropy:</b> hinge loss does not pass through softmax. How does this affect its gradient computation and convergence?</li>
+        </ol>
+      </section>
+
+      <section class="card">
+        <h2>Submission Checklist</h2>
+        <ul class="checklist">
+          <li><input type="checkbox" disabled> <code>losses.py</code> — all 5 functions implemented and gradient checks pass</li>
+          <li><input type="checkbox" disabled> <code>model.py</code> — forward and predict implemented</li>
+          <li><input type="checkbox" disabled> <code>optimizer.py</code> — gradient descent step implemented</li>
+          <li><input type="checkbox" disabled> <code>outputs/</code> — contains plots from <code>python run.py --compare_all</code></li>
+          <li><input type="checkbox" disabled> <code>report.pdf</code> — using the provided template</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Grading Rubric (100 points)</h2>
+        <table>
+          <thead>
+            <tr><th>Component</th><th style="width:120px; text-align:right;">Points</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Softmax + 4 loss functions (<code>losses.py</code>) — correctness verified by gradient check</td><td style="text-align:right;">40</td></tr>
+            <tr><td>Model forward &amp; predict (<code>model.py</code>)</td><td style="text-align:right;">20</td></tr>
+            <tr><td>Gradient descent optimizer (<code>optimizer.py</code>)</td><td style="text-align:right;">15</td></tr>
+            <tr><td>Gradient checks pass (<code>python -m tests.test_cw2</code>)</td><td style="text-align:right;">5</td></tr>
+            <tr><td>Report — loss comparison analysis, convergence discussion, visualizations</td><td style="text-align:right;">20</td></tr>
+            <tr><td><i>Bonus: L2 regularization (capped at 100 total)</i></td><td style="text-align:right;"><i>+10</i></td></tr>
+            <tr><td><b>Total</b></td><td style="text-align:right;"><b>100</b></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h2>Academic Integrity &amp; Notes</h2>
+        <ul>
+          <li>You must use NumPy only — no PyTorch, no sklearn, no autograd.</li>
+          <li>Discussing high-level ideas is allowed, but your code must be your own.</li>
+          <li>Do not share or copy implementations.</li>
+        </ul>
+      </section>
+
+    </div>
+
+    <footer style="margin-top:18px; color:var(--muted); font-size: 13px; line-height:1.6;">
+      <b>Tip:</b> Run <code>python run.py --quick</code> first to verify your implementation runs end-to-end before the full training.
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coursework 4: Convolutional Neural Networks with PyTorch</title>
+  <style>
+    :root{
+      --bg:#ffffff; --text:#111827; --muted:#475569; --card:#ffffff;
+      --border:#e5e7eb; --accent:#2563eb; --accent2:#0ea5e9;
+      --codebg:#0b1220; --codefg:#e5e7eb;
+    }
+    body{margin:0; background:var(--bg); color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;}
+    .container{max-width: 980px; margin: 0 auto; padding: 28px 16px 46px;}
+    header{margin-bottom: 18px;}
+    h1{font-size: 26px; margin: 0 0 6px;}
+    .subtitle{color:var(--muted); line-height:1.5;}
+    .grid{display:grid; grid-template-columns: 1fr; gap: 12px;}
+    .card{background:var(--card); border:1px solid var(--border); border-radius: 14px;
+      padding: 14px 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.04);}
+    h2{font-size: 16px; margin: 0 0 10px;}
+    h3{font-size: 14px; margin: 12px 0 8px;}
+    p{margin: 0 0 10px; color:var(--text); line-height:1.65;}
+    ul, ol{margin: 0; padding-left: 18px; color:var(--text); line-height:1.65;}
+    li{margin: 4px 0;}
+    code, pre{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    code{background:#f1f5f9; padding: 1px 6px; border-radius: 8px;}
+    pre{background:var(--codebg); color:var(--codefg); padding: 12px 14px; border-radius: 12px; overflow:auto;}
+    pre code{background:transparent; padding:0; border-radius:0;}
+    .tag{display:inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12px;
+      border:1px solid var(--border); color:var(--muted); margin-right: 6px;}
+    .highlight{border-left: 4px solid var(--accent); background: #f8fbff;}
+    table{width:100%; border-collapse: collapse; font-size: 14px;}
+    th, td{border:1px solid var(--border); padding: 8px 10px; text-align:left; vertical-align: top;}
+    th{background:#f8fafc;}
+    .checklist{padding-left:0;}
+    .checklist li{list-style: none; padding-left: 0;}
+    .checklist input{margin-right: 8px;}
+    a{color:var(--accent); text-decoration: none;}
+    a:hover{text-decoration: underline;}
+    .span2{grid-column: auto;}
+    .math{font-style: italic; font-family: Georgia, "Times New Roman", serif;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Coursework 4: Convolutional Neural Networks with PyTorch</h1>
+      <div class="subtitle">
+        <span class="tag"><a href="https://taohuang.info/cs3317">CS3317: Artificial Intelligence</a></span>
+        <span class="tag"><a href="https://oc.sjtu.edu.cn/courses/89538/assignments/401000">Canvas</a></span>
+        <span class="tag">CNN</span>
+        <span class="tag">PyTorch</span>
+        <span class="tag">FashionMNIST</span>
+        <div style="margin-top:10px;">
+          Design and train <b>convolutional neural networks</b> using PyTorch.
+          In CW2 &amp; CW3 you built everything by hand; here PyTorch's autograd handles backpropagation automatically — your focus is on <b>architecture design</b> and <b>experimental analysis</b>.
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <section class="card highlight">
+        <h2>The Progression: CW2 → CW3 → CW4</h2>
+        <table>
+          <thead><tr><th>Coursework</th><th>Model</th><th>Framework</th><th>~Accuracy</th></tr></thead>
+          <tbody>
+            <tr><td>CW2</td><td>Logistic Regression (784→10)</td><td>NumPy, manual gradients</td><td>~84%</td></tr>
+            <tr><td>CW3</td><td>MLP (784→128→64→10)</td><td>NumPy, manual backprop</td><td>~88–90%</td></tr>
+            <tr><td>CW4</td><td>CNN (Conv→Pool→…→FC)</td><td>PyTorch autograd</td><td>~91–93%</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:10px;">
+          The key new idea: convolutional layers exploit <b>spatial structure</b> in images — they share weights across positions, making the model translation-equivariant and far more parameter-efficient than a fully connected layer over raw pixels.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Learning Objectives</h2>
+        <ul>
+          <li>Design CNN architectures using <code>nn.Conv2d</code>, <code>nn.MaxPool2d</code>, <code>nn.BatchNorm2d</code>, <code>nn.Dropout</code></li>
+          <li>Understand why convolutional layers outperform fully connected layers on image data</li>
+          <li>Experiment with data augmentation and observe its regularization effect</li>
+          <li>Compare Adam and SGD optimizers and understand the trade-offs</li>
+          <li>Analyse the full CW2 → CW3 → CW4 accuracy progression</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Downloads &amp; Canvas Submission</h2>
+        <ul>
+          <li><a href="assets/Coursework4_CNN.pdf" download>Coursework handout (PDF)</a></li>
+          <li><a href="https://taohuang.info/cs3317/coursework2/assets/coursework2-4_package.zip" download>Starter package</a>
+            <ul>
+              <li><code>cw4_cnn/model.py</code> — implement SimpleCNN (required) and DeepCNN (bonus)</li>
+              <li><code>run.py</code>, <code>trainer.py</code>, <code>config.py</code>, <code>dataset.py</code> — provided, do not modify</li>
+              <li><code>tests/test_cw4.py</code> — shape and gradient-flow checks</li>
+              <li><code>common/</code> — shared data loading &amp; visualization utilities</li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          <b>Submitting on Canvas:</b> zip <code>cw4_cnn/</code> (with <code>outputs/</code> included) together with your <code>report.pdf</code>.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Tasks (What You Implement)</h2>
+        <p>All implementation is in <code>model.py</code>:</p>
+        <table>
+          <thead>
+            <tr><th>Class / Method</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>SimpleCNN.__init__</code></td>
+              <td>
+                Define your CNN layers using <code>nn.Sequential</code> or individual attributes.<br/>
+                Input: <code>(B, 1, 28, 28)</code> — Output: <code>(B, 10)</code><br/>
+                <em>Suggested architecture:</em> Conv(1→32)→ReLU→Pool → Conv(32→64)→ReLU→Pool → Flatten → Linear(3136→128)→ReLU → Linear(128→10)
+              </td>
+            </tr>
+            <tr>
+              <td><code>SimpleCNN.forward</code></td>
+              <td>
+                Pass input through your layers. Do <b>not</b> apply softmax — <code>nn.CrossEntropyLoss</code> includes it.
+              </td>
+            </tr>
+            <tr>
+              <td><code>DeepCNN.__init__</code> &amp; <code>forward</code></td>
+              <td>
+                <em>(Bonus)</em> A deeper architecture targeting ≥92% test accuracy.<br/>
+                Suggestions: 3–5 conv blocks, BatchNorm2d, Dropout, global average pooling.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Useful PyTorch layers</h3>
+        <table>
+          <thead><tr><th>Layer</th><th>Typical use</th></tr></thead>
+          <tbody>
+            <tr><td><code>nn.Conv2d(in_ch, out_ch, kernel_size, padding=1)</code></td><td>Feature extraction</td></tr>
+            <tr><td><code>nn.MaxPool2d(2)</code></td><td>Spatial downsampling ÷2</td></tr>
+            <tr><td><code>nn.BatchNorm2d(num_features)</code></td><td>Stabilizes training</td></tr>
+            <tr><td><code>nn.Dropout(p)</code></td><td>Regularization</td></tr>
+            <tr><td><code>nn.Flatten()</code></td><td>Flatten spatial dims before FC</td></tr>
+            <tr><td><code>nn.Linear(in, out)</code></td><td>Fully connected classifier</td></tr>
+            <tr><td><code>nn.AdaptiveAvgPool2d(1)</code></td><td>Global average pooling (DeepCNN)</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:10px;"><b>Do not modify</b> <code>run.py</code>, <code>config.py</code>, <code>dataset.py</code>, or <code>trainer.py</code>.</p>
+      </section>
+
+      <section class="card">
+        <h2>Setup</h2>
+        <pre><code>cd code
+pip install -r requirements.txt
+python setup_data.py        # only needed if not done in CW2/CW3
+cd cw4_cnn</code></pre>
+      </section>
+
+      <section class="card">
+        <h2>Running Instructions</h2>
+        <p>Verify architecture (shape + gradient-flow checks):</p>
+        <pre><code>cd code
+python -m tests.test_cw4</code></pre>
+        <p>Quick mode for debugging:</p>
+        <pre><code>python run.py --quick</code></pre>
+        <p>Train SimpleCNN with default settings (Adam, 15 epochs):</p>
+        <pre><code>python run.py</code></pre>
+        <p>Train with data augmentation:</p>
+        <pre><code>python run.py --use_augmentation</code></pre>
+        <p>Compare optimizers (for report):</p>
+        <pre><code>python run.py --optimizer_type adam
+python run.py --optimizer_type sgd --learning_rate 0.01</code></pre>
+        <p>Train DeepCNN (bonus):</p>
+        <pre><code>python run.py --model_type deep_cnn --num_epochs 20</code></pre>
+      </section>
+
+      <section class="card highlight">
+        <h2>What to Observe</h2>
+        <p>After training, check the outputs in <code>outputs/</code>. You should see:</p>
+        <ul>
+          <li><b>CNN vs MLP:</b> SimpleCNN (~91%) clearly outperforms the CW3 MLP (~88–90%) despite having fewer parameters — because convolutions exploit spatial structure</li>
+          <li><b>Data augmentation:</b> random flips and crops reduce overfitting; the gap between training and validation accuracy narrows</li>
+          <li><b>Adam vs SGD:</b> Adam converges faster in early epochs; well-tuned SGD with momentum can match Adam at convergence but is more sensitive to learning rate</li>
+          <li><b>Weight visualizations:</b> the first conv layer learns edge and texture detectors — visually interpretable filters</li>
+        </ul>
+      </section>
+
+      <section class="card span2 highlight">
+        <h2>Think About the Differences</h2>
+        <h3>Guiding questions for your report</h3>
+        <ol>
+          <li><b>Parameter efficiency:</b> a Conv2d(1, 32, 3) layer has only 32×(3×3+1)=320 parameters, but applies them to every position in a 28×28 image. How does this compare to a fully connected layer over the same input?</li>
+          <li><b>Spatial hierarchy:</b> after two MaxPool2d(2) layers, the spatial dimensions become 7×7. What does this imply about the receptive field of later layers?</li>
+          <li><b>BatchNorm:</b> why does adding BatchNorm2d after conv layers help training? What does it do to the gradient signal?</li>
+          <li><b>Augmentation:</b> data augmentation increases effective dataset size without collecting new data. Under what conditions does it help most?</li>
+          <li><b>Full progression:</b> write a short explanation for why each step — Logistic Regression → MLP → CNN — improves accuracy on FashionMNIST.</li>
+        </ol>
+      </section>
+
+      <section class="card">
+        <h2>Submission Checklist</h2>
+        <ul class="checklist">
+          <li><input type="checkbox" disabled> <code>model.py</code> — SimpleCNN init &amp; forward implemented</li>
+          <li><input type="checkbox" disabled> Shape checks pass: <code>python -m tests.test_cw4</code></li>
+          <li><input type="checkbox" disabled> <code>outputs/</code> — contains training plots from SimpleCNN experiments</li>
+          <li><input type="checkbox" disabled> <code>report.pdf</code> — includes architecture diagram, optimizer comparison, augmentation analysis, and CW2→CW3→CW4 progression</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Grading Rubric (100 points)</h2>
+        <table>
+          <thead>
+            <tr><th>Component</th><th style="width:120px; text-align:right;">Points</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>SimpleCNN architecture (<code>__init__</code>) — shape check passes, reasonable design</td><td style="text-align:right;">30</td></tr>
+            <tr><td>SimpleCNN forward pass — correct data flow, no softmax applied</td><td style="text-align:right;">20</td></tr>
+            <tr><td>Data augmentation experiment — comparison with/without augmentation</td><td style="text-align:right;">15</td></tr>
+            <tr><td>Optimizer comparison (Adam vs SGD) — analysis of convergence speed and stability</td><td style="text-align:right;">15</td></tr>
+            <tr><td>Report — architecture description, results discussion, CW2→CW4 progression analysis</td><td style="text-align:right;">20</td></tr>
+            <tr><td><i>Bonus: DeepCNN achieving ≥ 92% test accuracy (capped at 100 total)</i></td><td style="text-align:right;"><i>+10</i></td></tr>
+            <tr><td><b>Total</b></td><td style="text-align:right;"><b>100</b></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h2>Academic Integrity &amp; Notes</h2>
+        <ul>
+          <li>You may use any <code>torch.nn</code> modules — no need to implement convolutions manually.</li>
+          <li>Discussing high-level architecture ideas is allowed, but your code must be your own.</li>
+          <li>Do not copy architectures from external sources without understanding them.</li>
+        </ul>
+      </section>
+
+    </div>
+
+    <footer style="margin-top:18px; color:var(--muted); font-size: 13px; line-height:1.6;">
+      <b>Tip:</b> Run <code>python -m tests.test_cw4</code> first to confirm your architecture produces the correct output shape before training.
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coursework 3: Multi-Layer Perceptron &amp; Backpropagation</title>
+  <style>
+    :root{
+      --bg:#ffffff; --text:#111827; --muted:#475569; --card:#ffffff;
+      --border:#e5e7eb; --accent:#2563eb; --accent2:#0ea5e9;
+      --codebg:#0b1220; --codefg:#e5e7eb;
+    }
+    body{margin:0; background:var(--bg); color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;}
+    .container{max-width: 980px; margin: 0 auto; padding: 28px 16px 46px;}
+    header{margin-bottom: 18px;}
+    h1{font-size: 26px; margin: 0 0 6px;}
+    .subtitle{color:var(--muted); line-height:1.5;}
+    .grid{display:grid; grid-template-columns: 1fr; gap: 12px;}
+    .card{background:var(--card); border:1px solid var(--border); border-radius: 14px;
+      padding: 14px 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.04);}
+    h2{font-size: 16px; margin: 0 0 10px;}
+    h3{font-size: 14px; margin: 12px 0 8px;}
+    p{margin: 0 0 10px; color:var(--text); line-height:1.65;}
+    ul, ol{margin: 0; padding-left: 18px; color:var(--text); line-height:1.65;}
+    li{margin: 4px 0;}
+    code, pre{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    code{background:#f1f5f9; padding: 1px 6px; border-radius: 8px;}
+    pre{background:var(--codebg); color:var(--codefg); padding: 12px 14px; border-radius: 12px; overflow:auto;}
+    pre code{background:transparent; padding:0; border-radius:0;}
+    .tag{display:inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12px;
+      border:1px solid var(--border); color:var(--muted); margin-right: 6px;}
+    .highlight{border-left: 4px solid var(--accent); background: #f8fbff;}
+    table{width:100%; border-collapse: collapse; font-size: 14px;}
+    th, td{border:1px solid var(--border); padding: 8px 10px; text-align:left; vertical-align: top;}
+    th{background:#f8fafc;}
+    .checklist{padding-left:0;}
+    .checklist li{list-style: none; padding-left: 0;}
+    .checklist input{margin-right: 8px;}
+    a{color:var(--accent); text-decoration: none;}
+    a:hover{text-decoration: underline;}
+    .span2{grid-column: auto;}
+    .math{font-style: italic; font-family: Georgia, "Times New Roman", serif;}
+    .cw-link{display:inline-block; padding:2px 8px; border-radius:6px; font-size:12px; background:#f0f9ff; border:1px solid #bae6fd; color:#0369a1; margin-right:4px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Coursework 3: Multi-Layer Perceptron &amp; Backpropagation</h1>
+      <div class="subtitle">
+        <span class="tag"><a href="https://taohuang.info/cs3317">CS3317: Artificial Intelligence</a></span>
+        <span class="tag"><a href="https://oc.sjtu.edu.cn/courses/89538/assignments/400999">Canvas</a></span>
+        <span class="tag">MLP</span>
+        <span class="tag">Backpropagation</span>
+        <span class="tag">NumPy</span>
+        <div style="margin-top:10px;">
+          Extend your CW2 logistic regression into a <b>multi-layer perceptron</b> by implementing <b>backpropagation</b> from scratch.
+          Stack Linear and activation layers, propagate gradients through the chain rule, and add <b>SGD with momentum</b>.
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <section class="card highlight">
+        <h2>Connection to CW2</h2>
+        <p>
+          The gradient update you wrote in CW2 was already the backward pass of a single linear layer:
+        </p>
+        <pre><code>dW = X.T @ grad_logits    # = Linear.backward() grad_W
+db = grad_logits.sum(0)   # = Linear.backward() grad_b</code></pre>
+        <p>
+          In CW3 you generalize this to <em>n</em> layers chained together. Each layer's <code>backward()</code> computes its local gradients and passes the upstream gradient to the previous layer — that is the chain rule, i.e., backpropagation.
+        </p>
+        <table style="margin-top:8px;">
+          <thead><tr><th>CW2</th><th>CW3</th></tr></thead>
+          <tbody>
+            <tr><td>Single linear layer + softmax</td><td>Multiple layers (Linear → Activation → … → Linear)</td></tr>
+            <tr><td>Gradient computed inside optimizer</td><td>Gradient computed by each layer's <code>backward()</code></td></tr>
+            <tr><td>Vanilla gradient descent</td><td>SGD with momentum &amp; weight decay</td></tr>
+            <tr><td>~84% test accuracy</td><td>~88–90% test accuracy</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h2>Learning Objectives</h2>
+        <ul>
+          <li>Implement forward and backward passes for Linear, ReLU, and Sigmoid layers</li>
+          <li>Chain layer gradients together to form full backpropagation through an MLP</li>
+          <li>Implement SGD with momentum and understand its effect on convergence</li>
+          <li>Explore the impact of network depth, width, learning rate, and activation function on accuracy</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Downloads &amp; Canvas Submission</h2>
+        <ul>
+          <li><a href="assets/Coursework3_MLP.pdf" download>Coursework handout (PDF)</a></li>
+          <li><a href="https://taohuang.info/cs3317/coursework2/assets/coursework2-4_package.zip" download>Starter package</a>
+            <ul>
+              <li><code>cw3_mlp/layers.py</code> — implement Linear, ReLU, Sigmoid</li>
+              <li><code>cw3_mlp/losses.py</code> — implement CrossEntropyLoss forward &amp; backward</li>
+              <li><code>cw3_mlp/model.py</code> — implement MLP (build layers, forward, backward)</li>
+              <li><code>cw3_mlp/optimizer.py</code> — implement SGD with momentum</li>
+              <li><code>run.py</code>, <code>trainer.py</code>, <code>config.py</code> — provided, do not modify</li>
+              <li><code>tests/test_cw3.py</code> — numerical gradient checks for all layers</li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          <b>Submitting on Canvas:</b> zip <code>cw3_mlp/</code> (with <code>outputs/</code> included) together with your <code>report.pdf</code>.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Tasks (What You Implement)</h2>
+        <table>
+          <thead>
+            <tr><th>File</th><th>What to implement</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>layers.py</code></td>
+              <td>
+                <code>Linear.forward(X)</code> — cache X, return XW + b<br/>
+                <code>Linear.backward(grad)</code> — grad_W, grad_b, return grad_input<br/>
+                <code>ReLU.forward(X)</code> / <code>ReLU.backward(grad)</code><br/>
+                <code>Sigmoid.forward(X)</code> / <code>Sigmoid.backward(grad)</code>
+              </td>
+            </tr>
+            <tr>
+              <td><code>losses.py</code></td>
+              <td>
+                <code>CrossEntropyLoss.forward(logits, labels)</code><br/>
+                <code>CrossEntropyLoss.backward()</code>
+              </td>
+            </tr>
+            <tr>
+              <td><code>model.py</code></td>
+              <td>
+                <code>MLP.__init__(...)</code> — build layer list<br/>
+                <code>MLP.forward(X)</code> — sequential forward<br/>
+                <code>MLP.backward(grad)</code> — reverse-order backward
+              </td>
+            </tr>
+            <tr>
+              <td><code>optimizer.py</code></td>
+              <td>
+                <code>SGD.__init__(...)</code> — init velocities if momentum &gt; 0<br/>
+                <code>SGD.step()</code> — update W, b with optional momentum &amp; weight decay<br/>
+                <code>SGD.zero_grad()</code>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top:10px;"><b>Do not modify</b> <code>run.py</code>, <code>config.py</code>, or <code>trainer.py</code>.</p>
+      </section>
+
+      <section class="card">
+        <h2>Setup</h2>
+        <pre><code>cd code
+pip install -r requirements.txt
+python setup_data.py        # only needed if not done in CW2
+cd cw3_mlp</code></pre>
+      </section>
+
+      <section class="card">
+        <h2>Running Instructions</h2>
+        <p>Quick mode for debugging:</p>
+        <pre><code>python run.py --quick</code></pre>
+        <p>Train with default architecture ([128, 64], ReLU, 30 epochs):</p>
+        <pre><code>python run.py</code></pre>
+        <p>Custom architecture and hyperparameters:</p>
+        <pre><code>python run.py --hidden_dims 256 128 --activation relu --learning_rate 0.01
+python run.py --hidden_dims 256 128 64 --momentum 0.9</code></pre>
+        <p>Hyperparameter sweeps (generates plots for your report):</p>
+        <pre><code>python run.py --sweep hidden_dim      # width: [32, 64, 128, 256, 512]
+python run.py --sweep num_layers      # depth: [1, 2, 3, 4]
+python run.py --sweep learning_rate   # lr: [0.001, 0.005, 0.01, 0.05, 0.1]</code></pre>
+        <p>Verify with numerical gradient checks:</p>
+        <pre><code>cd code
+python -m tests.test_cw3</code></pre>
+      </section>
+
+      <section class="card highlight">
+        <h2>What to Observe</h2>
+        <p>After training, check the outputs in <code>outputs/</code>. You should see:</p>
+        <ul>
+          <li><b>Accuracy improvement over CW2:</b> a 2-layer MLP (784→128→64→10) achieves ~88–90% vs ~84% for logistic regression</li>
+          <li><b>Depth sweep:</b> deeper networks (2–3 hidden layers) outperform single-layer; very deep networks (4+ layers) may not improve further with vanilla SGD</li>
+          <li><b>Width sweep:</b> wider layers improve accuracy up to a point; diminishing returns beyond ~256 units on FashionMNIST</li>
+          <li><b>Momentum:</b> momentum ≥ 0.9 accelerates convergence — the loss decreases faster in early epochs</li>
+          <li><b>ReLU vs Sigmoid:</b> ReLU typically converges faster and reaches higher accuracy; Sigmoid can suffer from vanishing gradients in deeper networks</li>
+        </ul>
+      </section>
+
+      <section class="card span2 highlight">
+        <h2>Think About the Differences</h2>
+        <h3>Guiding questions for your report</h3>
+        <ol>
+          <li><b>Backpropagation:</b> trace the gradient of the loss through a 2-layer MLP step by step. What does each layer's <code>backward()</code> compute?</li>
+          <li><b>Activation functions:</b> what happens to the ReLU gradient when the pre-activation value is negative? Why does this not occur with Sigmoid, and why does Sigmoid still suffer from vanishing gradients?</li>
+          <li><b>Momentum:</b> sketch the velocity update equation. Why does momentum help when gradients point consistently in the same direction?</li>
+          <li><b>Depth vs Width:</b> given a fixed parameter budget, is it better to go wider or deeper? What do your sweep results show?</li>
+        </ol>
+      </section>
+
+      <section class="card">
+        <h2>Submission Checklist</h2>
+        <ul class="checklist">
+          <li><input type="checkbox" disabled> <code>layers.py</code> — Linear, ReLU, Sigmoid forward &amp; backward implemented</li>
+          <li><input type="checkbox" disabled> <code>losses.py</code> — CrossEntropyLoss forward &amp; backward implemented</li>
+          <li><input type="checkbox" disabled> <code>model.py</code> — MLP init, forward, backward implemented</li>
+          <li><input type="checkbox" disabled> <code>optimizer.py</code> — SGD with momentum implemented</li>
+          <li><input type="checkbox" disabled> Gradient checks pass: <code>python -m tests.test_cw3</code></li>
+          <li><input type="checkbox" disabled> <code>outputs/</code> — contains sweep plots and training summaries</li>
+          <li><input type="checkbox" disabled> <code>report.pdf</code> — using the provided template</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Grading Rubric (100 points)</h2>
+        <table>
+          <thead>
+            <tr><th>Component</th><th style="width:120px; text-align:right;">Points</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Layer implementations (<code>layers.py</code>) — correctness verified by gradient check</td><td style="text-align:right;">40</td></tr>
+            <tr><td>Loss function (<code>losses.py</code>) — forward &amp; backward</td><td style="text-align:right;">10</td></tr>
+            <tr><td>MLP model (<code>model.py</code>) — init, forward, backward</td><td style="text-align:right;">20</td></tr>
+            <tr><td>SGD optimizer (<code>optimizer.py</code>) — step with momentum</td><td style="text-align:right;">15</td></tr>
+            <tr><td>Gradient checks pass (<code>python -m tests.test_cw3</code>)</td><td style="text-align:right;">5</td></tr>
+            <tr><td>Report — hyperparameter exploration, analysis, comparison with CW2</td><td style="text-align:right;">10</td></tr>
+            <tr><td><i>Bonus: weight decay in SGD (capped at 100 total)</i></td><td style="text-align:right;"><i>+10</i></td></tr>
+            <tr><td><b>Total</b></td><td style="text-align:right;"><b>100</b></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h2>Academic Integrity &amp; Notes</h2>
+        <ul>
+          <li>You must use NumPy only — no PyTorch, no autograd.</li>
+          <li>Discussing high-level ideas is allowed, but your code must be your own.</li>
+          <li>Do not share or copy implementations.</li>
+        </ul>
+      </section>
+
+    </div>
+
+    <footer style="margin-top:18px; color:var(--muted); font-size: 13px; line-height:1.6;">
+      <b>Tip:</b> Run <code>python -m tests.test_cw3</code> before training — it will catch incorrect gradient computations early.
+    </footer>
+  </div>
+</body>
+</html>
