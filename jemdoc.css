@@ -907,6 +907,7 @@ venue {
 	border-color: var(--theme-color);
 	box-shadow: 0 2px 8px 2px rgba(208, 64, 58, 0.3);
 	transform: translateY(-1px);
+	text-decoration: none;
 }
 
 .button-59:active {
