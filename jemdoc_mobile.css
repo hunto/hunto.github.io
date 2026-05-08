@@ -371,7 +371,7 @@ h3 {
 
 #publications h3 {
 	position: sticky;
-	top: 110px;
+	top: var(--year-sticky-top, 110px);
 	background: #fff;
 	z-index: 50;
 	font-size: 0.65rem;

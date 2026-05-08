@@ -520,6 +520,25 @@ For the latest full publication list, please refer to my <a href="https://schola
             });
         });
 
+        // Keep year-heading sticky offset in sync with filter-bar height
+        // (the bar grows when its content wraps onto multiple lines).
+        (function() {
+            var bar = document.querySelector('.filter-bar');
+            if (!bar) return;
+            function update() {
+                var topCss = parseFloat(getComputedStyle(bar).top) || 56;
+                document.documentElement.style.setProperty(
+                    '--year-sticky-top',
+                    Math.ceil(topCss + bar.offsetHeight) + 'px'
+                );
+            }
+            update();
+            window.addEventListener('resize', update);
+            if (typeof ResizeObserver !== 'undefined') {
+                new ResizeObserver(update).observe(bar);
+            }
+        })();
+
         // Apply filters now that year headings, figures, and chips are in place
         loadFiltersFromHash();
         applyFilters();
