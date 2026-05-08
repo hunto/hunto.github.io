@@ -369,5 +369,98 @@ h3 {
 
 #publications li.paper[first_authored]::before { content: none; }
 
+#publications h3 {
+	position: sticky;
+	top: 110px;
+	background: #fff;
+	z-index: 50;
+	font-size: 0.65rem;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: #aaa;
+	margin: 1.4rem 0 0;
+	padding: 0.5rem 0 0.4rem;
+	border-bottom: 1px solid #f0f0f0;
+	font-weight: 600;
+}
+
+#publications h3:first-child { margin-top: 0; }
+
+.bib-content { position: relative; }
+
+.bib-copy {
+	position: absolute;
+	top: 0.5em;
+	right: 0.5em;
+	background: #fff;
+	color: #888;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	padding: 0.2em 0.5em;
+	font-size: 0.7em;
+	font-weight: 500;
+	cursor: pointer;
+	z-index: 1;
+}
+
+.bib-copy:hover {
+	background: var(--theme-color);
+	color: #fff;
+	border-color: var(--theme-color);
+}
+
+.bib-copy.is-copied {
+	background: #28a745;
+	color: #fff;
+	border-color: #28a745;
+}
+
+.empty-state {
+	text-align: center;
+	padding: 2.5em 1em 1em;
+	color: #999;
+}
+
+.empty-state-msg {
+	margin: 0 0 0.7em;
+	font-size: 0.92em;
+	color: #888;
+}
+
+.empty-state-clear {
+	background: #fff;
+	border: 1.5px solid #ddd;
+	border-radius: 20px;
+	color: #888;
+	font-size: 0.78em;
+	padding: 0.25em 1em;
+	cursor: pointer;
+}
+
+.empty-state-clear:hover {
+	border-color: var(--theme-color);
+	color: var(--theme-color);
+	background: #fff5f4;
+}
+
+.filter-count {
+	margin-left: 0.35em;
+	color: #bbb;
+	font-size: 0.9em;
+	font-weight: 400;
+	font-variant-numeric: tabular-nums;
+}
+
+.filter-count:empty { display: none; }
+.filter-count::before { content: '('; }
+.filter-count::after { content: ')'; }
+.filter-count:empty::before,
+.filter-count:empty::after { content: ''; }
+
+.filter.active .filter-count {
+	color: var(--theme-color);
+	opacity: 0.7;
+}
+
 /* Back-to-top mobile */
 .back-to-top { bottom: 1em; right: 1em; width: 32px; height: 32px; }

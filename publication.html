@@ -72,32 +72,111 @@
             }
         }
 
+        var ACTIVE_FILTERS = new Set();
+
+        function paperMatchesFilters(li) {
+            if (ACTIVE_FILTERS.size === 0) return true;
+            var ok = true;
+            ACTIVE_FILTERS.forEach(function(f) {
+                if (!checkFilter(f, li)) ok = false;
+            });
+            return ok;
+        }
+
+        function filterButtonName(btn) {
+            return btn.getAttribute('data-filter') || btn.textContent.trim();
+        }
+
+        function paperMatchesSet(li, filterSet) {
+            if (filterSet.size === 0) return true;
+            var ok = true;
+            filterSet.forEach(function(f) {
+                if (!checkFilter(f, li)) ok = false;
+            });
+            return ok;
+        }
+
+        function updateFilterButtons() {
+            var bts = document.getElementsByClassName("filter");
+            for (var k = 0; k < bts.length; k++) {
+                var t = filterButtonName(bts[k]);
+                var active = (t === 'All') ? (ACTIVE_FILTERS.size === 0) : ACTIVE_FILTERS.has(t);
+                bts[k].classList.toggle('active', active);
+            }
+        }
+
+        function updateFilterCounts() {
+            var papers = Array.from(document.querySelectorAll('#publications li.paper'));
+            var bts = document.getElementsByClassName("filter");
+            for (var k = 0; k < bts.length; k++) {
+                var name = filterButtonName(bts[k]);
+                var countEl = bts[k].querySelector('.filter-count');
+                if (!countEl) continue;
+                var count;
+                if (name === 'All') {
+                    count = papers.length;
+                } else {
+                    // Always count papers matching (active set with this filter included).
+                    // Active filters show current visible count; inactive ones show
+                    // "what would I see if I added this".
+                    var test = new Set(ACTIVE_FILTERS);
+                    test.add(name);
+                    count = papers.filter(function(p) { return paperMatchesSet(p, test); }).length;
+                }
+                countEl.textContent = count;
+            }
+        }
+
+        function syncUrlHash() {
+            if (ACTIVE_FILTERS.size === 0) {
+                if (window.location.hash) {
+                    history.replaceState(null, '', window.location.pathname + window.location.search);
+                }
+            } else {
+                var encoded = Array.from(ACTIVE_FILTERS).map(encodeURIComponent).join(',');
+                history.replaceState(null, '', '#filter=' + encoded);
+            }
+        }
+
+        function loadFiltersFromHash() {
+            ACTIVE_FILTERS.clear();
+            var m = (window.location.hash || '').match(/^#filter=(.+)$/);
+            if (!m) return;
+            m[1].split(',').forEach(function(f) {
+                f = decodeURIComponent(f).trim();
+                if (f) ACTIVE_FILTERS.add(f);
+            });
+        }
+
+        function applyFilters() {
+            var ul = document.getElementById("publications");
+            if (!ul) return;
+            var li = ul.getElementsByTagName("li");
+            var visibleCount = 0;
+            for (var i = 0; i < li.length; i++) {
+                if (li[i].classList && li[i].classList.contains('paper')) {
+                    var visible = paperMatchesFilters(li[i]);
+                    li[i].style.display = visible ? "" : "none";
+                    if (visible) visibleCount++;
+                }
+            }
+            updateFilterButtons();
+            updateFilterCounts();
+            updateVisibility();
+            syncUrlHash();
+            var empty = document.getElementById('empty-state');
+            if (empty) empty.style.display = visibleCount === 0 ? '' : 'none';
+        }
+
         function filterPub(type) {
-            ul = document.getElementById("publications")
-            li = ul.getElementsByTagName("li")
-            for (i = 0; i < li.length; i++) {
-                if (!checkFilter(type, li[i])) {
-                    li[i].style.display = "none";
-                }
-                else {
-                    li[i].style.display = ""
-                }
+            if (type === 'All') {
+                ACTIVE_FILTERS.clear();
+            } else if (ACTIVE_FILTERS.has(type)) {
+                ACTIVE_FILTERS.delete(type);
+            } else {
+                ACTIVE_FILTERS.add(type);
             }
-            // change the button color
-            bts = document.getElementsByClassName("filter")
-            for (k = 0; k < bts.length; k++) {
-                if (bts[k].textContent == type) {
-                    if (!bts[k].classList.contains('active')) {
-                        bts[k].classList.add('active');
-                    }
-                }
-                else {
-                    if (bts[k].classList.contains('active')) {
-                        bts[k].classList.remove('active');
-                    }
-                }
-            }
-            // updateVisibility()
+            applyFilters();
         }
 
 
@@ -236,6 +315,74 @@ For the latest full publication list, please refer to my <a href="https://schola
             });
         });
 
+        // Auto-insert year section headings between papers
+        (function() {
+            var ul = document.getElementById('publications');
+            if (!ul) return;
+            var lastYear = null;
+            Array.from(ul.querySelectorAll(':scope > li.paper')).forEach(function(li) {
+                var venue = li.querySelector('venue');
+                var venueText = venue ? venue.textContent.trim() : '';
+                var m = venueText.match(/(\d{4})\s*$/);
+                if (!m) return;
+                var year = m[1];
+                if (year !== lastYear) {
+                    var h = document.createElement('h3');
+                    h.className = 'year-h';
+                    h.textContent = year;
+                    ul.insertBefore(h, li);
+                    lastYear = year;
+                }
+            });
+        })();
+
+        // Inject Copy button into each Bib block
+        document.querySelectorAll('#publications .bib-content').forEach(function(bib) {
+            if (bib.querySelector(':scope > .bib-copy')) return;
+            var pre = bib.querySelector('pre');
+            if (!pre || !pre.textContent.replace(/\s+/g, '')) return;
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'bib-copy';
+            btn.textContent = 'Copy';
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                var raw = pre.textContent || '';
+                var lines = raw.replace(/\r\n?/g, '\n').split('\n').filter(function(l){ return l.trim().length > 0; });
+                if (lines.length === 0) return;
+                var minIndent = Math.min.apply(null, lines.map(function(l){
+                    var mm = l.match(/^ */); return mm ? mm[0].length : 0;
+                }));
+                var text = (raw.replace(/\r\n?/g, '\n').split('\n').map(function(l){
+                    return minIndent > 0 ? l.replace(new RegExp('^ {0,' + minIndent + '}'), '') : l;
+                }).join('\n')).trim();
+                function done(ok) {
+                    btn.textContent = ok ? 'Copied!' : 'Failed';
+                    if (ok) btn.classList.add('is-copied');
+                    setTimeout(function() {
+                        btn.textContent = 'Copy';
+                        btn.classList.remove('is-copied');
+                    }, 1500);
+                }
+                function fallback() {
+                    var ta = document.createElement('textarea');
+                    ta.value = text;
+                    ta.style.position = 'fixed';
+                    ta.style.opacity = '0';
+                    document.body.appendChild(ta);
+                    ta.select();
+                    try { done(document.execCommand('copy')); } catch (e) { done(false); }
+                    document.body.removeChild(ta);
+                }
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(text).then(function() { done(true); }).catch(fallback);
+                } else {
+                    fallback();
+                }
+            });
+            bib.insertBefore(btn, bib.firstChild);
+        });
+
         // Inject paper figure (real image via data-figure, or auto placeholder) on the left
         function hashString(str) {
             var h = 0;
@@ -372,18 +519,22 @@ For the latest full publication list, please refer to my <a href="https://schola
                 wrap.appendChild(chip);
             });
         });
+
+        // Apply filters now that year headings, figures, and chips are in place
+        loadFiltersFromHash();
+        applyFilters();
     });
 </script>
 
 <div class="filter-bar">
-<button class="filter" type="button" onclick="filterPub('All')">All</button>
-<button class="filter" type="button" onclick="filterPub('First-author')">First-author</button>
-<button class="filter" type="button" onclick="filterPub('KD')">KD</button>
-<button class="filter" type="button" onclick="filterPub('NAS')">NAS</button>
-<button class="filter" type="button" onclick="filterPub('Pruning')">Pruning</button>
-<button class="filter" type="button" onclick="filterPub('Efficient Training')">Efficient Training</button>
-<button class="filter" type="button" onclick="filterPub('Efficient Data')">Efficient Data</button>&nbsp;
-<button class="filter" type="button" onclick="filterPub('Embodied AI')">Embodied AI</button>&nbsp;
+<button class="filter" type="button" data-filter="All" onclick="filterPub('All')">All<span class="filter-count"></span></button>
+<button class="filter" type="button" data-filter="First-author" onclick="filterPub('First-author')">First-author<span class="filter-count"></span></button>
+<button class="filter" type="button" data-filter="KD" onclick="filterPub('KD')">KD<span class="filter-count"></span></button>
+<button class="filter" type="button" data-filter="NAS" onclick="filterPub('NAS')">NAS<span class="filter-count"></span></button>
+<button class="filter" type="button" data-filter="Pruning" onclick="filterPub('Pruning')">Pruning<span class="filter-count"></span></button>
+<button class="filter" type="button" data-filter="Efficient Training" onclick="filterPub('Efficient Training')">Efficient Training<span class="filter-count"></span></button>
+<button class="filter" type="button" data-filter="Efficient Data" onclick="filterPub('Efficient Data')">Efficient Data<span class="filter-count"></span></button>&nbsp;
+<button class="filter" type="button" data-filter="Embodied AI" onclick="filterPub('Embodied AI')">Embodied AI<span class="filter-count"></span></button>&nbsp;
 <span class="cofirst-note">*: co-first author. &dagger;: corresponding author.</span>
 </div>
 <ul id="publications">
@@ -1211,6 +1362,11 @@ For the latest full publication list, please refer to my <a href="https://schola
 	</li>
 </ul>
 
+<div id="empty-state" class="empty-state" style="display:none;">
+    <p class="empty-state-msg">No papers match the selected filters.</p>
+    <button type="button" class="empty-state-clear" onclick="filterPub('All')">Clear filters</button>
+</div>
+
 <p>
     <br>
 </p>
@@ -1249,7 +1405,10 @@ For the latest full publication list, please refer to my <a href="https://schola
 
     // removed legacy Bib copying; unified toggle is handled above
 
-    filterPub("All");
+    window.addEventListener('hashchange', function() {
+        loadFiltersFromHash();
+        applyFilters();
+    });
 
     // Lightbox for paper figure thumbnails.
     (function(){
