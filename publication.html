@@ -236,6 +236,110 @@ For the latest full publication list, please refer to my <a href="https://schola
             });
         });
 
+        // Inject paper figure (real image via data-figure, or auto placeholder) on the left
+        function hashString(str) {
+            var h = 0;
+            for (var i = 0; i < str.length; i++) {
+                h = ((h << 5) - h) + str.charCodeAt(i);
+                h |= 0;
+            }
+            return Math.abs(h);
+        }
+
+        // Curated muted palette — every conference picks one deterministically.
+        var PLACEHOLDER_PALETTE = [
+            { bg: 'linear-gradient(135deg, #f6f7f9 0%, #e8ebef 100%)', fg: '#3a4a5c' }, // cool gray
+            { bg: 'linear-gradient(135deg, #faf6f0 0%, #efe6d6 100%)', fg: '#7a5a30' }, // warm tan
+            { bg: 'linear-gradient(135deg, #f4f7f3 0%, #e3ebe1 100%)', fg: '#456b4a' }, // sage
+            { bg: 'linear-gradient(135deg, #f7f3f5 0%, #eadde2 100%)', fg: '#8a4456' }, // mauve
+            { bg: 'linear-gradient(135deg, #f2f5f8 0%, #dde6ee 100%)', fg: '#345876' }, // slate blue
+            { bg: 'linear-gradient(135deg, #f5f3f8 0%, #e3deec 100%)', fg: '#4f4877' }, // muted indigo
+            { bg: 'linear-gradient(135deg, #faf5ef 0%, #f0e4d2 100%)', fg: '#8a5d28' }, // soft amber
+            { bg: 'linear-gradient(135deg, #f5f7f0 0%, #e6ead7 100%)', fg: '#5d6932' }  // olive
+        ];
+
+        document.querySelectorAll('#publications li.paper').forEach(function(li) {
+            if (li.querySelector(':scope > .pub-figure')) return;
+
+            var venueEl = li.querySelector('venue');
+            var venueText = venueEl ? venueEl.textContent.trim() : '';
+            var yearMatch = venueText.match(/(\d{4})\s*$/);
+            var year = yearMatch ? yearMatch[1] : '';
+            var acronym = year ? venueText.replace(/\s*\d{4}\s*$/, '').trim() : venueText;
+
+            var titleLink = li.querySelector('pt a');
+            var paperHref = titleLink ? titleLink.getAttribute('href') : null;
+
+            var figureUrl = li.getAttribute('data-figure');
+            var figure;
+
+            if (figureUrl) {
+                // Real image — click opens lightbox.
+                figure = document.createElement('button');
+                figure.type = 'button';
+                figure.className = 'pub-figure pub-figure-image';
+                figure.setAttribute('aria-label', 'Open figure for ' + (titleLink ? titleLink.textContent : 'paper'));
+                figure.dataset.full = figureUrl;
+                var img = document.createElement('img');
+                img.src = figureUrl;
+                img.alt = acronym + (year ? ' ' + year : '') + ' teaser';
+                img.loading = 'lazy';
+                figure.appendChild(img);
+            } else {
+                // Placeholder — click navigates to the paper.
+                figure = document.createElement(paperHref ? 'a' : 'div');
+                figure.className = 'pub-figure pub-figure-placeholder';
+                if (paperHref) {
+                    figure.href = paperHref;
+                    if (/^https?:/i.test(paperHref)) {
+                        figure.target = '_blank';
+                        figure.rel = 'noopener';
+                    }
+                }
+                var label = acronym || 'Paper';
+                figure.classList.add('pf-len-' + Math.min(label.length, 14));
+                var palette = PLACEHOLDER_PALETTE[hashString(label) % PLACEHOLDER_PALETTE.length];
+                figure.style.background = palette.bg;
+                figure.style.color = palette.fg;
+                figure.innerHTML =
+                    '<span class="pf-acronym">' + label + '</span>' +
+                    (year ? '<span class="pf-year">' + year + '</span>' : '');
+            }
+
+            var body = document.createElement('div');
+            body.className = 'pub-body';
+            while (li.firstChild) body.appendChild(li.firstChild);
+
+            li.appendChild(figure);
+            li.appendChild(body);
+
+            // Split .author block (authors <br> venue-line) so the authors
+            // line can be truncated with an ellipsis independently.
+            var authorDiv = body.querySelector('.author');
+            if (authorDiv && !authorDiv.querySelector('.au-list')) {
+                var br = authorDiv.querySelector('br');
+                if (br) {
+                    var auList = document.createElement('span');
+                    auList.className = 'au-list';
+                    while (authorDiv.firstChild && authorDiv.firstChild !== br) {
+                        auList.appendChild(authorDiv.firstChild);
+                    }
+                    var auVenue = document.createElement('span');
+                    auVenue.className = 'au-venue';
+                    var n = br.nextSibling;
+                    while (n) {
+                        var nx = n.nextSibling;
+                        auVenue.appendChild(n);
+                        n = nx;
+                    }
+                    br.remove();
+                    authorDiv.appendChild(auList);
+                    authorDiv.appendChild(auVenue);
+                    auList.title = auList.textContent.replace(/\s+/g, ' ').trim();
+                }
+            }
+        });
+
         // Render category chips at the right end of meta row (same line with venue/buttons)
         document.querySelectorAll('#publications li.paper').forEach(function(li){
             var cat = li.getAttribute('category');
@@ -280,11 +384,31 @@ For the latest full publication list, please refer to my <a href="https://schola
 <button class="filter" type="button" onclick="filterPub('Efficient Training')">Efficient Training</button>
 <button class="filter" type="button" onclick="filterPub('Efficient Data')">Efficient Data</button>&nbsp;
 <button class="filter" type="button" onclick="filterPub('Embodied AI')">Embodied AI</button>&nbsp;
-<span class="cofirst-note">*: co-first author.</span>
+<span class="cofirst-note">*: co-first author. &dagger;: corresponding author.</span>
 </div>
 <ul id="publications">
     <!-- <h3 style="margin-top: 1em;">2025</h3> -->
-    <li class="paper" category="Embodied AI">
+    <li class="paper" category="Embodied AI,Efficient Data" data-figure="assets/2605.02757/teaser.jpg">
+        <pt><a href="https://arxiv.org/abs/2605.02757">Seeing Realism from Simulation: Efficient Video Transfer for Vision-Language-Action Data Augmentation</a></pt>
+        <div class="author">
+            Chenyu Hui, Xiaodi Huang, Siyu Xu, Yunke Wang, Shan You, Fei Wang, <b><u>Tao Huang</u></b>&dagger;, Chang Xu<br>
+            <em>International Conference on Machine Learning</em> (<b>ICML</b>), 2026.</em>
+        </div>
+        <p>
+            <venue>ICML 2026</venue>
+            <button class="button-59 bib-link">Bib</button>
+            <a href="https://github.com/nanfangxiansheng/Seeing-Realism-from-Simulation" class="button-59">Code</a>
+            <div class="bib-div"></div>
+            <div class="bib-content">
+                <blockquote>
+                <pre>
+
+                </pre>
+                </blockquote>
+            </div>
+        </p>
+    </li>
+    <li class="paper" category="Embodied AI" data-figure="assets/2512.07472/teaser.jpg">
         <pt><a href="https://arxiv.org/abs/2512.07472">Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in Robotic Manipulation</a></pt>
         <div class="author">
             Siyu Xu, Zijian Wang, Yunke Wang, Chenghao Xia, <b><u>Tao Huang</u></b>, Chang Xu<br>
@@ -303,7 +427,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="Embodied AI">
+    <li class="paper" category="Embodied AI" data-figure="assets/2512.23650/teaser.jpg">
         <pt><a href="https://arxiv.org/abs/2512.23650">Do you have freestyle? expressive humanoid locomotion via audio control</a></pt><flag>&#128681; Highlight</flag>
         <div class="author">
             Zhe Li, Cheng Chi, Yangyang Wei, Boan Zhu, <b><u>Tao Huang</u></b>, Zhenguo Sun, Yibo Peng, Pengwei Wang, Zhongyuan Wang, Fangzhou Liu, Chang Xu, Shanghang Zhang<br>
@@ -323,7 +447,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper">
+    <li class="paper" data-figure="assets/2505.18605/teaser.jpg">
         <pt><a href="https://arxiv.org/abs/2505.18605">Rethinking Causal Mask Attention for Vision-Language Inference</a></pt>
         <div class="author">
             Xiaohuan Pei, <b><u>Tao Huang</u></b>, Yanxiang Ma, Chang Xu<br>
@@ -342,7 +466,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="Embodied AI">
+    <li class="paper" category="Embodied AI" data-figure="assets/2510.14952/teaser.jpg">
         <pt><a href="https://arxiv.org/abs/2510.14952">From Language to Locomotion: Retargeting-free Humanoid Control via Motion Latent Guidance</a></pt>
         <div class="author">
             Zhe Li, Cheng Chi, Yangyang Wei, Boan Zhu, Yibo Peng, <b><u>Tao Huang</u></b>, Pengwei Wang, Zhongyuan Wang, Shanghang Zhang, Chang Xu<br>
@@ -362,7 +486,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="KD">
+    <li class="paper" category="KD" data-figure="assets/2511.19887/teaser.jpg">
         <pt><a href="https://arxiv.org/abs/2511.19887">Distilling Cross-Modal Knowledge via Feature Disentanglement</a></pt>
         <div class="author">
             Junhong Liu, Yuan Zhang, <b><u>Tao Huang</u></b>, Wenchao Xu, Renyu Yang<br>
@@ -382,7 +506,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="pruning,Embodied AI">
+    <li class="paper" category="pruning,Embodied AI" data-figure="assets/2502.02175/teaser.jpg">
         <pt><a href="https://arxiv.org/abs/2502.02175">VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation</a></pt>
         <div class="author">
             Siyu Xu, Yunke Wang, Chenghao Xia, Dihao Zhu, <b><u>Tao Huang</u></b>, Chang Xu<br>
@@ -394,7 +518,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             <a href="https://github.com/siyuhsu/vla-cache" class="button-59">Code</a>
         </p>
     </li>
-    <li class="paper" category="pruning">
+    <li class="paper" category="pruning" data-figure="assets/2410.04417/teaser.jpg">
         <pt><a href="https://arxiv.org/pdf/2410.04417">SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference</a></pt>
         <div class="author">
             Yuan Zhang*, ChunKai Fan*, Junpeng Ma*, Wenzhao Zheng, <b><u>Tao Huang</u></b>, Kuan Cheng, Denis Gudovskiy, Tomoyuki Okuno, Yohei Nakata, Kurt Keutzer, Shanghang Zhang<br>
@@ -434,7 +558,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="KD">
+    <li class="paper" category="KD" data-figure="assets/2501.01709/teaser.jpg">
         <pt><a href="https://arxiv.org/abs/2501.01709">MoVE-KD: Knowledge Distillation for VLMs with Mixture of Visual Encoders</a></pt>
         <div class="author">
             Jiajun Cao, Yuan Zhang, <b><u>Tao Huang</u></b>, Ming Lu, Qizhe Zhang, Ruichuan An, Ningning Ma, Shanghang Zhang<br>
@@ -447,7 +571,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
 
-    <li class="paper" first_authored=true category="Efficient Data">
+    <li class="paper" first_authored=true category="Efficient Data" data-figure="assets/2502.19718/teaser.jpg">
 		<pt><a href="https://arxiv.org/abs/2502.19718">Learning Mask Invariant Mutual Information for Masked Image Modeling</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>*, Yanxiang Ma*, Shan You, Chang Xu<br>
@@ -503,7 +627,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
 
-    <li class="paper" first_authored=true, category="">
+    <li class="paper" first_authored=true, category="" data-figure="assets/2403.09977/teaser.jpg">
         <pt><a href="https://arxiv.org/abs/2403.09977">EfficientVMamba: Atrous Selective Scan for Light Weight Visual Mamba</a></pt>
         <div class="author">
             Xiaohuan Pei*, <b><u>Tao Huang</u></b>*, Chang Xu<br>
@@ -533,7 +657,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <!-- <h3 style="margin-top: 1em;">2024</h3> -->
-    <li class="paper">
+    <li class="paper" data-figure="assets/2405.14156/teaser.jpg">
         <pt><a href="https://arxiv.org/abs/2405.14156">Unveiling the Tapestry of Consistency in Large Vision-Language Models</a></pt>
         <div class="author">
             Yuan Zhang, Fei Xiao, <b><u>Tao Huang</u></b>, Chun-Kai Fan, Hongyuan Dong, Jiawen Li, Jiacong Wang, Kuan Cheng, Shanghang Zhang, Haoyuan Guo<br>
@@ -559,7 +683,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
 
-    <li class="paper" first_authored=true category="">
+    <li class="paper" first_authored=true category="" data-figure="assets/2403.09338/teaser.jpg">
         <pt><a href="https://arxiv.org/abs/2403.09338">LocalMamba: Visual State Space Model with Windowed Selective Scan</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>, Xiaohuan Pei, Shan You, Fei Wang, Chen Qian, Chang Xu<br>
@@ -585,7 +709,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
 
-    <li class="paper" first_authored=true category="Efficient Data,Efficient Training">
+    <li class="paper" first_authored=true category="Efficient Data,Efficient Training" data-figure="assets/2403.06517/teaser.jpg">
         <pt><a href="https://arxiv.org/abs/2403.06517">Active Generation for Image Classification</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>*, Jiaqi Liu*, Shan You, Chang Xu<br>
@@ -612,7 +736,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
 
-    <li class="paper" category="generation,Efficient Training">
+    <li class="paper" category="generation,Efficient Training" data-figure="assets/2407.13609/teaser.jpg">
         <pt><a href="https://arxiv.org/abs/2407.13609">Training-free Composite Scene Generation for Layout-to-Image Synthesis</a></pt>
         <div class="author">
             Jiaqi Liu, <b><u>Tao Huang</u></b>, Chang Xu<br>
@@ -700,7 +824,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
 
-    <li class="paper" category="KD">
+    <li class="paper" category="KD" data-figure="assets/2311.12079/teaser.jpg">
         <pt><a href="https://arxiv.org/abs/2311.12079">FreeKD: Knowledge Distillation via Semantic Frequency Prompt</a></pt>
         <div class="author">
             Yuan Zhang, <b><u>Tao Huang</u></b>, Jiaming Liu, Tao Jiang, Kuan Cheng, Shanghang Zhang<br>
@@ -1097,6 +1221,14 @@ For the latest full publication list, please refer to my <a href="https://schola
 <!-- Popover Element -->
 <div id="popover" class="popover"></div>
 
+<!-- Lightbox for paper figures -->
+<div id="lightbox" class="lightbox-backdrop" aria-hidden="true">
+    <div class="lightbox-content" role="dialog" aria-label="Expanded figure">
+        <button class="lightbox-close" aria-label="Close">×</button>
+        <img id="lightbox-img" src="" alt="Expanded paper figure">
+    </div>
+</div>
+
 </body>
 
 <script>
@@ -1117,7 +1249,38 @@ For the latest full publication list, please refer to my <a href="https://schola
 
     // removed legacy Bib copying; unified toggle is handled above
 
-    filterPub("All")
+    filterPub("All");
+
+    // Lightbox for paper figure thumbnails.
+    (function(){
+        var lb = document.getElementById('lightbox');
+        if (!lb) return;
+        var lbImg = document.getElementById('lightbox-img');
+        var btnClose = lb.querySelector('.lightbox-close');
+        function open(src, alt){
+            lbImg.src = src;
+            lbImg.alt = alt || 'Expanded paper figure';
+            lb.classList.add('open');
+            lb.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function close(){
+            lb.classList.remove('open');
+            setTimeout(function(){ lb.style.display = 'none'; lbImg.src = ''; }, 200);
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('click', function(e){
+            var fig = e.target.closest && e.target.closest('.pub-figure-image');
+            if (!fig) return;
+            e.preventDefault();
+            var src = fig.dataset.full || (fig.querySelector('img') || {}).src;
+            var alt = (fig.querySelector('img') || {}).alt;
+            if (src) open(src, alt);
+        });
+        btnClose.addEventListener('click', close);
+        lb.addEventListener('click', function(e){ if (e.target === lb) close(); });
+        document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+    })();
 
 </script>
 <script src="common.js"></script>
