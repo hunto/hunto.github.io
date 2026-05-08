@@ -538,22 +538,17 @@ li {
 }
 
 .paper {
-	border-left: 3px solid var(--theme-color);
-	/* padding: 15px 20px;
-	margin: 15px 0; */
-	padding-left: 0.8em;
-	margin-left: 0em;
-	padding-top: 0.1em;
-	padding-bottom: 0.1em;
-	border-radius: 0 8px 8px 0;
-	background-color: #fafafa;
-	transition: all 0.3s ease;
+	border: none;
+	background-color: transparent;
+	padding: 0;
+	margin: 0;
+	border-radius: 0;
+	transition: none;
 }
 
 .paper:hover {
-	background-color: rgba(208, 64, 58, 0.04);
-	box-shadow: 0 6px 16px 3px rgba(208, 64, 58, 0.12);
-	border-left-color: var(--a-hover-color);
+	background-color: transparent;
+	box-shadow: none;
 }
 
 .photo {
@@ -721,46 +716,38 @@ table.imgtable, table.imgtable td {
 }
 
 .filter {
-	color: var(--filter-text-color);
-	background-color: var(--filter-bg-color);
-	border: var(--filter-act-bg-color);
-	border-style: solid;
-	border-radius: 1rem;
-	border-width: 1px;
-	transition: all .3s;
+	color: #888;
+	background-color: #fff;
+	border: 1.5px solid #ddd;
+	border-radius: 20px;
+	transition: all .15s;
 	touch-action: manipulation;
-	font-size: 80%;
-	line-height: 130%;
-	padding-left: 1em;
-	padding-right: 1em;
-	/* width: 5em; */
+	font-size: 0.78em;
+	line-height: 1.6;
+	padding: 0.18em 0.7em;
+	font-family: var(--base-font);
+	cursor: pointer;
+	user-select: none;
+	margin-right: 0.25em;
+	margin-bottom: 0.3em;
 }
 
-.filter:focus {
-	color: var(--filter-act-bg-color);
-}
-  
-  .filter:hover {
-	border-color: var(--filter-act-bg-color);
-	color: var(--filter-text-color);
-	background-color: var(--filter-hover-bg-color);
-	fill: var(--theme-color);
-	font-weight: 800;
-  }
-  
-  .filter:active {
-	border-color: var(--filter-act-bg-color);
-	color: var(--filter-act-text-color);
-	background-color: var(--filter-act-bg-color);
-	fill: var(--filter-act-bg-color);
-  }
+.filter:focus { outline: none; }
 
-  .filter.active {
-	border-color: var(--filter-act-bg-color);
-	color: var(--filter-act-text-color);
-	background-color: var(--filter-act-bg-color);
-	fill: var(--filter-act-bg-color);
-  }
+.filter:hover {
+	border-color: #bbb;
+	color: #555;
+	background-color: #fff;
+	font-weight: 400;
+}
+
+.filter:active,
+.filter.active {
+	border-color: var(--theme-color);
+	color: var(--theme-color);
+	background-color: #fff5f4;
+	font-weight: 400;
+}
 
   .collapsible {
 	align-items: center;
@@ -988,94 +975,225 @@ venue {
   margin-top: 0.2em;
 }
 
-/* Publications list */
+/* Publications list — minimal magazine style */
 #publications {
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
+	padding-top: 0;
 }
 
 #publications li.paper {
 	position: relative;
-	background: #ffffff;              /* 卡片底色 */
-	border: 1px solid #ececec;        /* 细边框，提升分隔感 */
-	border-radius: 10px;              /* 圆角卡片 */
-	padding: 12px 14px 12px;          /* 恢复正常内边距，chips 放在同一行右侧 */
-	margin: var(--space-4) 0;         /* 卡片间距（统一） */
-	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04); /* 轻阴影 */
-	transition: box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid #f0f0f0;
+	border-radius: 0;
+	padding: 1rem 0;
+	margin: 0;
+	box-shadow: none;
+	transition: none;
 }
 
 #publications li.paper:hover {
-	background-color: rgba(208, 64, 58, 0.02); /* 轻微提亮 */
-	border-color: rgba(208, 64, 58, 0.25);     /* 边框随 hover 提示 */
-	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+	background-color: transparent;
+	border-color: #f0f0f0;
+	box-shadow: none;
+	transform: none;
+}
+
+#publications li.paper:last-child {
+	border-bottom: none;
+}
+
+/* Title */
+#publications li.paper pt {
+	color: #111;
+	font-weight: 600;
+	font-size: 1em;
+	line-height: 1.4;
 }
 
 #publications li.paper pt a {
-	display: inline;              /* 与 flag 同行 */
-	font-weight: var(--bold-font-weight);
-	font-size: 1.18em;            /* 标题更大 */
-	margin-bottom: 0;             /* 去掉块级间距 */
-	margin-right: 6px;            /* 与 flag 间距 */
-	color: inherit;
+	display: inline;
+	font-weight: 600;
+	font-size: 1em;
+	margin-bottom: 0;
+	margin-right: 6px;
+	color: #111;
+	text-decoration: none;
+	transition: color 0.15s;
 }
 
-/* 移除标题后的手工换行造成的多余空隙 */
-#publications li.paper pt + br {
-	display: none;
+#publications li.paper pt a:hover {
+	color: var(--theme-color);
+	text-decoration: none;
 }
 
+/* Remove extra spacing after title */
+#publications li.paper pt + br { display: none; }
+
+/* Highlight flag (Oral / Spotlight / Highlight) */
+#publications li.paper flag {
+	display: inline-block;
+	background-color: #fff0ee;
+	color: var(--theme-color);
+	font-size: 0.78em;
+	font-weight: 700;
+	letter-spacing: 0;
+	text-transform: none;
+	padding: 0.15em 0.5em;
+	margin-left: 0.4em;
+	border-radius: 3px;
+	height: auto;
+	line-height: 1.4;
+	vertical-align: middle;
+}
+
+/* Authors + venue text */
 #publications li.paper .author {
-	color: #444;
-	font-size: 0.96em;
-	line-height: 1.5;
-	margin-bottom: 6px;
+	color: #888;
+	font-size: 0.85em;
+	line-height: 1.55;
+	margin: 0.25em 0 0.25em 0;
 }
 
-#publications li.paper venue {
-	margin-right: 4px;            /* 更小间距 */
-	border-radius: 999px;
-	padding: 0 8px;
+#publications li.paper .author em {
+	color: #aaa;
+	font-style: italic;
 }
 
+#publications li.paper .author b {
+	color: #555;
+	font-weight: 600;
+}
+
+#publications li.paper .author b u {
+	color: #555;
+	text-decoration: none;
+}
+
+/* Meta row */
 #publications li.paper p {
-	margin: 4px 0 0;              /* 更紧凑 */
-	display: flex;                /* 元信息与按钮同一行 */
+	margin: 0.4em 0 0;
+	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
-	gap: 4px;                     /* 更小间距 */
+	gap: 0.5em;
+	font-size: 0.85em;
+	line-height: 1.4;
 }
 
+/* Venue badge — small red pill */
+#publications li.paper venue {
+	display: inline-block;
+	align-items: unset;
+	background-color: #fff0ee;
+	color: var(--theme-color);
+	font-family: var(--base-font);
+	font-size: 0.78em;
+	font-weight: 700;
+	letter-spacing: 0;
+	text-transform: none;
+	padding: 0.15em 0.55em;
+	margin: 0;
+	min-width: 0;
+	height: auto;
+	line-height: 1.4;
+	border: none;
+	border-radius: 3px;
+	box-shadow: none;
+}
+
+/* Buttons → minimal text links */
 #publications li.paper .button-59 {
-	margin-left: 2px;             /* 更小间距 */
-	margin-top: 0.2em;
+	background: transparent;
+	color: #aaa;
+	border: none;
+	border-bottom: 1px solid #e5e5e5;
+	border-radius: 0;
+	padding: 0.05em 0;
+	margin: 0 0.2em 0 0;
+	height: auto;
+	min-width: 0;
+	font-size: 0.85em;
+	font-weight: 400;
+	line-height: 1.4;
+	box-shadow: none;
+	transition: color 0.15s, border-color 0.15s;
+	display: inline-flex;
 }
 
-/* Chips wrapper at top-right */
+#publications li.paper .button-59:hover {
+	background: transparent;
+	color: var(--theme-color);
+	border-bottom-color: var(--theme-color);
+	box-shadow: none;
+	transform: none;
+	text-decoration: none;
+}
+
+/* Body wrapper inside li (everything except number) */
+#publications li.paper .pub-body {
+	flex: 1;
+	min-width: 0;
+}
+
+/* Number column on the left */
+#publications li.paper .pub-num {
+	font-size: 0.72em;
+	color: #ccc;
+	font-variant-numeric: tabular-nums;
+	min-width: 1.4rem;
+	padding-top: 0.25rem;
+	text-align: right;
+	flex-shrink: 0;
+}
+
+/* Year heading — tiny letterspaced label */
+#publications h3 {
+	font-size: 0.7rem;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: #ccc;
+	margin: 2rem 0 0.5rem;
+	padding-bottom: 0.4em;
+	border-bottom: 1px solid #f0f0f0;
+	font-weight: 600;
+}
+
+/* Chips wrapper at right end of meta row */
 .cate-wrap {
-	margin-left: auto;   /* 占据行末 */
+	margin-left: auto;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 4px;
 }
 
-/* Category chips */
+/* Category chips — subtle gray */
 .cate-chip {
 	display: inline-flex;
 	align-items: center;
-	font-size: 70%;
+	font-size: 0.72em;
 	line-height: 1.6;
-	padding: 0 6px;
+	padding: 0 8px;
 	border-radius: 999px;
-	background-color: rgba(0, 0, 0, 0.06); /* 浅灰背景 */
-	color: #444; /* 中性深灰文本 */
-	margin-right: 4px;
+	background-color: rgba(0, 0, 0, 0.04);
+	color: #999;
+	margin-right: 0;
+	letter-spacing: 0.02em;
 }
 
-/* 移除 First-author 徽标（不再展示） */
-#publications li.paper[first_authored]::before {
-	content: none;
+#publications li.paper[first_authored]::before { content: none; }
+
+/* Bib content — keep but make match the minimal aesthetic */
+#publications li.paper .bib-content {
+	width: 100%;
+	margin-top: 0.6em;
+	background-color: #fafafa;
+	border: 1px solid #f0f0f0;
+	box-shadow: none;
+	font-size: 0.85em;
 }
 
 @media (min-width: 768px) {
@@ -1186,7 +1304,7 @@ a, .button-59, .collapsible, #publications li.paper, .cta-card {
 }
 
 #publications li.paper:hover {
-	transform: translateY(-1px);
+	transform: none;
 }
 
 /* Table styling (non-image tables) */
@@ -1388,10 +1506,21 @@ blockquote {
 	position: sticky;
 	top: 56px;
 	background: #fff;
-	padding: 8px 0;
+	padding: 0.6em 0;
 	z-index: 100;
-	border-bottom: 1px solid #eee;
-	margin-bottom: var(--space-4);
+	border-bottom: 1px solid #f0f0f0;
+	margin-bottom: 0;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.1em;
+}
+
+.filter-bar .cofirst-note {
+	margin-left: auto;
+	color: #aaa;
+	font-size: 0.78em;
+	letter-spacing: 0.02em;
 }
 
 /* Print styles */
