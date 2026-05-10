@@ -168,23 +168,9 @@ h3 {
 
 #publications li.paper:last-child { border-bottom: none; }
 
-/* Figure: compact thumbnail on the left */
+/* Figure: hidden on mobile */
 #publications li.paper .pub-figure {
-	flex-shrink: 0;
-	width: 96px;
-	height: 60px;
-	padding: 0;
-	border-radius: 8px;
-	overflow: hidden;
-	background: #f5f5f5;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-	border: 1px solid rgba(0, 0, 0, 0.04);
-	font: inherit;
-	color: inherit;
-	text-decoration: none;
+	display: none;
 }
 
 #publications li.paper .pub-figure-image {
@@ -281,14 +267,7 @@ h3 {
 	margin: 0.25em 0 0.25em 0;
 }
 
-#publications li.paper .author .au-list {
-	display: block;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	max-width: 100%;
-}
-
+#publications li.paper .author .au-list,
 #publications li.paper .author .au-venue {
 	display: block;
 }

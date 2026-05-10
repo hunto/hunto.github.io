@@ -1044,7 +1044,7 @@ venue {
 	transition: none;
 	display: flex;
 	gap: 1.1rem;
-	align-items: flex-start;
+	align-items: center;
 }
 
 /* Paper figure (real image or generated placeholder) */
@@ -1214,16 +1214,9 @@ venue {
 	margin: 0.25em 0 0.25em 0;
 }
 
-/* Authors line: truncate to one line, full list shown on hover via title */
-#publications li.paper .author .au-list {
-	display: block;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	max-width: 100%;
-	cursor: help;
-}
-
+/* Authors and venue each get their own block-level row. Authors wrap
+   naturally onto a second line for long lists. */
+#publications li.paper .author .au-list,
 #publications li.paper .author .au-venue {
 	display: block;
 }

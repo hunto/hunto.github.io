@@ -460,8 +460,9 @@ For the latest full publication list, please refer to my <a href="https://schola
             li.appendChild(figure);
             li.appendChild(body);
 
-            // Split .author block (authors <br> venue-line) so the authors
-            // line can be truncated with an ellipsis independently.
+            // Wrap authors and venue line in their own spans so each
+            // becomes its own block-level row. Authors wrap naturally to
+            // multiple lines when long.
             var authorDiv = body.querySelector('.author');
             if (authorDiv && !authorDiv.querySelector('.au-list')) {
                 var br = authorDiv.querySelector('br');
@@ -482,7 +483,6 @@ For the latest full publication list, please refer to my <a href="https://schola
                     br.remove();
                     authorDiv.appendChild(auList);
                     authorDiv.appendChild(auVenue);
-                    auList.title = auList.textContent.replace(/\s+/g, ' ').trim();
                 }
             }
         });
