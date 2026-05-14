@@ -1,0 +1,1041 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Final Project — Multimodal Classification Challenge · CS3317</title>
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <style>
+    :root{
+      --bg:           #f8fafc;
+      --bg-soft:      #f1f5f9;
+      --surface:      #ffffff;
+
+      --text:         #0f172a;
+      --text-2:       #475569;
+      --text-3:       #94a3b8;
+
+      --border:       #e2e8f0;
+      --border-strong:#cbd5e1;
+
+      --accent:       #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-soft:  #eff6ff;
+      --accent-2:     #0ea5e9;
+      --gradient:     linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
+      --gradient-soft:linear-gradient(135deg, rgba(37,99,235,.08) 0%, rgba(14,165,233,.06) 100%);
+
+      --success:      #16a34a;
+      --success-soft: #f0fdf4;
+      --warn:         #b45309;
+      --warn-soft:    #fffbeb;
+      --warn-border:  #fcd34d;
+      --error:        #dc2626;
+      --error-soft:   #fef2f2;
+      --info:         #0284c7;
+      --info-soft:    #f0f9ff;
+
+      --code-bg:      #0b1220;
+      --code-fg:      #e2e8f0;
+
+      --shadow-sm:    0 1px 2px 0 rgba(15, 23, 42, 0.04);
+      --shadow-md:    0 4px 14px -2px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+
+      --r-sm: 6px;
+      --r:    10px;
+      --r-md: 14px;
+      --r-lg: 20px;
+    }
+
+    *,*::before,*::after{ box-sizing: border-box; }
+    html, body{ margin:0; padding:0; }
+    html{ scroll-behavior: smooth; scroll-padding-top: 16px; }
+    body{
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter var", "Inter", ui-sans-serif, system-ui, -apple-system,
+                   "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-feature-settings: "cv02","cv03","cv04","cv11";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+      font-size: 15.5px;
+    }
+    a{ color: var(--accent); text-decoration: none; transition: color 120ms; }
+    a:hover{ color: var(--accent-hover); text-decoration: underline; }
+    h1, h2, h3, h4{ letter-spacing: -0.011em; line-height: 1.25; margin: 0; }
+    p{ margin: 0 0 12px; }
+    p:last-child{ margin-bottom: 0; }
+    code{
+      font-family: ui-monospace, "JetBrains Mono", "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.875em;
+      background: var(--bg-soft);
+      padding: 1.5px 7px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+    }
+    pre{
+      background: var(--code-bg);
+      color: var(--code-fg);
+      padding: 14px 16px;
+      border-radius: var(--r-md);
+      overflow-x: auto;
+      margin: 8px 0 12px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      box-shadow: var(--shadow-sm);
+    }
+    pre code{
+      background: transparent;
+      border: none;
+      padding: 0;
+      color: inherit;
+      font-size: inherit;
+    }
+
+    /* ---------------- Hero ---------------- */
+    header.site{
+      background: var(--gradient-soft);
+      border-bottom: 1px solid var(--border);
+      padding: 32px 0 28px;
+    }
+    .container{ max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    .hero h1{
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .hero .subtitle{
+      color: var(--text-2);
+      font-size: 16px;
+      max-width: 800px;
+      margin-bottom: 14px;
+    }
+    .tag-row{ display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .tag{
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 11px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-2);
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(4px);
+    }
+    .tag a{ color: inherit; }
+    .tag.accent{
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+    .tag.accent a{ color: white; }
+
+    /* ---------------- TOC ---------------- */
+    nav.toc{
+      margin: 18px 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+    nav.toc .label{
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-right: 6px;
+    }
+    nav.toc a{
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--text-2);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: all 120ms;
+    }
+    nav.toc a:hover{
+      color: var(--accent);
+      border-color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ---------------- Main ---------------- */
+    main{ padding: 28px 0 56px; }
+
+    section.card{
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 24px 28px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 18px;
+      scroll-margin-top: 14px;
+    }
+    section.card h2{
+      font-size: 19px;
+      font-weight: 700;
+      margin: 0 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    section.card h2 .num{
+      flex: 0 0 30px;
+      width: 30px; height: 30px;
+      border-radius: 999px;
+      background: var(--gradient);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-variant-numeric: tabular-nums;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.12);
+    }
+    /* On warn/danger cards, tint the badge to match the card's accent so it
+       reads as part of the same visual system, not a stray blue mark. */
+    section.card.warn-card h2 .num{
+      background: var(--warn);
+    }
+    section.card.danger-card h2 .num{
+      background: var(--error);
+    }
+    section.card h3{
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 22px 0 10px;
+    }
+    section.card ul, section.card ol{
+      margin: 0 0 12px;
+      padding-left: 22px;
+    }
+    section.card li{ margin: 5px 0; }
+    section.card li > b:first-child{ color: var(--text); }
+
+    /* Card variants for emphasis */
+    section.card.feature{
+      border-left: 4px solid var(--accent);
+      background: linear-gradient(135deg, var(--accent-soft) 0%, var(--surface) 60%);
+    }
+    section.card.warn-card{
+      border-left: 4px solid var(--warn);
+      background: linear-gradient(135deg, var(--warn-soft) 0%, var(--surface) 60%);
+    }
+    section.card.danger-card{
+      border-left: 4px solid var(--error);
+      background: linear-gradient(135deg, var(--error-soft) 0%, var(--surface) 60%);
+    }
+
+    /* ---------------- Key facts strip ---------------- */
+    .keyfacts{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .fact{
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 16px 18px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+    .fact::before{
+      content: "";
+      position: absolute; top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--gradient);
+    }
+    .fact .lbl{
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+    .fact .val{
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.15;
+    }
+    .fact .val.accent{
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .fact .meta{
+      margin-top: 4px;
+      font-size: 12.5px;
+      color: var(--text-2);
+    }
+
+    /* ---------------- Callout (pull quote) ---------------- */
+    .callout{
+      padding: 16px 18px;
+      border-radius: var(--r);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      margin: 4px 0 16px;
+    }
+    .callout .quote{
+      font-style: italic;
+      color: var(--text);
+      font-size: 15.5px;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .callout .quote::before{ content: "“"; color: var(--accent); font-size: 22px; margin-right: 2px; vertical-align: -4px; }
+    .callout .quote::after { content: "”"; color: var(--accent); font-size: 22px; margin-left: 2px; vertical-align: -4px; }
+
+    /* ---------------- Must-read banner ---------------- */
+    .mustread{
+      background: var(--gradient);
+      border-radius: var(--r-md);
+      padding: 22px 26px;
+      margin-bottom: 22px;
+      color: white;
+      box-shadow: var(--shadow-md);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 22px;
+      align-items: center;
+    }
+    .mustread .badge{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .mustread h2{
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      margin: 0 0 6px;
+      letter-spacing: -0.012em;
+    }
+    .mustread p{
+      color: rgba(255,255,255,0.92);
+      margin: 0;
+      font-size: 14.5px;
+      line-height: 1.5;
+    }
+    .mustread p b{ color: white; }
+    .mustread .cta{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 11px 22px;
+      background: white;
+      color: var(--accent);
+      border-radius: var(--r);
+      font-size: 14.5px;
+      font-weight: 700;
+      box-shadow: var(--shadow-sm);
+      transition: transform 120ms, box-shadow 120ms;
+      white-space: nowrap;
+    }
+    .mustread .cta:hover{
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+      text-decoration: none;
+    }
+    .mustread .cta .arrow{
+      font-weight: 700;
+      transition: transform 180ms;
+    }
+    .mustread .cta:hover .arrow{ transform: translateX(3px); }
+    @media (max-width: 720px){
+      .mustread{ grid-template-columns: 1fr; }
+    }
+
+    /* ---------------- Tables ---------------- */
+    .tbl-wrap{ overflow-x: auto; margin: 8px 0 12px; }
+    table.t{
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 14px;
+    }
+    table.t thead th{
+      text-align: left;
+      padding: 10px 14px;
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      background: var(--bg-soft);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    table.t thead th:first-child{ border-top-left-radius: var(--r); }
+    table.t thead th:last-child{ border-top-right-radius: var(--r); }
+    table.t tbody td{
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    table.t tbody tr:last-child td{ border-bottom: none; }
+    table.t tbody tr:nth-child(even) td{ background: var(--bg-soft); }
+    table.t .num{ text-align: right; font-variant-numeric: tabular-nums; }
+    table.t code{ font-size: 0.85em; }
+
+    /* ---------------- Rubric ---------------- */
+    .rubric{
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .rubric-row{
+      display: grid;
+      grid-template-columns: 1fr 60px;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 14px;
+      background: var(--bg-soft);
+      border-radius: var(--r);
+      border: 1px solid var(--border);
+    }
+    .rubric-row .desc{ font-size: 14px; color: var(--text); }
+    .rubric-row .desc .sub{ display: block; font-size: 12.5px; color: var(--text-2); margin-top: 3px; }
+    .rubric-row .pts{
+      font-size: 18px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--text);
+      text-align: right;
+    }
+    .rubric-row .pts .of{ font-size: 12px; font-weight: 500; color: var(--text-3); margin-left: 2px; }
+    .rubric-row .bar{
+      grid-column: 1 / -1;
+      height: 6px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .rubric-row .bar > span{
+      display: block;
+      height: 100%;
+      background: var(--gradient);
+      border-radius: 999px;
+    }
+    .rubric-row.total{
+      background: var(--accent-soft);
+      border-color: var(--accent);
+    }
+    .rubric-row.total .pts{ color: var(--accent); font-size: 22px; }
+
+    /* ---------------- Timeline ---------------- */
+    .timeline{
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 4px 0 10px;
+    }
+    .tl-row{
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 16px;
+      position: relative;
+      padding: 6px 0 18px 0;
+    }
+    .tl-row::before{
+      content: "";
+      position: absolute;
+      left: 99px; top: 18px; bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .tl-row:last-child::before{ display: none; }
+    .tl-week{
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding-top: 4px;
+      text-align: right;
+      position: relative;
+    }
+    .tl-week::after{
+      content: "";
+      position: absolute;
+      right: -23px;
+      top: 6px;
+      width: 14px; height: 14px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 3px solid var(--accent);
+      z-index: 1;
+    }
+    .tl-row.deadline .tl-week::after{ border-color: var(--error); background: var(--error-soft); }
+    .tl-body{ padding-left: 14px; }
+    .tl-body b{ color: var(--text); }
+
+    /* ---------------- Checklist ---------------- */
+    .checklist{ list-style: none; padding-left: 0; }
+    .checklist li{
+      padding: 10px 14px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .checklist li::before{
+      content: "";
+      flex: 0 0 18px;
+      width: 18px; height: 18px;
+      margin-top: 3px;
+      border-radius: 4px;
+      background: var(--surface);
+      border: 1.5px solid var(--border-strong);
+    }
+    .checklist li ul{
+      list-style: disc;
+      margin: 6px 0 0 0;
+      padding-left: 22px;
+      color: var(--text-2);
+      font-size: 14px;
+    }
+    .checklist li ul li{
+      padding: 0; background: none; border: none; margin: 0 0 2px 0; display: list-item;
+    }
+    .checklist li ul li::before{ display: none; }
+
+    /* ---------------- Footer ---------------- */
+    footer.site{
+      margin-top: 24px;
+      padding: 22px 0 28px;
+      border-top: 1px solid var(--border);
+      color: var(--text-3);
+      font-size: 13px;
+      background: var(--surface);
+    }
+    footer.site .container{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    footer.site b{ color: var(--text-2); }
+
+    /* ---------------- Responsive ---------------- */
+    @media (max-width: 640px){
+      .hero h1{ font-size: 24px; }
+      section.card{ padding: 20px 18px; }
+      section.card h2{ font-size: 17px; }
+      .fact .val{ font-size: 18px; }
+      .tl-row{ grid-template-columns: 70px 1fr; }
+      .tl-row::before{ left: 79px; }
+      .tl-week::after{ right: -19px; width: 12px; height: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site">
+  <div class="container">
+    <div class="hero">
+      <h1>Final Project: Multimodal Classification Challenge</h1>
+      <div class="subtitle">
+        You receive <b>multimodal features and raw text</b> from an undisclosed source domain and
+        must predict <b>18 anonymized labels</b> per example. Previous courseworks prescribed
+        methods; <b>here you decide the methodology yourselves</b>. The leaderboard ranks teams;
+        how you handle test-time modality dropout and the few-shot regime is the design question
+        being graded.
+      </div>
+      <div class="tag-row">
+        <span class="tag accent"><a href="https://taohuang.info/cs3317">CS3317 — Artificial Intelligence</a></span>
+        <span class="tag">40% of the grade</span>
+        <span class="tag">Multi-label</span>
+        <span class="tag">Multimodal</span>
+        <span class="tag">F1-macro</span>
+        <span class="tag">Teams of 1–3</span>
+        <span class="tag">4 weeks</span>
+      </div>
+      <nav class="toc">
+        <span class="label">Jump to</span>
+        <a href="#downloads">Downloads</a>
+        <a href="#task">Task &amp; data</a>
+        <a href="#submission">Submission format</a>
+        <a href="#rubric">Grading</a>
+        <a href="#integrity">Academic integrity</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <!-- ===== Key facts strip ===== -->
+    <div class="keyfacts">
+      <div class="fact">
+        <div class="lbl">Group registration</div>
+        <div class="val accent">May 29, 23:59</div>
+        <div class="meta">Friday · register on the leaderboard · gates Canvas team creation</div>
+      </div>
+      <div class="fact">
+        <div class="lbl">Leaderboard closes</div>
+        <div class="val accent">Jun 12, 20:00</div>
+        <div class="meta">Friday · Beijing time · no submissions after</div>
+      </div>
+      <div class="fact">
+        <div class="lbl">Code + report + slides</div>
+        <div class="val accent">Jun 14, 23:59</div>
+        <div class="meta">Sunday · single zip on Canvas</div>
+      </div>
+      <div class="fact">
+        <div class="lbl">Worth</div>
+        <div class="val">40%</div>
+        <div class="meta">of the course grade · 100 points + 10% presentation</div>
+      </div>
+      <div class="fact">
+        <div class="lbl">Metric · team size</div>
+        <div class="val">F1-macro</div>
+        <div class="meta">Teams of 1–3 · 5 valid subs/day · 50 total</div>
+      </div>
+    </div>
+
+    <!-- ===== Required action: group registration ===== -->
+    <a class="mustread" href="http://taohuang.info:3317/register" style="text-decoration: none;">
+      <div>
+        <div class="badge">Required action · by May 29</div>
+        <h2>Form your team and register on the leaderboard by May 29, 23:59</h2>
+        <p>
+          Teams are 1–3 students. Once you register on the leaderboard, the
+          instructor creates your Canvas team accordingly — only then can you
+          upload the final zip on Canvas. <b>Don't wait until June</b> —
+          late registrations may miss the Canvas-team window.
+        </p>
+      </div>
+      <span class="cta">Open the leaderboard <span class="arrow">→</span></span>
+    </a>
+
+    <!-- ===== Must-read: presentation requirements ===== -->
+    <a class="mustread" href="presentation.html" style="text-decoration: none;">
+      <div>
+        <div class="badge">Required reading</div>
+        <h2>Presentation requirements — read before the last class</h2>
+        <p>
+          <b>All team members speak.</b> Slides are in <b>English</b>; oral delivery is in
+          <b>Chinese or English</b>. The talk is 8 minutes + open Q&amp;A, counts as <b>10%</b> of
+          the course grade (separate from the project's 100 pts).
+        </p>
+      </div>
+      <span class="cta">Open the rules <span class="arrow">→</span></span>
+    </a>
+
+    <!-- ===== The twist ===== -->
+    <section id="twist" class="card feature">
+      <h2><span class="num">!</span>The methodological twist — read this first</h2>
+      <div class="callout">
+        <p class="quote">
+          At test time, ~30% of examples will have one randomly-selected modality replaced with
+          zeros, indicated by the mask. Training data is clean — consider how to bridge this
+          train/test distribution gap.
+        </p>
+      </div>
+      <p>
+        A baseline that just concatenates features and runs an MLP will work on intact examples
+        but degrade sharply on dropout examples, because it never saw zero rows during training.
+        <b>What you do about this is the project.</b> Some sensible responses (none required, all
+        in scope): train-time modality dropout simulation, per-modality classifiers with
+        mask-aware late fusion, learned modality gates, or imputation models for the missing
+        modality.
+      </p>
+    </section>
+
+    <!-- ===== Downloads ===== -->
+    <section id="downloads" class="card">
+      <h2><span class="num">1</span>Downloads &amp; submission</h2>
+      <ul>
+        <li><a href="assets/Coursework_Final_Project.pdf" download><b>Coursework handout (PDF)</b></a> — 6 pages with figures.</li>
+        <li><a href="assets/student_bundle.tar.gz" download><b>Data + starter bundle</b></a> (.tar.gz, ~80 MB):
+          <ul>
+            <li><code>data/</code> — all CSV and NPZ files live here:
+              <ul style="margin: 4px 0 4px 0;">
+                <li><code>data/train.csv</code>, <code>data/val.csv</code>, <code>data/unlabeled.csv</code>, <code>data/test.csv</code> — example_id, text_raw, labels or mask</li>
+                <li><code>data/{split}_image.npz</code>, <code>data/{split}_text_CLIP.npz</code>, <code>data/{split}_text_BERT.npz</code> — pooled 768-d features</li>
+              </ul>
+            </li>
+            <li><code>starter/</code> — <code>load_data.py</code>, <code>evaluate.py</code>, <code>baseline_concat_mlp.py</code>, <code>submission_template.csv</code></li>
+            <li><code>tests/sanity_checks.py</code> — verifies the bundle and a submission CSV</li>
+            <li><code>docs/report_template.tex</code> &amp; <code>docs/report_template.docx</code> — NeurIPS-style report templates</li>
+          </ul>
+        </li>
+        <li><b>Leaderboard:</b> <a href="http://taohuang.info:3317">http://taohuang.info:3317</a> — register your team, upload submissions, see your rank. <b>Register by May 29, 23:59</b> so the instructor can create your Canvas team in time.</li>
+        <li><b>Canvas:</b> a single zip with code, <code>report.pdf</code>, and <code>slides.pdf</code> — submitted <i>after</i> the leaderboard closes, by Jun 14 23:59. The leaderboard handles the test submission; Canvas handles the write-up. You can only upload the Canvas zip once the instructor has created your Canvas team from your leaderboard registration.</li>
+      </ul>
+    </section>
+
+    <!-- ===== Learning objectives ===== -->
+    <section class="card">
+      <h2><span class="num">2</span>Learning objectives</h2>
+      <ul>
+        <li>Reason about multimodal fusion and choose between early, late, and gated fusion architectures based on the task structure.</li>
+        <li>Design for a known train/test distribution gap; quantify your method's robustness via stratified ablations.</li>
+        <li>Use a small labeled set, a large unlabeled pool, and (optionally) LLM APIs as engineering components — while disclosing all of them.</li>
+        <li>Communicate methodology in a NeurIPS-style report and an 8-minute talk + open Q&amp;A.</li>
+      </ul>
+    </section>
+
+    <!-- ===== Task & data ===== -->
+    <section id="task" class="card">
+      <h2><span class="num">3</span>The task &amp; data</h2>
+      <p>
+        You receive four splits of the same underlying dataset. Every example has the same
+        per-modality content: an image-feature vector, two text-feature vectors (CLIP- and
+        BERT-encoded), and the raw text the features were computed from. Labels are
+        multi-hot vectors of length 18; classes are anonymized integers
+        <code>label_0</code> through <code>label_17</code>.
+      </p>
+
+      <h3>Splits</h3>
+      <div class="tbl-wrap">
+        <table class="t">
+          <thead>
+            <tr><th>Split</th><th>Size</th><th>Labels?</th><th>Test-time modality dropout?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>train</code></td><td>2,000</td><td>yes</td><td>no (clean)</td></tr>
+            <tr><td><code>val</code></td><td>300</td><td>yes</td><td>no (clean)</td></tr>
+            <tr><td><code>unlabeled</code></td><td>5,000</td><td>no</td><td>no (clean)</td></tr>
+            <tr><td><code>test</code></td><td>2,000</td><td>no (graded online)</td><td><b>yes</b> — 30% have one modality zeroed</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>CSV schemas</h3>
+      <div class="tbl-wrap">
+        <table class="t">
+          <thead><tr><th>File</th><th>Columns</th></tr></thead>
+          <tbody>
+            <tr><td><code>data/train.csv</code>, <code>data/val.csv</code></td><td><code>example_id, text_raw, label_0, …, label_17</code></td></tr>
+            <tr><td><code>data/unlabeled.csv</code></td><td><code>example_id, text_raw</code></td></tr>
+            <tr><td><code>data/test.csv</code></td><td><code>example_id, text_raw, has_image, has_text</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="margin-top:10px;">
+        Row <i>i</i> of every <code>.npz</code> file for a split corresponds to the
+        <i>i</i>-th data row of <code>{split}.csv</code>. The CSV's <code>example_id</code> column
+        is the canonical mapping.
+      </p>
+
+      <h3>Test-time dropout details</h3>
+      <p>
+        When <code>has_image=0</code>, the row in <code>data/test_image.npz</code> is all zeros. When
+        <code>has_text=0</code>, BOTH text feature files have zero rows there <i>and</i>
+        <code>text_raw</code> is the empty string. The mask is provided so you can identify these
+        examples; the zeroing is already applied.
+      </p>
+    </section>
+
+    <!-- ===== Setup ===== -->
+    <section id="setup" class="card">
+      <h2><span class="num">4</span>Setup &amp; first run</h2>
+      <pre><code>tar -xzf student_bundle.tar.gz
+cd student_bundle/
+pip install numpy torch tqdm
+python -m starter.baseline_concat_mlp     # ~1 minute, writes submission.csv
+python -m tests.sanity_checks --submission submission.csv</code></pre>
+      <p style="color: var(--text-2); font-size: 14px;">
+        The baseline is the floor you must beat — it is the simplest concat-MLP and does not
+        know about test-time modality dropout. The remaining four weeks are about beating it.
+      </p>
+    </section>
+
+    <!-- ===== SJTU HPC ===== -->
+    <section id="hpc" class="card feature">
+      <h2><span class="num">5</span>Compute — SJTU HPC (交我算)</h2>
+      <p>
+        A teaching HPC account on <b>SJTU 交我算</b> has been requested for every student in
+        the course. Using it is <b>optional</b>, not required — the project is small enough to
+        run on a laptop, but if you'd like a GPU, this is your option.
+      </p>
+
+      <h3>Quick links</h3>
+      <ul>
+        <li><b>Login portal:</b> <a href="https://my.hpc.sjtu.edu.cn/">https://my.hpc.sjtu.edu.cn/</a></li>
+        <li><b>Documentation:</b> <a href="https://docs.hpc.sjtu.edu.cn/">https://docs.hpc.sjtu.edu.cn/</a></li>
+      </ul>
+
+      <h3>Your account</h3>
+      <p>
+        The instructor has sent each student a personal username and password via
+        <b>Canvas 私信 (direct message)</b>. If you did <b>not</b> receive the message,
+        email the instructor at <a href="mailto:t.huang@sjtu.edu.cn">t.huang@sjtu.edu.cn</a>.
+      </p>
+
+      <h3>Teaching-account quotas &amp; rules (from the HPC operations team)</h3>
+      <div class="callout">
+        <p class="quote" style="font-style: normal;">
+          为避免计算资源浪费，教学账号限制同时运行的作业数量 <b>1 个</b>、CPU 节点数
+          <b>1 个</b>、GPU 卡数 <b>1 卡</b>、作业最长运行时间 <b>12 小时</b>。<br>
+          请优先使用 <b>π2.0 集群</b> 完成作业。登录节点为 <code>pilogin</code>，
+          请务必提醒学生 <b>不要在登录节点运行作业，否则将会被封禁。</b><br>
+          CPU 作业请使用 <code>cpu</code> 队列，GPU 作业请使用 <code>dgx2</code> 队列
+          （单卡拥有 32 G 显存）。目前集群 GPU 资源紧张，可能会出现排队的现象，
+          请学生妥善安排作业提交时间。
+        </p>
+      </div>
+      <p>
+        <b>English summary.</b> To avoid wasting shared resources, each teaching account is
+        capped at <b>1 concurrent job, 1 CPU node, 1 GPU card, and a 12-hour wall-clock
+        limit per job</b>. Prefer the <b>π2.0 cluster</b>. The login node is
+        <code>pilogin</code> — <b>do NOT run jobs on the login node, or your account will
+        be banned.</b> Use the <code>cpu</code> queue for CPU work and the <code>dgx2</code>
+        queue (32 GB per card) for GPU work. GPU resources are currently tight; plan your
+        job submissions accordingly.
+      </p>
+    </section>
+
+    <!-- ===== Submission format ===== -->
+    <section id="submission" class="card">
+      <h2><span class="num">6</span>Submission format &amp; leaderboard</h2>
+      <p>A CSV with exactly this header and 2,000 data rows (one per test example, any order):</p>
+      <pre><code>example_id,label_0,label_1,...,label_17
+ex_00123,0.81,0.04,...,0.03
+...</code></pre>
+      <ul>
+        <li>Values may be probabilities in <code>[0,1]</code> or binaries in <code>{0,1}</code>; the leaderboard thresholds probabilities at 0.5 by default.</li>
+        <li><b>F1-macro</b> is the leaderboard metric. F1-micro is reported but does not affect rank.</li>
+        <li>Each team is <b>anonymized</b> on the public leaderboard — only your group nickname is shown.</li>
+        <li><b>5 submissions per day per team, 50 total</b> over the four weeks. Format-error submissions that fail to score don't count against your quota.</li>
+        <li>Scoring is immediate. Rank by best F1-macro; ties broken by whoever reached the score first.</li>
+      </ul>
+    </section>
+
+    <!-- ===== Timeline ===== -->
+    <section id="timeline" class="card">
+      <h2><span class="num">7</span>Timeline</h2>
+      <div class="timeline">
+        <div class="tl-row">
+          <div class="tl-week">Week 1</div>
+          <div class="tl-body">
+            Bundle released. <b>Register your team</b> on the leaderboard. <b>Run the baseline</b>
+            to get a first leaderboard score so you have something to beat.
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-week">Week 2</div>
+          <div class="tl-body">
+            Public leaderboard fully open. Iterate on your method — try ablations, missing-modality
+            handling, unlabeled-pool tricks.
+          </div>
+        </div>
+        <div class="tl-row deadline">
+          <div class="tl-week">May 29</div>
+          <div class="tl-body">
+            <b>23:59 — group registration deadline.</b> Form your team and register
+            on the leaderboard by this date so the instructor can create your
+            Canvas team in time for the final-zip submission.
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-week">Week 3</div>
+          <div class="tl-body">
+            Open Q&amp;A on Canvas. No formal checkpoint — keep iterating.
+          </div>
+        </div>
+        <div class="tl-row deadline">
+          <div class="tl-week">Jun 12</div>
+          <div class="tl-body">
+            <b>20:00 — leaderboard closes.</b> Your best F1-macro by then is your final
+            leaderboard rank.
+          </div>
+        </div>
+        <div class="tl-row deadline">
+          <div class="tl-week">Jun 14</div>
+          <div class="tl-body">
+            <b>23:59 — single zip due on Canvas</b> containing code, <code>report.pdf</code>, and
+            <code>slides.pdf</code>.
+          </div>
+        </div>
+        <div class="tl-row deadline">
+          <div class="tl-week">Last class</div>
+          <div class="tl-body">
+            <b>8-minute presentation + open Q&amp;A.</b> All team members speak, slides in English,
+            oral delivery in Chinese or English. See the
+            <a href="presentation.html">presentation requirements page</a> for the full rules.
+            Graded separately as the 10% course-level presentation component.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Constraints ===== -->
+    <section id="constraints" class="card warn-card">
+      <h2><span class="num">8</span>Hard constraints</h2>
+      <ul>
+        <li><b>Total model parameters ≤ 100M</b> at inference time, including any pretrained weights loaded into memory. This rules out fine-tuning a large pretrained backbone; it does <i>not</i> rule out using one via API (see below).</li>
+        <li><b>No external datasets</b> beyond what's provided in the bundle.</li>
+        <li><b>No attempts to deanonymize</b> the source domain. Detected attempts are an automatic fail. The features are pre-computed; you do not need to know the source.</li>
+        <li><b>LLM API calls are allowed</b> (paid or free), but must be disclosed in your report: which provider/model, where in your pipeline, approximate cost (CNY). <i>Pure prompting alone will be marked low on Method Design.</i></li>
+      </ul>
+    </section>
+
+    <!-- ===== Report ===== -->
+    <section id="report" class="card feature">
+      <h2><span class="num">9</span>What to put in the report</h2>
+      <p>
+        Max 8 pages, NeurIPS-style. Use <code>docs/report_template.tex</code> or
+        <code>docs/report_template.docx</code>. The grading rubric weighs each section explicitly
+        — the items below are required.
+      </p>
+      <ol>
+        <li><b>Method Choice Rationale</b> (one paragraph): why this method, what was rejected and why.</li>
+        <li><b>Approach</b>: pipeline figure; how you handle missing modalities; how you used the unlabeled pool (if at all); LLM/API usage disclosure.</li>
+        <li><b>Empirical Analysis</b>: per-modality ablation (image only / text only / both) and per-subset F1 on test stratified by the mask (intact / image-dropped / text-dropped).</li>
+        <li><b>Resources Used</b>: compute hours, hardware, API providers/models, approximate cost in CNY.</li>
+        <li><b>AI usage</b>: itemize every AI tool and exactly what each accomplished (see Academic Integrity below).</li>
+      </ol>
+    </section>
+
+    <!-- ===== Grading rubric ===== -->
+    <section id="rubric" class="card">
+      <h2><span class="num">10</span>Grading rubric (100 points)</h2>
+      <div class="rubric">
+        <div class="rubric-row">
+          <div class="desc"><b>Method design &amp; implementation</b><span class="sub">Architectural choices, training procedure, code quality.</span></div>
+          <div class="pts">25<span class="of">/100</span></div>
+          <div class="bar"><span style="width: 25%;"></span></div>
+        </div>
+        <div class="rubric-row">
+          <div class="desc"><b>Empirical analysis</b><span class="sub">Ablations, per-modality results, missing-modality robustness.</span></div>
+          <div class="pts">25<span class="of">/100</span></div>
+          <div class="bar"><span style="width: 25%;"></span></div>
+        </div>
+        <div class="rubric-row">
+          <div class="desc"><b>Report quality</b><span class="sub">Clarity, figures, scientific reasoning.</span></div>
+          <div class="pts">20<span class="of">/100</span></div>
+          <div class="bar"><span style="width: 20%;"></span></div>
+        </div>
+        <div class="rubric-row">
+          <div class="desc"><b>Final leaderboard tier</b><span class="sub">Top 10% = 15 · top 30% = 12 · top 50% = 9 · any valid submission = 6 · none = 0.</span></div>
+          <div class="pts">15<span class="of">/100</span></div>
+          <div class="bar"><span style="width: 15%;"></span></div>
+        </div>
+        <div class="rubric-row">
+          <div class="desc"><b>Method Choice Rationale</b><span class="sub">Defending what you chose and what you rejected, in writing.</span></div>
+          <div class="pts">10<span class="of">/100</span></div>
+          <div class="bar"><span style="width: 10%;"></span></div>
+        </div>
+        <div class="rubric-row">
+          <div class="desc"><b>Reproducibility</b><span class="sub">Code runs, seeds fixed, results match the report's numbers.</span></div>
+          <div class="pts">5<span class="of">/100</span></div>
+          <div class="bar"><span style="width: 5%;"></span></div>
+        </div>
+        <div class="rubric-row total">
+          <div class="desc"><b>Total</b></div>
+          <div class="pts">100</div>
+        </div>
+      </div>
+      <p style="margin-top: 14px; color: var(--text-2); font-size: 13.5px;">
+        The 8-minute presentation + Q&amp;A on the last class is graded <b>separately</b> as the
+        10% course-level presentation component — it is <i>not</i> part of these 100 project points.
+      </p>
+    </section>
+
+    <!-- ===== Checklist ===== -->
+    <section id="checklist" class="card">
+      <h2><span class="num">11</span>Submission checklist</h2>
+      <ul class="checklist">
+        <li>Registered your team on the leaderboard (one account per team).</li>
+        <li><code>sanity_checks.py</code> passes for both the bundle and your final submission CSV.</li>
+        <li>Final submission uploaded to the leaderboard <b>before Jun 12, 20:00</b>.</li>
+        <li>
+          <b>Single zip uploaded to Canvas before Jun 14, 23:59</b> containing:
+          <ul>
+            <li><code>code/</code> with a runnable <code>README</code> and pinned random seeds</li>
+            <li><code>report.pdf</code> — max 8 pages, all required sections including AI usage</li>
+            <li><code>slides.pdf</code> — presentation slides</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== Academic integrity ===== -->
+    <section id="integrity" class="card danger-card">
+      <h2><span class="num">!</span>Academic integrity</h2>
+      <ul>
+        <li>Discussing high-level ideas with other teams is allowed. Sharing code, submissions, model checkpoints, or labels is <b>not</b>.</li>
+        <li>Your final submission must come from your own implementation.</li>
+        <li>Any attempt to deanonymize the source domain or recover test labels (e.g. reverse-searching the raw text on the web for the purpose of identification) is a violation and an automatic fail for the project.</li>
+      </ul>
+
+      <h3>AI usage disclosure (required)</h3>
+      <p>
+        AI tools — LLM APIs in your pipeline, coding assistants (Cursor, Claude Code, GitHub
+        Copilot, …), report-writing assistants, autonomous coding agents — are
+        <b>permitted</b>. They are not a free pass on accountability.
+      </p>
+      <p>
+        In your report, include an "AI usage" subsection that itemizes <b>every tool you used and
+        exactly what each accomplished</b>. Be specific. Examples of adequate disclosure:
+      </p>
+      <ul>
+        <li>"Cursor wrote the data-loading boilerplate in <code>load.py</code> and the argparse plumbing in <code>train.py</code>; we wrote the model and training loop."</li>
+        <li>"Claude API: one chat session to debug a numpy shape mismatch in our training loop. ~3 turns, ~CNY 0.20."</li>
+        <li>"GPT-5 helped revise wording in the abstract and the discussion; we wrote the methodology and analysis sections."</li>
+      </ul>
+      <p>
+        Examples of <i>inadequate</i> disclosure: "I used ChatGPT", "some parts were AI-assisted".
+        If a Q&amp;A question reveals that you cannot explain a component you claimed as your own
+        work, that is a violation.
+      </p>
+      <p>
+        The deliverable rule: <b>the design decisions must be yours, and you must be able to
+        defend every part of your submission in person.</b>
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site">
+  <div class="container">
+    <div>
+      <b>Tip:</b> read the handout PDF first. Then run
+      <code>python -m starter.baseline_concat_mlp</code> to get a first leaderboard score, and
+      use that as the floor you must beat by designing your own method.
+    </div>
+    <div>
+      <b>Contact:</b> for account issues (lost password, member changes, deletion requests, …)
+      or any project question, email Dr.&nbsp;Tao Huang at
+      <a href="mailto:t.huang@sjtu.edu.cn">t.huang@sjtu.edu.cn</a>.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

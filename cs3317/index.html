@@ -85,6 +85,105 @@
       margin:10px 0;
       border:1px solid var(--line);
     }
+    .final-banner{
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap:18px;
+      align-items:center;
+      background:linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      color:white;
+      border-radius:14px;
+      padding:18px 22px;
+      margin: 14px 0 6px;
+      box-shadow: 0 6px 22px -8px rgba(37,99,235,.35);
+    }
+    .final-banner .badge{
+      display:inline-block;
+      padding:3px 11px;
+      background:rgba(255,255,255,0.20);
+      border:1px solid rgba(255,255,255,0.40);
+      border-radius:999px;
+      font-size:11.5px;
+      font-weight:700;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+    .final-banner h2{
+      margin:0 0 6px;
+      color:white;
+      font-size:21px;
+      line-height:1.25;
+    }
+    .final-banner p{
+      margin:0;
+      font-size:14px;
+      color:rgba(255,255,255,0.95);
+      line-height:1.55;
+    }
+    .final-banner p b{ color:white; }
+    .final-banner .dates{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-top:10px;
+    }
+    .final-banner .date-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:4px 10px;
+      background:rgba(255,255,255,0.16);
+      border:1px solid rgba(255,255,255,0.30);
+      border-radius:999px;
+      font-size:12.5px;
+      font-weight:500;
+      color:white;
+    }
+    .final-banner .date-chip b{ font-weight:700; }
+    .final-banner .cta-col{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      align-items:stretch;
+      min-width:170px;
+    }
+    .final-banner .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      padding:10px 18px;
+      background:white;
+      color:var(--accent);
+      border-radius:10px;
+      font-size:14px;
+      font-weight:700;
+      text-decoration:none;
+      transition: transform 120ms, box-shadow 120ms;
+      box-shadow:0 1px 2px rgba(0,0,0,0.04);
+      white-space:nowrap;
+    }
+    .final-banner .cta:hover{
+      transform:translateY(-1px);
+      box-shadow:0 4px 14px rgba(0,0,0,0.12);
+      text-decoration:none;
+    }
+    .final-banner .cta.ghost{
+      background:transparent;
+      color:white;
+      border:1px solid rgba(255,255,255,0.55);
+      box-shadow:none;
+    }
+    .final-banner .cta.ghost:hover{
+      background:rgba(255,255,255,0.10);
+    }
+    .final-banner .cta .arrow{ transition:transform 180ms; }
+    .final-banner .cta:hover .arrow{ transform:translateX(3px); }
+    @media (max-width: 720px){
+      .final-banner{ grid-template-columns:1fr; }
+      .final-banner .cta-col{ flex-direction:row; flex-wrap:wrap; }
+    }
     table{
       width:100%;
       border-collapse:collapse;
@@ -169,6 +268,27 @@
 
 <main class="container">
 
+  <div class="final-banner">
+    <div>
+      <span class="badge">Final project · now open</span>
+      <h2>Multimodal Classification Challenge</h2>
+      <p>
+        A four-week, leaderboard-graded coursework worth <b>40%</b> of the course grade.
+        Teams of 1–3 students. All members speak at the last-class presentation;
+        slides in English, oral delivery in Chinese or English.
+      </p>
+      <div class="dates">
+        <span class="date-chip"><b>Group registration</b> May 29, 23:59 CST</span>
+        <span class="date-chip"><b>Leaderboard closes</b> Jun 12, 20:00 CST</span>
+        <span class="date-chip"><b>Code + report + slides</b> Jun 14, 23:59 CST</span>
+      </div>
+    </div>
+    <div class="cta-col">
+      <a class="cta"       href="coursework_final/index.html">Open the project page <span class="arrow">→</span></a>
+      <a class="cta ghost" href="coursework_final/presentation.html">Presentation rules</a>
+    </div>
+  </div>
+
   <section class="grid">
     <div class="card">
       <h2 style="margin-top:0;">Course Information</h2>
@@ -241,6 +361,8 @@
             Due: 2026-04-27, 23:59 CST</li>
         <li><b>Coursework 4:</b> <a href="coursework4/index.html">Classification: Logistic Regression</a> (<a href="https://oc.sjtu.edu.cn/courses/89538/assignments/401000">canvas</a>)
             Due: 2026-05-11, 23:59 CST</li>
+        <li><b>Final Project:</b> <a href="coursework_final/index.html">Multimodal Classification Challenge</a> (<a href="coursework_final/presentation.html">presentation requirements</a>)<br/>
+            Group registration: 2026-05-29, 23:59 CST · Leaderboard closes: 2026-06-12, 20:00 CST · Code + report + slides: 2026-06-14, 23:59 CST</li>
       </ul>
     </div>
   </section>
@@ -526,7 +648,97 @@
             <span class="tag">—</span>
           </td>
           <td>
+            <a href="coursework_final/index.html">Final project released</a><br/>
+            <span class="muted small">Form your team and skim the handout.</span>
+          </td>
+        </tr>
+        <!-- Week 12 -->
+        <tr>
+          <td>12</td>
+          <td>2026-05-25</td>
+          <td>
+            <b>Deep RL &amp; Policy Learning</b><br/>
+            1. Deep Q Networks<br/>
+            2. Policy Gradient Methods<br/>
+            3. Model-Based RL<br/>
+          </td>
+          <td>
+          </td>
+          <td>
             <span class="tag">—</span>
+          </td>
+          <td>
+            <span class="tag due">Final Project</span><br/>
+            <a href="coursework_final/index.html">Group registration</a><br/>
+            Due: 2026-05-29, 23:59 CST
+          </td>
+        </tr>
+        <!-- Module 7 -->
+        <tr class="module-row">
+          <td colspan="6">Module 7: Embodied &amp; Frontier AI</td>
+        </tr>
+        <!-- Week 13 -->
+        <tr>
+          <td>13</td>
+          <td>2026-06-01</td>
+          <td>
+            <b>AI Agents</b><br/>
+            1. Tool-Using LLM Agents<br/>
+            2. Long-Horizon Reasoning<br/>
+            3. Autonomous Systems<br/>
+          </td>
+          <td>
+          </td>
+          <td>
+            <span class="tag">—</span>
+          </td>
+          <td>
+            <span class="tag">—</span>
+          </td>
+        </tr>
+        <!-- Week 14 -->
+        <tr>
+          <td>14</td>
+          <td>2026-06-08</td>
+          <td>
+            <b>Embodied Intelligence &amp; Robotics</b><br/>
+            1. Perception-to-Action Models<br/>
+            2. Sim-to-Real Challenges<br/>
+            3. Robotics Foundation Models<br/>
+          </td>
+          <td>
+          </td>
+          <td>
+            <span class="tag">—</span>
+          </td>
+          <td>
+            <span class="tag due">Final Project</span><br/>
+            <a href="coursework_final/index.html">Leaderboard closes</a><br/>
+            Fri 2026-06-12, 20:00 CST<br/>
+            <span class="tag due" style="margin-top:4px;">Final zip on Canvas</span><br/>
+            Sun 2026-06-14, 23:59 CST
+          </td>
+        </tr>
+        <!-- Week 15 -->
+        <tr>
+          <td>15</td>
+          <td>2026-06-15</td>
+          <td>
+            <b>Presentation Week</b><br/>
+            1. Final Project Presentations<br/>
+            2. Presentations, Q&amp;A, and feedback<br/>
+            3. Course synthesis &amp; future outlook<br/>
+            <span class="muted small">15-week semester — last class meeting</span>
+          </td>
+          <td>
+          </td>
+          <td>
+            <span class="tag">—</span>
+          </td>
+          <td>
+            <span class="tag due">Final Project</span><br/>
+            <a href="coursework_final/presentation.html">Presentations</a><br/>
+            8 min talk + Q&amp;A · all members speak
           </td>
         </tr>
       </tbody>

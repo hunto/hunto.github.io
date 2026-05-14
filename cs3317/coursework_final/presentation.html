@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Presentation Requirements — Final Project · CS3317</title>
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <style>
+    :root{
+      --bg:           #f8fafc;
+      --bg-soft:      #f1f5f9;
+      --surface:      #ffffff;
+
+      --text:         #0f172a;
+      --text-2:       #475569;
+      --text-3:       #94a3b8;
+
+      --border:       #e2e8f0;
+      --border-strong:#cbd5e1;
+
+      /* Distinct from the project page's blue — violet → fuchsia
+         signals "you are on the presentation page, not the project page". */
+      --accent:       #7c3aed;
+      --accent-hover: #6d28d9;
+      --accent-soft:  #f5f3ff;
+      --gradient:     linear-gradient(135deg, #7c3aed 0%, #c026d3 100%);
+      --gradient-soft:linear-gradient(135deg, rgba(124,58,237,.10) 0%, rgba(192,38,211,.07) 100%);
+
+      --success:      #16a34a;
+      --success-soft: #f0fdf4;
+      --warn:         #b45309;
+      --warn-soft:    #fffbeb;
+      --error:        #dc2626;
+      --error-soft:   #fef2f2;
+
+      --code-bg:      #0b1220;
+      --code-fg:      #e2e8f0;
+
+      --shadow-sm:    0 1px 2px 0 rgba(15, 23, 42, 0.04);
+      --shadow-md:    0 4px 14px -2px rgba(15, 23, 42, 0.08);
+
+      --r-sm: 6px;
+      --r:    10px;
+      --r-md: 14px;
+    }
+
+    *,*::before,*::after{ box-sizing: border-box; }
+    html, body{ margin:0; padding:0; }
+    html{ scroll-behavior: smooth; scroll-padding-top: 16px; }
+    body{
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter var", "Inter", ui-sans-serif, system-ui, -apple-system,
+                   "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-feature-settings: "cv02","cv03","cv04","cv11";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+      font-size: 15.5px;
+    }
+    a{ color: var(--accent); text-decoration: none; transition: color 120ms; }
+    a:hover{ color: var(--accent-hover); text-decoration: underline; }
+    h1, h2, h3, h4{ letter-spacing: -0.011em; line-height: 1.25; margin: 0; }
+    p{ margin: 0 0 12px; }
+    p:last-child{ margin-bottom: 0; }
+    code{
+      font-family: ui-monospace, "JetBrains Mono", "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.875em;
+      background: var(--bg-soft);
+      padding: 1.5px 7px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+    }
+
+    /* ---------------- Hero ---------------- */
+    header.site{
+      background: var(--gradient-soft);
+      border-bottom: 1px solid var(--border);
+      padding: 32px 0 28px;
+    }
+    .container{ max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    .crumb{
+      font-size: 13px;
+      color: var(--text-2);
+      margin-bottom: 10px;
+    }
+    .crumb a{ color: var(--text-2); }
+    .crumb .arrow{ color: var(--text-3); margin: 0 4px; }
+    .hero h1{
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .hero .subtitle{
+      color: var(--text-2);
+      font-size: 16px;
+      max-width: 800px;
+      margin-bottom: 14px;
+    }
+    .tag-row{ display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .tag{
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 11px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-2);
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(4px);
+    }
+    .tag.accent{
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* ---------------- Main ---------------- */
+    main{ padding: 28px 0 56px; }
+
+    section.card{
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 24px 28px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 18px;
+      scroll-margin-top: 14px;
+    }
+    section.card h2{
+      font-size: 19px;
+      font-weight: 700;
+      margin: 0 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    section.card h2 .num{
+      flex: 0 0 30px;
+      width: 30px; height: 30px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-variant-numeric: tabular-nums;
+    }
+    section.card h3{
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 22px 0 10px;
+    }
+    section.card ul, section.card ol{
+      margin: 0 0 12px;
+      padding-left: 22px;
+    }
+    section.card li{ margin: 5px 0; }
+
+    section.card.feature{
+      border-left: 4px solid var(--accent);
+      background: linear-gradient(135deg, var(--accent-soft) 0%, var(--surface) 60%);
+    }
+    section.card.warn-card{
+      border-left: 4px solid var(--warn);
+      background: linear-gradient(135deg, var(--warn-soft) 0%, var(--surface) 60%);
+    }
+
+    /* ---------------- Three big rules ---------------- */
+    .rules{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .rule{
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+    .rule::before{
+      content: "";
+      position: absolute; top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--gradient);
+    }
+    .rule .lbl{
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+    .rule .headline{
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .rule .body{
+      color: var(--text-2);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .rule .body b{ color: var(--text); }
+
+    /* ---------------- Stat tile (key facts) ---------------- */
+    .facts{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .fact{
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 14px 18px;
+      box-shadow: var(--shadow-sm);
+    }
+    .fact .lbl{
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+    .fact .val{
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.15;
+    }
+    .fact .val.accent{
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .fact .meta{ margin-top: 4px; font-size: 12.5px; color: var(--text-2); }
+
+    /* ---------------- Tables ---------------- */
+    .tbl-wrap{ overflow-x: auto; margin: 8px 0 12px; }
+    table.t{
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 14px;
+    }
+    table.t thead th{
+      text-align: left;
+      padding: 10px 14px;
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      background: var(--bg-soft);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    table.t thead th:first-child{ border-top-left-radius: var(--r); }
+    table.t thead th:last-child{ border-top-right-radius: var(--r); }
+    table.t tbody td{
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    table.t tbody tr:last-child td{ border-bottom: none; }
+    table.t tbody tr:nth-child(even) td{ background: var(--bg-soft); }
+    table.t .num{ text-align: right; font-variant-numeric: tabular-nums; }
+
+    /* ---------------- Time budget ---------------- */
+    .budget{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 6px 0 10px;
+    }
+    .budget-row{
+      display: grid;
+      /* desc gets the lion's share; bar takes a moderate band; mins is compact */
+      grid-template-columns: minmax(0, 2.6fr) minmax(140px, 1fr) 60px;
+      gap: 16px;
+      align-items: center;
+      padding: 12px 16px;
+      background: var(--bg-soft);
+      border-radius: var(--r);
+      border: 1px solid var(--border);
+    }
+    .budget-row .mins{
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--accent);
+      text-align: right;
+      font-size: 15px;
+    }
+    .budget-row .desc{ font-size: 14px; color: var(--text); }
+    .budget-row .desc .sub{
+      display: block; font-size: 12.5px; color: var(--text-2); margin-top: 2px;
+    }
+    .budget-row .bar{
+      height: 6px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .budget-row .bar > span{
+      display: block; height: 100%;
+      background: var(--gradient);
+      border-radius: 999px;
+    }
+    .budget-row.total{
+      background: var(--accent-soft);
+      border-color: var(--accent);
+    }
+    .budget-row.total .mins{ font-size: 18px; }
+
+    /* ---------------- Do / Don't ---------------- */
+    .dodont{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 6px 0 4px;
+    }
+    @media (max-width: 640px){ .dodont{ grid-template-columns: 1fr; } }
+    .dodont .col{
+      padding: 16px 18px;
+      border-radius: var(--r);
+      border: 1px solid var(--border);
+    }
+    .dodont .col.do  { background: var(--success-soft); border-color: var(--success); }
+    .dodont .col.no  { background: var(--error-soft);   border-color: var(--error);   }
+    .dodont .col h3{
+      margin: 0 0 8px;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+    }
+    .dodont .col.do  h3{ color: var(--success); }
+    .dodont .col.no  h3{ color: var(--error); }
+    .dodont ul{ margin: 0; padding-left: 18px; font-size: 14px; }
+    .dodont li{ margin: 4px 0; color: var(--text); }
+
+    /* ---------------- Footer ---------------- */
+    footer.site{
+      margin-top: 24px;
+      padding: 22px 0 28px;
+      border-top: 1px solid var(--border);
+      color: var(--text-3);
+      font-size: 13px;
+      background: var(--surface);
+    }
+    footer.site .container{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    footer.site b{ color: var(--text-2); }
+
+    @media (max-width: 640px){
+      .hero h1{ font-size: 24px; }
+      section.card{ padding: 20px 18px; }
+      section.card h2{ font-size: 17px; }
+      .rule .headline{ font-size: 17px; }
+      /* On mobile: stack the bar under the description, keep mins on the right. */
+      .budget-row{ grid-template-columns: minmax(0, 1fr) 56px; }
+      .budget-row .desc{ grid-column: 1; }
+      .budget-row .mins{ grid-column: 2; grid-row: 1; align-self: start; }
+      .budget-row .bar { grid-column: 1 / -1; grid-row: 2; margin-top: 8px; }
+      .budget-row.total .desc{ grid-column: 1; }
+      .budget-row.total .mins{ grid-column: 2; grid-row: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site">
+  <div class="container">
+    <div class="hero">
+      <div class="crumb">
+        <a href="index.html">Final Project</a><span class="arrow">›</span>Presentation Requirements
+      </div>
+      <h1>Presentation Requirements</h1>
+      <div class="subtitle">
+        On the last class meeting your team gives an 8-minute talk on what you built and what you
+        found, followed by open Q&amp;A. <b>Every team member is a speaker</b>, the slide deck is
+        <b>in English</b>, and the spoken delivery can be in <b>Chinese or English</b>.
+      </div>
+      <div class="tag-row">
+        <span class="tag accent"><a href="https://taohuang.info/cs3317" style="color: white;">CS3317 — Artificial Intelligence</a></span>
+        <span class="tag">8-minute talk</span>
+        <span class="tag">Open Q&amp;A</span>
+        <span class="tag">All members speak</span>
+        <span class="tag">English slides</span>
+        <span class="tag">10% of course grade</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <!-- ===== The three big rules ===== -->
+    <div class="rules">
+      <div class="rule">
+        <div class="lbl">Rule 1</div>
+        <div class="headline">Everyone speaks.</div>
+        <div class="body">
+          All members of the team come up together and each must take a meaningful turn at the
+          microphone. We don't want one person presenting while the rest of the team watches.
+        </div>
+      </div>
+      <div class="rule">
+        <div class="lbl">Rule 2</div>
+        <div class="headline">Slides in English.</div>
+        <div class="body">
+          The entire deck — titles, body text, figure captions, table headers, references — is in
+          English. This is the same audience the report was written for.
+        </div>
+      </div>
+      <div class="rule">
+        <div class="lbl">Rule 3</div>
+        <div class="headline">Oral delivery: Chinese or English.</div>
+        <div class="body">
+          Speak in whichever language you'll be clearest in. Mixing within the team is fine —
+          one member can present in Chinese while another presents in English.
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Logistics facts ===== -->
+    <div class="facts">
+      <div class="fact">
+        <div class="lbl">When</div>
+        <div class="val accent">Last class</div>
+        <div class="meta">Schedule announced ~1 week prior</div>
+      </div>
+      <div class="fact">
+        <div class="lbl">Length</div>
+        <div class="val">8 min + Q&amp;A</div>
+        <div class="meta">Talk strictly timed; Q&amp;A open</div>
+      </div>
+      <div class="fact">
+        <div class="lbl">Format</div>
+        <div class="val">Slides + live</div>
+        <div class="meta">PDF deck on the lectern laptop</div>
+      </div>
+      <div class="fact">
+        <div class="lbl">Counts as</div>
+        <div class="val">10%</div>
+        <div class="meta">course grade · separate from the 100 project pts</div>
+      </div>
+    </div>
+
+    <!-- ===== Section 1: All members speak ===== -->
+    <section id="all-speak" class="card feature">
+      <h2><span class="num">1</span>All members are on stage together</h2>
+      <p>
+        Every member of the team comes up to the front for the entire talk and each member takes a
+        meaningful, prepared turn at the microphone. A two-person team will split the deck
+        roughly in half; a three-person team in roughly thirds. Hand-offs should be clean (no
+        re-introductions of the project, no overlap).
+      </p>
+      <p>
+        The Q&amp;A is <b>open</b>: anyone in the audience can ask any member of the team a
+        question, and anyone on the team may answer. We will deliberately ask questions of the
+        member who did not seem to present that part, to verify that the whole team understands
+        the whole project. If a member cannot defend a part of the project that was claimed as
+        their own work, that is an integrity issue (see the
+        <a href="index.html#integrity">academic-integrity</a> rules).
+      </p>
+      <p>
+        Solo teams (1 member) give the whole talk themselves — no rule change there.
+      </p>
+    </section>
+
+    <!-- ===== Section 2: Language ===== -->
+    <section id="language" class="card">
+      <h2><span class="num">2</span>Slide and spoken-language rules</h2>
+      <div class="tbl-wrap">
+        <table class="t">
+          <thead>
+            <tr><th>Surface</th><th>Required language</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Slide deck</b> (titles, body, figures, tables, captions, references)</td>
+              <td>English only</td>
+              <td>
+                Math, code, variable names, and proper nouns are fine as-is. If you cite a Chinese
+                resource, give the title in English alongside the original.
+              </td>
+            </tr>
+            <tr>
+              <td><b>Spoken delivery</b></td>
+              <td>Chinese or English</td>
+              <td>
+                Pick the one each speaker is clearest in. Different members on the same team may
+                use different languages.
+              </td>
+            </tr>
+            <tr>
+              <td><b>Q&amp;A</b></td>
+              <td>Chinese or English</td>
+              <td>Match the language the question was asked in when possible.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="color: var(--text-2); font-size: 14px;">
+        Reason for the asymmetry: the slide deck stays on the screen and on Canvas, where it has
+        to be readable to the same audience that reads the English report. The spoken delivery is
+        live and goes only to people in the room, so the language choice is yours.
+      </p>
+    </section>
+
+    <!-- ===== Section 3: What to cover ===== -->
+    <section id="content" class="card">
+      <h2><span class="num">3</span>What to cover in 8 minutes</h2>
+      <p>
+        The talk is a compressed version of the report; the
+        <a href="index.html#report">required report sections</a> are the right scaffold. A
+        suggested time budget:
+      </p>
+      <div class="budget">
+        <div class="budget-row">
+          <div class="desc">
+            <b>Problem framing &amp; the twist</b>
+            <span class="sub">What you're predicting, why test-time modality dropout is the design question.</span>
+          </div>
+          <div class="bar"><span style="width: 12.5%;"></span></div>
+          <div class="mins">1 min</div>
+        </div>
+        <div class="budget-row">
+          <div class="desc">
+            <b>Method Choice Rationale</b>
+            <span class="sub">Why this approach and what you rejected. The 10-pt rubric line is graded here.</span>
+          </div>
+          <div class="bar"><span style="width: 18.75%;"></span></div>
+          <div class="mins">1.5 min</div>
+        </div>
+        <div class="budget-row">
+          <div class="desc">
+            <b>Approach (pipeline figure)</b>
+            <span class="sub">How modalities are encoded, fused, and made robust to dropout. Show your architecture diagram.</span>
+          </div>
+          <div class="bar"><span style="width: 31.25%;"></span></div>
+          <div class="mins">2.5 min</div>
+        </div>
+        <div class="budget-row">
+          <div class="desc">
+            <b>Empirical analysis</b>
+            <span class="sub">Per-modality ablation and stratified-by-mask results. Show your best numbers, not all of them.</span>
+          </div>
+          <div class="bar"><span style="width: 25%;"></span></div>
+          <div class="mins">2 min</div>
+        </div>
+        <div class="budget-row">
+          <div class="desc">
+            <b>Discussion + AI-usage disclosure</b>
+            <span class="sub">What worked, what didn't, what you'd do with another week. One slide summarising the AI tools you used.</span>
+          </div>
+          <div class="bar"><span style="width: 12.5%;"></span></div>
+          <div class="mins">1 min</div>
+        </div>
+        <div class="budget-row total">
+          <div class="desc"><b>Total talk time</b></div>
+          <div></div>
+          <div class="mins">8 min</div>
+        </div>
+      </div>
+      <p style="color: var(--text-2); font-size: 14px; margin-top: 8px;">
+        Numbers are a suggestion; tune to your story. The hard rule is the 8-minute cap.
+      </p>
+    </section>
+
+    <!-- ===== Section 4: Slide guidance ===== -->
+    <section id="slides" class="card">
+      <h2><span class="num">4</span>Slide guidance</h2>
+      <ul>
+        <li><b>About 10–14 slides.</b> Roughly one slide per 30–45 seconds. Less is more — going under is fine, going over is not.</li>
+        <li><b>One idea per slide.</b> A title that states the idea, plus one figure or table or short bullet list. Avoid wall-of-text slides.</li>
+        <li><b>Figures over text.</b> A pipeline diagram, a results table with the F1 numbers, and a mask-stratified bar chart will carry the talk further than paragraphs of bullets.</li>
+        <li><b>Readable from the back.</b> Body text ≥ 22 pt, figure text ≥ 18 pt, axis labels visible.</li>
+        <li><b>Cite numbers visibly.</b> If you put a single F1 score on a slide, label which split, which mask subset, and which threshold it's for.</li>
+        <li><b>Submit a PDF.</b> Export your slides to <code>slides.pdf</code> so they render the same on the lectern computer. Avoid live demos or embedded videos unless they're in the PDF.</li>
+      </ul>
+
+      <div class="dodont" style="margin-top: 16px;">
+        <div class="col do">
+          <h3>Do</h3>
+          <ul>
+            <li>Use English consistently across every slide.</li>
+            <li>Mark every speaker's section clearly in the deck.</li>
+            <li>Show the pipeline figure once, refer back to it.</li>
+            <li>Practice the hand-offs between speakers.</li>
+            <li>Run the talk end-to-end with a timer at least once.</li>
+          </ul>
+        </div>
+        <div class="col no">
+          <h3>Don't</h3>
+          <ul>
+            <li>Mix Chinese and English on the slides.</li>
+            <li>Read paragraphs of bullet text verbatim.</li>
+            <li>Have one member present 7 minutes and another say "thanks" at the end.</li>
+            <li>Demo live code or open a notebook on the lectern.</li>
+            <li>Show the entire leaderboard history — show the final result.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Section 5: Q&A ===== -->
+    <section id="qa" class="card warn-card">
+      <h2><span class="num">5</span>Open Q&amp;A</h2>
+      <p>
+        After the 8-minute talk, the floor is open. We will ask questions of any team member, and
+        questions are not pre-shared. Common directions:
+      </p>
+      <ul>
+        <li><b>Why didn't you try X?</b> — testing your rationale against an obvious alternative.</li>
+        <li><b>What is this number on slide N?</b> — testing that you understand your own results, not just memorised them.</li>
+        <li><b>What would break if assumption Y didn't hold?</b> — testing whether you reasoned about the method or just ran the recipe.</li>
+        <li><b>Walk me through the line of code that does Z.</b> — testing that you wrote (or fully understand) what you submitted, especially relevant for the AI-usage disclosure.</li>
+      </ul>
+      <p>
+        The audience may also ask questions. You may answer in either language; if the question
+        was in Chinese, answering in Chinese is preferred so the asker can follow up.
+      </p>
+    </section>
+
+    <!-- ===== Section 6: Grading ===== -->
+    <section id="grading" class="card">
+      <h2><span class="num">6</span>How the presentation is graded</h2>
+      <p>
+        The presentation is graded <b>separately</b> from the project's 100 points — it counts as
+        the 10% course-level presentation component. The judgement is holistic, but the things
+        we look at:
+      </p>
+      <div class="tbl-wrap">
+        <table class="t">
+          <thead>
+            <tr><th>Dimension</th><th>What "good" looks like</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Clarity of method</b></td>
+              <td>Anyone in the room could re-state your approach after the talk.</td>
+            </tr>
+            <tr>
+              <td><b>Empirical evidence shown</b></td>
+              <td>Per-modality + per-mask-subset numbers are on a slide, not just claimed verbally.</td>
+            </tr>
+            <tr>
+              <td><b>Slide design</b></td>
+              <td>One idea per slide, readable from the back, English, no walls of text.</td>
+            </tr>
+            <tr>
+              <td><b>Team participation</b></td>
+              <td>Every member has spoken on substance — not just an intro or a "thank you".</td>
+            </tr>
+            <tr>
+              <td><b>Q&amp;A depth</b></td>
+              <td>Members can explain and defend any part of their own submission.</td>
+            </tr>
+            <tr>
+              <td><b>Time management</b></td>
+              <td>Talk lands inside 8 minutes without being rushed at the end.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== Section 7: Day-of checklist ===== -->
+    <section id="day-of" class="card">
+      <h2><span class="num">7</span>Day-of checklist</h2>
+      <ul>
+        <li>Bring <code>slides.pdf</code> on a USB drive AND email it to yourself. Don't rely on a single device.</li>
+        <li>Arrive 10 minutes early. The previous team may finish on time; you should be ready when called.</li>
+        <li>All members come up together when called. Stay at the front for the whole talk and Q&amp;A.</li>
+        <li>Bring water. The Q&amp;A can run several minutes longer than the talk.</li>
+        <li>If you cannot attend in person on the day for a documented reason, email
+          <a href="mailto:t.huang@sjtu.edu.cn">t.huang@sjtu.edu.cn</a> <i>before</i> the day, not after.</li>
+      </ul>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site">
+  <div class="container">
+    <div>
+      <b>Project page:</b> <a href="index.html">Final Project — Multimodal Classification Challenge</a>.
+      Slide deck (<code>slides.pdf</code>) is delivered as part of the
+      <a href="index.html#checklist">single Canvas zip</a> by Jun 14, 23:59.
+    </div>
+    <div>
+      <b>Contact:</b> Dr.&nbsp;Tao Huang —
+      <a href="mailto:t.huang@sjtu.edu.cn">t.huang@sjtu.edu.cn</a>.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
