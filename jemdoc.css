@@ -1042,9 +1042,25 @@ venue {
 	margin: 0;
 	box-shadow: none;
 	transition: none;
-	display: flex;
-	gap: 1.1rem;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	column-gap: 1.1rem;
 	align-items: center;
+}
+
+#publications li.paper .pub-figure {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+#publications li.paper .pub-body {
+	grid-column: 2;
+	grid-row: 1;
+}
+
+#publications li.paper .bib-content {
+	grid-column: 1 / -1;
+	grid-row: 2;
 }
 
 /* Paper figure (real image or generated placeholder) */

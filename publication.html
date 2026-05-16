@@ -262,8 +262,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link" href="research.html">RESEARCH</a>
             <a class="nav-item nav-link" href="publication.html">PUBLICATIONS</a>
+            <a class="nav-item nav-link" href="research.html">RESEARCH</a>
             <a class="nav-item nav-link" href="team.html">TEAM</a>
             <a class="nav-item nav-link" href="teaching.html">TEACHING</a>
             <a class="nav-item nav-link" href="service.html">SERVICES</a>
@@ -460,6 +460,12 @@ For the latest full publication list, please refer to my <a href="https://schola
             li.appendChild(figure);
             li.appendChild(body);
 
+            // Pull bib-content out of body so it sits on its own grid row
+            // and doesn't affect the figure's vertical center.
+            Array.from(body.querySelectorAll('.bib-content')).forEach(function(bib) {
+                li.appendChild(bib);
+            });
+
             // Wrap authors and venue line in their own spans so each
             // becomes its own block-level row. Authors wrap naturally to
             // multiple lines when long.
@@ -558,6 +564,26 @@ For the latest full publication list, please refer to my <a href="https://schola
 </div>
 <ul id="publications">
     <!-- <h3 style="margin-top: 1em;">2025</h3> -->
+    <li class="paper" category="KD">
+        <pt>FreeKD+: A Frequency Knowledge Distillation Framework for Dense Prediction</pt>
+        <div class="author">
+            Yuan Zhang, <b><u>Tao Huang</u></b>, Gaole Dai, Jiaming Liu, Wenzhao Zheng, Jiwen Lu, Shanghang Zhang<br>
+            <em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em> (<b>TPAMI</b>), 2026.
+        </div>
+        <p>
+            <venue>TPAMI 2026</venue>
+            <button class="button-59 bib-link">Bib</button>
+            <a href="https://github.com/Gumpest/FreeKD" class="button-59">Code</a>
+            <div class="bib-div"></div>
+            <div class="bib-content">
+                <blockquote>
+                <pre>
+
+                </pre>
+                </blockquote>
+            </div>
+        </p>
+    </li>
     <li class="paper" category="Embodied AI,Efficient Data" data-figure="assets/papers/seeing_realism/teaser.jpg">
         <pt><a href="https://arxiv.org/abs/2605.02757">Seeing Realism from Simulation: Efficient Video Transfer for Vision-Language-Action Data Augmentation</a></pt>
         <div class="author">
