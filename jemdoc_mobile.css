@@ -201,6 +201,7 @@ h3 {
 	transition: none;
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 	gap: 0.7rem;
 	align-items: flex-start;
 }
@@ -412,6 +413,12 @@ h3 {
 #publications h3:first-child { margin-top: 0; }
 
 .bib-content { position: relative; }
+
+/* Mobile: bib-content (sibling of pub-body in flex li) takes its own full-width row */
+#publications li.paper .bib-content {
+	flex-basis: 100%;
+	width: 100%;
+}
 
 .bib-copy {
 	position: absolute;
