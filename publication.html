@@ -106,6 +106,8 @@
         }
 
         function updateFilterCounts() {
+            // Static counts: each filter shows total papers matching that
+            // filter alone, independent of any active selection.
             var papers = Array.from(document.querySelectorAll('#publications li.paper'));
             var bts = document.getElementsByClassName("filter");
             for (var k = 0; k < bts.length; k++) {
@@ -116,12 +118,7 @@
                 if (name === 'All') {
                     count = papers.length;
                 } else {
-                    // Always count papers matching (active set with this filter included).
-                    // Active filters show current visible count; inactive ones show
-                    // "what would I see if I added this".
-                    var test = new Set(ACTIVE_FILTERS);
-                    test.add(name);
-                    count = papers.filter(function(p) { return paperMatchesSet(p, test); }).length;
+                    count = papers.filter(function(p) { return checkFilter(name, p); }).length;
                 }
                 countEl.textContent = count;
             }
@@ -169,11 +166,11 @@
         }
 
         function filterPub(type) {
-            if (type === 'All') {
-                ACTIVE_FILTERS.clear();
-            } else if (ACTIVE_FILTERS.has(type)) {
-                ACTIVE_FILTERS.delete(type);
-            } else {
+            // Single-selection: clicking a filter replaces any current
+            // selection. Clicking "All" or the currently-active filter clears.
+            var wasActive = ACTIVE_FILTERS.has(type);
+            ACTIVE_FILTERS.clear();
+            if (type !== 'All' && !wasActive) {
                 ACTIVE_FILTERS.add(type);
             }
             applyFilters();
