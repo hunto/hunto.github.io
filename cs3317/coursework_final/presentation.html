@@ -400,14 +400,13 @@
       </div>
       <h1>Presentation Requirements</h1>
       <div class="subtitle">
-        On the last class meeting your team gives an 8-minute talk on what you built and what you
-        found, followed by open Q&amp;A. <b>Every team member is a speaker</b>, the slide deck is
-        <b>in English</b>, and the spoken delivery can be in <b>Chinese or English</b>.
+        On the last class meeting your team gives a <b>5-minute talk + 2-minute open Q&amp;A</b>
+        on what you built and what you found. <b>Every team member is a speaker</b>, the slide deck
+        is <b>in English</b>, and the spoken delivery can be in <b>Chinese or English</b>.
       </div>
       <div class="tag-row">
         <span class="tag accent"><a href="https://taohuang.info/cs3317" style="color: white;">CS3317 — Artificial Intelligence</a></span>
-        <span class="tag">8-minute talk</span>
-        <span class="tag">Open Q&amp;A</span>
+        <span class="tag">5-min talk + 2-min Q&amp;A</span>
         <span class="tag">All members speak</span>
         <span class="tag">English slides</span>
         <span class="tag">10% of course grade</span>
@@ -451,18 +450,18 @@
     <div class="facts">
       <div class="fact">
         <div class="lbl">When</div>
-        <div class="val accent">Last class</div>
-        <div class="meta">Schedule announced ~1 week prior</div>
+        <div class="val accent">Mon Jun 15</div>
+        <div class="meta">Last class meeting</div>
       </div>
       <div class="fact">
         <div class="lbl">Length</div>
-        <div class="val">8 min + Q&amp;A</div>
-        <div class="meta">Talk strictly timed; Q&amp;A open</div>
+        <div class="val">5 + 2 min</div>
+        <div class="meta">5 min talk strictly timed; 2 min open Q&amp;A</div>
       </div>
       <div class="fact">
         <div class="lbl">Format</div>
-        <div class="val">Slides + live</div>
-        <div class="meta">PDF deck on the lectern laptop</div>
+        <div class="val">PDF / PPTX</div>
+        <div class="meta">Pre-loaded on the lectern computer from your Canvas upload</div>
       </div>
       <div class="fact">
         <div class="lbl">Counts as</div>
@@ -535,7 +534,7 @@
 
     <!-- ===== Section 3: What to cover ===== -->
     <section id="content" class="card">
-      <h2><span class="num">3</span>What to cover in 8 minutes</h2>
+      <h2><span class="num">3</span>What to cover in 5 minutes</h2>
       <p>
         The talk is a compressed version of the report; the
         <a href="index.html#report">required report sections</a> are the right scaffold. A
@@ -544,34 +543,26 @@
       <div class="budget">
         <div class="budget-row">
           <div class="desc">
-            <b>Problem framing &amp; the twist</b>
+            <b>Problem + analysis</b>
             <span class="sub">What you're predicting, why test-time modality dropout is the design question.</span>
           </div>
-          <div class="bar"><span style="width: 12.5%;"></span></div>
-          <div class="mins">1 min</div>
+          <div class="bar"><span style="width: 10%;"></span></div>
+          <div class="mins">30 s</div>
         </div>
         <div class="budget-row">
           <div class="desc">
-            <b>Method Choice Rationale</b>
-            <span class="sub">Why this approach and what you rejected. The 10-pt rubric line is graded here.</span>
+            <b>Method choice rationale + pipeline figure</b>
+            <span class="sub">Why this approach, what you rejected, and the architecture diagram in one stretch.</span>
           </div>
-          <div class="bar"><span style="width: 18.75%;"></span></div>
+          <div class="bar"><span style="width: 30%;"></span></div>
           <div class="mins">1.5 min</div>
         </div>
         <div class="budget-row">
           <div class="desc">
-            <b>Approach (pipeline figure)</b>
-            <span class="sub">How modalities are encoded, fused, and made robust to dropout. Show your architecture diagram.</span>
-          </div>
-          <div class="bar"><span style="width: 31.25%;"></span></div>
-          <div class="mins">2.5 min</div>
-        </div>
-        <div class="budget-row">
-          <div class="desc">
-            <b>Empirical analysis</b>
+            <b>Main results + per-modality ablation</b>
             <span class="sub">Per-modality ablation and stratified-by-mask results. Show your best numbers, not all of them.</span>
           </div>
-          <div class="bar"><span style="width: 25%;"></span></div>
+          <div class="bar"><span style="width: 40%;"></span></div>
           <div class="mins">2 min</div>
         </div>
         <div class="budget-row">
@@ -579,17 +570,18 @@
             <b>Discussion + AI-usage disclosure</b>
             <span class="sub">What worked, what didn't, what you'd do with another week. One slide summarising the AI tools you used.</span>
           </div>
-          <div class="bar"><span style="width: 12.5%;"></span></div>
+          <div class="bar"><span style="width: 20%;"></span></div>
           <div class="mins">1 min</div>
         </div>
         <div class="budget-row total">
           <div class="desc"><b>Total talk time</b></div>
           <div></div>
-          <div class="mins">8 min</div>
+          <div class="mins">5 min</div>
         </div>
       </div>
       <p style="color: var(--text-2); font-size: 14px; margin-top: 8px;">
-        Numbers are a suggestion; tune to your story. The hard rule is the 8-minute cap.
+        Numbers are a suggestion; tune to your story. The hard rule is the 5-minute cap,
+        followed by 2 minutes of open Q&amp;A.
       </p>
     </section>
 
@@ -597,12 +589,12 @@
     <section id="slides" class="card">
       <h2><span class="num">4</span>Slide guidance</h2>
       <ul>
-        <li><b>About 10–14 slides.</b> Roughly one slide per 30–45 seconds. Less is more — going under is fine, going over is not.</li>
+        <li><b>About 6–10 slides.</b> Roughly one slide per 30–40 seconds. Less is more — going under is fine, going over the 5-minute cap is not.</li>
         <li><b>One idea per slide.</b> A title that states the idea, plus one figure or table or short bullet list. Avoid wall-of-text slides.</li>
         <li><b>Figures over text.</b> A pipeline diagram, a results table with the F1 numbers, and a mask-stratified bar chart will carry the talk further than paragraphs of bullets.</li>
         <li><b>Readable from the back.</b> Body text ≥ 22 pt, figure text ≥ 18 pt, axis labels visible.</li>
         <li><b>Cite numbers visibly.</b> If you put a single F1 score on a slide, label which split, which mask subset, and which threshold it's for.</li>
-        <li><b>Submit a PDF.</b> Export your slides to <code>slides.pdf</code> so they render the same on the lectern computer. Avoid live demos or embedded videos unless they're in the PDF.</li>
+        <li><b>Submit as <code>slides.pdf</code> or <code>slides.pptx</code></b> in the Canvas zip by Jun 14, 23:59. The instructor will pre-load every team's slides onto the lectern computer before class — you do not need to bring them on a USB drive unless you want to make last-minute edits.</li>
       </ul>
 
       <div class="dodont" style="margin-top: 16px;">
@@ -633,8 +625,8 @@
     <section id="qa" class="card warn-card">
       <h2><span class="num">5</span>Open Q&amp;A</h2>
       <p>
-        After the 8-minute talk, the floor is open. We will ask questions of any team member, and
-        questions are not pre-shared. Common directions:
+        After the 5-minute talk, the floor is open for 2 minutes of Q&amp;A. We will ask questions
+        of any team member, and questions are not pre-shared. Common directions:
       </p>
       <ul>
         <li><b>Why didn't you try X?</b> — testing your rationale against an obvious alternative.</li>
@@ -653,52 +645,69 @@
       <h2><span class="num">6</span>How the presentation is graded</h2>
       <p>
         The presentation is graded <b>separately</b> from the project's 100 points — it counts as
-        the 10% course-level presentation component. The judgement is holistic, but the things
-        we look at:
+        the 10% course-level presentation component. The scoring is mechanical:
+        <b>5 dimensions × 2 points each (half points OK) = 10 points total</b>. The instructor
+        and all 16 teams use the <b>same score sheet</b>; each team scores the other 15 teams
+        (you don't score your own).
+      </p>
+      <p>
+        Your team's final presentation score:
+        <b>0.5 × instructor total + 0.5 × peer-mean total</b>.
       </p>
       <div class="tbl-wrap">
         <table class="t">
           <thead>
-            <tr><th>Dimension</th><th>What "good" looks like</th></tr>
+            <tr><th>Dimension</th><th style="text-align:center;">Points</th><th>What "good" looks like</th></tr>
           </thead>
           <tbody>
             <tr>
-              <td><b>Clarity of method</b></td>
-              <td>Anyone in the room could re-state your approach after the talk.</td>
+              <td><b>Method 方法</b></td>
+              <td style="text-align:center;">/2</td>
+              <td>Anyone in the room could re-state your approach after the talk; rationale is defensible.</td>
             </tr>
             <tr>
-              <td><b>Empirical evidence shown</b></td>
-              <td>Per-modality + per-mask-subset numbers are on a slide, not just claimed verbally.</td>
+              <td><b>Experiments 实验</b></td>
+              <td style="text-align:center;">/2</td>
+              <td>Per-modality + per-mask-subset numbers shown on a slide, not just claimed verbally.</td>
             </tr>
             <tr>
-              <td><b>Slide design</b></td>
+              <td><b>Slides 幻灯片</b></td>
+              <td style="text-align:center;">/2</td>
               <td>One idea per slide, readable from the back, English, no walls of text.</td>
             </tr>
             <tr>
-              <td><b>Team participation</b></td>
-              <td>Every member has spoken on substance — not just an intro or a "thank you".</td>
+              <td><b>Clarity 讲解清晰度</b></td>
+              <td style="text-align:center;">/2</td>
+              <td>Speakers are audible, well-paced, and the talk flows; every member contributes substantively.</td>
             </tr>
             <tr>
-              <td><b>Q&amp;A depth</b></td>
+              <td><b>Q&amp;A 答辩</b></td>
+              <td style="text-align:center;">/2</td>
               <td>Members can explain and defend any part of their own submission.</td>
             </tr>
-            <tr>
-              <td><b>Time management</b></td>
-              <td>Talk lands inside 8 minutes without being rushed at the end.</td>
+            <tr style="background: var(--accent-soft);">
+              <td><b>Total 总分</b></td>
+              <td style="text-align:center;"><b>/10</b></td>
+              <td>Final score per team = 0.5 × instructor + 0.5 × peer-mean.</td>
             </tr>
           </tbody>
         </table>
       </div>
+      <p style="color: var(--text-2); font-size: 14px; margin-top: 10px;">
+        Each dimension uses a 3-point anchor: <b>0</b> missing / incomplete · <b>1</b> acceptable ·
+        <b>2</b> excellent. Half points (0.5, 1.5) are allowed when a row sits between anchors.
+        A printed score sheet will be handed out to every team on the day.
+      </p>
     </section>
 
     <!-- ===== Section 7: Day-of checklist ===== -->
     <section id="day-of" class="card">
       <h2><span class="num">7</span>Day-of checklist</h2>
       <ul>
-        <li>Bring <code>slides.pdf</code> on a USB drive AND email it to yourself. Don't rely on a single device.</li>
-        <li>Arrive 10 minutes early. The previous team may finish on time; you should be ready when called.</li>
-        <li>All members come up together when called. Stay at the front for the whole talk and Q&amp;A.</li>
-        <li>Bring water. The Q&amp;A can run several minutes longer than the talk.</li>
+        <li><b>Arrive 10 minutes early.</b> The previous team will end on time; you should be ready when your number is called.</li>
+        <li><b>Sit together as a team.</b> Easier to hand off the mic and easier for the audience to see who's on stage next.</li>
+        <li><b>Bring a USB drive only if you need to update your slides.</b> The instructor will have pre-loaded the version you uploaded to Canvas; bring a USB only if you've made last-minute edits and want to swap the deck before your slot.</li>
+        <li><b>All members come up together when called.</b> Stay at the front for the whole talk and Q&amp;A.</li>
         <li>If you cannot attend in person on the day for a documented reason, email
           <a href="mailto:t.huang@sjtu.edu.cn">t.huang@sjtu.edu.cn</a> <i>before</i> the day, not after.</li>
       </ul>
@@ -711,7 +720,7 @@
   <div class="container">
     <div>
       <b>Project page:</b> <a href="index.html">Final Project — Multimodal Classification Challenge</a>.
-      Slide deck (<code>slides.pdf</code>) is delivered as part of the
+      Slide deck (<code>slides.pdf</code> or <code>slides.pptx</code>) is delivered as part of the
       <a href="index.html#checklist">single Canvas zip</a> by Jun 14, 23:59.
     </div>
     <div>
