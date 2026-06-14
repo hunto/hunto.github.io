@@ -696,6 +696,31 @@
       </ul>
     </section>
 
+    <!-- ===== Keep exploring (post-deadline) ===== -->
+    <section id="explore" class="card feature">
+      <h2><span class="num">★</span>Keep exploring — after the deadline</h2>
+      <p>
+        The official leaderboard is closed, but if you'd like to keep working on the
+        problem you can still evaluate new ideas — offline or against the hidden test.
+      </p>
+      <ul>
+        <li><b>Self-evaluation kit:</b>
+          <a href="assets/selfeval_kit.tar.gz" download>selfeval_kit.tar.gz</a>
+          — a small numpy-only kit that now <b>includes the hidden-test answer key</b>, so you
+          can reproduce your exact leaderboard score offline (<code>python score.py --truth
+          test_labels.csv --pred your_submission.csv</code>), with the per-mask-subset
+          breakdown. Also scores against <code>val</code> and can build a hidden-test-like
+          local proxy. See the kit's <code>README.md</code>. <span class="muted">(The labels are
+          anonymized 18-class vectors — the genre mapping and movie identities stay private.)</span></li>
+        <li><b>Practice sandbox leaderboard:</b>
+          <a href="http://taohuang.info:13317">http://taohuang.info:13317</a>
+          — scores against the same hidden test as the official board, so you can see your
+          real F1. It is a <b>practice sandbox, separate from the official (closed) board;
+          results do not affect any grade.</b> Register with your enrolled student ID and
+          upload a submission CSV.</li>
+      </ul>
+    </section>
+
     <!-- ===== Learning objectives ===== -->
     <section class="card">
       <h2><span class="num">2</span>Learning objectives</h2>
