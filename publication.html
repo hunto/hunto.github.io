@@ -477,15 +477,29 @@ For the latest full publication list, please refer to my <a href="https://schola
                     }
                     var auVenue = document.createElement('span');
                     auVenue.className = 'au-venue';
+                    // Keep all the conference text as a single inline item so the
+                    // flex row is exactly [badge] [text] (no gaps between words).
+                    var venueText = document.createElement('span');
+                    venueText.className = 'au-venue-text';
                     var n = br.nextSibling;
                     while (n) {
                         var nx = n.nextSibling;
-                        auVenue.appendChild(n);
+                        venueText.appendChild(n);
                         n = nx;
                     }
                     br.remove();
+                    auVenue.appendChild(venueText);
                     authorDiv.appendChild(auList);
                     authorDiv.appendChild(auVenue);
+
+                    // Strip the trailing year from the venue badge (keep the
+                    // acronym only); it stays at the front of the buttons row.
+                    var venueBadge = li.querySelector('venue');
+                    if (venueBadge) {
+                        venueBadge.textContent = venueBadge.textContent.replace(/\s*\d{4}\s*$/, '').trim();
+                        var metaRow = li.querySelector('p');
+                        if (metaRow) metaRow.insertBefore(venueBadge, metaRow.firstChild);
+                    }
                 }
             }
         });

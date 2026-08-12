@@ -1281,15 +1281,24 @@ venue {
 #publications li.paper .author {
 	color: #888;
 	font-size: 0.85em;
-	line-height: 1.55;
-	margin: 0.25em 0 0.25em 0;
+	line-height: 1.5;
+	margin: 0.2em 0 0 0;
 }
 
 /* Authors and venue each get their own block-level row. Authors wrap
    naturally onto a second line for long lists. */
-#publications li.paper .author .au-list,
-#publications li.paper .author .au-venue {
+#publications li.paper .author .au-list {
 	display: block;
+}
+#publications li.paper .author .au-venue {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0.4em;
+	margin-top: 0.2em;
+}
+#publications li.paper .author .au-venue .au-venue-text {
+	min-width: 0;
 }
 
 #publications li.paper .author em {
@@ -1318,50 +1327,58 @@ venue {
 	line-height: 1.4;
 }
 
-/* Venue badge — small red pill */
+/* Venue badge — al-folio (fanyangcs) style: light box, brown text, rounded
+   border. Vertical metrics match .button-59 so its text sits on the same
+   line as the button text in the meta row. */
 #publications li.paper venue {
-	display: inline-block;
-	align-items: unset;
-	background-color: #fff0ee;
-	color: var(--theme-color);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgb(233, 227, 217);
+	color: rgb(90, 67, 37);
 	font-family: var(--base-font);
-	font-size: 0.78em;
+	font-size: 11px;
 	font-weight: 700;
-	letter-spacing: 0;
+	letter-spacing: 0.1px;
 	text-transform: none;
-	padding: 0.15em 0.55em;
+	padding: 2px 7px;
 	margin: 0;
 	min-width: 0;
 	height: auto;
-	line-height: 1.4;
-	border: none;
-	border-radius: 3px;
+	line-height: 1.35;
+	border: 1px solid rgb(196, 186, 171);
+	border-radius: 5px;
 	box-shadow: none;
+	text-align: center;
+	vertical-align: middle;
 }
 
-/* Buttons → minimal text links */
+/* Action buttons — copied from al-folio (fanyangcs): white box, brown text,
+   tan border, sharp corners, uppercase 11px with letter-spacing */
 #publications li.paper .button-59 {
-	background: transparent;
-	color: #aaa;
-	border: none;
-	border-bottom: 1px solid #e5e5e5;
+	background: #fff;
+	color: rgb(107, 79, 41);
+	border: 1px solid rgb(217, 212, 204);
 	border-radius: 0;
-	padding: 0.05em 0;
-	margin: 0 0.2em 0 0;
+	padding: 2px 7px;
+	margin: 0;
 	height: auto;
 	min-width: 0;
-	font-size: 0.85em;
-	font-weight: 400;
-	line-height: 1.4;
+	font-family: var(--base-font);
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.66px;
+	text-transform: uppercase;
+	line-height: 1.35;
 	box-shadow: none;
-	transition: color 0.15s, border-color 0.15s;
+	transition: box-shadow 0.15s, color 0.15s;
 	display: inline-flex;
 }
 
 #publications li.paper .button-59:hover {
-	background: transparent;
-	color: var(--theme-color);
-	border-bottom-color: var(--theme-color);
+	background: rgb(107, 79, 41);
+	color: #fff;
+	border-color: rgb(107, 79, 41);
 	box-shadow: none;
 	transform: none;
 	text-decoration: none;
