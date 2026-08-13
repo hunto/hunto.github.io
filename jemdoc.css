@@ -1131,7 +1131,7 @@ venue {
 	align-items: center;
 	justify-content: center;
 	text-decoration: none;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
 	border: 1px solid rgba(0, 0, 0, 0.04);
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
 	font: inherit;
@@ -1140,11 +1140,13 @@ venue {
 
 #publications li.paper .pub-figure-image {
 	cursor: zoom-in;
+	/* Stronger border so white-background teasers don't blend into the page */
+	border-color: rgba(0, 0, 0, 0.18);
 }
 
 #publications li.paper .pub-figure:hover {
 	transform: translateY(-1px);
-	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+	box-shadow: 0 7px 22px rgba(0, 0, 0, 0.28);
 	text-decoration: none;
 }
 
