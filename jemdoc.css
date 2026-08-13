@@ -369,9 +369,19 @@ flag {
 	border: none;
 	margin: 0;
 	padding: 0;
-	font-family: 'Courier New', monospace;
-	color: #333;
+	font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+	font-size: 12px;
+	line-height: 1.45;
+	color: rgb(8, 8, 8);
+	white-space: pre;
 }
+
+/* BibTeX syntax highlighting — GitHub/Rouge palette (fanyangcs) */
+.bib-content .bt-nc { color: rgb(68, 85, 136); font-weight: 700; }  /* @entrytype */
+.bib-content .bt-nl { color: rgb(153, 0, 0); font-weight: 700; }    /* cite key */
+.bib-content .bt-na { color: rgb(0, 128, 128); }                    /* field name */
+.bib-content .bt-s  { color: rgb(208, 16, 64); }                    /* string value */
+.bib-content .bt-p  { color: rgb(0, 0, 0); }                        /* punctuation */
 
 pre, tt {
 	font-size: 90%;
@@ -1103,6 +1113,19 @@ venue {
 	align-items: center;
 }
 
+/* Filter transition: papers fade + slide up when a filter is applied.
+   Uses a keyframe animation so it wins over li.paper:hover{transform:none}. */
+@keyframes pubFadeInUp {
+	from { opacity: 0; transform: translateY(10px); }
+	to   { opacity: 1; transform: translateY(0); }
+}
+#publications li.paper.pub-entering {
+	animation: pubFadeInUp 0.35s ease both;
+}
+@media (prefers-reduced-motion: reduce) {
+	#publications li.paper.pub-entering { animation: none; }
+}
+
 #publications li.paper .pub-figure {
 	grid-column: 1;
 	grid-row: 1;
@@ -1460,14 +1483,34 @@ venue {
 
 #publications li.paper[first_authored]::before { content: none; }
 
-/* Bib content — keep but make match the minimal aesthetic */
+/* Bib content — al-folio (fanyangcs) style code block, with an
+   unfold (top→down) expand/collapse animation. */
 #publications li.paper .bib-content {
 	width: 100%;
-	margin-top: 0.6em;
-	background-color: #fafafa;
-	border: 1px solid #f0f0f0;
+	box-sizing: border-box;
+	display: block;
+	max-height: 0;
+	opacity: 0;
+	overflow-x: auto;
+	overflow-y: hidden;
+	margin-top: 0;
+	padding: 0 0.9em;
+	background-color: rgb(251, 250, 248);
+	border-style: solid;
+	border-color: rgb(230, 224, 216);
+	border-width: 0;
+	border-radius: 6px;
 	box-shadow: none;
-	font-size: 0.85em;
+	transition: max-height 0.3s ease, opacity 0.22s ease, padding 0.3s ease,
+		margin-top 0.3s ease, border-width 0.3s ease, box-shadow 0.3s ease;
+}
+#publications li.paper .bib-content.is-open {
+	max-height: 60em;
+	opacity: 1;
+	margin-top: 0.6em;
+	padding: 0.7em 0.9em;
+	border-width: 1px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 @media (min-width: 768px) {
@@ -1694,6 +1737,13 @@ blockquote {
 	position: relative;
 	max-width: 90vw;
 	max-height: 90vh;
+	opacity: 0;
+	transform: scale(0.85);
+	transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.24s ease;
+}
+.lightbox-backdrop.open .lightbox-content {
+	opacity: 1;
+	transform: scale(1);
 }
 .lightbox-content img {
 	display: block;
@@ -1788,6 +1838,21 @@ blockquote {
 	flex-wrap: wrap;
 	align-items: center;
 	gap: 0.1em;
+}
+
+/* Extend the sticky white background out to the page edges so the drop
+   shadows of papers scrolling underneath don't leak past its left/right
+   edge. The border-bottom stays at content width. */
+.filter-bar::before,
+#publications h3::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: calc(-1 * var(--space-12));
+	right: calc(-1 * var(--space-12));
+	background: #fff;
+	z-index: -1;
 }
 
 .filter-bar .cofirst-note {

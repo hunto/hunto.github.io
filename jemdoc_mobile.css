@@ -206,6 +206,18 @@ h3 {
 	align-items: flex-start;
 }
 
+/* Filter transition: papers fade + slide up when a filter is applied */
+@keyframes pubFadeInUp {
+	from { opacity: 0; transform: translateY(10px); }
+	to   { opacity: 1; transform: translateY(0); }
+}
+#publications li.paper.pub-entering {
+	animation: pubFadeInUp 0.35s ease both;
+}
+@media (prefers-reduced-motion: reduce) {
+	#publications li.paper.pub-entering { animation: none; }
+}
+
 #publications li.paper:hover {
 	background-color: transparent;
 	border-color: #f0f0f0;
@@ -434,7 +446,50 @@ h3 {
 #publications li.paper .bib-content {
 	flex-basis: 100%;
 	width: 100%;
+	box-sizing: border-box;
+	display: block;
+	max-height: 0;
+	opacity: 0;
+	overflow-x: auto;
+	overflow-y: hidden;
+	margin-top: 0;
+	padding: 0 0.9em;
+	background-color: rgb(251, 250, 248);
+	border-style: solid;
+	border-color: rgb(230, 224, 216);
+	border-width: 0;
+	border-radius: 6px;
+	box-shadow: none;
+	transition: max-height 0.3s ease, opacity 0.22s ease, padding 0.3s ease,
+		margin-top 0.3s ease, border-width 0.3s ease, box-shadow 0.3s ease;
 }
+#publications li.paper .bib-content.is-open {
+	max-height: 60em;
+	opacity: 1;
+	margin-top: 0.6em;
+	padding: 0.7em 0.9em;
+	border-width: 1px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.bib-content pre {
+	background-color: transparent;
+	border: none;
+	margin: 0;
+	padding: 0;
+	font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+	font-size: 12px;
+	line-height: 1.45;
+	color: rgb(8, 8, 8);
+	white-space: pre;
+}
+
+/* BibTeX syntax highlighting — GitHub/Rouge palette (fanyangcs) */
+.bib-content .bt-nc { color: rgb(68, 85, 136); font-weight: 700; }
+.bib-content .bt-nl { color: rgb(153, 0, 0); font-weight: 700; }
+.bib-content .bt-na { color: rgb(0, 128, 128); }
+.bib-content .bt-s  { color: rgb(208, 16, 64); }
+.bib-content .bt-p  { color: rgb(0, 0, 0); }
 
 .bib-copy {
 	position: absolute;

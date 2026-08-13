@@ -145,16 +145,37 @@
             });
         }
 
-        function applyFilters() {
+        // Fade + slide the currently-visible papers in (staggered) after a
+        // filter change. Respects prefers-reduced-motion.
+        function animatePapersIn(papers) {
+            if (!papers.length) return;
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            papers.forEach(function(p, idx){
+                p.classList.remove('pub-entering');
+                p.style.animationDelay = '';
+                void p.offsetWidth; // restart the animation if re-triggered
+                p.style.animationDelay = Math.min(idx * 25, 250) + 'ms';
+                p.classList.add('pub-entering');
+            });
+            setTimeout(function(){
+                papers.forEach(function(p){
+                    p.classList.remove('pub-entering');
+                    p.style.animationDelay = '';
+                });
+            }, 700);
+        }
+
+        function applyFilters(animate) {
             var ul = document.getElementById("publications");
             if (!ul) return;
             var li = ul.getElementsByTagName("li");
             var visibleCount = 0;
+            var shown = [];
             for (var i = 0; i < li.length; i++) {
                 if (li[i].classList && li[i].classList.contains('paper')) {
                     var visible = paperMatchesFilters(li[i]);
                     li[i].style.display = visible ? "" : "none";
-                    if (visible) visibleCount++;
+                    if (visible) { visibleCount++; shown.push(li[i]); }
                 }
             }
             updateFilterButtons();
@@ -163,6 +184,7 @@
             syncUrlHash();
             var empty = document.getElementById('empty-state');
             if (empty) empty.style.display = visibleCount === 0 ? '' : 'none';
+            if (animate) animatePapersIn(shown);
         }
 
         function filterPub(type) {
@@ -173,7 +195,7 @@
             if (type !== 'All' && !wasActive) {
                 ACTIVE_FILTERS.add(type);
             }
-            applyFilters();
+            applyFilters(true);
         }
 
 
@@ -278,6 +300,58 @@ For the latest full publication list, please refer to my <a href="https://schola
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Toggle Bib content by class
+        // Lightweight BibTeX syntax highlighter (GitHub/Rouge palette).
+        function highlightBibtex(src) {
+            function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+            var i = 0, n = src.length, out = '', atLineStart = true;
+            while (i < n) {
+                var c = src[i];
+                if (/\s/.test(c)) { out += esc(c); if (c === '\n') atLineStart = true; i++; continue; }
+                // entry type: @word{key,
+                if (c === '@') {
+                    var m = /^@[A-Za-z]+/.exec(src.slice(i));
+                    if (m) {
+                        out += '<span class="bt-nc">' + esc(m[0]) + '</span>';
+                        i += m[0].length; atLineStart = false;
+                        while (i < n && /\s/.test(src[i])) { out += esc(src[i]); i++; }
+                        if (src[i] === '{') {
+                            out += '<span class="bt-p">{</span>'; i++;
+                            var km = /^[^,{}\s]+/.exec(src.slice(i));
+                            if (km) { out += '<span class="bt-nl">' + esc(km[0]) + '</span>'; i += km[0].length; }
+                        }
+                        continue;
+                    }
+                }
+                // field name at line start: name = value
+                if (atLineStart) {
+                    var fm = /^([A-Za-z][\w-]*)(\s*)(=)/.exec(src.slice(i));
+                    if (fm) {
+                        out += '<span class="bt-na">' + esc(fm[1]) + '</span>' + esc(fm[2]) + '<span class="bt-p">=</span>';
+                        i += fm[0].length; atLineStart = false;
+                        while (i < n && /[ \t]/.test(src[i])) { out += esc(src[i]); i++; }
+                        if (src[i] === '{') {                 // balanced-brace value
+                            var depth = 0, val = '';
+                            while (i < n) { var ch = src[i]; val += ch; if (ch === '{') depth++; else if (ch === '}') { depth--; if (depth === 0) { i++; break; } } i++; }
+                            out += '<span class="bt-s">' + esc(val) + '</span>';
+                        } else if (src[i] === '"') {          // quoted value
+                            var v2 = '"'; i++;
+                            while (i < n && src[i] !== '"') { v2 += src[i]; i++; }
+                            if (src[i] === '"') { v2 += '"'; i++; }
+                            out += '<span class="bt-s">' + esc(v2) + '</span>';
+                        } else {                               // bare value
+                            var bare = '';
+                            while (i < n && src[i] !== ',' && src[i] !== '\n' && src[i] !== '}') { bare += src[i]; i++; }
+                            out += '<span class="bt-s">' + esc(bare) + '</span>';
+                        }
+                        continue;
+                    }
+                }
+                if (c === ',' || c === '{' || c === '}') { out += '<span class="bt-p">' + esc(c) + '</span>'; i++; atLineStart = false; continue; }
+                out += esc(c); atLineStart = false; i++;
+            }
+            return out;
+        }
+
         document.querySelectorAll('.bib-link').forEach(function(btn){
             btn.addEventListener('click', function(e){
                 e.preventDefault();
@@ -286,7 +360,7 @@ For the latest full publication list, please refer to my <a href="https://schola
                 var bib = li.querySelector('.bib-content');
                 if(!bib) return;
 
-                // normalize BibTeX indentation once before showing
+                // normalize BibTeX indentation + highlight once before showing
                 if (!bib.dataset.normalized) {
                     var pre = bib.querySelector('blockquote pre') || bib.querySelector('pre');
                     if (pre) {
@@ -302,7 +376,7 @@ For the latest full publication list, please refer to my <a href="https://schola
                                 var re = new RegExp('^ {' + minIndent + '}');
                                 lines = lines.map(function(l){ return l.replace(re, ''); });
                             }
-                            pre.textContent = lines.join('\n').trim();
+                            pre.innerHTML = highlightBibtex(lines.join('\n').trim());
                         }
                         bib.dataset.normalized = '1';
                     }
@@ -656,7 +730,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="Embodied AI" data-figure="assets/papers/vlm2vla/teaser.png">
+    <li class="paper" category="Embodied AI" first_authored=true data-figure="assets/papers/vlm2vla/teaser.png">
         <pt><a href="https://arxiv.org/abs/2606.31382">Revisiting Parameter Redundancy in Vision-Language-Action Models: Insights from VLM-to-VLA Adaptation</a></pt>
         <div class="author">
             Fengnian Zhang*, <b><u>Tao Huang</u></b>*, Siyu Xu, Zhong Jin, Chang Xu<br>
@@ -767,7 +841,14 @@ For the latest full publication list, please refer to my <a href="https://schola
             <div class="bib-content">
                 <blockquote>
                 <pre>
-                    
+                    @InProceedings{Xu_2026_CVPR,
+                        author    = {Xu, Siyu and Wang, Zijian and Wang, Yunke and Xia, Chenghao and Huang, Tao and Xu, Chang},
+                        title     = {Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in Robotic Manipulation},
+                        booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+                        month     = {June},
+                        year      = {2026},
+                        pages     = {37206-37215}
+                    }
                 </pre>
                 </blockquote>
             </div>
@@ -787,7 +868,14 @@ For the latest full publication list, please refer to my <a href="https://schola
             <div class="bib-content">
                 <blockquote>
                 <pre>
-                    
+                    @InProceedings{Li_2026_CVPR,
+                        author    = {Li, Zhe and Chi, Cheng and Wei, Yangyang and Zhu, Boan and Huang, Tao and Sun, Zhenguo and Peng, Yibo and Wang, Pengwei and Wang, Zhongyuan and Liu, Fangzhou and Xu, Chang and Zhang, Shanghang},
+                        title     = {Do You Have Freestyle? Expressive Humanoid Locomotion via Audio Control},
+                        booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+                        month     = {June},
+                        year      = {2026},
+                        pages     = {956-965}
+                    }
                 </pre>
                 </blockquote>
             </div>
@@ -1680,13 +1768,15 @@ For the latest full publication list, please refer to my <a href="https://schola
         function open(src, alt){
             lbImg.src = src;
             lbImg.alt = alt || 'Expanded paper figure';
-            lb.classList.add('open');
             lb.style.display = 'flex';
             document.body.style.overflow = 'hidden';
+            // commit the closed state, then add .open so the zoom-in transitions
+            void lb.offsetWidth;
+            requestAnimationFrame(function(){ lb.classList.add('open'); });
         }
         function close(){
             lb.classList.remove('open');
-            setTimeout(function(){ lb.style.display = 'none'; lbImg.src = ''; }, 200);
+            setTimeout(function(){ lb.style.display = 'none'; lbImg.src = ''; }, 240);
             document.body.style.overflow = '';
         }
         document.addEventListener('click', function(e){

@@ -151,13 +151,15 @@
                     function open(src, alt){
                         lbImg.src = src;
                         lbImg.alt = alt || 'Expanded research image';
-                        lb.classList.add('open');
                         lb.style.display = 'flex';
                         document.body.style.overflow = 'hidden';
+                        // commit the closed state, then add .open so the zoom-in transitions
+                        void lb.offsetWidth;
+                        requestAnimationFrame(()=>{ lb.classList.add('open'); });
                     }
                     function close(){
                         lb.classList.remove('open');
-                        setTimeout(()=>{ lb.style.display = 'none'; }, 200);
+                        setTimeout(()=>{ lb.style.display = 'none'; }, 240);
                         document.body.style.overflow = '';
                     }
                     imgs.forEach(img => {
