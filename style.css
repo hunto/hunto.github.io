@@ -2799,21 +2799,43 @@ p:last-child {
     }
 
     .sel-pub-item {
-        grid-template-columns: 112px minmax(0, 1fr);
-        gap: 14px;
+        grid-template-columns: 108px minmax(0, 1fr);
+        gap: 13px;
         align-items: start;
+        padding: 14px 0;
     }
 
     .sel-pub-thumb {
-        width: 112px;
-        height: 84px;
-        max-width: 112px;
+        width: 108px;
+        height: 81px;
+        max-width: 108px;
         aspect-ratio: 4 / 3;
         border-radius: 8px;
     }
 
     .sel-pub-body {
-        min-height: 86px;
+        min-height: 81px;
+    }
+
+    .sel-pub-title {
+        font-size: 0.9rem;
+        line-height: 1.38;
+    }
+
+    .sel-pub-authors {
+        display: none;
+    }
+
+    .sel-pub-venue {
+        margin-top: 4px;
+        font-size: 0.78rem;
+        line-height: 1.4;
+    }
+
+    .sel-pub-links {
+        padding-top: 6px;
+        gap: 8px;
+        font-size: 0.78rem;
     }
 
     .entry-row,
@@ -2845,30 +2867,45 @@ p:last-child {
     }
 
     /* Subpage mobile refinements */
+    .pub-header-row {
+        margin-bottom: 12px;
+    }
+
     .pub-header-row .cofirst-note {
-        order: 3;
-        width: 100%;
-        margin-left: 0;
-        margin-top: 2px;
+        display: none;
     }
 
     .filter-bar {
-        padding: 0 0 6px;
-        gap: 5px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        margin: 0 -18px 6px;
+        padding: 2px 18px 8px;
+        gap: 6px;
+    }
+
+    .filter-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filter-bar .filter {
+        flex-shrink: 0;
+        white-space: nowrap;
     }
 
     #publications h3 {
-        margin-top: 26px;
-        font-size: 1.08rem;
+        margin-top: 22px;
+        font-size: 1.06rem;
     }
 
     #publications li.paper {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 8px;
         align-items: flex-start;
-        padding: 15px 0;
+        padding: 13px 0;
     }
 
     #publications li.paper .pub-figure {
@@ -2882,9 +2919,40 @@ p:last-child {
         display: block;
     }
 
+    #publications li.paper pt,
+    #publications li.paper pt a {
+        font-size: 0.93rem;
+        line-height: 1.4;
+    }
+
+    #publications li.paper .author {
+        margin-top: 3px;
+        font-size: 0.79rem;
+        line-height: 1.42;
+    }
+
+    #publications li.paper .author .au-list {
+        display: none;
+    }
+
+    #publications li.paper .author .au-venue {
+        margin-top: 0;
+    }
+
     #publications li.paper p {
-        margin-top: 9px;
+        margin-top: 8px;
         padding-top: 0;
+        gap: 5px;
+    }
+
+    #publications li.paper venue,
+    #publications li.paper .button-59 {
+        font-size: 0.71rem;
+        padding: 2px 7px;
+    }
+
+    #publications li.paper .cate-wrap {
+        display: none;
     }
 
     #publications li.paper .bib-content {
