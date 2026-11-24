@@ -20,18 +20,28 @@
         const navbarCollapse = document.querySelector(".navbar-collapse");
 
         if (navbarToggler && navbarCollapse) {
+            const MENU_ICON_OPEN = '<line x1="4" y1="7" x2="20" y2="7" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="17" x2="20" y2="17" />';
+            const MENU_ICON_CLOSE = '<line x1="6" y1="6" x2="18" y2="18" /><line x1="18" y1="6" x2="6" y2="18" />';
+
+            function setMenuState(isOpen) {
+                navbarCollapse.classList.toggle("show", isOpen);
+                navbarToggler.setAttribute("aria-expanded", String(isOpen));
+                const icon = navbarToggler.querySelector("svg");
+                if (icon) {
+                    icon.innerHTML = isOpen ? MENU_ICON_CLOSE : MENU_ICON_OPEN;
+                }
+            }
+
             function closeMenu() {
                 if (navbarCollapse.classList.contains("show")) {
-                    navbarCollapse.classList.remove("show");
-                    navbarToggler.setAttribute("aria-expanded", "false");
+                    setMenuState(false);
                 }
             }
 
             navbarToggler.addEventListener("click", function (event) {
                 event.preventDefault();
                 event.stopPropagation();
-                const isOpen = navbarCollapse.classList.toggle("show");
-                navbarToggler.setAttribute("aria-expanded", String(isOpen));
+                setMenuState(!navbarCollapse.classList.contains("show"));
             });
 
             navLinks.forEach(function (link) {
