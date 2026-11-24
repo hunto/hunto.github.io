@@ -1,641 +1,669 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0, minimum-scale=0.2">
-    <link rel="stylesheet" href="bootstrap.min.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0" />
+    <meta name="keywords" content="Tao Huang, SJTU, Embodied AI, World Models, Efficient Deep Learning" />
+    <meta name="description" content="Tao Huang — Assistant Professor at Shanghai Jiao Tong University." />
+    <link rel="shortcut icon" href="myIcon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Tao Huang — Homepage</title>
     <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101296995);</script>
-    <script async src="//static.getclicky.com/js"></script>    
-
-    <script>
-        try{
-            if (window.screen.width < 700) {
-                setActiveStyleSheet("jemdoc_mobile.css"); 
-            } 
-            else if(/iPad/i.test(navigator.userAgent)){ 
-                setActiveStyleSheet("jemdoc.css"); 
-            } 
-            else{
-                setActiveStyleSheet("jemdoc.css"); 
-            } 
-        } 
-        catch(e){} 
-
-        function setActiveStyleSheet(filename){
-            document.write("<link href="+filename+" rel=stylesheet>");
-        }
-
-        function checkFilter(type, li) {
-            if (type == "All") {
-                return true
-            }
-            else if (type == "First-author") {
-                res = li.getAttribute("first_authored")
-                return res
-            }
-            else {
-                cate = li.getAttribute("category")
-                if (!cate) {
-                    return false
-                }
-                items = cate.split(',')
-                for (j = 0; j < items.length; j++) {
-                    console.log(items[j])
-                    if (type.toUpperCase() == items[j].toUpperCase()) {
-                        return true
-                    }
-                }
-                return false
-            }
-        }
-
-        // update the visibility of year
-        function updateVisibility() {
-            const publications = document.getElementById('publications');
-            const h3Elements = publications.getElementsByTagName('h3');
-
-            for (let i = 0; i < h3Elements.length; i++) {
-                const h3 = h3Elements[i];
-                let li = h3.nextElementSibling;
-                let allInvisible = true;
-
-                while (li && li.tagName.toLowerCase() === 'li') {
-                    if (li.style.display !== 'none') {
-                        allInvisible = false;
-                        break;
-                    }
-                    li = li.nextElementSibling;
-                }
-
-                if (allInvisible) {
-                    h3.style.display = 'none';
-                } else {
-                    h3.style.display = '';
-                }
-            }
-        }
-
-        function filterPub(type) {
-            ul = document.getElementById("publications")
-            li = ul.getElementsByTagName("li")
-            for (i = 0; i < li.length; i++) {
-                if (!checkFilter(type, li[i])) {
-                    li[i].style.display = "none";
-                }
-                else {
-                    li[i].style.display = ""
-                }
-            }
-            // change the button color
-            bts = document.getElementsByClassName("filter")
-            for (k = 0; k < bts.length; k++) {
-                if (bts[k].textContent == type) {
-                    if (!bts[k].classList.contains('active')) {
-                        bts[k].classList.add('active');
-                    }
-                }
-                else {
-                    if (bts[k].classList.contains('active')) {
-                        bts[k].classList.remove('active');
-                    }
-                }
-            }
-            // updateVisibility()
-        }
-
-
-        // Function to format the star count
-        function formatStarCount(count) {
-            if (count >= 1000) {
-                return (count / 1000).toFixed(1) + 'k';
-            }
-            return count.toString();
-        }
-
-        // Function to update the button text
-        async function updateButtonText(button) {
-            // Get the href attribute
-            const href = button.getAttribute('href');
-            // Check if the href contains 'github.com'
-            if (href == null || !href.includes('github.com')) {
-                return;
-            }
-
-            // Extract the repository owner and name from the URL
-            const parts = href.split('/');
-            const owner = parts[3];
-            const repo = parts[4];
-            // Define the GitHub API URL with the owner and repo
-            const apiUrl = `https://api.github.com/repos/${owner}/${repo}`;
-
-            try {
-                // Fetch the repository data from the GitHub API
-                const response = await fetch(apiUrl);
-                // Check if the response status is 404
-                if (response.status === 404 || response.status === 403) {
-                    return;
-                }
-                // Parse the JSON response
-                const data = await response.json();
-                // Get the star count from the data
-                const starCount = data.stargazers_count;
-                // Format the star count
-                const formattedStarCount = formatStarCount(starCount);
-                // Update the button text with the formatted star count
-                button.textContent += ` [☆${formattedStarCount}]`;
-            } catch (error) {
-                console.error('Error fetching repository data:', error);
-            }
-        }
-
-
-        // Call the function to update the button text after the page is loaded
-        window.onload = () => {
-            // Get all buttons with the class 'button-59'
-            const buttons = document.querySelectorAll('.button-59');
-            // Update each button text if it has a data-repo-name attribute
-            buttons.forEach(button => updateButtonText(button));
-        };
-
-    </script>
-
-    <link rel="shortcut icon" href="myIcon.ico">
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="keywords" content="Tao Huang">
-    <meta name="description" content="Tao Huang's home page">
-    <!-- <link rel="stylesheet" href="jemdoc.css" type="text/css" />
-    <link rel="stylesheet" media="screen and (max-width:700px)" href="jemdoc_mobile.css" type="text/css" />
-    <link rel="stylesheet" media="screen and (max-width:700px)" href="jemdoc.css" type="text/css" /> -->
-    <title>Tao Huang - Homepage</title>
+    <script async src="//static.getclicky.com/js"></script>
 </head>
 <body>
-<div class="topinfo-text">
-    <h1>TAO HUANG</h1>
-    <hr class="topinfo" width="200" size="2" color="#eee" align="left">
-    <p style="margin-bottom: 30px;">
-        <span style="color: rgb(208, 64, 58);"><b>THE ONLY WAY TO DO GREAT WORK IS TO LOVE WHAT YOU DO.</b></span>
-    </p>
+
+<div class="page-sheet">
+    <header class="site-header">
+        <nav class="navbar-pill" aria-label="Main navigation">
+            <a class="site-brand" href="index.html">Tao Huang</a>
+            <button class="navbar-toggler" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarNavAltMarkup">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+            </button>
+            <div class="navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="index.html">About</a>
+                    <a class="nav-link" href="publication.html">Publications</a>
+                    <a class="nav-link" href="research.html">Research</a>
+                    <a class="nav-link" href="team.html">Team</a>
+                    <a class="nav-link" href="teaching.html">Teaching</a>
+                    <a class="nav-link" href="service.html">Services</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-main">
+        <section class="hero" aria-label="Biography and profile">
+            <div class="hero-bio">
+                <div class="hero-heading">
+                    <h1 class="hero-name">
+                        Tao Huang <span class="hero-name-zh">黄涛</span>
+                    </h1>
+                    <p class="hero-motto">"The only way to do great work is to love what you do."</p>
+                </div>
+                <div class="bio-text">
+                    <p>
+                        I am a tenure-track assistant professor in the <a href="https://jhc.sjtu.edu.cn">John Hopcroft Center for Computer Science</a>, <a href="https://cs.sjtu.edu.cn">School of Computer Science</a>, <a href="https://www.sjtu.edu.cn/">Shanghai Jiao Tong University</a> since 2025. I received my Ph.D. degree in Computer Science from <a href="https://www.sydney.edu.au/">The University of Sydney</a>, advised by <a href="http://changxu.xyz">Prof. Chang Xu</a>. Before that, I obtained my Bachelor's degree from <a href="https://www.hust.edu.cn">Huazhong University of Science and Technology</a>, and spent two years as a Researcher at <a href="https://www.sensetime.com">SenseTime</a>. I was selected as a Microsoft Research Asia StarTrack Scholar in 2026, and received the Shanghai Magnolia Talent Plan Youth Project in 2025 and the NeurIPS Scholar Award in 2023.
+                    </p>
+                    <p>
+                        Our lab focuses on <b>real-time interactive intelligence</b>, spanning two interaction frontiers &mdash; <b>interactive audiovisual worlds</b> (audio/video generation, interactive world models, and code-driven media) and <b>embodied physical AI</b> (world-action models, agentic embodied AI, and humanoid control) &mdash; grounded in two core foundations: <b>efficient AI</b> for real-time responsiveness and <b>recursive self-improvement (RSI)</b> for continual capability evolution (see <a href="research.html">Research</a>).
+                    </p>
+                </div>
+            </div>
+
+            <aside class="profile-card" aria-label="Contact and links">
+                <img src="assets/taohuang.png" class="profile-pic" alt="Portrait of Tao Huang" />
+                <div class="profile-info">
+                    <div class="profile-line profile-role">
+                        <svg class="pi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        <span>Assistant Professor, PhD Advisor</span>
+                    </div>
+                    <div class="profile-line profile-affiliation">
+                        <svg class="pi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+                        <span>Shanghai Jiao Tong University</span>
+                    </div>
+                    <div class="profile-line">
+                        <svg class="pi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+                        <button type="button" class="profile-email-btn" data-email="t.huang@sjtu.edu.cn" title="Click to copy email">
+                            <span class="profile-email-addr">t.huang[at]sjtu.edu.cn</span>
+                            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            <span class="copy-badge">Copied</span>
+                        </button>
+                    </div>
+                    <div class="profile-divider"></div>
+                    <div class="profile-links">
+                        <div class="profile-line">
+                            <svg class="pi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                            <a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en">Google Scholar</a>
+                        </div>
+                        <div class="profile-line">
+                            <svg class="pi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/></svg>
+                            <a href="https://www.cs.sjtu.edu.cn/jiaoshiml/huangtao.html">University Webpage</a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <section class="lab-callout" aria-label="Join My Lab">
+            <div class="lab-callout-header">
+                <h2 class="lab-callout-title">Join My Lab</h2>
+                <a class="lab-callout-link" href="team.html">Open positions &amp; team &rarr;</a>
+            </div>
+            <p class="lab-callout-desc">
+                Warmly welcome students to work with me in real-time interactive intelligence &mdash; spanning audiovisual generation, embodied AI, RSI, and efficient AI. I am committed to supporting their growth in all dimensions.
+            </p>
+            <div class="lab-notices">
+                <div class="lab-notice-item">
+                    <span class="lab-notice-date">2026/11</span>
+                    <span>当前我组里没有 2027 年入学普博名额。</span>
+                </div>
+                <div class="lab-notice-item">
+                    <span class="lab-notice-date">2026/10</span>
+                    <span>我正在招收音视频生成 / 具身智能 / RSI / 大模型加速方向实习生，欢迎联系。</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="news" class="page-section anchor-offset">
+            <h2 class="section-heading">News</h2>
+            <ul class="news-list">
+                <li class="news-item is-highlight">
+                    <span class="news-date">2026/11</span>
+                    <span class="news-body">We released <b>Auriga</b>, a task-agnostic agent harness for zero-shot embodied manipulation, check out [<a href="https://arxiv.org/abs/2611.01112">tech report</a>] [<a href="https://auriga.stelledge.com/">project page</a>] [<a href="https://github.com/lose4578/Auriga">GitHub</a>] for details.</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-date">2026/07</span>
+                    <span class="news-body">One paper was accepted to <span class="venue-em">ACM MM 2026</span>.</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-date">2026/07</span>
+                    <span class="news-body">Invited to serve as a Senior Program Committee member of <span class="venue-em">AAAI 2027</span>.</span>
+                </li>
+                <li class="news-item is-highlight">
+                    <span class="news-date">2026/06</span>
+                    <span class="news-body">We released <b>Kairos World (Action) Model</b>, a native world model stack for Physical AI, check out [<a href="https://arxiv.org/abs/2606.16533">tech report</a>] for details.</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-date">2026/06</span>
+                    <span class="news-body">Five papers were accepted to <span class="venue-em">ECCV 2026</span>.</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-date">2026/05</span>
+                    <span class="news-body">One paper was accepted to <span class="venue-em">TPAMI</span>.</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-date">2026/05</span>
+                    <span class="news-body">One paper was accepted to <span class="venue-em">ICML 2026</span>.</span>
+                </li>
+                <li class="news-item is-highlight">
+                    <span class="news-date">2026/03</span>
+                    <span class="news-body">We released <b>Kairos 3.0-4B</b>, a realtime world model for general and robotic generation, check out [<a href="https://github.com/kairos-agi/kairos-sensenova">GitHub</a>] [<a href="https://mp.weixin.qq.com/s/6zLPiiYC6KzwIvMWYH66xA">推文介绍</a>] for details.</span>
+                </li>
+                <li class="news-item is-highlight">
+                    <span class="news-date">2026/02</span>
+                    <span class="news-body">I was selected as a Microsoft Research Asia StarTrack Scholar.</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-date">2026/02</span>
+                    <span class="news-body">Two papers (1 highlight) were accepted to <span class="venue-em">CVPR 2026</span>.</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-date">2026/01</span>
+                    <span class="news-body">Two papers were accepted to <span class="venue-em">ICLR 2026</span>.</span>
+                </li>
+            </ul>
+
+            <button type="button" class="collapsible" aria-expanded="false">
+                <span class="collapsible-label">Earlier news</span>
+                <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6"/>
+                </svg>
+            </button>
+            <div class="content">
+                <ul class="news-list">
+                    <li class="news-item">
+                        <span class="news-date">2025/11</span>
+                        <span class="news-body">One paper was accepted to <span class="venue-em">AAAI 2026</span>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2025/09</span>
+                        <span class="news-body">One paper was accepted to <span class="venue-em">NeurIPS 2025</span>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2025/09</span>
+                        <span class="news-body">Invited to serve as an Area Chair of <span class="venue-em">ICLR 2026</span>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2025/04</span>
+                        <span class="news-body">Invited to serve as an Area Chair of <span class="venue-em">NeurIPS 2025</span>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2025/03</span>
+                        <span class="news-body">One paper was accepted to <span class="venue-em">ICML 2025</span>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2025/03</span>
+                        <span class="news-body">One paper was accepted to <span class="venue-em">TPAMI</span>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2025/03</span>
+                        <span class="news-body">One paper was accepted to <span class="venue-em">CVPR 2025</span>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2025/01</span>
+                        <span class="news-body">One paper was accepted to <span class="venue-em">ICLR 2025</span>.</span>
+                    </li>
+                    <li class="news-item is-highlight">
+                        <span class="news-date">2025/01</span>
+                        <span class="news-body">We released <b>MiniMax-01</b> [<a href="https://arxiv.org/abs/2501.08313">tech report</a>] [<a href="https://github.com/MiniMax-AI/MiniMax-01">GitHub</a>] [<a href="https://huggingface.co/MiniMaxAI">Hugging Face</a>].</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2024/12</span>
+                        <span class="news-body">One paper was accepted to <span class="venue-em">AAAI 2025</span>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2024/09</span>
+                        <span class="news-body">One paper was accepted to <span class="venue-em">NeurIPS 2024</span>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2024/07</span>
+                        <span class="news-body">I gave a talk about "Efficient Large Models" at Peking University. Many thanks to Prof. Shanghang Zhang for the invitation.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2024/07</span>
+                        <span class="news-body">Two papers were accepted to <span class="venue-em">ECCV 2024</span>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2024/06</span>
+                        <span class="news-body">I co-organized <span class="venue-em">TNNLS 2024</span> Tutorial "Efficient and Secure Foundation Models" and gave a talk.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2024/06</span>
+                        <span class="news-body">One paper was accepted to journal <span class="venue-em">Knowledge-Based Systems</span>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2024/03</span>
+                        <span class="news-body">Our PU-MLC was accepted to <span class="venue-em">ICME 2024</span> as <b>oral</b>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2024/03</span>
+                        <span class="news-body">We released <a href="https://arxiv.org/abs/2403.06517">ActGen</a>, <a href="https://arxiv.org/abs/2403.09338">LocalMamba</a>, and <a href="https://arxiv.org/abs/2403.09977">EfficientVMamba</a> on arXiv.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2024/02</span>
+                        <span class="news-body">One paper (<a href="https://arxiv.org/abs/2311.12079">FreeKD</a>) was accepted to <span class="venue-em">CVPR 2024</span>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2023/09</span>
+                        <span class="news-body">One paper (<a href="https://arxiv.org/abs/2305.15712">DiffKD</a>) was accepted to <span class="venue-em">NeurIPS 2023</span>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2023/07</span>
+                        <span class="news-body">One paper (<a href="https://arxiv.org/abs/2305.02722">AKD</a>) was accepted to <span class="venue-em">ACM MM 2023</span>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2023/05</span>
+                        <span class="news-body">We released <a href="https://arxiv.org/abs/2305.15712">DiffKD</a> and <a href="https://arxiv.org/abs/2305.02722">AKD</a> on arXiv.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2023/01</span>
+                        <span class="news-body">One paper (<a href="https://arxiv.org/abs/2205.14589">MasKD</a>) was accepted to <span class="venue-em">ICLR 2023</span>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2022/09</span>
+                        <span class="news-body">One paper (<a href="https://arxiv.org/abs/2205.10536">DIST</a>) was accepted to <span class="venue-em">NeurIPS 2022</span>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2022/07</span>
+                        <span class="news-body">We released <a href="https://arxiv.org/abs/2207.05557">LightViT</a> [<a href="https://github.com/hunto/LightViT">code</a>] on arXiv.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2022/05</span>
+                        <span class="news-body">We released <a href="https://arxiv.org/abs/2205.10536">DIST</a> [<a href="https://github.com/hunto/DIST_KD">code</a>] and <a href="https://arxiv.org/abs/2205.14589">MasKD</a> [<a href="https://github.com/hunto/MasKD">code</a>] on arXiv.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2022/04</span>
+                        <span class="news-body">One paper (<a href="https://arxiv.org/abs/2010.10217">QAS</a>) was accepted to <span class="venue-em">Nature Partner Journals Quantum Information</span> (<span class="venue-em">NPJ QI</span>).</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2022/03</span>
+                        <span class="news-body">Two papers (<a href="https://arxiv.org/abs/2111.12609">GreedyNASv2</a> &amp; <a href="https://arxiv.org/abs/2203.12868">DyRep</a>) were accepted to <span class="venue-em">CVPR 2022</span>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2022/01</span>
+                        <span class="news-body">One paper (<a href="https://arxiv.org/abs/2202.13197">ReLoss</a>) was accepted to <span class="venue-em">ICLR 2022</span>.</span>
+                    </li>
+                    <li class="news-item is-highlight">
+                        <span class="news-date">2021/12</span>
+                        <span class="news-body">We released <a href="https://github.com/open-mmlab/mmrazor">MMRazor</a> — a model compression toolkit for model slimming and AutoML (NAS, pruning, and KD) in OpenMMLab.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2021/11</span>
+                        <span class="news-body">We released GreedyNASv2 on <a href="https://arxiv.org/abs/2111.12609">arXiv</a>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2021/03</span>
+                        <span class="news-body">One paper about NAS was accepted to <span class="venue-em">CVPR 2021</span>. The NAS benchmark in our paper was released on <a href="https://github.com/xiusu/NAS-Bench-Macro">GitHub</a>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2021/01</span>
+                        <span class="news-body">One paper about channel number search (pruning) was accepted to <span class="venue-em">ICLR 2021</span> as spotlight.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2020/11</span>
+                        <span class="news-body">One paper about NAS (TopoNAS) was released on <a href="https://arxiv.org/abs/2011.09300">arXiv</a>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2020/10</span>
+                        <span class="news-body">One paper about quantum architecture search (QAS) was released on <a href="https://arxiv.org/abs/2010.10217">arXiv</a>.</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2020/02</span>
+                        <span class="news-body">One paper about NAS was accepted to <span class="venue-em">CVPR 2020</span>.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="selected-publications" class="page-section anchor-offset">
+            <div class="section-header-row">
+                <h2 class="section-heading">Selected Publications</h2>
+                <a class="section-more" href="publication.html">Full list &rarr;</a>
+            </div>
+            <ul class="sel-pub-list">
+                <li class="sel-pub-item">
+                    <button type="button" class="sel-pub-thumb sel-pub-thumb--zoom" data-full="assets/teasers_gen/auriga.webp" aria-label="Enlarge Auriga teaser">
+                        <img src="assets/teasers_gen/auriga.webp" alt="Auriga teaser" loading="lazy" />
+                    </button>
+                    <div class="sel-pub-body">
+                        <a class="sel-pub-title" href="https://arxiv.org/abs/2611.01112">Auriga Technical Report: A Task-Agnostic Agent Harness for Zero-Shot Embodied Manipulation</a>
+                        <div class="sel-pub-authors">StellarEdge AI Technical Team</div>
+                        <div class="sel-pub-venue"><em>Technical Report</em>, 2026.</div>
+                        <div class="sel-pub-links">
+                            <a href="https://arxiv.org/abs/2611.01112">[Paper]</a>
+                            <a href="https://auriga.stelledge.com/">[Project]</a>
+                            <a href="https://github.com/lose4578/Auriga">[Code]</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="sel-pub-item">
+                    <button type="button" class="sel-pub-thumb sel-pub-thumb--zoom" data-full="assets/teasers_gen/kairos.webp" aria-label="Enlarge Kairos architecture teaser">
+                        <img src="assets/teasers_gen/kairos.webp" alt="Kairos architecture teaser" loading="lazy" />
+                    </button>
+                    <div class="sel-pub-body">
+                        <a class="sel-pub-title" href="https://arxiv.org/abs/2606.16533">Kairos: A Regret-Aware Native World-Action Model Stack for Physical AI</a>
+                        <div class="sel-pub-authors">Kairos Team: Fei Wang, Shan You, Qiming Zhang, <b>Tao Huang</b> (core contributor), et al.</div>
+                        <div class="sel-pub-venue"><em>Technical Report</em>, 2026.</div>
+                        <div class="sel-pub-links">
+                            <a href="https://arxiv.org/abs/2606.16533">[Paper]</a>
+                            <a href="https://github.com/kairos-agi/kairos-sensenova">[Code]</a>
+                            <a href="https://huggingface.co/kairos-agi">[Hugging Face]</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="sel-pub-item">
+                    <button type="button" class="sel-pub-thumb sel-pub-thumb--zoom" data-full="assets/teasers_gen/dist.webp" aria-label="Enlarge DIST teaser">
+                        <img src="assets/teasers_gen/dist.webp" alt="DIST teaser" loading="lazy" />
+                    </button>
+                    <div class="sel-pub-body">
+                        <a class="sel-pub-title" href="https://arxiv.org/abs/2205.10536">Knowledge Distillation from A Stronger Teacher</a>
+                        <div class="sel-pub-authors"><b>Tao Huang</b>, Shan You, Fei Wang, Chen Qian, Chang Xu</div>
+                        <div class="sel-pub-venue"><em>Advances in Neural Information Processing Systems</em> (<b>NeurIPS</b>), 2022.</div>
+                        <div class="sel-pub-links">
+                            <a href="https://arxiv.org/abs/2205.10536">[Paper]</a>
+                            <a href="https://github.com/hunto/DIST_KD">[Code]</a>
+                            <a href="assets/dist/KD_sharing_Tao_20220715.pdf">[Slides]</a>
+                            <a href="assets/dist/NeurIPS2022_DIST_poster.pdf">[Poster]</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="sel-pub-item">
+                    <button type="button" class="sel-pub-thumb sel-pub-thumb--zoom" data-full="assets/teasers_gen/localmamba.webp" aria-label="Enlarge LocalMamba teaser">
+                        <img src="assets/teasers_gen/localmamba.webp" alt="LocalMamba teaser" loading="lazy" />
+                    </button>
+                    <div class="sel-pub-body">
+                        <a class="sel-pub-title" href="https://arxiv.org/abs/2403.09338">LocalMamba: Visual State Space Model with Windowed Selective Scan</a>
+                        <div class="sel-pub-authors"><b>Tao Huang</b>, Xiaohuan Pei, Shan You, Fei Wang, Chen Qian, Chang Xu</div>
+                        <div class="sel-pub-venue"><em>Efficient Deep Learning for Foundation Models, European Conference on Computer Vision</em> (<b>ECCV</b>) Workshop, 2024.</div>
+                        <div class="sel-pub-links">
+                            <a href="https://arxiv.org/abs/2403.09338">[Paper]</a>
+                            <a href="https://github.com/hunto/LocalMamba">[Code]</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="sel-pub-item">
+                    <button type="button" class="sel-pub-thumb sel-pub-thumb--zoom" data-full="assets/teasers_gen/sparsevlm.webp" aria-label="Enlarge SparseVLM teaser">
+                        <img src="assets/teasers_gen/sparsevlm.webp" alt="SparseVLM teaser" loading="lazy" />
+                    </button>
+                    <div class="sel-pub-body">
+                        <a class="sel-pub-title" href="https://arxiv.org/abs/2410.04417">SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference</a>
+                        <div class="sel-pub-authors">Yuan Zhang*, ChunKai Fan*, Junpeng Ma*, Wenzhao Zheng, <b>Tao Huang</b>, Kuan Cheng, Denis Gudovskiy, Tomoyuki Okuno, Yohei Nakata, Kurt Keutzer, Shanghang Zhang</div>
+                        <div class="sel-pub-venue"><em>International Conference on Machine Learning</em> (<b>ICML</b>), 2025.</div>
+                        <div class="sel-pub-links">
+                            <a href="https://arxiv.org/abs/2410.04417">[Paper]</a>
+                            <a href="https://github.com/Gumpest/SparseVLMs">[Code]</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section id="education" class="page-section anchor-offset">
+            <h2 class="section-heading">Education</h2>
+            <ul class="entry-list">
+                <li class="entry-item entry-with-logo">
+                    <div class="org-logo">
+                        <img src="assets/logos/usyd.png" alt="The University of Sydney logo" />
+                    </div>
+                    <div class="entry-body">
+                        <div class="entry-row">
+                            <div class="entry-primary">
+                                <a href="https://www.sydney.edu.au/">The University of Sydney</a>
+                                <span class="entry-location">· Sydney, Australia</span>
+                            </div>
+                            <div class="entry-date">
+                                <span class="hover-text" data-text="According to Clause 3.19 in UNIVERSITY OF SYDNEY (HIGHER DEGREE BY RESEARCH) RULE 2011, I graduated earlier due to exceptional progress made in my research candidature.">Jul. 2022 – Feb. 2025</span>
+                            </div>
+                        </div>
+                        <div class="entry-sub">Ph.D. in Computer Science · Advisor: <a href="http://changxu.xyz">Prof. Chang Xu</a></div>
+                    </div>
+                </li>
+                <li class="entry-item entry-with-logo">
+                    <div class="org-logo">
+                        <img src="assets/logos/hust.png" alt="Huazhong University of Science and Technology logo" />
+                    </div>
+                    <div class="entry-body">
+                        <div class="entry-row">
+                            <div class="entry-primary">
+                                <a href="https://www.hust.edu.cn">Huazhong University of Science and Technology</a>
+                                <span class="entry-location">· Wuhan, China</span>
+                            </div>
+                            <div class="entry-date">Sep. 2016 – Jun. 2020</div>
+                        </div>
+                        <div class="entry-sub">B.E. in Computer Science and Technology</div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section id="experiences" class="page-section anchor-offset">
+            <h2 class="section-heading">Selected Experiences</h2>
+            <ul class="exp-list">
+                <li class="exp-item entry-with-logo">
+                    <div class="org-logo">
+                        <img src="assets/logos/sensetime.png" alt="SenseTime logo" />
+                    </div>
+                    <div class="entry-body">
+                        <div class="exp-org"><a href="https://sensetime.com">SenseTime</a></div>
+                        <div class="exp-roles">
+                            <div class="exp-role-row">
+                                <span class="exp-role-name">Research Intern</span>
+                                <span class="entry-date">Jul. 2022 – Mar. 2025</span>
+                            </div>
+                            <div class="exp-role-row">
+                                <span class="exp-role-name">Researcher</span>
+                                <span class="entry-date">Jul. 2020 – Jun. 2022</span>
+                            </div>
+                            <div class="exp-role-row">
+                                <span class="exp-role-name">Research Intern</span>
+                                <span class="entry-date">Aug. 2019 – Jul. 2020</span>
+                            </div>
+                        </div>
+                        <div class="exp-desc">Model Compression Algorithms</div>
+                    </div>
+                </li>
+                <li class="exp-item entry-with-logo">
+                    <div class="org-logo">
+                        <img src="assets/logos/minimax.svg" alt="MiniMax logo" />
+                    </div>
+                    <div class="entry-body">
+                        <div class="exp-row">
+                            <div class="exp-org">
+                                <a href="https://www.minimaxi.com/">MiniMax</a>
+                                <span class="exp-inline-role"> · Large Model Algorithm Intern</span>
+                            </div>
+                            <span class="entry-date">Apr. 2024 – Oct. 2024</span>
+                        </div>
+                        <div class="exp-desc">MiniMax-01 LLM Pretraining</div>
+                    </div>
+                </li>
+                <li class="exp-item entry-with-logo">
+                    <div class="org-logo">
+                        <img src="assets/logos/horizon.png" alt="Horizon Robotics logo" />
+                    </div>
+                    <div class="entry-body">
+                        <div class="exp-row">
+                            <div class="exp-org">
+                                <a href="https://horizon.ai">Horizon Robotics</a>
+                                <span class="exp-inline-role"> · Computer Vision Research Intern</span>
+                            </div>
+                            <span class="entry-date">May 2019 – Aug. 2019</span>
+                        </div>
+                        <div class="exp-desc">Object Detection for Intelligent Traffic Checkpoints</div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section id="awards" class="page-section anchor-offset">
+            <h2 class="section-heading">Selected Awards</h2>
+            <ul class="entry-list">
+                <li class="award-item">
+                    <span class="award-title">Microsoft Research Asia StarTrack Scholar</span>
+                    <span class="entry-date">2026</span>
+                </li>
+                <li class="award-item">
+                    <span class="award-title">上海市海外高层次人才计划</span>
+                    <span class="entry-date">2025</span>
+                </li>
+                <li class="award-item">
+                    <span class="award-title">上海交通大学思源青年学者（Explore X 基金项目）</span>
+                    <span class="entry-date">2025</span>
+                </li>
+                <li class="award-item">
+                    <span class="award-title">NeurIPS 2023 Scholar Award</span>
+                    <span class="entry-date">Oct. 2023</span>
+                </li>
+                <li class="award-item">
+                    <span class="award-title">Outstanding Graduate Award, Huazhong University of Science and Technology</span>
+                    <span class="entry-date">Jun. 2020</span>
+                </li>
+                <li class="award-item">
+                    <span class="award-title">Outstanding Graduate Thesis Award, Huazhong University of Science and Technology</span>
+                    <span class="entry-date">Jun. 2020</span>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <span>&copy; 2026 Tao Huang · Shanghai Jiao Tong University</span>
+        <div class="footer-links">
+            <a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en">Google Scholar</a>
+            <span class="footer-sep" aria-hidden="true">&middot;</span>
+            <a href="https://www.cs.sjtu.edu.cn/jiaoshiml/huangtao.html">SJTU Homepage</a>
+        </div>
+    </footer>
 </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <nav class="navbar sticky-top navbar-expand-lg my-navbar-style" style="margin-left: -12px; margin-right: -12px;">
-        <a class="navbar-brand" href="index.html" style="font-size: 120%; font-weight: bold; color: white;">Tao Huang</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link" href="publication.html">PUBLICATIONS</a>
-            <a class="nav-item nav-link" href="research.html">RESEARCH</a>
-            <a class="nav-item nav-link" href="team.html">TEAM</a>
-            <a class="nav-item nav-link" href="teaching.html">TEACHING</a>
-            <a class="nav-item nav-link" href="service.html">SERVICES</a>
-            <!-- <a class="nav-item nav-link" href="#awards">Awards</a> -->
-            <!-- <a class="nav-item nav-link" href="#grants">Grants</a> -->
-          </div>
-        </div>
-    </nav>
 
-<div class="container">
-    <div class="left-section">
-        <h2>📝 Biography</h2>
-            <div style="text-align:justify"> 
-                My name is Tao Huang (黄涛). I am a tenure-track assistant professor in <a href="https://jhc.sjtu.edu.cn">John Hopcropt Center for Computer Science</a>, <a href="https://cs.sjtu.edu.cn">School of Computer Science</a>, <a href="https://www.sjtu.edu.cn/">Shanghai Jiao Tong University</a> since 2025. I received my Ph.D. degree in Computer Science at <a href="https://www.sydney.edu.au/">The University of Sydney</a>, advised by <a href="http://changxu.xyz">Prof. Chang Xu</a>. 
-                Before that, I obtained the Bachelor's degree at <a href="https://www.hust.edu.cn">Huazhong University of Science and Technology</a>, and then spent two years as a Researcher at <a href="https://www.sensetime.com">SenseTime</a>. I was selected as a Microsoft Research Asia StarTrack Scholar in 2026. I received the Shanghai Magnolia Talent Plan Youth Project in 2025, NeurIPS Scholar award in 2023. 
-            </div>
-        </p>
-        <p>Our team conducts research across a broad range of topics, including LLMs, VLMs, image and video generation, and embodied AI, with a recent emphasis on video generative <b>world models</b>.  My primary research interests during my PhD focus on <b>efficient deep learning</b> algorithms and their applications to <b>computer vision</b>.
-            <!-- , with an emphasis on:
-            <ul>
-                <li style="margin-top: 0.2em">Efficient architectures: NAS, handcrafts ...</li>
-                <li style="margin-top: 0.2em">Efficient training: training acceleration, KD, PEFT ...</li>
-                <li style="margin-top: 0.2em">Efficient data: self-supervised learning, generated training contents ...</li>
-                <li style="margin-top: 0.2em">Efficient inference: pruning, dynamic networks ...</li>
-                <li style="margin-top: 0.2em">Efficient large models: VLMs, Generative Models, VLAs ...</li>
-            </ul> -->
-            
-        </p>
-    </div>
-
-    <div class="right-section">
-        <!-- <h2>Tao Huang</h2> -->
-        <img src="assets/taohuang.png" class="profile-pic" alt="Photo of Tao Huang">
-        <div class="profile-info">
-            <div class="profile-name">Tao Huang</div>
-            <div class="profile-line profile-role">
-                <svg class="pi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-                <span>Assistant Professor, PhD Advisor</span>
-            </div>
-            <div class="profile-line profile-affiliation">
-                <svg class="pi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
-                <span>Shanghai Jiao Tong University</span>
-            </div>
-            <div class="profile-line profile-email">
-                <svg class="pi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
-                <span class="profile-email-addr">t.huang[at]sjtu.edu.cn</span>
-            </div>
-            <div class="profile-line">
-                <svg class="pi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                <a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en">Google Scholar</a>
-            </div>
-            <div class="profile-line">
-                <svg class="pi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/></svg>
-                <a href="https://www.cs.sjtu.edu.cn/jiaoshiml/huangtao.html">University Webpage</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="cta-card">
-    <h2>📢 Join My Lab</h2>
-    <p>Warmly welcome students to work with me in deep learning related researches, especially in the areas of large models and embodied AI. I am committed to supporting their growth in all dimensions. <b><a href="team.html">Details [here]</a></b>.</p>
-    <p style="color: #666; margin-top: 12px;">
-        [2026/11] 当前我组里没有 2027 年入学普博名额。<br>
-        [2026/10] 我正在招收音视频生成/具身智能/大模型加速方向实习生，欢迎联系
-    </p>
-</div>
-
-<!-- <p><font color="red">Pinned: </font></p> -->
-<div id="news" class="anchor-offset"></div>
-<div class="news-card">
-<h2>📰 News</h2>
-<ul>
-    <li style="margin-top: 0.2em">[2026/11] We released <b>Auriga</b>, a task-agnostic agent harness for zero-shot embodied manipulation, check out [<a href="https://arxiv.org/abs/2611.01112">tech report</a>] [<a href="https://auriga.stelledge.com/">project page</a>] [<a href="https://github.com/lose4578/Auriga">Github</a>] for details.</li>
-    <li style="margin-top: 0.2em">[2026/07] One paper was accepted to ACM MM 2026.</li>
-    <li style="margin-top: 0.2em">[2025/07] Invited to serve as a Senior Program Committee member of AAAI 2027.</li>
-    <li style="margin-top: 0.2em">[2026/06] We released <b>Kairos World (Action) Model</b>, a native world model stack for Physical AI, check out [<a href="https://arxiv.org/abs/2606.16533">tech report</a>] for details.</li>
-    <li style="margin-top: 0.2em">[2026/06] Five papers were accepted to ECCV 2026.</li>
-    <li style="margin-top: 0.2em">[2026/05] One paper was accepted to TPAMI.</li>
-    <li style="margin-top: 0.2em">[2026/05] One paper was accepted to ICML 2026.</li>
-    <li style="margin-top: 0.2em">[2026/03] We released <b>Kairos 3.0-4B</b>, a realtime world model for general and robotic generation, check out [<a href="https://github.com/kairos-agi/kairos-sensenova">Github</a>] [<a href="https://mp.weixin.qq.com/s/6zLPiiYC6KzwIvMWYH66xA">推文介绍</a>] for details.</li>
-    <li style="margin-top: 0.2em">[2026/02] I was selected as a Microsoft Research Asia StarTrack Scholar.</li>
-    <li style="margin-top: 0.2em">[2026/02] Two papers (1 highlight) were accepted to CVPR 2026.</li>
-    <li style="margin-top: 0.2em">[2026/01] Two papers were accepted to ICLR 2026.</li>
-    <li style="margin-top: 0.2em">[2025/11] One paper was accepted to AAAI 2026.</li>
-    <li style="margin-top: 0.2em">[2025/09] One paper was accepted to NeurIPS 2025.</li>
-    <li style="margin-top: 0.2em">[2025/09] Invited to serve as an Area Chair of ICLR 2026.</li>
-    <li style="margin-top: 0.2em">[2025/03] One paper was accepted to ICML 2025.</li>
-    <li style="margin-top: 0.2em">[2025/04] Invited to serve as an Area Chair of NeurIPS 2025.</li>
-    <li style="margin-top: 0.2em">[2025/03] One paper was accepted to TPAMI.</li>
-    <li style="margin-top: 0.2em">[2025/03] One paper was accepted to CVPR 2025.</li>
-    <li style="margin-top: 0.2em">[2025/01] One paper was accepted to ICLR 2025.</li>
-    <li style="margin-top: 0.2em">[2025/01] We released <b>MiniMax-01</b> [<a href="https://arxiv.org/abs/2501.08313">tech report</a>] [<a href="https://github.com/MiniMax-AI/MiniMax-01">Github</a>] [<a href="https://huggingface.co/MiniMaxAI">Hugging Face</a>].</li>
-</ul>
-<button type="button" class="collapsible">More 
-    <svg class="arrow" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true" focusable="false">
-        <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-</button>
-    <div class="content">
-        <ul>
-            <li style="margin-top: 0.2em">[2024/12] One paper was accepted to AAAI 2025.</li>
-            <li style="margin-top: 0.2em">[2024/09] One paper was accepted to NeurIPS 2024.</li>
-            <li style="margin-top: 0.2em">[2024/07] I gave a talk about "Efficient Large Models" at Peking University. Many thanks to Prof. Shanghang Zhang for the invitation.</li>
-            <li style="margin-top: 0.2em">[2024/07] Two papers were accepted to ECCV 2024.</li>
-            <li style="margin-top: 0.2em">[2024/06] I co-organized TNNLS 2024 Tutorial "Efficient and Secure Foundation Models" and gave a talk.</li>
-            <li style="margin-top: 0.2em">[2024/06] One paper was accepted to journal Knowledge-Based Systems.</li>
-            <li style="margin-top: 0.2em">[2024/03] Our <a href="">PU-MLC</a> was accepted to ICME 2024 as <b>oral</b>.</li>
-            <li style="margin-top: 0.2em">[2024/03] We released <a href="https://arxiv.org/abs/2403.06517">ActGen</a> & <a href="https://arxiv.org/abs/2403.09338">LocalMamba</a> & <a href="https://arxiv.org/abs/2403.09977">EfficientVMamba</a> at arXiv.</li>
-            <li style="margin-top: 0.2em">[2024/02] One paper (<a href="https://arxiv.org/abs/2311.12079">FreeKD</a>) was accepted to CVPR 2024.</li>
-            <li style="margin-top: 0.2em">[2023/09] One paper (<a href="https://arxiv.org/abs/2305.15712">DiffKD</a>) was accepted to NeurIPS 2023.</li>
-            <li style="margin-top: 0.2em">[2023/07] One paper (<a href="https://arxiv.org/abs/2305.02722">AKD</a>) was accepted to ACM MM 2023.</li>
-            <li style="margin-top: 0.2em">[2023/05] We released <a href="https://arxiv.org/abs/2305.15712">DiffKD</a> and <a href="https://arxiv.org/abs/2305.02722">AKD</a> at arXiv.</li>
-            <li style="margin-top: 0.2em">[2023/01] One paper (<a href="https://arxiv.org/abs/2205.14589">MasKD</a>) was accepted to ICLR 2023.</li>
-            <li style="margin-top: 0.2em">[2022/09] One paper (<a href="https://arxiv.org/abs/2205.10536">DIST</a>) was accepted to NeurIPS 2022.</li>
-            <li style="margin-top: 0.2em">[2022/07] We released <a href="https://arxiv.org/abs/2207.05557">LightViT</a> <a href="https://github.com/hunto/LightViT">[code]</a> at arXiv.</li>
-            <li style="margin-top: 0.2em">[2022/05] We released <a href="https://arxiv.org/abs/2205.10536">DIST</a> <a href="https://github.com/hunto/DIST_KD">[code]</a> and <a href="https://arxiv.org/abs/2205.14589">MasKD</a> <a href="https://github.com/hunto/MasKD">[code]</a> at arXiv.</li>
-            <li style="margin-top: 0.2em">[2022/04] One paper (<a href="https://arxiv.org/abs/2010.10217">QAS</a>) was accepted to <i>Nature Partner Journals</i> Quantum Information (NPJ QI).</li>
-            <li style="margin-top: 0.2em">[2022/03] Two papers (<a href="https://arxiv.org/abs/2111.12609">GreedyNASv2</a> & <a href="https://arxiv.org/abs/2203.12868">DyRep</a>) were accepted to CVPR 2022.</li>
-            <li style="margin-top: 0.2em">[2022/01] One paper (<a href="https://arxiv.org/abs/2202.13197">ReLoss</a>) was accepted to ICLR 2022.</li>
-            <li style="margin-top: 0.2em">
-                [2021/12] We released <ax href="https://github.com/open-mmlab/mmrazor">MMRazor</ax> - a model compression toolkit for model slimming and AutoML, which includes 3 mainstream technologies NAS, pruning, and KD. MMRazor can be easily applied to various projects (e.g., MMDet and MMCls) in OpenMMLab.
-            </li>
-            <li style="margin-top: 0.2em">
-                [2021/11] We released GreedyNASv2 at <ax href="https://arxiv.org/abs/2111.12609">arXiv</a>.
-            </li>
-            <li style="margin-top: 0.2em">
-                [2021/03] One paper about NAS was accepted to CVPR 2021. The NAS benchmark in our paper was released at <ax href="https://github.com/xiusu/NAS-Bench-Macro">github</a>.
-            </li>
-            <li style="margin-top: 0.2em">
-                [2021/01] One paper about channel number search (pruning) was accepted to ICLR 2021 as spotlight.
-            </li>
-            <li style="margin-top: 0.2em">
-                [2020/11] One paper about NAS was released at <ax href="https://arxiv.org/abs/2011.09300">arXiv</a>. Our TopoNAS explicitly learns the topology for differentiable NAS (DARTS), and enjoys significant efficiency improvement on obtained architectures.
-            </li>
-            <li style="margin-top: 0.2em">
-                [2020/10] One paper about quantum architecture search (QAS) was released at <ax href="https://arxiv.org/abs/2010.10217">arXiv</a>. Our QAS implicitly learns a rule that can well suppress the influence of quantum noise and the barren plateau.
-            </li>
-            <li style="margin-top: 0.2em">
-                [2020/02] One paper about NAS was accepted to CVPR 2020.
-            </li>
-        </ul>
-    </div>
-</div>
-
-
-<!-- <div id="team" class="anchor-offset"></div>
-<h2>👥 Team</h2>
-I am grateful for the privilege of collaborating with a group of talented and dedicated students. Working alongside you has been both an honor and a delightful experience.
-<ul class="ult">
-    <li style="margin-top: 0.2em"><a href="https://scholar.google.com/citations?user=EiKY3QcAAAAJ"><span class="hover-text" data-text="Jun Li is an incoming PhD student in School of Computer Science at SJTU, he is currently an undergraduate student at HITSZ.">Jun Li</span></a> (Undergraduate at HITSZ)</li>
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Jiaqi Liu</span></a> (Incoming PhD student at USYD)</li>
-    <li style="margin-top: 0.2em"><a href="https://www.terrypei.com/"><span class="hover-text" data-text="">Xiaohuan Pei</span></a> (PhD student at USYD)</li>
-    <li style="margin-top: 0.2em"><a href="https://www.taolinwei.com/"><span class="hover-text" data-text="">Linwei Tao</span></a> (PhD student at USYD)</li>
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="Kaixin Zhang is an incoming PhD student at CSU. He received his master's degree from Anhui University of Technology. His research interests lie within computer vision, image recognition, and adversarial attacks. He has published two first-authored papers (including one Oral).">Kaixin Zhang</span></a> (Incoming PhD student at CSU)</li>
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Zhe Li</span></a> (Incoming PhD student at USYD)</li>
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Li Yin</span></a> (Master student at NWPU)</li>
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Ruiqing Yang</span></a> (Undergraduate at UESTC)</li>
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Xiaodi Huang</span></a> (Undergraduate at TongjiU)</li>
-    <li style="margin-top: 0.2em"><a href="javascript:void(0);"><span class="hover-text" data-text="">Ligong Bi</span></a> (Undergraduate at GUET)</li>
-    <li style="margin-top: 0.2em"><a href="https://jackhuang0701.github.io/"><span class="hover-text" data-text="">Jiakai Huang</span></a> (Undergraduate at SCNU)</li>
-</ul> -->
-
-<!-- <div class="paper"></div> -->
-
-<div id="education" class="anchor-offset"></div>
-<h2>🎓 Educations</h2>
-<ul>
-    <li>
-        <div style="display: flex; justify-content: space-between;">
-            <div><a href="https://www.sydney.edu.au/">The University of Sydney</a>, Sydney, Australia</div>
-            <div style="margin-left: 2px;"><span class="hover-text" data-text="According to Clause 3.19 in UNIVERSITY OF SYDNEY (HIGHER DEGREE BY RESEARCH) RULE 2011, I graduated earlier due to exceptional progress made in my research candidature.">Jul. 2022 – Feb. 2025</span></div>
-        </div>
-        Ph.D. in Computer Science<br>
-        Advisor: <a href="http://changxu.xyz">Prof. Chang Xu</a><br>
-    </li>
-    <li>
-        <div style="display: flex; justify-content: space-between;">
-            <div><a href="https://www.hust.edu.cn">Huazhong University of Science and Technology</a>, Wuhan, China</div>
-            <div style="margin-left: 2px;">Sep. 2016 – Jun. 2020</div>
-        </div>
-        B.E. in Computer Science and Technology<br>
-    </li>
-</ul>
-
-<div id="experiences" class="anchor-offset"></div>
-<h2>🏢 Selected Experiences</h2>
-<ul>
-	<li>
-        <a href="https://sensetime.com">SenseTime</a><br>
-        <div style="display: flex; justify-content: space-between; font-style: italic;">
-            <div>Research Intern</div>
-            <div style="margin-left: 2px;">Jul. 2022 - Mar. 2025</div>
-        </div>
-        <div style="display: flex; justify-content: space-between; font-style: italic;">
-            <div>Researcher</div>
-            <div style="margin-left: 2px;">Jul. 2020 – Jun. 2022</div>
-        </div>
-        <div style="display: flex; justify-content: space-between; font-style: italic;">
-            <div>Research Intern</div>
-            <div style="margin-left: 2px;">Aug. 2019 – Jul. 2020</div>
-        </div>
-        <!-- <ul>
-            <li style="margin-top: 0.2em">
-                Research on model compression algorithms (NAS, KD, pruning, etc.).
-            </li>
-            <li style="margin-top: 0.2em">
-                Research and development on auto-driving (smart carbin) scenes such as face verification and drowsiness detection.
-            </li>
-            <li style="margin-top: 0.2em">
-                Applied NAS to face verification task on large­scale industrial datasets, which significantly improves the performance.
-            </li>
-        </ul> -->
-	</li>
-    <li>
-        <a href="https://www.minimaxi.com/">MiniMax</a>
-        <div style="display: flex; justify-content: space-between; font-style: italic;">
-            <div>Large Model Algorithm Intern</div>
-            <div style="margin-left: 2px;">Apr. 2024 – Oct. 2024</div>
-        </div>
-    </li>
-	<li>
-        <a href="https://horizon.ai">Horizon Robotics</a>
-        <div style="display: flex; justify-content: space-between; font-style: italic;">
-            <div>Computer Vision Research Intern</div>
-            <div style="margin-left: 2px;">May 2019 – Aug. 2019</div>
-        </div>
-        <!-- <ul>
-            <li style="margin-top: 0.2em">
-                Development on object detection framework: anchor-­free detection method, detection in traffic scene.
-            </li>
-            <li style="margin-top: 0.2em">
-                Research on knowledge distillation methods for face alignment, object detection.
-            </li>
-        </ul> -->
-	</li>
-    <!-- <li> -->
-        <!-- <a href="http://dian.org.cn/">Dian Group@HUST</a>, Wuhan, Hubei province, China<br> -->
-        <!-- <div style="display: flex; justify-content: space-between; font-style: italic;">
-            <div>Team Leader of Real­time Face Detection & Alignment Project, AI Group</div>
-            <div style="margin-left: 2px;">Nov. 2018 – May 2019</div>
-        </div> -->
-        <!-- <ul>
-            <li style="margin-top: 0.2em">
-                Develop Android APP to inference face detection, tracking, and 106-­point landmark models on mobile devices. 
-            </li>
-            <li style="margin-top: 0.2em">
-                Research on model acceleration (e.g., knowledge distillation, model pruning) and facial landmark (e.g., multi­task learning, loss function, augmentation).
-            </li>
-            <li style="margin-top: 0.2em">
-                Our proposed model archieves an inference speed of 5 ms / image on Huawei Mate20 Pro.
-            </li>
-        </ul> -->
-        <!-- <div style="display: flex; justify-content: space-between; font-style: italic;">
-            <div>Core Member of Beibei Intelligent Customer Service Project, AI Group</div>
-            <div style="margin-left: 2px;">Feb. 2018 – Nov. 2018</div>
-        </div> -->
-        <!-- <ul>
-            <li style="margin-top: 0.2em">
-                This project comes from <a href="https://www.beibei.com/">Beibei Group Company</a>, Beibei is the bigest mother-­baby ecommerce platform in China. The task is to find optimal answers based on classifications of customer questions.
-            </li>
-            <li style="margin-top: 0.2em">
-                Research and development on text classification and data augmentation, etc.
-            </li>
-        </ul> -->
-    <!-- </li> -->
-	
-</ul>
-
-<div id="awards" class="anchor-offset"></div>
-<h2>🎖 Selected Awards</h2>
-<ul>
-    <li style="margin-top: 0.2em">
-        <div style="display: flex; justify-content: space-between;">
-            <div>Microsoft Research Asia StarTrack Scholar</div>
-            <div style="margin-left: 2px;">2026</div>
-        </div>
-    </li>
-    <li style="margin-top: 0.2em">
-        <div style="display: flex; justify-content: space-between;">
-            <div>上海市海外高层次人才计划</div>
-            <div style="margin-left: 2px;">2025</div>
-        </div>
-    </li>
-    <li style="margin-top: 0.2em">
-        <div style="display: flex; justify-content: space-between;">
-            <div>上海交通大学思源青年学者（Explore X基金项目）</div>
-            <div style="margin-left: 2px;">2025</div>
-        </div>
-    </li>
-    <li style="margin-top: 0.2em">
-        <div style="display: flex; justify-content: space-between;">
-            <div>NeurIPS 2023 Scholar Award</div>
-            <div style="margin-left: 2px;">Oct. 2023</div>
-        </div>
-    </li>
-    <li style="margin-top: 0.2em">
-        <div style="display: flex; justify-content: space-between;">
-            <div>Outstanding Graduate award, Huazhong University of Science and Technology</div>
-            <div style="margin-left: 2px;">Jun. 2020</div>
-        </div>
-    </li>
-    <li style="margin-top: 0.2em">
-        <div style="display: flex; justify-content: space-between;">
-            <div>Outstanding Graduate Thesis award, Huazhong University of Science and Technology</div>
-            <div style="margin-left: 2px;">Jun. 2020</div>
-        </div>
-    </li>
-    <!-- <li>
-        <div style="display: flex; justify-content: space-between;">
-            <div>First Class Prize, National College Student Connected Smarter System Innovation Competition, National</div>
-            <div style="margin-left: 2px;">2018</div>
-        </div>
-    </li>
-    <li>
-        <div style="display: flex; justify-content: space-between;">
-            <div>Third Class Prize, "Challenge Cup" Competition, Provincial</div>
-            <div style="margin-left: 2px;">2018</div>
-        </div>
-    </li>
-    <li>
-        <div style="display: flex; justify-content: space-between;">
-            <div>First Class Prize, "Challenge Cup" Competition, HUST</div>
-            <div style="margin-left: 2px;">2018</div>
-        </div>
-    </li> -->
-</ul>
-
-<!-- <div id="grants" class="anchor-offset"></div>
-<h2>💰 Grants</h2>
-<ul>
-    <li style="margin-top: 0.2em">2023-2024, Efficient Language-and-Vision Models, 1000 USD, Google Cloud Research Credits Award</li>
-</ul> -->
-
-<!-- <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=080808&w=300&t=tt&d=tV7pcGj1jajVaYBjRVqpINW8wuIfJK-wrARhj0jr8NQ&co=ffffff&cmo=3acc3a&cmn=ff5353&ct=808080'></script> -->
-
-
-<div id="footer">
-	<!-- <div id="footer-text" style="text-align: center;">© Tao Huang | Last updated: Jan 10, 2025</div> -->
-</div>
-	<!-- <center>© Tao Huang | Last updated: 02/19/2021</center> -->
-    <!--<center>© Tao Huang
-    	<script type="text/javascript" language="javascript">
-    	if (Date.parse(document.lastModified) != 0) document.write(" | Last updated: " + document.lastModified);</script>
-    </center>-->
-
-<!-- Popover Element -->
-<button class="back-to-top" aria-label="Back to top">&uarr;</button>
+<button class="back-to-top" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 18.5V5.5"/><path d="M6 11.5L12 5.5l6 6"/></svg></button>
 <div id="popover" class="popover"></div>
 
-</body>
+<div class="lightbox-backdrop" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure preview">
+    <div class="lightbox-content">
+        <button type="button" class="lightbox-close" aria-label="Close preview">&times;</button>
+        <img id="lightbox-img" src="" alt="" />
+    </div>
+</div>
 
 <script>
-        // Smooth collapsible: toggle max-height for animation
-        (function(){
-            const triggers = document.getElementsByClassName('collapsible');
-            function closeContent(el){
-                el.style.maxHeight = '0px';
-                el.classList.remove('is-open');
+    // One-click copy email
+    (function () {
+        const btn = document.querySelector('.profile-email-btn');
+        if (!btn) return;
+        let timer;
+        btn.addEventListener('click', function () {
+            const email = btn.getAttribute('data-email');
+            if (!email) return;
+            const markCopied = function () {
+                btn.classList.add('is-copied');
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    btn.classList.remove('is-copied');
+                }, 1800);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(email).then(markCopied).catch(function () {
+                    const ta = document.createElement('textarea');
+                    ta.value = email;
+                    ta.style.position = 'fixed';
+                    ta.style.opacity = '0';
+                    document.body.appendChild(ta);
+                    ta.select();
+                    try { document.execCommand('copy'); markCopied(); } catch (e) {}
+                    document.body.removeChild(ta);
+                });
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = email;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand('copy'); markCopied(); } catch (e) {}
+                document.body.removeChild(ta);
             }
-            function openContent(el){
-                // set to auto height for measurement, then back to pixel for transition
-                el.style.maxHeight = 'none';
-                const h = el.scrollHeight;
-                el.style.maxHeight = '0px';
-                // next frame to ensure transition
-                requestAnimationFrame(()=>{
-                    el.style.maxHeight = h + 'px';
-                    el.classList.add('is-open');
-                });
-            }
-            Array.prototype.forEach.call(triggers, function(btn){
-                const content = btn.nextElementSibling;
-                if(!content) return;
-                // start collapsed
-                closeContent(content);
-                btn.addEventListener('click', function(){
-                    this.classList.toggle('active');
-                    if(content.classList.contains('is-open')) closeContent(content);
-                    else openContent(content);
-                });
-            });
-            // keep height accurate on resize
-            window.addEventListener('resize', function(){
-                Array.prototype.forEach.call(triggers, function(btn){
-                    const content = btn.nextElementSibling;
-                    if(content && content.classList.contains('is-open')){
-                        content.style.maxHeight = 'none';
-                        const h = content.scrollHeight;
-                        content.style.maxHeight = h + 'px';
-                    }
-                });
-            });
-        })();
-
-    function copy(dest, source) {
-        if(dest.source == source) {
-            dest.innerHTML = "";
-            dest.source = null;
-        }
-        else {
-            preElement = source.querySelector('blockquote pre')
-            let innerHTML = preElement.textContent;
-            // Remove leading/trailing whitespace and split into lines
-            let lines = innerHTML.split('\n');
-
-            // Find the minimum number of leading spaces
-            let minIndent = Math.min(...lines.filter(line => line.trim() !== '').map(line => line.match(/^ */)[0].length));
-
-            // Remove the minimum indent from each line
-            let unindentedStr = lines.map(line => line.slice(minIndent)).join('\n');
-            preElement.textContent = unindentedStr.trim()
-            dest.innerHTML = source.innerHTML;
-            dest.source = source;
-
-            // Create a range and select the content of the <pre> element
-            const range = document.createRange();
-            range.selectNodeContents(dest);
-
-            // Remove any existing selection and add the new range to it
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-        }
-        dest.blur();
-    }
-
-    document.querySelectorAll('.bib-link').forEach(link => {
-        link.addEventListener('click', function() {
-            // Find the closest parent <li> for scoping
-            const parentLi = this.closest('li');
-
-            // Find the elements within the same <li> scope
-            const src = parentLi.querySelector('.bib-content');
-            const dst = parentLi.querySelector('.bib-div');
-
-            // const bibContent = parentLi.querySelector('.bib-content').innerHTML;
-            // const bibDiv = parentLi.querySelector('.bib-div');
-
-            // Copy content from bib-content to bib-div
-            // bibDiv.innerHTML = bibContent;
-            
-            copy(dst, src);
         });
-    });
+    })();
 
+    // Lightbox for Selected Publications teaser figures
+    (function () {
+        const backdrop = document.getElementById('lightbox');
+        const imgEl = document.getElementById('lightbox-img');
+        const closeBtn = backdrop ? backdrop.querySelector('.lightbox-close') : null;
+        if (!backdrop || !imgEl) return;
 
+        function openLightbox(src, alt) {
+            imgEl.src = src;
+            imgEl.alt = alt || '';
+            backdrop.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            backdrop.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.sel-pub-thumb--zoom').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const src = btn.getAttribute('data-full');
+                const innerImg = btn.querySelector('img');
+                if (src) openLightbox(src, innerImg ? innerImg.alt : '');
+            });
+        });
+
+        if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+        backdrop.addEventListener('click', function (e) {
+            if (e.target === backdrop) closeLightbox();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && backdrop.classList.contains('open')) closeLightbox();
+        });
+    })();
+
+    // Smooth collapsible for earlier news
+    (function () {
+        const triggers = document.querySelectorAll('.collapsible');
+        function closeContent(btn, el) {
+            el.style.maxHeight = '0px';
+            el.classList.remove('is-open');
+            btn.classList.remove('active');
+            btn.setAttribute('aria-expanded', 'false');
+            const label = btn.querySelector('.collapsible-label');
+            if (label) label.textContent = 'Earlier news';
+        }
+        function openContent(btn, el) {
+            el.style.maxHeight = 'none';
+            const h = el.scrollHeight;
+            el.style.maxHeight = '0px';
+            btn.classList.add('active');
+            btn.setAttribute('aria-expanded', 'true');
+            const label = btn.querySelector('.collapsible-label');
+            if (label) label.textContent = 'Show less';
+            requestAnimationFrame(function () {
+                el.style.maxHeight = h + 'px';
+                el.classList.add('is-open');
+            });
+        }
+        triggers.forEach(function (btn) {
+            const content = btn.nextElementSibling;
+            if (!content) return;
+            closeContent(btn, content);
+            btn.addEventListener('click', function () {
+                if (content.classList.contains('is-open')) closeContent(btn, content);
+                else openContent(btn, content);
+            });
+        });
+        window.addEventListener('resize', function () {
+            triggers.forEach(function (btn) {
+                const content = btn.nextElementSibling;
+                if (content && content.classList.contains('is-open')) {
+                    content.style.maxHeight = 'none';
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            });
+        });
+    })();
 </script>
-
 <script src="common.js"></script>
+</body>
 </html>
-

@@ -1,198 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0, minimum-scale=0.2">
-    <link rel="stylesheet" href="bootstrap.min.css">
-
-    <script>
-        try{
-            if (window.screen.width < 700) {
-                setActiveStyleSheet("jemdoc_mobile.css"); 
-            } 
-            else if(/iPad/i.test(navigator.userAgent)){ 
-                setActiveStyleSheet("jemdoc.css"); 
-            } 
-            else{
-                setActiveStyleSheet("jemdoc.css"); 
-            } 
-        } 
-        catch(e){} 
-
-        function setActiveStyleSheet(filename){
-            document.write("<link href="+filename+" rel=stylesheet>");
-        }
-
-    </script>
-
-    <link rel="shortcut icon" href="myIcon.ico">
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="keywords" content="Tao Huang">
-    <meta name="description" content="Tao Huang's home page">
-    <!-- <link rel="stylesheet" href="jemdoc.css" type="text/css" />
-    <link rel="stylesheet" media="screen and (max-width:700px)" href="jemdoc_mobile.css" type="text/css" />
-    <link rel="stylesheet" media="screen and (max-width:700px)" href="jemdoc.css" type="text/css" /> -->
-    <title>Tao Huang - Homepage</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0" />
+    <meta name="keywords" content="Tao Huang, Team, Open Positions, SJTU" />
+    <meta name="description" content="Graduate students and open positions in Tao Huang's lab at Shanghai Jiao Tong University." />
+    <link rel="shortcut icon" href="myIcon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Team — Tao Huang</title>
 </head>
 <body>
-<div class="topinfo-text">
-    <h1>TAO HUANG</h1>
-    <hr class="topinfo" width="200" size="2" color="#eee" align="left">
-    <p style="margin-bottom: 30px;">
-        <span style="color: rgb(208, 64, 58);"><b>THE ONLY WAY TO DO GREAT WORK IS TO LOVE WHAT YOU DO.</b></span>
-    </p>
+
+<div class="page-sheet">
+    <header class="site-header">
+        <nav class="navbar-pill" aria-label="Main navigation">
+            <a class="site-brand" href="index.html">Tao Huang</a>
+            <button class="navbar-toggler" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarNavAltMarkup">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+            </button>
+            <div class="navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="index.html">About</a>
+                    <a class="nav-link" href="publication.html">Publications</a>
+                    <a class="nav-link" href="research.html">Research</a>
+                    <a class="nav-link" href="team.html">Team</a>
+                    <a class="nav-link" href="teaching.html">Teaching</a>
+                    <a class="nav-link" href="service.html">Services</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-main">
+        <section class="lab-callout" aria-label="Open Positions">
+            <div class="lab-callout-header">
+                <h2 class="lab-callout-title">Open Positions</h2>
+                <a class="lab-callout-link" href="research.html">Research overview &rarr;</a>
+            </div>
+            <p class="lab-callout-desc">
+                There are currently <b>no PhD or Master openings for the 2027 intake</b>. I am actively recruiting motivated <b>research interns</b> in the following areas:
+            </p>
+            <ul class="positions-list">
+                <li><b>Audio &amp; Video Generation:</b> general audio/video synthesis, interactive audiovisual world models, and code-driven media generation</li>
+                <li><b>Embodied AI:</b> world-action models (WAM), agentic embodied AI, VLAs, and humanoid control</li>
+                <li><b>Recursive Self-Improvement (RSI):</b> self-improving LLM / MLLM agents and embodied agents</li>
+                <li><b>Large Model Acceleration:</b> efficient architectures (linear attention, SSMs), token compression/caching, and knowledge distillation</li>
+            </ul>
+            <p class="positions-note">
+                Interested candidates are welcome to reach out at <a href="mailto:t.huang@sjtu.edu.cn">t.huang@sjtu.edu.cn</a> with the subject line <span class="subject-tag">Intern / RA Application &ndash; [Name]</span>. I try to clear my inbox once per day.
+            </p>
+        </section>
+
+        <section id="team" class="page-section anchor-offset">
+            <h2 class="section-heading">Graduate Team</h2>
+            <p class="page-intro">
+                I am grateful for the privilege of collaborating with a group of talented and dedicated students. Working alongside you has been both an honor and a delightful experience.
+            </p>
+
+            <h3 class="subsection-heading">PhD Students</h3>
+            <div class="team-grid">
+                <article class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">LXO</div>
+                        <div class="team-title">
+                            <h4>Xiaoou Li</h4>
+                            <div class="team-meta">
+                                <span class="role-chip">PhD 2026.9</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">WZB</div>
+                        <div class="team-title">
+                            <h4>Zhongbo Wu</h4>
+                            <div class="team-meta">
+                                <span class="role-chip">PhD 2026.9</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">YCJ</div>
+                        <div class="team-title">
+                            <h4>Chaojia Yu</h4>
+                            <div class="team-meta">
+                                <span class="role-chip">PhD 2026.9</span>
+                                <span class="role-chip">with Prof. Yanmin Qian</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">XAT</div>
+                        <div class="team-title">
+                            <h4>Antao Xiang</h4>
+                            <div class="team-meta">
+                                <span class="role-chip">PhD 2027.9</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <h3 class="subsection-heading">Master Students</h3>
+            <div class="team-grid">
+                <article class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">SYH</div>
+                        <div class="team-title">
+                            <h4>Yihan Su</h4>
+                            <div class="team-meta">
+                                <span class="role-chip">Master 2026.9</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">ZCY</div>
+                        <div class="team-title">
+                            <h4>Congyue Zhao</h4>
+                            <div class="team-meta">
+                                <span class="role-chip">Master 2026.9</span>
+                                <span class="role-chip">with Prof. Yanmin Qian</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">YWH</div>
+                        <div class="team-title">
+                            <h4>Yap Wei Herng</h4>
+                            <div class="team-meta">
+                                <span class="role-chip">Master 2026.9</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">HYC</div>
+                        <div class="team-title">
+                            <h4>Yincai Hu</h4>
+                            <div class="team-meta">
+                                <span class="role-chip">Master 2026.9</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <span>&copy; 2026 Tao Huang · Shanghai Jiao Tong University</span>
+        <div class="footer-links">
+            <a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en">Google Scholar</a>
+            <span class="footer-sep" aria-hidden="true">&middot;</span>
+            <a href="https://www.cs.sjtu.edu.cn/jiaoshiml/huangtao.html">SJTU Homepage</a>
+        </div>
+    </footer>
 </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <nav class="navbar sticky-top navbar-expand-lg my-navbar-style" style="margin-left: -12px; margin-right: -12px;">
-        <a class="navbar-brand" href="index.html" style="font-size: 120%; font-weight: bold; color: white;">Tao Huang</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link" href="publication.html">PUBLICATIONS</a>
-            <a class="nav-item nav-link" href="research.html">RESEARCH</a>
-            <a class="nav-item nav-link" href="team.html">TEAM</a>
-            <a class="nav-item nav-link" href="teaching.html">TEACHING</a>
-            <a class="nav-item nav-link" href="service.html">SERVICES</a>
-            <!-- <a class="nav-item nav-link" href="#awards">Awards</a> -->
-            <!-- <a class="nav-item nav-link" href="#grants">Grants</a> -->
-          </div>
-        </div>
-    </nav>
 
-
-<div id="team" style="margin-bottom: 2em; margin-top: 2em;"></div>
-<h2>Open Positions</h2>
-There will be several PhD and Master positions available for the <b>2027</b> intake. I am recruiting students in the following research areas:
-<ul>
-<li style="margin-top: 0.2em">Multimodal understanding and generation: VLMs, image/video generation, world models</li>
-<li style="margin-top: 0.2em">Embodied AI: VLAs, embodied world models, locomotion</li>
-<li style="margin-top: 0.2em">Efficient AI: efficient model design, training, and inference algorithms for the above fields</li>
-</ul>
-Successful applicants typically have first-author publications in top-tier venues. Interested candidates are encouraged to reach out as early as possible. Please email me with the subject line "PhD/Master/RA Application – [Name]". I try to clear my inbox once per day.
-
-<h2>Team</h2>
-I am grateful for the privilege of collaborating with a group of talented and dedicated students. Working alongside you has been both an honor and a delightful experience.
-<h2>Graduate Team</h2>
-<h3>PhD Students</h3>
-<div class="team-grid">
-    <article class="team-card">
-        <div class="team-header">
-            <div class="team-avatar">LXO</div>
-            <div class="team-title">
-                <h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Xiaoou Li</span></a></h4>
-                <div class="team-meta">
-                    <span class="role-chip">PhD 2026.9</span>
-                </div>
-            </div>
-        </div>
-    </article>
-    <article class="team-card">
-        <div class="team-header">
-            <div class="team-avatar">WZB</div>
-            <div class="team-title">
-                <h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Zhongbo Wu</span></a></h4>
-                <div class="team-meta">
-                    <span class="role-chip">PhD 2026.9</span>
-                </div>
-            </div>
-        </div>
-    </article>
-    <article class="team-card">
-        <div class="team-header">
-            <div class="team-avatar">YCJ</div>
-            <div class="team-title">
-                <h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Chaojia Yu</span></a></h4>
-                <div class="team-meta">
-                    <span class="role-chip">PhD 2026.9</span>
-                    <span class="role-chip">with Prof. Yanmin Qian</span>
-                </div>
-            </div>
-        </div>
-    </article>
-    <article class="team-card">
-        <div class="team-header">
-            <div class="team-avatar">XAT</div>
-            <div class="team-title">
-                <h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Antao Xiang</span></a></h4>
-                <div class="team-meta">
-                    <span class="role-chip">PhD 2027.9</span>
-                </div>
-            </div>
-        </div>
-    </article>
-</div>
-<h3>Master Students</h3>
-<div class="team-grid">
-    <article class="team-card">
-        <div class="team-header">
-            <div class="team-avatar">SYH</div>
-            <div class="team-title">
-                <h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Yihan Su</span></a></h4>
-                <div class="team-meta">
-                    <span class="role-chip">Master 2026.9</span>
-                </div>
-            </div>
-        </div>
-    </article>
-    <article class="team-card">
-        <div class="team-header">
-            <div class="team-avatar">ZCY</div>
-            <div class="team-title">
-                <h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Congyue Zhao</span></a></h4>
-                <div class="team-meta">
-                    <span class="role-chip">Master 2026.9</span>
-                    <span class="role-chip">with Prof. Yanmin Qian</span>
-                </div>
-            </div>
-        </div>
-    </article>
-    <article class="team-card">
-        <div class="team-header">
-            <div class="team-avatar">YWH</div>
-            <div class="team-title">
-                <h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Yap Wei Herng</span></a></h4>
-                <div class="team-meta">
-                    <span class="role-chip">Master 2026.9</span>
-                </div>
-            </div>
-        </div>
-    </article>
-    <article class="team-card">
-        <div class="team-header">
-            <div class="team-avatar">HYC</div>
-            <div class="team-title">
-                <h4><a href="javascript:void(0);"><span class="hover-text" data-text="">Yincai Hu</span></a></h4>
-                <div class="team-meta">
-                    <span class="role-chip">Master 2026.9</span>
-                </div>
-            </div>
-        </div>
-    </article>
-</div>
-<!-- <h3>Alumni</h3>
-<ul>
-    <li>2026 Chenyu Hui (ICML first author x1): UG@XJTU -> Master@XJTU</li>
-    <li>2026 Linrui Shou: UG@HUST -> Master@CMU</li>
-    <li>2026 Fengnian Zhang: PhD@CAS</li>
-    <li>2026 Ruiqing Yang: UG@UESTC -> Master@UESTC</li>
-</ul> -->
-
-<p>
-    <br>
-</p>
-
-
-<button class="back-to-top" aria-label="Back to top">&uarr;</button>
-
-<!-- Popover Element -->
+<button class="back-to-top" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 18.5V5.5"/><path d="M6 11.5L12 5.5l6 6"/></svg></button>
 <div id="popover" class="popover"></div>
 
-</body>
-
 <script src="common.js"></script>
-
+</body>
 </html>
-

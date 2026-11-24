@@ -11,27 +11,35 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // --- Navbar: mobile menu close behavior ---
+    // --- Navbar: mobile menu toggle & close behavior ---
     const navbarToggler = document.querySelector(".navbar-toggler");
     const navbarCollapse = document.querySelector(".navbar-collapse");
 
-    navLinks.forEach(function (link) {
-        link.addEventListener("click", function () {
-            if (navbarCollapse.classList.contains("show")) {
-                navbarToggler.click();
+    if (navbarToggler && navbarCollapse) {
+        navbarToggler.addEventListener("click", function (event) {
+            event.stopPropagation();
+            const isOpen = navbarCollapse.classList.toggle("show");
+            navbarToggler.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        navLinks.forEach(function (link) {
+            link.addEventListener("click", function () {
+                if (navbarCollapse.classList.contains("show")) {
+                    navbarCollapse.classList.remove("show");
+                    navbarToggler.setAttribute("aria-expanded", "false");
+                }
+            });
+        });
+
+        document.addEventListener("click", function (event) {
+            if (!navbarCollapse.contains(event.target) && !navbarToggler.contains(event.target)) {
+                if (navbarCollapse.classList.contains("show")) {
+                    navbarCollapse.classList.remove("show");
+                    navbarToggler.setAttribute("aria-expanded", "false");
+                }
             }
         });
-    });
-
-    document.addEventListener("click", function (event) {
-        if (!navbarCollapse.contains(event.target) && !navbarToggler.contains(event.target)) {
-            navbarCollapse.classList.remove("show");
-        }
-    });
-
-    navbarCollapse.addEventListener("mouseleave", function () {
-        navbarCollapse.classList.remove("show");
-    });
+    }
 
     // --- Popover: hover-text tooltips ---
     const popover = document.getElementById("popover");

@@ -1,116 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0, minimum-scale=0.2">
-    <link rel="stylesheet" href="bootstrap.min.css">
-
-    <script>
-        try{
-            if (window.screen.width < 700) {
-                setActiveStyleSheet("jemdoc_mobile.css"); 
-            } 
-            else if(/iPad/i.test(navigator.userAgent)){ 
-                setActiveStyleSheet("jemdoc.css"); 
-            } 
-            else{
-                setActiveStyleSheet("jemdoc.css"); 
-            } 
-        } 
-        catch(e){} 
-
-        function setActiveStyleSheet(filename){
-            document.write("<link href="+filename+" rel=stylesheet>");
-        }
-
-    </script>
-
-    <link rel="shortcut icon" href="myIcon.ico">
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="keywords" content="Tao Huang">
-    <meta name="description" content="Tao Huang's Homepage">
-    <!-- <link rel="stylesheet" href="jemdoc.css" type="text/css" />
-    <link rel="stylesheet" media="screen and (max-width:700px)" href="jemdoc_mobile.css" type="text/css" />
-    <link rel="stylesheet" media="screen and (max-width:700px)" href="jemdoc.css" type="text/css" /> -->
-    <title>Tao Huang - Homepage</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0" />
+    <meta name="keywords" content="Tao Huang, Academic Services, Talks, Area Chair, Reviewer" />
+    <meta name="description" content="Academic services and invited talks of Tao Huang." />
+    <link rel="shortcut icon" href="myIcon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Services &amp; Talks — Tao Huang</title>
 </head>
 <body>
-<div class="topinfo-text">
-    <h1>TAO HUANG</h1>
-    <hr class="topinfo" width="200" size="2" color="#eee" align="left">
-    <p style="margin-bottom: 30px;">
-        <span style="color: rgb(208, 64, 58);"><b>THE ONLY WAY TO DO GREAT WORK IS TO LOVE WHAT YOU DO.</b></span>
-    </p>
-</div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <nav class="navbar sticky-top navbar-expand-lg my-navbar-style" style="margin-left: -12px; margin-right: -12px;">
-        <a class="navbar-brand" href="index.html" style="font-size: 120%; font-weight: bold; color: white;">Tao Huang</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link" href="publication.html">PUBLICATIONS</a>
-            <a class="nav-item nav-link" href="research.html">RESEARCH</a>
-            <a class="nav-item nav-link" href="team.html">TEAM</a>
-            <a class="nav-item nav-link" href="teaching.html">TEACHING</a>
-            <a class="nav-item nav-link" href="service.html">SERVICES</a>
-            <!-- <a class="nav-item nav-link" href="#awards">Awards</a> -->
-            <!-- <a class="nav-item nav-link" href="#grants">Grants</a> -->
-          </div>
+
+<div class="page-sheet">
+    <header class="site-header">
+        <nav class="navbar-pill" aria-label="Main navigation">
+            <a class="site-brand" href="index.html">Tao Huang</a>
+            <button class="navbar-toggler" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarNavAltMarkup">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+            </button>
+            <div class="navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="index.html">About</a>
+                    <a class="nav-link" href="publication.html">Publications</a>
+                    <a class="nav-link" href="research.html">Research</a>
+                    <a class="nav-link" href="team.html">Team</a>
+                    <a class="nav-link" href="teaching.html">Teaching</a>
+                    <a class="nav-link" href="service.html">Services</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-main">
+        <section id="services" class="anchor-offset">
+            <h2 class="section-heading">Academic Services</h2>
+
+            <ul class="service-matrix">
+                <li class="service-row">
+                    <span class="service-role-label">Area Chair</span>
+                    <div class="venue-tag-list">
+                        <span class="venue-tag">NeurIPS</span>
+                        <span class="venue-tag">ICLR</span>
+                    </div>
+                </li>
+                <li class="service-row">
+                    <span class="service-role-label">Conference Reviewer</span>
+                    <div class="venue-tag-list">
+                        <span class="venue-tag">NeurIPS</span>
+                        <span class="venue-tag">ICLR</span>
+                        <span class="venue-tag">ICML</span>
+                        <span class="venue-tag">CVPR</span>
+                        <span class="venue-tag">ICCV</span>
+                        <span class="venue-tag">ECCV</span>
+                        <span class="venue-tag">AAAI</span>
+                        <span class="venue-tag">ACM MM</span>
+                        <span class="venue-tag venue-tag--etc">etc.</span>
+                    </div>
+                </li>
+                <li class="service-row">
+                    <span class="service-role-label">Journal Reviewer</span>
+                    <div class="venue-tag-list">
+                        <span class="venue-tag">TPAMI</span>
+                        <span class="venue-tag">IJCV</span>
+                        <span class="venue-tag">TNNLS</span>
+                        <span class="venue-tag">TIP</span>
+                        <span class="venue-tag">TMLR</span>
+                        <span class="venue-tag venue-tag--etc">etc.</span>
+                    </div>
+                </li>
+            </ul>
+
+            <h3 class="subsection-heading">Conference Events</h3>
+            <ul class="entry-list">
+                <li class="service-event-item">
+                    <div class="service-event-body">
+                        <span class="service-event-role">Chair</span>, <a href="https://mp.weixin.qq.com/s/NYc2zJeq2iWjHNANvg8qiA">"Efficient Training and Inference of Large Models"</a>
+                        <div class="service-event-venue">CSIG Young Scientists Conference 2025</div>
+                    </div>
+                    <span class="entry-date">Aug. 2025</span>
+                </li>
+                <li class="service-event-item">
+                    <div class="service-event-body">
+                        <span class="service-event-role">Co-organizer</span>, "ESGMFM '24: The 1st Workshop on Efficiency, Security, and Generalization of Multimedia Foundation Models"
+                        <div class="service-event-venue">ACM MM 2024 Workshop</div>
+                    </div>
+                    <span class="entry-date">2024</span>
+                </li>
+                <li class="service-event-item">
+                    <div class="service-event-body">
+                        <span class="service-event-role">Co-organizer</span>, "Efficient and Secure Foundation Models"
+                        <div class="service-event-venue">IJCNN 2024 Tutorial</div>
+                    </div>
+                    <span class="entry-date">2024</span>
+                </li>
+            </ul>
+        </section>
+
+        <section id="talks" class="page-section anchor-offset">
+            <h2 class="section-heading">Talks</h2>
+            <ul class="entry-list">
+                <li class="service-event-item">
+                    <div class="service-event-body">
+                        <span class="service-event-role">Peking University</span> — "Efficient Large Models"
+                    </div>
+                    <span class="entry-date">Jul. 2024</span>
+                </li>
+                <li class="service-event-item">
+                    <div class="service-event-body">
+                        <span class="service-event-role">TNNLS 2024 Tutorial</span> — "Efficient and Secure Foundation Models"
+                    </div>
+                    <span class="entry-date">Jun. 2024</span>
+                </li>
+                <li class="service-event-item">
+                    <div class="service-event-body">
+                        <span class="service-event-role">TMLR Young Scientist Seminar @ HKBU</span> — "Knowledge Distillation from A Stronger Teacher"
+                    </div>
+                    <span class="entry-date">Jul. 2022</span>
+                </li>
+                <li class="service-event-item">
+                    <div class="service-event-body">
+                        <span class="service-event-role">SenseTime Titan Open Course</span> — "Automated Machine Learning"
+                    </div>
+                    <span class="entry-date">May 2020</span>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <span>&copy; 2026 Tao Huang · Shanghai Jiao Tong University</span>
+        <div class="footer-links">
+            <a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en">Google Scholar</a>
+            <span class="footer-sep" aria-hidden="true">&middot;</span>
+            <a href="https://www.cs.sjtu.edu.cn/jiaoshiml/huangtao.html">SJTU Homepage</a>
         </div>
-    </nav>
+    </footer>
+</div>
 
-
-<div id="services" style="margin-bottom: 2em; margin-top: 2em;"></div>
-<h2>Services</h2>
-<h3>Conference Events</h3>
-<ul>
-    <li style="margin-top: 0.2em">2025.08, Chair, <a href="https://mp.weixin.qq.com/s/NYc2zJeq2iWjHNANvg8qiA">"Efficient Training and Inference of Large Models"</a>, CSIG Young Scientists Conference 2025</li>
-    <li style="margin-top: 0.2em">2024, Co-organizor, "ESGMFM '24: The 1st Workshop on Efficiency, Security, and Generalization of Multimedia Foundation Models", ACM MM 2024 Workshop</li>
-    <li style="margin-top: 0.2em">2024, Co-organizor, "Efficient and Secure Foundation Models", IJCNN 2024 Tutorial</li>
-</ul>
-
-<h3>Area Chair of Conferences</h3>
-<ul>
-    <li style="margin-top: 0.2em">NeurIPS, ICLR.</li>
-</ul>
-
-<h3>Reviewer of Conferences</h3>
-<ul>
-    <li style="margin-top: 0.2em">NeurIPS, ICLR, ICML, CVPR, ICCV, ECCV, AAAI, ACM MM, etc.</li>
-</ul>
-<!-- <div class="paper"></div><br> -->
-<!-- <div class="paper">NeurIPS 2021-2024, ICLR 2023-2025, ICML 2022-2024, CVPR 2022-2024, ICCV 2023, ECCV 2024, AAAI 2023-2025, ACM MM 2021-2023.</div><br> -->
-
-<h3>Reviewer of Journals</h3>
-<ul>
-    <li style="margin-top: 0.2em">TPAMI, IJCV, TNNLS, TIP, TMLR, etc.</li>
-</ul>
-
-<div id="talks" style="margin-bottom: 2em; margin-top: -2em;"></div>
-<h2>Talks</h2>
-<ul>
-    <li style="margin-top: 0.2em">Peking University: "Efficient Large Models", Jul. 2024.</li>
-    <li style="margin-top: 0.2em">TNNLS 2024 Tutorial: "Efficient and Secure Foundation Models", Jun. 2024.</li>
-    <li style="margin-top: 0.2em">TMLR Young Scientist Seminar@HKBU: "Knowledge Distillation from A Stronger Teacher", Jul. 2022.</li>
-    <li style="margin-top: 0.2em">SenseTime Titan Open Course: "Automated Machine Learning", May 2020.</li>
-</ul>
-
-<p>
-    <br>
-</p>
-
-
-<button class="back-to-top" aria-label="Back to top">&uarr;</button>
-
-<!-- Popover Element -->
+<button class="back-to-top" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 18.5V5.5"/><path d="M6 11.5L12 5.5l6 6"/></svg></button>
 <div id="popover" class="popover"></div>
 
-</body>
-
 <script src="common.js"></script>
-
+</body>
 </html>
-

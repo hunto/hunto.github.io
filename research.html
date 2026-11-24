@@ -1,176 +1,411 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0, minimum-scale=0.2">
-    <link rel="stylesheet" href="bootstrap.min.css">
-
-    <script>
-        try{
-            if (window.screen.width < 700) {
-                setActiveStyleSheet("jemdoc_mobile.css"); 
-            } 
-            else if(/iPad/i.test(navigator.userAgent)){ 
-                setActiveStyleSheet("jemdoc.css"); 
-            } 
-            else{
-                setActiveStyleSheet("jemdoc.css"); 
-            } 
-        } 
-        catch(e){} 
-
-        function setActiveStyleSheet(filename){
-            document.write("<link href="+filename+" rel=stylesheet>");
-        }
-
-    </script>
-
-    <link rel="shortcut icon" href="myIcon.ico">
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="keywords" content="Tao Huang">
-    <meta name="description" content="Tao Huang's home page">
-    <!-- <link rel="stylesheet" href="jemdoc.css" type="text/css" />
-    <link rel="stylesheet" media="screen and (max-width:700px)" href="jemdoc_mobile.css" type="text/css" />
-    <link rel="stylesheet" media="screen and (max-width:700px)" href="jemdoc.css" type="text/css" /> -->
-    <title>Tao Huang - Homepage</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0" />
+    <meta name="keywords" content="Tao Huang, Interactive Intelligence, World Models, Embodied AI, Recursive Self-Improvement, Efficient AI" />
+    <meta name="description" content="Real-Time Interactive Intelligence: research framework and highlights of Tao Huang's group at Shanghai Jiao Tong University." />
+    <link rel="shortcut icon" href="myIcon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Research — Tao Huang</title>
 </head>
 <body>
-<div class="topinfo-text">
-    <h1>TAO HUANG</h1>
-    <hr class="topinfo" width="200" size="2" color="#eee" align="left">
-    <p style="margin-bottom: 30px;">
-        <span style="color: rgb(208, 64, 58);"><b>THE ONLY WAY TO DO GREAT WORK IS TO LOVE WHAT YOU DO.</b></span>
-    </p>
-</div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <nav class="navbar sticky-top navbar-expand-lg my-navbar-style" style="margin-left: -12px; margin-right: -12px;">
-        <a class="navbar-brand" href="index.html" style="font-size: 120%; font-weight: bold; color: white;">Tao Huang</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link" href="publication.html">PUBLICATIONS</a>
-            <a class="nav-item nav-link" href="research.html">RESEARCH</a>
-            <a class="nav-item nav-link" href="team.html">TEAM</a>
-            <a class="nav-item nav-link" href="teaching.html">TEACHING</a>
-            <a class="nav-item nav-link" href="service.html">SERVICES</a>
-            <!-- <a class="nav-item nav-link" href="#awards">Awards</a> -->
-            <!-- <a class="nav-item nav-link" href="#grants">Grants</a> -->
-          </div>
+
+<div class="page-sheet">
+    <header class="site-header">
+        <nav class="navbar-pill" aria-label="Main navigation">
+            <a class="site-brand" href="index.html">Tao Huang</a>
+            <button class="navbar-toggler" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarNavAltMarkup">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+            </button>
+            <div class="navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="index.html">About</a>
+                    <a class="nav-link" href="publication.html">Publications</a>
+                    <a class="nav-link" href="research.html">Research</a>
+                    <a class="nav-link" href="team.html">Team</a>
+                    <a class="nav-link" href="teaching.html">Teaching</a>
+                    <a class="nav-link" href="service.html">Services</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-main">
+        <section id="framework" class="anchor-offset">
+            <h2 class="section-heading">Research Framework</h2>
+            <div class="research-thesis-block">
+                <div class="research-slogan">
+                    <p class="research-thesis-zh">面向实时智能交互：以高效基础架构为底座，迈向感官生成、物理具身与自主进化</p>
+                    <p class="research-thesis-en">Toward Real-Time Interactive Intelligence: Building Efficient, Self-Improving Systems for Audiovisual World Interaction and Physical Embodiment</p>
+                </div>
+                <p class="research-story">
+                    Intelligence reaches its full potential through <b>interaction</b>. Today's AI interacts primarily through text, code, and voice &mdash; yet the next leap moves into <b>real-time audiovisual worlds</b> (virtual interaction) and <b>embodied robotics</b> (physical interaction). Closing that loop demands two foundations at once: <b>Efficient AI</b> to guarantee real-time responsiveness, and <b>Agentic RSI</b> to continually learn from interaction and push past static capability ceilings.
+                </p>
+            </div>
+            <div class="research-evolution-bar">
+                <div class="evo-track" aria-label="Evolution of AI Interaction: from Text and Code to Voice, then Audiovisual Worlds and Embodied Physical AI">
+                    <span class="evo-step">Text &amp; Code</span>
+                    <span class="evo-arrow" aria-hidden="true">&rarr;</span>
+                    <span class="evo-step">Voice</span>
+                    <span class="evo-arrow" aria-hidden="true">&rarr;</span>
+                    <span class="evo-step evo-step--virtual">Audiovisual Worlds</span>
+                    <span class="evo-arrow" aria-hidden="true">&rarr;</span>
+                    <span class="evo-step evo-step--physical">Embodied Physical AI</span>
+                </div>
+                <button type="button" class="diagram-zoom-btn" id="framework-zoom-btn" aria-label="Expand research framework diagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="15 3 21 3 21 9" />
+                        <polyline points="9 21 3 21 3 15" />
+                        <line x1="21" y1="3" x2="14" y2="10" />
+                        <line x1="3" y1="21" x2="10" y2="14" />
+                    </svg>
+                    <span>Expand</span>
+                </button>
+            </div>
+            <div class="research-framework">
+                <div class="research-framework-diagram" role="img" aria-label="Research Framework for Real-Time Interactive Intelligence: two elevated interaction frontiers — Interactive Audiovisual Worlds (Virtual) and Embodied Physical AI (Physical) — jointly powered by Core Foundations combining Real-Time Efficiency and Continual Self-Evolution">
+                    <svg viewBox="10 4 840 356" xmlns="http://www.w3.org/2000/svg" class="framework-svg" id="framework-svg">
+                        <defs>
+                            <filter id="fw-card-shadow" x="-6%" y="-8%" width="112%" height="122%">
+                                <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.06" />
+                            </filter>
+                            <marker id="fw-arrow-slate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                <path d="M 1.5 1.5 L 8.5 5 L 1.5 8.5" fill="none" stroke="#475569" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </marker>
+                            <marker id="fw-arrow-accent" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                <path d="M 1.5 1.5 L 8.5 5 L 1.5 8.5" fill="none" stroke="#b82e2a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </marker>
+                        </defs>
+
+                        <!-- Upper Tier: Two Elevated Hero Interaction Frontiers -->
+                        <!-- Left Hero Card: Virtual / Audiovisual Interaction -->
+                        <rect x="24" y="12" width="380" height="160" rx="12" fill="#ffffff" stroke="#d5dde8" stroke-width="1.2" filter="url(#fw-card-shadow)" />
+                        <rect x="46" y="30" width="28" height="28" rx="7" fill="#eef3f8" />
+                        <line x1="54" y1="41" x2="54" y2="47" stroke="#33506d" stroke-width="1.8" stroke-linecap="round" />
+                        <line x1="58" y1="37" x2="58" y2="51" stroke="#33506d" stroke-width="1.8" stroke-linecap="round" />
+                        <line x1="62" y1="39.5" x2="62" y2="48.5" stroke="#33506d" stroke-width="1.8" stroke-linecap="round" />
+                        <line x1="66" y1="42" x2="66" y2="46" stroke="#33506d" stroke-width="1.8" stroke-linecap="round" />
+
+                        <text x="84" y="48.5" font-size="14.2" font-weight="600" fill="#141518">Interactive Audiovisual Worlds</text>
+                        <rect x="326" y="33" width="58" height="21" rx="10.5" fill="#eef3f8" />
+                        <text x="355" y="47" text-anchor="middle" font-size="9.2" font-weight="700" letter-spacing="0.07em" fill="#3b5169">VIRTUAL</text>
+
+                        <line x1="46" y1="72" x2="384" y2="72" stroke="#edf0f5" stroke-width="1" />
+                        <circle cx="53" cy="94" r="2.5" fill="#3b5169" />
+                        <text x="66" y="98" font-size="12.7" fill="#374151">General Audio &amp; Video Generation</text>
+                        <circle cx="53" cy="121" r="2.5" fill="#3b5169" />
+                        <text x="66" y="125" font-size="12.7" fill="#374151">Interactive Audio-Video World Models</text>
+                        <circle cx="53" cy="148" r="2.5" fill="#3b5169" />
+                        <text x="66" y="152" font-size="12.7" fill="#374151">Code-Driven Video &amp; Audio Generation</text>
+
+                        <!-- Center Circular Bidirectional Bridge -->
+                        <line x1="405" y1="92" x2="455" y2="92" stroke="#cbd5e1" stroke-width="1.3" />
+                        <circle cx="430" cy="92" r="15" fill="#ffffff" stroke="#d5dde8" stroke-width="1.2" />
+                        <path d="M 424 89 H 436 M 433 86.2 L 436.2 89 L 433 91.8" fill="none" stroke="#475569" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M 436 95 H 424 M 427 92.2 L 423.8 95 L 427 97.8" fill="none" stroke="#b82e2a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+
+                        <!-- Right Hero Card: Physical / Embodied Interaction -->
+                        <rect x="456" y="12" width="380" height="160" rx="12" fill="#ffffff" stroke="#e6c8c6" stroke-width="1.25" filter="url(#fw-card-shadow)" />
+                        <rect x="478" y="30" width="28" height="28" rx="7" fill="#fdf2f1" />
+                        <polygon points="492,36.5 499,40.5 499,47.8 492,51.8 485,47.8 485,40.5" fill="none" stroke="#b82e2a" stroke-width="1.5" stroke-linejoin="round" />
+                        <path d="M 485 40.5 L 492 44.3 L 499 40.5 M 492 44.3 L 492 51.8" fill="none" stroke="#b82e2a" stroke-width="1.4" stroke-linejoin="round" />
+
+                        <text x="516" y="48.5" font-size="14.4" font-weight="600" fill="#141518">Embodied Physical AI</text>
+                        <rect x="748" y="33" width="66" height="21" rx="10.5" fill="#fdf2f1" />
+                        <text x="781" y="47" text-anchor="middle" font-size="9.2" font-weight="700" letter-spacing="0.07em" fill="#b82e2a">PHYSICAL</text>
+
+                        <line x1="478" y1="72" x2="814" y2="72" stroke="#f3e5e4" stroke-width="1" />
+                        <circle cx="485" cy="94" r="2.5" fill="#b82e2a" />
+                        <text x="498" y="98" font-size="12.7" fill="#374151">World-Action Models (WAM)</text>
+                        <circle cx="485" cy="121" r="2.5" fill="#b82e2a" />
+                        <text x="498" y="125" font-size="12.7" fill="#374151">Agentic Embodied AI</text>
+                        <circle cx="485" cy="148" r="2.5" fill="#b82e2a" />
+                        <text x="498" y="152" font-size="12.7" fill="#374151">VLA &amp; Humanoid Control</text>
+
+                        <!-- Unified Single-Trunk Splitting Upward into Both Interaction Frontiers -->
+                        <line x1="430" y1="224" x2="430" y2="199" stroke="#475569" stroke-width="1.75" stroke-linecap="round" />
+                        <path d="M 430 199 L 224 199 Q 214 199 214 189 L 214 180" fill="none" stroke="#475569" stroke-width="1.65" stroke-linecap="round" marker-end="url(#fw-arrow-slate)" />
+                        <path d="M 430 199 L 636 199 Q 646 199 646 189 L 646 180" fill="none" stroke="#b82e2a" stroke-width="1.65" stroke-linecap="round" marker-end="url(#fw-arrow-accent)" />
+                        <circle cx="430" cy="199" r="3" fill="#475569" />
+
+                        <!-- Bottom Tier: Unified Recessed Foundation Pedestal -->
+                        <rect x="24" y="224" width="812" height="128" rx="12" fill="#edf1f6" stroke="#d5dce6" stroke-width="1.15" />
+
+                        <!-- Unified Pedestal Summary Phrase -->
+                        <text x="430" y="248" text-anchor="middle" font-size="12.6">
+                            <tspan font-weight="700" fill="#141518">Core Foundations</tspan>
+                            <tspan font-weight="500" fill="#526071"> · Real-Time Efficiency &amp; Continual Self-Evolution</tspan>
+                        </text>
+                        <line x1="44" y1="260" x2="816" y2="260" stroke="#d6dde8" stroke-width="1" />
+
+                        <!-- Internal Vertical Split -->
+                        <line x1="504" y1="272" x2="504" y2="338" stroke="#cfd7e3" stroke-width="1.1" />
+
+                        <!-- Left Foundation Zone: Real-Time & Efficient AI -->
+                        <text x="44" y="282" font-size="11.8" font-weight="600" fill="#1e2430">Real-Time &amp; Efficient AI</text>
+                        <text x="192" y="282" font-size="10.4" font-weight="500" fill="#64748b">· Low-Latency Efficiency</text>
+
+                        <rect x="44" y="293" width="152" height="46" rx="7" fill="#ffffff" stroke="#dce2ec" stroke-width="1" />
+                        <text x="120" y="312" text-anchor="middle" font-size="11" font-weight="600" fill="#2c3442">Linear Attn &amp; SSMs</text>
+                        <text x="120" y="328" text-anchor="middle" font-size="9.6" fill="#7c828f">MiniMax · Kairos · Mamba</text>
+
+                        <rect x="205" y="293" width="142" height="46" rx="7" fill="#ffffff" stroke="#dce2ec" stroke-width="1" />
+                        <text x="276" y="312" text-anchor="middle" font-size="11" font-weight="600" fill="#2c3442">Compression &amp; Cache</text>
+                        <text x="276" y="328" text-anchor="middle" font-size="9.6" fill="#7c828f">VLA-Cache · DASH</text>
+
+                        <rect x="356" y="293" width="132" height="46" rx="7" fill="#ffffff" stroke="#dce2ec" stroke-width="1" />
+                        <text x="422" y="312" text-anchor="middle" font-size="11" font-weight="600" fill="#2c3442">Distillation</text>
+                        <text x="422" y="328" text-anchor="middle" font-size="9.6" fill="#7c828f">DIST+ · DiffKD · FreeKD</text>
+
+                        <!-- Right Foundation Zone: Agentic & RSI -->
+                        <text x="522" y="282" font-size="11.8" font-weight="600" fill="#1e2430">Agentic &amp; RSI</text>
+                        <text x="610" y="282" font-size="10.4" font-weight="500" fill="#64748b">· Expanding Capability Ceiling</text>
+
+                        <rect x="522" y="293" width="144" height="46" rx="7" fill="#ffffff" stroke="#e9d3d1" stroke-width="1" />
+                        <text x="594" y="312" text-anchor="middle" font-size="11" font-weight="600" fill="#2c3442">LLM / MLLM RSI</text>
+                        <text x="594" y="328" text-anchor="middle" font-size="9.6" fill="#7c828f">Digital Agent Loops</text>
+
+                        <rect x="676" y="293" width="140" height="46" rx="7" fill="#ffffff" stroke="#e9d3d1" stroke-width="1" />
+                        <text x="746" y="312" text-anchor="middle" font-size="11" font-weight="600" fill="#2c3442">Embodied RSI</text>
+                        <text x="746" y="328" text-anchor="middle" font-size="9.6" fill="#7c828f">Physical Policy Loops</text>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <section id="directions" class="page-section anchor-offset">
+            <div class="section-header-row">
+                <h2 class="section-heading">Research Directions</h2>
+                <a class="section-more" href="publication.html">All publications &rarr;</a>
+            </div>
+
+            <div class="research-tier-label">Interaction Frontiers</div>
+            <div class="frontier-grid">
+                <article class="frontier-card">
+                    <div class="frontier-card-media">
+                        <img class="js-zoomable" src="assets/research/virtual_audiovisual.webp" loading="lazy" alt="Illustration of Interactive Audiovisual Worlds: translucent frosted-glass frames and ceramic soundwave ribbons" />
+                    </div>
+                    <div class="frontier-card-body">
+                        <div class="frontier-card-head">
+                            <h3 class="frontier-card-title">Interactive Audiovisual Worlds</h3>
+                            <span class="cate-chip cate-chip--virtual">Virtual</span>
+                        </div>
+                        <p class="frontier-card-desc">
+                            General audio and video generation, real-time interactive video-audio world models, and programmatic code-driven video and audio synthesis.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="frontier-card">
+                    <div class="frontier-card-media">
+                        <img class="js-zoomable" src="assets/research/physical_embodied.webp" loading="lazy" alt="Illustration of Embodied Physical AI: minimalist ceramic robotic arm assembling geometric blocks along a crimson trajectory arc" />
+                    </div>
+                    <div class="frontier-card-body">
+                        <div class="frontier-card-head">
+                            <h3 class="frontier-card-title">Embodied Physical AI</h3>
+                            <span class="cate-chip cate-chip--physical">Physical</span>
+                        </div>
+                        <p class="frontier-card-desc">
+                            World-Action Models (<a href="https://arxiv.org/abs/2606.16533">Kairos</a>), task-agnostic agentic embodied AI (<a href="https://arxiv.org/abs/2611.01112">Auriga</a>), and VLA / expressive humanoid control (<a href="https://arxiv.org/abs/2512.23649">RoboMirror</a>, <a href="https://arxiv.org/abs/2512.23650">RoboPerform</a>).
+                        </p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="research-tier-label">Core Foundations</div>
+            <div class="frontier-grid">
+                <article class="frontier-card">
+                    <div class="frontier-card-media">
+                        <img class="js-zoomable" src="assets/research/foundation_efficient.webp" loading="lazy" alt="Illustration of Real-Time and Efficient AI: a dense lattice of dark and frosted blocks streamlining through a white porcelain aperture into sparse luminous blocks along a crimson ribbon" />
+                    </div>
+                    <div class="frontier-card-body">
+                        <div class="frontier-card-head">
+                            <h3 class="frontier-card-title">Real-Time &amp; Efficient AI</h3>
+                            <span class="cate-chip cate-chip--efficiency">Efficiency</span>
+                        </div>
+                        <p class="frontier-card-desc">
+                            Linear / hybrid attention and Vision SSMs (<a href="https://arxiv.org/abs/2501.08313">MiniMax-01</a>, <a href="https://github.com/kairos-agi/kairos-sensenova">Kairos-3.0</a>, <a href="https://arxiv.org/abs/2403.09338">LocalMamba</a>), dynamic token compression and caching (<a href="https://arxiv.org/abs/2502.02175">VLA-Cache</a>, <a href="https://github.com/laychou666/DASH">DASH</a>, <a href="https://arxiv.org/abs/2410.04417">SparseVLM</a>), and knowledge distillation (<a href="assets/dist+/DIST+.pdf">DIST+</a>, <a href="https://arxiv.org/abs/2306.14517">DiffKD</a>, <a href="https://arxiv.org/abs/2311.15830">FreeKD</a>).
+                        </p>
+                    </div>
+                </article>
+
+                <article class="frontier-card">
+                    <div class="frontier-card-media">
+                        <img class="js-zoomable" src="assets/research/foundation_rsi.webp" loading="lazy" alt="Illustration of Agentic Intelligence and Recursive Self-Improvement: an ascending matte-ceramic spiral piercing translucent frosted-glass ceilings traced by a crimson arc" />
+                    </div>
+                    <div class="frontier-card-body">
+                        <div class="frontier-card-head">
+                            <h3 class="frontier-card-title">Agentic Intelligence &amp; RSI</h3>
+                            <span class="cate-chip cate-chip--rsi">Self-Evolution</span>
+                        </div>
+                        <p class="frontier-card-desc">
+                            Recursive self-improvement for LLM / MLLM agents and embodied agents &mdash; closing the interaction loop so systems continually verify, refine, and expand their capability ceiling.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="highlights" class="page-section anchor-offset">
+            <h2 class="section-heading">Featured Architectures</h2>
+            <div class="research-grid">
+                <article class="research-card">
+                    <div class="research-card-head">
+                        <h4 class="research-card-title"><a href="https://github.com/kairos-agi/kairos-sensenova">Kairos-3.0</a></h4>
+                        <span class="cate-chip">World Model</span>
+                    </div>
+                    <div class="research-card-sub">A Pure Temporally-Linear DiT Architecture</div>
+                    <p class="research-card-desc">
+                        We replace standard quadratic temporal attention with a hybrid design composed of linear- and local-attention mechanisms, enabling real-time modeling of long video sequences with strong temporal coherence and causal reasoning.
+                    </p>
+                    <div class="research-card-fig">
+                        <img class="js-zoomable" src="assets/kairos/architecture_kairos.png" loading="lazy" alt="Architecture of Kairos" />
+                    </div>
+                </article>
+
+                <article class="research-card">
+                    <div class="research-card-head">
+                        <h4 class="research-card-title"><a href="https://huggingface.co/MiniMaxAI/MiniMax-Text-01">MiniMax-01</a></h4>
+                        <span class="cate-chip">LLM</span>
+                    </div>
+                    <div class="research-card-sub">Innovative Linear Attention Architecture</div>
+                    <p class="research-card-desc">
+                        For the first time on a large scale, we implemented a mixture of linear and softmax attention architecture. This model has 456B parameters with a MoE structure activating 45.9B parameters per inference.
+                    </p>
+                    <div class="research-card-fig">
+                        <img class="js-zoomable" src="assets/minimax01/arch.png" loading="lazy" alt="Architecture of MiniMax-01" />
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <span>&copy; 2026 Tao Huang · Shanghai Jiao Tong University</span>
+        <div class="footer-links">
+            <a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en">Google Scholar</a>
+            <span class="footer-sep" aria-hidden="true">&middot;</span>
+            <a href="https://www.cs.sjtu.edu.cn/jiaoshiml/huangtao.html">SJTU Homepage</a>
         </div>
-    </nav>
-
-<div id="nav_research" style="margin-bottom: 0em; margin-top: 2em;"></div>
-<h2>Overall Research Framework</h2>
-</p>
-<div class="research-card research-card--half">
-    <p style="margin-top:0;">
-        <b>以多模态智能为核心，以视觉生成建模世界，以具身智能交互现实</b><br>
-        <b>Multimodal Intelligence</b> at the Core, <b>Visual Generation</b> for Modeling the World, <b>Embodied Intelligence</b> for Interacting with Reality
-    </p>
-    <img src="assets/research_overview.png" loading="lazy" alt="Overview of Our Research Framework">
-</div>
-<h2>Research Highlights</h2>
-<h2>1 Efficient Foundation Architectures</h2>
-<div class="research-grid">
-    <article class="research-card">
-        <h3><a href="https://github.com/kairos-agi/kairos-sensenova">Kairos-3.0</a> <span class="cate-chip">World Model</span></h3>
-        <p><b>A Pure Temporally-Linear DiT Architecture</b><br>
-        We replace standard quadratic temporal attention with a hybrid design composed of linear- and local-attention mechanisms. This enables efficient modeling of long video sequences while maintaining strong temporal coherence and causal reasoning ability.</p>
-        <img src="assets/kairos/architecture_kairos.png" loading="lazy" alt="Architecture of Kairos">
-    </article>
-
-    <article class="research-card">
-        <h3><a href="https://huggingface.co/MiniMaxAI/MiniMax-Text-01">MiniMax-01</a> <span class="cate-chip">LLM</span></h3>
-        <p><b>Innovative Linear Attention Architecture</b><br>
-        For the first time on a large scale, we have implemented a mixture of linear and softmax attention architecture. This model has 456B parameters and a MoE structure with 45.9B parameters activated per inference.</p>
-        <img src="assets/minimax01/arch.png" loading="lazy" alt="Architecture of MiniMax-01">
-    </article>
-
-    <article class="research-card">
-        <h3>Mamba for Vision <span class="cate-chip">Vision SSM</span></h3>
-        <p>Highlights coming soon.</p>
-    </article>
+    </footer>
 </div>
 
-<h2>2 Knowledge Distillation</h2>
-<div class="research-grid">
-    <article class="research-card">
-        <h3>DIST <span class="cate-chip">Knowledge Distillation</span></h3>
-        <p>Series of practical and effective KD methods. Highlights and visual summaries coming soon.</p>
-    </article>
-    <article class="research-card">
-        <h3>More KD Highlights <span class="cate-chip">Coming</span></h3>
-        <p>Additional techniques and benchmarks are being organized.</p>
-    </article>
-</div>
-
-<h2>3 Embodied AI</h2>
-<div class="research-grid">
-    <article class="research-card">
-        <h3>Embodied World Models <span class="cate-chip">Embodied</span></h3>
-        <p>Learning world models for interaction and long-horizon planning. Highlights coming soon.</p>
-    </article>
-    <article class="research-card">
-        <h3>VLA & Policy Learning <span class="cate-chip">VLA</span></h3>
-        <p>Vision-Language-Action agents and efficient policy learning for real-world tasks.</p>
-    </article>
-</div>
-
-<!-- Lightbox for research images -->
-<div id="lightbox" class="lightbox-backdrop" aria-hidden="true">
-    <div class="lightbox-content" role="dialog" aria-label="Expanded image">
-        <button class="lightbox-close" aria-label="Close">×</button>
-        <img id="lightbox-img" src="" alt="Expanded research image">
-    </div>
-  
-</div>
-
-<p>
-    <br>
-</p>
-
-
-<button class="back-to-top" aria-label="Back to top">&uarr;</button>
-
-<!-- Popover Element -->
+<button class="back-to-top" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 18.5V5.5"/><path d="M6 11.5L12 5.5l6 6"/></svg></button>
 <div id="popover" class="popover"></div>
 
-</body>
+<div class="lightbox-backdrop" id="lightbox" role="dialog" aria-modal="true" aria-label="Expanded research image">
+    <div class="lightbox-content">
+        <button type="button" class="lightbox-close" aria-label="Close preview">&times;</button>
+        <img id="lightbox-img" src="" alt="" />
+        <div id="lightbox-svg-stage" class="lightbox-svg-stage" hidden></div>
+        <div id="lightbox-svg-bar" class="lightbox-svg-bar" hidden>
+            <span id="lightbox-svg-hint" class="lightbox-svg-hint">Swipe horizontally to pan &harr;</span>
+            <button type="button" id="lightbox-svg-toggle" class="lightbox-svg-toggle">Fit</button>
+        </div>
+    </div>
+</div>
 
 <script>
-                /* Image lightbox: research-card images */
-                (function(){
-                    const imgs = document.querySelectorAll('.research-card img');
-                    const lb = document.getElementById('lightbox');
-                    const lbImg = document.getElementById('lightbox-img');
-                    const btnClose = lb.querySelector('.lightbox-close');
-                    function open(src, alt){
-                        lbImg.src = src;
-                        lbImg.alt = alt || 'Expanded research image';
-                        lb.style.display = 'flex';
-                        document.body.style.overflow = 'hidden';
-                        // commit the closed state, then add .open so the zoom-in transitions
-                        void lb.offsetWidth;
-                        requestAnimationFrame(()=>{ lb.classList.add('open'); });
-                    }
-                    function close(){
-                        lb.classList.remove('open');
-                        setTimeout(()=>{ lb.style.display = 'none'; }, 240);
-                        document.body.style.overflow = '';
-                    }
-                    imgs.forEach(img => {
-                        img.addEventListener('click', ()=> open(img.src, img.alt));
-                    });
-                    btnClose.addEventListener('click', close);
-                    lb.addEventListener('click', (e)=>{ if(e.target === lb) close(); });
-                    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') close(); });
-                })();
+    (function () {
+        const backdrop = document.getElementById('lightbox');
+        const imgEl = document.getElementById('lightbox-img');
+        const svgStage = document.getElementById('lightbox-svg-stage');
+        const svgBar = document.getElementById('lightbox-svg-bar');
+        const svgHint = document.getElementById('lightbox-svg-hint');
+        const svgToggle = document.getElementById('lightbox-svg-toggle');
+        const closeBtn = backdrop ? backdrop.querySelector('.lightbox-close') : null;
+        if (!backdrop || !imgEl) return;
 
+        let svgFitMode = false;
+
+        function syncSvgZoomUI() {
+            if (!svgStage || !svgToggle || !svgHint) return;
+            svgStage.classList.toggle('is-fit', svgFitMode);
+            svgToggle.textContent = svgFitMode ? 'Zoom' : 'Fit';
+            svgHint.textContent = svgFitMode ? 'Full overview' : 'Swipe horizontally to pan \u2194';
+            if (svgFitMode) svgStage.scrollLeft = 0;
+        }
+
+        function openLightbox(src, alt) {
+            if (svgStage) {
+                svgStage.innerHTML = '';
+                svgStage.hidden = true;
+            }
+            if (svgBar) svgBar.hidden = true;
+            imgEl.hidden = false;
+            imgEl.src = src;
+            imgEl.alt = alt || '';
+            backdrop.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function openSvgLightbox(svgEl) {
+            if (!svgStage || !svgEl) return;
+            imgEl.hidden = true;
+            imgEl.src = '';
+            svgStage.innerHTML = '';
+            svgFitMode = false;
+            const clone = svgEl.cloneNode(true);
+            clone.removeAttribute('id');
+            clone.classList.add('lightbox-svg-canvas');
+            svgStage.appendChild(clone);
+            svgStage.hidden = false;
+            svgStage.scrollLeft = 0;
+            if (svgBar) svgBar.hidden = false;
+            syncSvgZoomUI();
+            backdrop.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            backdrop.classList.remove('open');
+            document.body.style.overflow = '';
+            if (svgStage) {
+                svgStage.innerHTML = '';
+                svgStage.hidden = true;
+                svgStage.classList.remove('is-fit');
+            }
+            if (svgBar) svgBar.hidden = true;
+            imgEl.hidden = false;
+        }
+
+        if (svgToggle) {
+            svgToggle.addEventListener('click', function () {
+                svgFitMode = !svgFitMode;
+                syncSvgZoomUI();
+            });
+        }
+
+        document.querySelectorAll('.js-zoomable').forEach(function (img) {
+            const trigger = img.closest('.research-card-fig') || img.closest('.frontier-card-media') || img;
+            trigger.addEventListener('click', function () {
+                openLightbox(img.src, img.alt);
+            });
+        });
+
+        const fwSvg = document.getElementById('framework-svg');
+        const fwZoomBtn = document.getElementById('framework-zoom-btn');
+        if (fwZoomBtn && fwSvg) {
+            fwZoomBtn.addEventListener('click', function () {
+                openSvgLightbox(fwSvg);
+            });
+        }
+
+        if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+        backdrop.addEventListener('click', function (e) {
+            if (e.target === backdrop) closeLightbox();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && backdrop.classList.contains('open')) closeLightbox();
+        });
+    })();
 </script>
 <script src="common.js"></script>
+</body>
 </html>
-

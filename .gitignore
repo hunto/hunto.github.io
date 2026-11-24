@@ -6,3 +6,7 @@
 # Hugo
 resources/
 public/
+
+# Local agent/relay uploads
+.relay-uploads/
+

@@ -1,27 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0, minimum-scale=0.2">
-    <link rel="stylesheet" href="bootstrap.min.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0" />
+    <meta name="keywords" content="Tao Huang, Publications, Embodied AI, World Models, Knowledge Distillation" />
+    <meta name="description" content="Full publication list of Tao Huang at Shanghai Jiao Tong University." />
+    <link rel="shortcut icon" href="myIcon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Publications — Tao Huang</title>
 
     <script>
-        try{
-            if (window.screen.width < 700) {
-                setActiveStyleSheet("jemdoc_mobile.css"); 
-            } 
-            else if(/iPad/i.test(navigator.userAgent)){ 
-                setActiveStyleSheet("jemdoc.css"); 
-            } 
-            else{
-                setActiveStyleSheet("jemdoc.css"); 
-            } 
-        } 
-        catch(e){} 
-
-        function setActiveStyleSheet(filename){
-            document.write("<link href="+filename+" rel=stylesheet>");
-        }
-
         function checkFilter(type, li) {
             if (type == "All") {
                 return true
@@ -226,18 +217,26 @@
             try {
                 // Fetch the repository data from the GitHub API
                 const response = await fetch(apiUrl);
-                // Check if the response status is 404
-                if (response.status === 404 || response.status === 403) {
+                // Check if the response status is OK
+                if (!response.ok) {
                     return;
                 }
                 // Parse the JSON response
                 const data = await response.json();
                 // Get the star count from the data
                 const starCount = data.stargazers_count;
+                if (typeof starCount !== 'number') {
+                    return;
+                }
                 // Format the star count
                 const formattedStarCount = formatStarCount(starCount);
                 // Update the button text with the formatted star count
-                button.textContent += ` [☆${formattedStarCount}]`;
+                if (!button.querySelector('.btn-star')) {
+                    const star = document.createElement('span');
+                    star.className = 'btn-star';
+                    star.innerHTML = `<span class="btn-star-icon" aria-hidden="true">&#9733;</span>${formattedStarCount}`;
+                    button.appendChild(star);
+                }
             } catch (error) {
                 console.error('Error fetching repository data:', error);
             }
@@ -253,50 +252,40 @@
         };
 
     </script>
-
-    <link rel="shortcut icon" href="myIcon.ico">
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="keywords" content="Tao Huang">
-    <meta name="description" content="Tao Huang's home page">
-    <!-- <link rel="stylesheet" href="jemdoc.css" type="text/css" />
-    <link rel="stylesheet" media="screen and (max-width:700px)" href="jemdoc_mobile.css" type="text/css" />
-    <link rel="stylesheet" media="screen and (max-width:700px)" href="jemdoc.css" type="text/css" /> -->
-    <title>Tao Huang - Homepage</title>
 </head>
 <body>
-<div class="topinfo-text">
-    <h1>TAO HUANG</h1>
-    <hr class="topinfo" width="200" size="2" color="#eee" align="left">
-    <p style="margin-bottom: 30px;">
-        <span style="color: rgb(208, 64, 58);"><b>THE ONLY WAY TO DO GREAT WORK IS TO LOVE WHAT YOU DO.</b></span>
-    </p>
-</div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <nav class="navbar sticky-top navbar-expand-lg my-navbar-style" style="margin-left: -12px; margin-right: -12px;">
-        <a class="navbar-brand" href="index.html" style="font-size: 120%; font-weight: bold; color: white;">Tao Huang</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link" href="publication.html">PUBLICATIONS</a>
-            <a class="nav-item nav-link" href="research.html">RESEARCH</a>
-            <a class="nav-item nav-link" href="team.html">TEAM</a>
-            <a class="nav-item nav-link" href="teaching.html">TEACHING</a>
-            <a class="nav-item nav-link" href="service.html">SERVICES</a>
-            <!-- <a class="nav-item nav-link" href="#awards">Awards</a> -->
-            <!-- <a class="nav-item nav-link" href="#grants">Grants</a> -->
-          </div>
+
+<div class="page-sheet">
+    <header class="site-header">
+        <nav class="navbar-pill" aria-label="Main navigation">
+            <a class="site-brand" href="index.html">Tao Huang</a>
+            <button class="navbar-toggler" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarNavAltMarkup">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+            </button>
+            <div class="navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="index.html">About</a>
+                    <a class="nav-link" href="publication.html">Publications</a>
+                    <a class="nav-link" href="research.html">Research</a>
+                    <a class="nav-link" href="team.html">Team</a>
+                    <a class="nav-link" href="teaching.html">Teaching</a>
+                    <a class="nav-link" href="service.html">Services</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-main">
+        <div id="nav_publications" class="anchor-offset"></div>
+        <div class="section-header-row pub-header-row">
+            <h2 class="section-heading">Publications</h2>
+            <span class="cofirst-note">*: co-first author. &dagger;: corresponding author.</span>
+            <a class="section-more" href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en">Google Scholar &rarr;</a>
         </div>
-    </nav>
-
-
-
-<div id="nav_publications" style="margin-bottom: 0em; margin-top: 2em;"></div>
-For the latest full publication list, please refer to my <a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en">Google Scholar</a>.
-<h2 style="margin-top: 0; padding-top: 1rem;">Publications</h2>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Toggle Bib content by class
@@ -382,7 +371,8 @@ For the latest full publication list, please refer to my <a href="https://schola
                     }
                 }
 
-                bib.classList.toggle('is-open');
+                var isOpen = bib.classList.toggle('is-open');
+                btn.classList.toggle('is-active', isOpen);
             });
         });
 
@@ -531,6 +521,14 @@ For the latest full publication list, please refer to my <a href="https://schola
             li.appendChild(figure);
             li.appendChild(body);
 
+            // Keep inline <flag> badges inside <pt> so column flex layout never stretches them
+            var ptEl = body.querySelector('pt');
+            if (ptEl) {
+                Array.from(body.querySelectorAll(':scope > flag')).forEach(function(fl) {
+                    ptEl.appendChild(fl);
+                });
+            }
+
             // Pull bib-content out of body so it sits on its own grid row
             // and doesn't affect the figure's vertical center.
             Array.from(body.querySelectorAll('.bib-content')).forEach(function(bib) {
@@ -611,25 +609,6 @@ For the latest full publication list, please refer to my <a href="https://schola
             });
         });
 
-        // Keep year-heading sticky offset in sync with filter-bar height
-        // (the bar grows when its content wraps onto multiple lines).
-        (function() {
-            var bar = document.querySelector('.filter-bar');
-            if (!bar) return;
-            function update() {
-                var topCss = parseFloat(getComputedStyle(bar).top) || 56;
-                document.documentElement.style.setProperty(
-                    '--year-sticky-top',
-                    Math.ceil(topCss + bar.offsetHeight) + 'px'
-                );
-            }
-            update();
-            window.addEventListener('resize', update);
-            if (typeof ResizeObserver !== 'undefined') {
-                new ResizeObserver(update).observe(bar);
-            }
-        })();
-
         // Apply filters now that year headings, figures, and chips are in place
         loadFiltersFromHash();
         applyFilters();
@@ -637,19 +616,18 @@ For the latest full publication list, please refer to my <a href="https://schola
 </script>
 
 <div class="filter-bar">
-<button class="filter" type="button" data-filter="All" onclick="filterPub('All')">All<span class="filter-count"></span></button>
-<button class="filter" type="button" data-filter="First-author" onclick="filterPub('First-author')">First-author<span class="filter-count"></span></button>
-<button class="filter" type="button" data-filter="KD" onclick="filterPub('KD')">KD<span class="filter-count"></span></button>
-<button class="filter" type="button" data-filter="NAS" onclick="filterPub('NAS')">NAS<span class="filter-count"></span></button>
-<button class="filter" type="button" data-filter="Pruning" onclick="filterPub('Pruning')">Pruning<span class="filter-count"></span></button>
-<button class="filter" type="button" data-filter="Efficient Training" onclick="filterPub('Efficient Training')">Efficient Training<span class="filter-count"></span></button>
-<button class="filter" type="button" data-filter="Efficient Data" onclick="filterPub('Efficient Data')">Efficient Data<span class="filter-count"></span></button>&nbsp;
-<button class="filter" type="button" data-filter="Embodied AI" onclick="filterPub('Embodied AI')">Embodied AI<span class="filter-count"></span></button>&nbsp;
-<span class="cofirst-note">*: co-first author. &dagger;: corresponding author.</span>
+    <button class="filter" type="button" data-filter="All" onclick="filterPub('All')">All<span class="filter-count"></span></button>
+    <button class="filter" type="button" data-filter="First-author" onclick="filterPub('First-author')">First-author<span class="filter-count"></span></button>
+    <button class="filter" type="button" data-filter="KD" onclick="filterPub('KD')">KD<span class="filter-count"></span></button>
+    <button class="filter" type="button" data-filter="NAS" onclick="filterPub('NAS')">NAS<span class="filter-count"></span></button>
+    <button class="filter" type="button" data-filter="Pruning" onclick="filterPub('Pruning')">Pruning<span class="filter-count"></span></button>
+    <button class="filter" type="button" data-filter="Efficient Training" onclick="filterPub('Efficient Training')">Efficient Training<span class="filter-count"></span></button>
+    <button class="filter" type="button" data-filter="Efficient Data" onclick="filterPub('Efficient Data')">Efficient Data<span class="filter-count"></span></button>
+    <button class="filter" type="button" data-filter="Embodied AI" onclick="filterPub('Embodied AI')">Embodied AI<span class="filter-count"></span></button>
 </div>
 <ul id="publications">
     <!-- <h3 style="margin-top: 1em;">2025</h3> -->
-    <li class="paper" category="Embodied AI">
+    <li class="paper" category="Embodied AI" data-figure="assets/teasers_gen/auriga.webp">
         <pt><a href="https://arxiv.org/abs/2611.01112">Auriga Technical Report: A Task-Agnostic Agent Harness for Zero-Shot Embodied Manipulation</a></pt>
         <div class="author">
             StellarEdge AI Technical Team<br>
@@ -678,7 +656,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" data-figure="assets/papers/ear/teaser.png">
+    <li class="paper" data-figure="assets/teasers_gen/ear.webp">
         <pt><a href="https://arxiv.org/abs/2511.15499">Learning to Expand Images for Efficient Visual Autoregressive Modeling</a></pt>
         <div class="author">
             Ruiqing Yang, Kaixin Zhang, Zheng Zhang, Shan You, <b><u>Tao Huang</u></b>&dagger;<br>
@@ -698,7 +676,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="Embodied AI" data-figure="assets/kairos/architecture_kairos.png">
+    <li class="paper" category="Embodied AI" data-figure="assets/teasers_gen/kairos.webp">
         <pt><a href="https://arxiv.org/abs/2606.16533">Kairos: A Regret-Aware Native World-Action Model Stack for Physical AI</a></pt>
         <div class="author">
             Kairos Team: Fei Wang, Shan You, Qiming Zhang, <b><u>Tao Huang</u></b> (core contributor), Zuoyi Fu, et al.<br>
@@ -719,7 +697,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="Pruning" data-figure="assets/papers/dash/teaser.png">
+    <li class="paper" category="Pruning" data-figure="assets/teasers_gen/dash.webp">
         <pt><a href="https://arxiv.org/abs/2603.15685">DASH: Dynamic Audio-Driven Semantic Chunking for Efficient Omnimodal Token Compression</a></pt>
         <div class="author">
             Bingzhou Li, <b><u>Tao Huang</u></b>&dagger;<br>
@@ -739,7 +717,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="Efficient Data" data-figure="assets/papers/pistachio/teaser.png">
+    <li class="paper" category="Efficient Data" data-figure="assets/teasers_gen/pistachio.webp">
         <pt><a href="https://arxiv.org/abs/2511.19474">Pistachio: Towards Synthetic, Balanced, and Long-Form Video Anomaly Benchmarks</a></pt>
         <div class="author">
             Jie Li, Hongyi Cai, Mingkang Dong, Muxin Pu, Shan You, Fei Wang, <b><u>Tao Huang</u></b>&dagger;<br>
@@ -759,7 +737,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="Embodied AI" first_authored=true data-figure="assets/papers/vlm2vla/teaser.png">
+    <li class="paper" category="Embodied AI" first_authored=true data-figure="assets/teasers_gen/vlm_to_vla.webp">
         <pt><a href="https://arxiv.org/abs/2606.31382">Revisiting Parameter Redundancy in Vision-Language-Action Models: Insights from VLM-to-VLA Adaptation</a></pt>
         <div class="author">
             Fengnian Zhang*, <b><u>Tao Huang</u></b>*, Siyu Xu, Zhong Jin, Chang Xu<br>
@@ -778,7 +756,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="Embodied AI" data-figure="assets/papers/robomirror/teaser.png">
+    <li class="paper" category="Embodied AI" data-figure="assets/teasers_gen/robomirror.webp">
         <pt><a href="https://arxiv.org/abs/2512.23649">RoboMirror: Understand Before You Imitate for Video to Humanoid Locomotion</a></pt>
         <div class="author">
             Zhe Li, Cheng Chi, Boan Zhu, Yangyang Wei, Shuanghao Bai, Yuheng Ji, Yibo Peng, <b><u>Tao Huang</u></b>, Pengwei Wang, Zhongyuan Wang, S-H Gary Chan, Chang Xu, Shanghang Zhang<br>
@@ -798,7 +776,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" data-figure="assets/papers/autov/teaser.png">
+    <li class="paper" data-figure="assets/teasers_gen/autov.webp">
         <pt><a href="https://arxiv.org/abs/2506.16112">AutoV: Loss-Oriented Ranking for Visual Prompt Retrieval in LVLMs</a></pt>
         <div class="author">
             Yuan Zhang, Chun-Kai Fan, <b><u>Tao Huang</u></b>, Ming Lu, Sicheng Yu, Junwen Pan, Kuan Cheng, Qi She, Shanghang Zhang<br>
@@ -817,7 +795,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="KD" data-figure="assets/papers/freekd+/teaser.png">
+    <li class="paper" category="KD" data-figure="assets/teasers_gen/freekd_plus.webp">
         <pt><a href="https://ieeexplore.ieee.org/document/11520187">FreeKD+: A Frequency Knowledge Distillation Framework for Dense Prediction</a></pt>
         <div class="author">
             Yuan Zhang, <b><u>Tao Huang</u></b>, Gaole Dai, Jiaming Liu, Wenzhao Zheng, Jiwen Lu, Shanghang Zhang<br>
@@ -837,7 +815,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="Embodied AI,Efficient Data" data-figure="assets/papers/seeing_realism/teaser.jpg">
+    <li class="paper" category="Embodied AI,Efficient Data" data-figure="assets/teasers_gen/seeing_realism.webp">
         <pt><a href="https://arxiv.org/abs/2605.02757">Seeing Realism from Simulation: Efficient Video Transfer for Vision-Language-Action Data Augmentation</a></pt>
         <div class="author">
             Chenyu Hui*, Xiaodi Huang*, Siyu Xu, Yunke Wang, Shan You, Fei Wang, <b><u>Tao Huang</u></b>&dagger;, Chang Xu<br>
@@ -857,7 +835,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="Embodied AI" data-figure="assets/papers/affordance_field/teaser.jpg">
+    <li class="paper" category="Embodied AI" data-figure="assets/teasers_gen/affordance_field.webp">
         <pt><a href="https://arxiv.org/abs/2512.07472">Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in Robotic Manipulation</a></pt>
         <div class="author">
             Siyu Xu, Zijian Wang, Yunke Wang, Chenghao Xia, <b><u>Tao Huang</u></b>, Chang Xu<br>
@@ -883,7 +861,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="Embodied AI" data-figure="assets/papers/do_you/teaser.jpg">
+    <li class="paper" category="Embodied AI" data-figure="assets/teasers_gen/roboperform.webp">
         <pt><a href="https://arxiv.org/abs/2512.23650">Do you have freestyle? expressive humanoid locomotion via audio control</a></pt><flag>&#128681; Highlight</flag>
         <div class="author">
             Zhe Li, Cheng Chi, Yangyang Wei, Boan Zhu, <b><u>Tao Huang</u></b>, Zhenguo Sun, Yibo Peng, Pengwei Wang, Zhongyuan Wang, Fangzhou Liu, Chang Xu, Shanghang Zhang<br>
@@ -910,7 +888,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" data-figure="assets/papers/rethinking_causal/teaser.jpg">
+    <li class="paper" data-figure="assets/teasers_gen/future_aware_attention.webp">
         <pt><a href="https://arxiv.org/abs/2505.18605">Rethinking Causal Mask Attention for Vision-Language Inference</a></pt>
         <div class="author">
             Xiaohuan Pei, <b><u>Tao Huang</u></b>, Yanxiang Ma, Chang Xu<br>
@@ -935,7 +913,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="Embodied AI" data-figure="assets/papers/from_language/teaser.jpg">
+    <li class="paper" category="Embodied AI" data-figure="assets/teasers_gen/roboghost.webp">
         <pt><a href="https://arxiv.org/abs/2510.14952">From Language to Locomotion: Retargeting-free Humanoid Control via Motion Latent Guidance</a></pt>
         <div class="author">
             Zhe Li, Cheng Chi, Yangyang Wei, Boan Zhu, Yibo Peng, <b><u>Tao Huang</u></b>, Pengwei Wang, Zhongyuan Wang, Shanghang Zhang, Chang Xu<br>
@@ -961,7 +939,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="KD" data-figure="assets/papers/distilling_cross/teaser.jpg">
+    <li class="paper" category="KD" data-figure="assets/teasers_gen/fd_cmkd.webp">
         <pt><a href="https://arxiv.org/abs/2511.19887">Distilling Cross-Modal Knowledge via Feature Disentanglement</a></pt>
         <div class="author">
             Junhong Liu, Yuan Zhang, <b><u>Tao Huang</u></b>, Wenchao Xu, Renyu Yang<br>
@@ -989,7 +967,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="pruning,Embodied AI" data-figure="assets/papers/vla_cache/teaser.jpg">
+    <li class="paper" category="Pruning,Embodied AI" data-figure="assets/teasers_gen/vla_cache.webp">
         <pt><a href="https://arxiv.org/abs/2502.02175">VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching</a></pt>
         <div class="author">
             Siyu Xu, Yunke Wang, Chenghao Xia, Dihao Zhu, <b><u>Tao Huang</u></b>, Chang Xu<br>
@@ -1017,7 +995,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="pruning" data-figure="assets/papers/sparsevlm_visual/teaser.jpg">
+    <li class="paper" category="Pruning" data-figure="assets/teasers_gen/sparsevlm.webp">
         <pt><a href="https://arxiv.org/pdf/2410.04417">SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference</a></pt>
         <div class="author">
             Yuan Zhang*, ChunKai Fan*, Junpeng Ma*, Wenzhao Zheng, <b><u>Tao Huang</u></b>, Kuan Cheng, Denis Gudovskiy, Tomoyuki Okuno, Yohei Nakata, Kurt Keutzer, Shanghang Zhang<br>
@@ -1044,7 +1022,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" first_authored=true category="KD" data-figure="assets/papers/dist+/teaser.png">
+    <li class="paper" first_authored=true category="KD" data-figure="assets/teasers_gen/dist_plus.webp">
         <pt><a href="https://ieeexplore.ieee.org/abstract/document/10938241">DIST+: Knowledge Distillation from A Stronger Adaptive Teacher</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>, Shan You, Fei Wang, Chen Qian, Chang Xu<br>
@@ -1073,7 +1051,7 @@ For the latest full publication list, please refer to my <a href="https://schola
             </div>
         </p>
     </li>
-    <li class="paper" category="KD" data-figure="assets/papers/move_kd/teaser.jpg">
+    <li class="paper" category="KD" data-figure="assets/teasers_gen/move_kd.webp">
         <pt><a href="https://arxiv.org/abs/2501.01709">MoVE-KD: Knowledge Distillation for VLMs with Mixture of Visual Encoders</a></pt>
         <div class="author">
             Jiajun Cao, Yuan Zhang, <b><u>Tao Huang</u></b>, Ming Lu, Qizhe Zhang, Ruichuan An, Ningning Ma, Shanghang Zhang<br>
@@ -1100,7 +1078,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
 
-    <li class="paper" first_authored=true category="Efficient Data" data-figure="assets/papers/learning_mask/teaser.jpg">
+    <li class="paper" first_authored=true category="Efficient Data" data-figure="assets/teasers_gen/mi_mae.webp">
 		<pt><a href="https://arxiv.org/abs/2502.19718">Learning Mask Invariant Mutual Information for Masked Image Modeling</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>*, Yanxiang Ma*, Shan You, Chang Xu<br>
@@ -1127,7 +1105,7 @@ For the latest full publication list, please refer to my <a href="https://schola
 		</p>
     </li>
 
-    <li class="paper" category="" data-figure="assets/minimax01/arch.png">
+    <li class="paper" category="" data-figure="assets/teasers_gen/minimax01.webp">
         <pt><a href="https://arxiv.org/abs/2501.08313">MiniMax-01: Scaling Foundation Models with Lightning Attention</a></pt>
         <div class="author">
             <em>Technical Report</em>, 2025
@@ -1156,7 +1134,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
 
-    <li class="paper" first_authored=true, category="" data-figure="assets/papers/efficientvmamba_atrous/teaser.jpg">
+    <li class="paper" first_authored=true, category="" data-figure="assets/teasers_gen/efficientvmamba.webp">
         <pt><a href="https://arxiv.org/abs/2403.09977">EfficientVMamba: Atrous Selective Scan for Light Weight Visual Mamba</a></pt>
         <div class="author">
             Xiaohuan Pei*, <b><u>Tao Huang</u></b>*, Chang Xu<br>
@@ -1186,7 +1164,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <!-- <h3 style="margin-top: 1em;">2024</h3> -->
-    <li class="paper" data-figure="assets/papers/unveiling_tapestry/teaser.jpg">
+    <li class="paper" data-figure="assets/teasers_gen/conbench.webp">
         <pt><a href="https://arxiv.org/abs/2405.14156">Unveiling the Tapestry of Consistency in Large Vision-Language Models</a></pt>
         <div class="author">
             Yuan Zhang, Fei Xiao, <b><u>Tao Huang</u></b>, Chun-Kai Fan, Hongyuan Dong, Jiawen Li, Jiacong Wang, Kuan Cheng, Shanghang Zhang, Haoyuan Guo<br>
@@ -1212,7 +1190,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
 
-    <!-- <li class="paper" first_authored=true category="" data-figure="assets/papers/localmamba_visual/teaser.jpg">
+    <li class="paper" first_authored=true category="" data-figure="assets/teasers_gen/localmamba.webp">
         <pt><a href="https://arxiv.org/abs/2403.09338">LocalMamba: Visual State Space Model with Windowed Selective Scan</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>, Xiaohuan Pei, Shan You, Fei Wang, Chen Qian, Chang Xu<br>
@@ -1236,9 +1214,9 @@ For the latest full publication list, please refer to my <a href="https://schola
                 </blockquote>
             </div>
         </p>
-    </li> -->
+    </li>
 
-    <li class="paper" first_authored=true category="Efficient Data,Efficient Training" data-figure="assets/papers/active_generation/teaser.jpg">
+    <li class="paper" first_authored=true category="Efficient Data,Efficient Training" data-figure="assets/teasers_gen/actgen.webp">
         <pt><a href="https://arxiv.org/abs/2403.06517">Active Generation for Image Classification</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>*, Jiaqi Liu*, Shan You, Chang Xu<br>
@@ -1265,7 +1243,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
 
-    <li class="paper" category="generation,Efficient Training" data-figure="assets/papers/training_free/teaser.jpg">
+    <li class="paper" category="Efficient Training" data-figure="assets/teasers_gen/composite_scene.webp">
         <pt><a href="https://arxiv.org/abs/2407.13609">Training-free Composite Scene Generation for Layout-to-Image Synthesis</a></pt>
         <div class="author">
             Jiaqi Liu, <b><u>Tao Huang</u></b>, Chang Xu<br>
@@ -1292,7 +1270,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
 
-    <li class="paper" category="Efficient Data">
+    <li class="paper" category="Efficient Data" data-figure="assets/teasers_gen/diff_zs_mlc.webp">
         <pt><a href="https://arxiv.org/abs/2404.03144">Diverse and Tailored Image Generation for Zero-Shot Multi-Label Classification</a></pt>
         <div class="author">
             Kaixin Zhang, Zhixiang Yuan, <b><u>Tao Huang</u></b><br>
@@ -1325,7 +1303,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
 
-    <li class="paper" category="Efficient Data">
+    <li class="paper" category="Efficient Data" data-figure="assets/teasers_gen/pu_mlc.webp">
         <pt><a href="https://arxiv.org/abs/2306.16016">Positive Label Is All You Need for Multi-Label Classification</a></pt><flag>&#128681; Oral</flag>
         <div class="author">
             Zhixiang Yuan, Kaixin Zhang, <b><u>Tao Huang</u></b><br>
@@ -1353,7 +1331,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
 
-    <li class="paper" category="KD" data-figure="assets/papers/freekd_knowledge/teaser.jpg">
+    <li class="paper" category="KD" data-figure="assets/teasers_gen/freekd.webp">
         <pt><a href="https://arxiv.org/abs/2311.12079">FreeKD: Knowledge Distillation via Semantic Frequency Prompt</a></pt>
         <div class="author">
             Yuan Zhang, <b><u>Tao Huang</u></b>, Jiaming Liu, Tao Jiang, Kuan Cheng, Shanghang Zhang<br>
@@ -1381,7 +1359,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <!-- <h3>2023</h3> -->
-    <li class="paper" first_authored=true category="KD">
+    <li class="paper" first_authored=true category="KD" data-figure="assets/teasers_gen/diffkd.webp">
         <pt><a href="https://arxiv.org/abs/2305.15712">Knowledge Diffusion for Distillation</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>, Yuan Zhang, Mingkai Zheng, Shan You, Fei Wang, Chen Qian, Chang Xu<br>
@@ -1413,7 +1391,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
 
-    <li class="paper" category="KD">
+    <li class="paper" category="KD" data-figure="assets/teasers_gen/avatar_kd.webp">
         <pt><a href="https://arxiv.org/abs/2305.02722">Avatar Knowledge Distillation: Self-ensemble Teacher Paradigm with Uncertainty</a></pt>
         <div class="author">
             Yuan Zhang, Weihua Chen, Yichen Lu, <b><u>Tao Huang</u></b>, Xiuyu Sun, Jian Cao<br>
@@ -1440,7 +1418,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
 
-    <li class="paper" first_authored=true category="KD">
+    <li class="paper" first_authored=true category="KD" data-figure="assets/teasers_gen/maskd.webp">
 		<pt><a href="https://arxiv.org/abs/2205.14589">Masked Distillation with Receptive Tokens</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>*, Yuan Zhang*, Shan You, Fei Wang, Chen Qian, Jian Cao, Chang Xu<br>
@@ -1469,7 +1447,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <!-- <h3>2022</h3> -->
-    <li class="paper" first_authored=true category="KD">
+    <li class="paper" first_authored=true category="KD" data-figure="assets/teasers_gen/dist.webp">
 		<pt><a href="https://arxiv.org/abs/2205.10536">Knowledge Distillation from A Stronger Teacher</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>, Shan You, Fei Wang, Chen Qian, Chang Xu<br>
@@ -1503,7 +1481,7 @@ For the latest full publication list, please refer to my <a href="https://schola
 		</p>
     </li>
 
-    <li class="paper" category="NAS">
+    <li class="paper" category="NAS" data-figure="assets/teasers_gen/quantum_architecture_search.webp">
 		<pt><a href="https://arxiv.org/abs/2010.10217">Quantum circuit architecture search for variational quantum algorithms</a></pt>
         <div class="author">
             Yuxuan Du, <b><u>Tao Huang</u></b>, Shan You, Min-Hsiu Hsieh, Dacheng Tao<br>
@@ -1539,7 +1517,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
 
-    <li class="paper" first_authored=true category="NAS">
+    <li class="paper" first_authored=true category="NAS" data-figure="assets/teasers_gen/greedynasv2.webp">
 		<pt><a href="https://arxiv.org/abs/2111.12609">GreedyNASv2: Greedier Search with a Greedy Path Filter</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>, Shan You, Fei Wang, Chen Qian, Changshui Zhang, Xiaogang Wang, Chang Xu<br>
@@ -1566,7 +1544,7 @@ For the latest full publication list, please refer to my <a href="https://schola
 		</p>
     </li>
 
-    <li class="paper" first_authored=true category="Efficient Training">
+    <li class="paper" first_authored=true category="Efficient Training" data-figure="assets/teasers_gen/dyrep.webp">
         <pt><a href="https://arxiv.org/abs/2203.12868">DyRep: Bootstrapping Training with Dynamic Re-parameterization</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>, Shan You, Bohan Zhang, Yuxuan Du, Fei Wang, Chen Qian, Chang Xu<br>
@@ -1594,7 +1572,7 @@ For the latest full publication list, please refer to my <a href="https://schola
         </p>
     </li>
 
-    <li class="paper" first_authored=true, category="Efficient Training">
+    <li class="paper" first_authored=true, category="Efficient Training" data-figure="assets/teasers_gen/reloss.webp">
         <pt><a href="https://arxiv.org/abs/2202.13197">Relational Surrogate Loss Learning</a></pt>
         <div class="author">
             <b><u>Tao Huang</u></b>, Zekang Li, Hua Lu, Yong Shan, Shusheng Yang, Yang Feng, Fei Wang, Shan You, Chang Xu<br>
@@ -1624,7 +1602,7 @@ For the latest full publication list, please refer to my <a href="https://schola
 		</p>
     </li>
 
-    <li class="paper" category="pruning">
+    <li class="paper" category="Pruning" data-figure="assets/teasers_gen/dagger.webp">
 		<pt><a href="https://arxiv.org/abs/2010.15041">Data Agnostic Filter Gating for Efficient Deep Networks</a></pt>
         <div class="author">
             Hongyan Xu, Xiu Su, Shan You, <b><u>Tao Huang</u></b>, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu, Dadong Wang, Arcot Sowmya<br>
@@ -1652,7 +1630,7 @@ For the latest full publication list, please refer to my <a href="https://schola
 	</li>
 
     <!-- <h3>2021</h3> -->
-    <li class="paper" first_authored=true category="NAS">
+    <li class="paper" first_authored=true category="NAS" data-figure="assets/teasers_gen/mctnas.webp">
         <pt><a href="https://arxiv.org/abs/2103.11922">Prioritized Architecture Sampling with Monto-Carlo Tree Search</a></pt>
         <div class="author">
             Xiu Su*, <b><u>Tao Huang</u></b>*, Yanxi Li, Shan You, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu<br>
@@ -1680,7 +1658,7 @@ For the latest full publication list, please refer to my <a href="https://schola
 		</p>
     </li>
 
-    <li class="paper" category="NAS,pruning">
+    <li class="paper" category="NAS,Pruning" data-figure="assets/teasers_gen/cafenet.webp">
         <pt><a href="https://arxiv.org/abs/2102.05258">Locally Free Weight Sharing for Network Width Search</a></pt><flag>&#128681; Spotlight</flag>
         <div class="author">
             Xiu Su, Shan You, <b><u>Tao Huang</u></b>, Fei Wang, Chen Qian, Changshui Zhang, Chang Xu<br>
@@ -1709,7 +1687,7 @@ For the latest full publication list, please refer to my <a href="https://schola
     </li>
 
     <!-- <h3>2020</h3> -->
-	<li class="paper" first_authored=true category="NAS">
+	<li class="paper" first_authored=true category="NAS" data-figure="assets/teasers_gen/greedynas.webp">
 		<pt><a href="https://arxiv.org/abs/2003.11236">GreedyNAS: Towards Fast One-Shot NAS with Greedy Supernet</a></pt>
         <div class="author">
             Shan You*, <b><u>Tao Huang</u></b>*, Mingmin Yang*, Fei Wang, Chen Qian, Changshui Zhang<br>
@@ -1744,13 +1722,19 @@ For the latest full publication list, please refer to my <a href="https://schola
     <p class="empty-state-msg">No papers match the selected filters.</p>
     <button type="button" class="empty-state-clear" onclick="filterPub('All')">Clear filters</button>
 </div>
+    </main>
 
-<p>
-    <br>
-</p>
+    <footer class="site-footer">
+        <span>&copy; 2026 Tao Huang · Shanghai Jiao Tong University</span>
+        <div class="footer-links">
+            <a href="https://scholar.google.com/citations?user=jkcRdBgAAAAJ&hl=en">Google Scholar</a>
+            <span class="footer-sep" aria-hidden="true">&middot;</span>
+            <a href="https://www.cs.sjtu.edu.cn/jiaoshiml/huangtao.html">SJTU Homepage</a>
+        </div>
+    </footer>
+</div>
 
-
-<button class="back-to-top" aria-label="Back to top">&uarr;</button>
+<button class="back-to-top" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 18.5V5.5"/><path d="M6 11.5L12 5.5l6 6"/></svg></button>
 
 <!-- Popover Element -->
 <div id="popover" class="popover"></div>
@@ -1758,8 +1742,8 @@ For the latest full publication list, please refer to my <a href="https://schola
 <!-- Lightbox for paper figures -->
 <div id="lightbox" class="lightbox-backdrop" aria-hidden="true">
     <div class="lightbox-content" role="dialog" aria-label="Expanded figure">
-        <button class="lightbox-close" aria-label="Close">×</button>
-        <img id="lightbox-img" src="" alt="Expanded paper figure">
+        <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+        <img id="lightbox-img" src="" alt="Expanded paper figure" />
     </div>
 </div>
 
